@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Pengujian Perhitungan Konsistensi &amp; Evaluasi (F-04 &amp; F-05)" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T05:41:39.207Z" hostname="NADIAAYU01" time="0.013">
-  <properties/>
-  <testcase name="Perhitungan skor komposit harian dengan proporsi seimbang" classname="com.sehatharian.KonsistensiEvaluasiTest" time="0.007"/>
-  <testcase name="Evaluasi memicu peringatan khusus jika tidur di bawah 5 jam (F-05)" classname="com.sehatharian.KonsistensiEvaluasiTest" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

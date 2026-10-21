@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class LoginController {
 
@@ -38,7 +37,9 @@ public class LoginController {
             if (logoUrl != null) {
                 brandLogoView.setImage(new Image(logoUrl.toExternalForm()));
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+            // Abaikan jika berkas gambar logo tidak ditemukan pada runtime
+        }
 
         // Sinkronisasi teks password tersembunyi dan terlihat
         txtPasswordVisible.textProperty().bindBidirectional(txtPassword.textProperty());
@@ -57,7 +58,7 @@ public class LoginController {
             txtPassword.setManaged(false);
             btnTogglePassword.setText("Sembunyikan");
             txtPasswordVisible.requestFocus();
-            txtPasswordVisible.positionCaret(txtPasswordVisible.getText().length());
+            txtPasswordVisible.positionCaret(txtPasswordVisible.getText() != null ? txtPasswordVisible.getText().length() : 0);
         } else {
             txtPassword.setVisible(true);
             txtPassword.setManaged(true);
@@ -65,7 +66,7 @@ public class LoginController {
             txtPasswordVisible.setManaged(false);
             btnTogglePassword.setText("Lihat");
             txtPassword.requestFocus();
-            txtPassword.positionCaret(txtPassword.getText().length());
+            txtPassword.positionCaret(txtPassword.getText() != null ? txtPassword.getText().length() : 0);
         }
     }
 
@@ -107,11 +108,19 @@ public class LoginController {
             if (p != null && p.getNama() != null && !p.getNama().trim().isEmpty()) {
                 namaTampilan = p.getNama();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+            // Abaikan jika database lokal belum aktif, gunakan nama identitas default
+        }
+
+        // Periksa opsi Ingat Saya
+        boolean rememberMe = chkRememberMe != null && chkRememberMe.isSelected();
 
         // Inisialisasi sesi login pengguna
         UserSession session = UserSession.getInstance();
         session.login(identity, namaTampilan);
+        if (rememberMe) {
+            session.setDemoMode(true);
+        }
 
         // Login pengguna yang sudah ada menandai onboarding sudah selesai
         // agar tidak memunculkan onboarding ulang sesuai PRD Ketentuan 5

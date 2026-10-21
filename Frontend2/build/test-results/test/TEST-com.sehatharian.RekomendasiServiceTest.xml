@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Pengujian Filter Rekomendasi &amp; Waktu Luang (F-02 &amp; F-06)" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T03:30:51.509Z" hostname="NADIAAYU01" time="0.012">
+<testsuite name="Pengujian Filter Rekomendasi &amp; Waktu Luang (F-02 &amp; F-06)" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-21T05:41:39.222Z" hostname="NADIAAYU01" time="0.016">
   <properties/>
-  <testcase name="Filter aktivitas tidak boleh melebihi batas waktu luang pengguna (F-02)" classname="com.sehatharian.RekomendasiServiceTest" time="0.004"/>
+  <testcase name="Filter aktivitas tidak boleh melebihi batas waktu luang pengguna (F-02)" classname="com.sehatharian.RekomendasiServiceTest" time="0.008"/>
   <testcase name="Filter Menu &amp; Workout sesuai golongan kesibukan dan usia (F-06)" classname="com.sehatharian.RekomendasiServiceTest" time="0.005"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Pengujian Validasi Pelacak Kebiasaan (KebiasaanService)" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-21T03:30:51.429Z" hostname="NADIAAYU01" time="0.055">
+  <properties/>
+  <testcase name="Validasi menu makan: nama menu dan waktu makan wajib diisi" classname="com.sehatharian.KebiasaanServiceTest" time="0.034"/>
+  <testcase name="Validasi batas hidrasi: kurang dari 10 ml atau lebih dari 5000 ml harus ditolak" classname="com.sehatharian.KebiasaanServiceTest" time="0.004"/>
+  <testcase name="Validasi batas aktivitas: durasi non-positif atau melebihi 720 menit harus ditolak" classname="com.sehatharian.KebiasaanServiceTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

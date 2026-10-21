@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" styleClass="main-content-scroll" stylesheets="@../css/styles.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sehatharian.controller.EvaluasiMingguanController">
+
+    <VBox fx:id="evaluasiRoot" spacing="22" styleClass="content-pane">
+
+        <!-- Header Panel -->
+        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="ANALISIS &amp; EVALUASI POLA HIDUP (F-05)" styleClass="sleep-header-badge"/>
+                </HBox>
+                <Label text="Evaluasi &amp; Rekomendasi Mingguan" styleClass="page-title"/>
+                <Label text="Analisis menyeluruh kebiasaan 7 hari terakhir yang dihitung secara objektif dari data tantangan, tidur, hidrasi, dan aktivitas Anda." styleClass="page-subtitle" wrapText="true"/>
+            </VBox>
+            <Button text="Jalankan Analisis Sekarang" styleClass="btn-primary" onAction="#handleJalankanEvaluasi" style="-fx-font-size: 13.5px; -fx-padding: 10 22;"/>
+        </HBox>
+
+        <!-- KARTU HASIL EVALUASI TERBARU (F-05) -->
+        <VBox styleClass="wellness-card" spacing="18">
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="2">
+                    <Label text="Hasil Evaluasi Mingguan Terbaru" styleClass="card-title"/>
+                    <Label fx:id="labelPeriodeEvaluasi" text="Periode evaluasi: -" styleClass="card-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <VBox alignment="CENTER_RIGHT" spacing="2">
+                    <Label fx:id="labelSkorEvaluasi" text="0%" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #3F6354;"/>
+                    <Label fx:id="labelGradeEvaluasi" text="Status Konsistensi" styleClass="badge-category"/>
+                </VBox>
+            </HBox>
+
+            <!-- Status Standar Tidur -->
+            <HBox fx:id="boxStatusTidur" alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #F8FAFA; -fx-padding: 12 16; -fx-background-radius: 12;">
+                <Label text="Status Standar Tidur (≥ 5 Jam):" styleClass="form-label"/>
+                <Label fx:id="labelStatusTidur" text="Memenuhi Standar Minimal" styleClass="badge-selesai"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="labelRataTidur" text="Rata-rata: 7.5 jam/malam" styleClass="card-subtitle"/>
+            </HBox>
+
+            <!-- Ringkasan Kegiatan -->
+            <VBox spacing="6">
+                <Label text="Ringkasan Pencapaian Kebiasaan:" styleClass="form-label"/>
+                <Label fx:id="labelRingkasanTeks" text="Belum ada data evaluasi. Klik 'Jalankan Evaluasi Sekarang' untuk menganalisis data riil Anda." styleClass="card-subtitle" wrapText="true" style="-fx-line-spacing: 4px;"/>
+            </VBox>
+
+            <!-- Rekomendasi Solutif -->
+            <VBox spacing="8" style="-fx-background-color: #F4F8F6; -fx-padding: 16; -fx-background-radius: 12; -fx-border-color: #DDEBE3; -fx-border-radius: 12;">
+                <Label text="Rekomendasi Langkah Nyata Berkelanjutan:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #274337;"/>
+                <Label fx:id="labelRekomendasiTeks" text="• Rekomendasi akan terbentuk secara otomatis berdasarkan catatan mingguan Anda." wrapText="true" style="-fx-line-spacing: 5px; -fx-font-size: 13.5px; -fx-text-fill: #1E3129;"/>
+            </VBox>
+
+            <!-- Disclaimer Medis Sehat Sesuai PRD -->
+            <Label text="Catatan: Evaluasi dan rekomendasi SehatHarian disusun untuk pendampingan kebiasaan hidup sehat harian dan bukan pengganti diagnosis medis profesional." styleClass="form-hint" wrapText="true"/>
+        </VBox>
+
+        <!-- RIWAYAT ARSIP EVALUASI MINGGUAN DI MYSQL -->
+        <VBox styleClass="wellness-card" spacing="14">
+            <Label text="Arsip Riwayat Evaluasi Mingguan Tersimpan di MySQL" styleClass="card-title"/>
+            <TableView fx:id="tableArsipEvaluasi" prefHeight="220" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colMingguMulai" text="Minggu Evaluasi" prefWidth="160"/>
+                    <TableColumn fx:id="colSkor" text="Skor Konsistensi" prefWidth="140"/>
+                    <TableColumn fx:id="colRataTidur" text="Rata-rata Tidur" prefWidth="140"/>
+                    <TableColumn fx:id="colStandarTidur" text="Standar Tidur (≥ 5h)" prefWidth="180"/>
+                    <TableColumn fx:id="colTanggalDibuat" text="Dibuat Pada" prefWidth="160"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

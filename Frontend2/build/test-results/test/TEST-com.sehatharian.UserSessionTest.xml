@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Pengujian State UserSession &amp; Alur Onboarding Frontend" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-21T03:30:51.554Z" hostname="NADIAAYU01" time="0.058">
+  <properties/>
+  <testcase name="Login pengguna yang sudah ada tidak memunculkan onboarding ulang" classname="com.sehatharian.UserSessionTest" time="0.003"/>
+  <testcase name="Pendaftaran akun baru harus menyetel onboardingSelesai = false" classname="com.sehatharian.UserSessionTest" time="0.002"/>
+  <testcase name="Kelompok umur dan aktivitas harus ternormalisasi dengan benar" classname="com.sehatharian.UserSessionTest" time="0.015"/>
+  <testcase name="Logout membersihkan sesi pengguna dengan aman" classname="com.sehatharian.UserSessionTest" time="0.008"/>
+  <testcase name="Waktu luang tidak boleh melebihi batas maksimal 4 jam" classname="com.sehatharian.UserSessionTest" time="0.013"/>
+  <testcase name="Menyelesaikan 3 slide onboarding harus menyetel onboardingSelesai = true" classname="com.sehatharian.UserSessionTest" time="0.007"/>
+  <system-out><![CDATA[Catatan: Sinkronisasi MySQL dilewati (bekerja dalam in-memory demo state). Info: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Catatan: Sinkronisasi MySQL dilewati (bekerja dalam in-memory demo state). Info: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Catatan: Sinkronisasi MySQL dilewati (bekerja dalam in-memory demo state). Info: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Catatan: Sinkronisasi MySQL dilewati (bekerja dalam in-memory demo state). Info: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Catatan: Sinkronisasi MySQL dilewati (bekerja dalam in-memory demo state). Info: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+Catatan: Sinkronisasi MySQL dilewati (bekerja dalam in-memory demo state). Info: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

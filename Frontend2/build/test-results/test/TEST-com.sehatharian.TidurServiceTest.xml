@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Pengujian Aturan Jam Tidur (F-07)" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-21T03:30:51.528Z" hostname="NADIAAYU01" time="0.024">
+  <properties/>
+  <testcase name="Validasi batas waktu ekstrem" classname="com.sehatharian.TidurServiceTest" time="0.005"/>
+  <testcase name="Standar tidur PRD minimal 5 jam: 4.5 jam tidak memenuhi standar" classname="com.sehatharian.TidurServiceTest" time="0.003"/>
+  <testcase name="Durasi tidur setelah tengah malam (01:00 ke 07:30 = 6.5 jam)" classname="com.sehatharian.TidurServiceTest" time="0.002"/>
+  <testcase name="Standar tidur PRD minimal 5 jam: 5.5 jam memenuhi standar" classname="com.sehatharian.TidurServiceTest" time="0.002"/>
+  <testcase name="Durasi tidur lintas tengah malam (22:30 ke 06:00 = 7.5 jam)" classname="com.sehatharian.TidurServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -2,8 +2,6 @@ package com.sehatharian.model;
 
 import com.sehatharian.repository.PenggunaRepository;
 
-import java.time.LocalDate;
-
 /**
  * UserSession mengelola state autentikasi frontend dan data onboarding pengguna.
  * Dirancang terisolasi untuk simulasi autentikasi frontend tanpa memodifikasi skema MySQL.
@@ -39,7 +37,11 @@ public class UserSession {
      */
     public void login(String emailOrUsername, String nama) {
         this.loggedIn = true;
-        this.userEmail = emailOrUsername != null && emailOrUsername.contains("@") ? emailOrUsername : emailOrUsername + "@sehatharian.local";
+        if (emailOrUsername != null && !emailOrUsername.trim().isEmpty()) {
+            this.userEmail = emailOrUsername.contains("@") ? emailOrUsername : emailOrUsername + "@sehatharian.local";
+        } else {
+            this.userEmail = "user@sehatharian.local";
+        }
         this.userName = (nama != null && !nama.trim().isEmpty()) ? nama.trim() : "Pengguna Sehat";
         this.demoMode = true;
     }

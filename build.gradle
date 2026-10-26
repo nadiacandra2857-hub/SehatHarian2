@@ -1,0 +1,8 @@
+// Root build configuration for SehatHarian multi-project
+
+subprojects {
+    repositories {
+        mavenCentral()
+        maven { url "https://sandec.jfrog.io/artifactory/repo" }
+    }
+}

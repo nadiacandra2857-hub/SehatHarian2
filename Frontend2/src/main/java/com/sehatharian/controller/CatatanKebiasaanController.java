@@ -4,6 +4,7 @@ import com.sehatharian.model.Aktivitas;
 import com.sehatharian.model.Hidrasi;
 import com.sehatharian.model.KebiasaanMakan;
 import com.sehatharian.model.Pengguna;
+import com.sehatharian.model.UserSession;
 import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.KebiasaanService;
 import com.sehatharian.util.AnimationHelper;
@@ -192,6 +193,17 @@ public class CatatanKebiasaanController {
     }
 
     private void muatDataPengguna() {
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+            return;
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+                if (penggunaAktif != null) return;
+            } catch (Exception ignored) {}
+        }
+
         try {
             penggunaAktif = penggunaRepo.getDefaultPengguna();
         } catch (SQLException ignored) {}

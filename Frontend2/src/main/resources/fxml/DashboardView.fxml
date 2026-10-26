@@ -15,84 +15,84 @@
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.DashboardController">
 
-    <VBox fx:id="dashboardRoot" spacing="22" styleClass="content-pane">
+    <VBox fx:id="dashboardRoot" spacing="18" styleClass="content-pane">
 
         <!-- 1. HERO SECTION -->
-        <HBox styleClass="hero-box" alignment="CENTER_LEFT" spacing="24">
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
+        <HBox styleClass="hero-box" alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
                 <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Label fx:id="heroDateLabel" text="Minggu, 18 Oktober 2026" style="-fx-text-fill: #A8D1BF; -fx-font-weight: 600; -fx-font-size: 13px;"/>
+                    <Label fx:id="heroDateLabel" text="Minggu, 18 Oktober 2026" style="-fx-text-fill: #34D399; -fx-font-weight: 600; -fx-font-size: 12px;"/>
                 </HBox>
                 <Label fx:id="heroGreetingLabel" text="Selamat Pagi, Nadia!" styleClass="hero-greeting"/>
                 <Label fx:id="heroQuoteLabel" text="Mulai hari ini dengan satu kebiasaan sehat kecil untuk hasil berkelanjutan." styleClass="hero-quote" wrapText="true"/>
-                <HBox spacing="12" alignment="CENTER_LEFT" style="-fx-padding: 8 0 0 0;">
-                    <Button fx:id="btnHeroAction" text="Kerjakan Tantangan Hari Ini" styleClass="btn-secondary" onAction="#handleBukaTantangan" style="-fx-font-size: 13.5px; -fx-padding: 10 18;"/>
+                <HBox spacing="12" alignment="CENTER_LEFT" style="-fx-padding: 6 0 0 0;">
+                    <Button fx:id="btnHeroAction" text="🎯 Kerjakan Tantangan Hari Ini" styleClass="btn-primary" onAction="#handleBukaTantangan" style="-fx-font-size: 13px; -fx-padding: 8 16;"/>
                     <Label fx:id="heroStatusTantanganLabel" text="0 dari 3 tantangan selesai" styleClass="hero-subtext"/>
                 </HBox>
             </VBox>
-            <ImageView fx:id="heroImageView" fitHeight="150.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="heroImageView" fitHeight="130.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true"/>
         </HBox>
 
         <!-- 1.5. RINGKASAN PREFERENSI ONBOARDING PENGGUNA -->
-        <HBox fx:id="preferenceBannerBox" styleClass="preference-banner-card" alignment="CENTER_LEFT" spacing="16">
-            <VBox spacing="3" HBox.hgrow="ALWAYS">
+        <HBox fx:id="preferenceBannerBox" styleClass="preference-banner-card" alignment="CENTER_LEFT" spacing="14">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
                 <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Label text="PREFERENSI ONBOARDING ANDA" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #1D4ED8;"/>
-                    <Label text="• Profil Adaptif" style="-fx-font-size: 11px; -fx-text-fill: #64748B;"/>
+                    <Label text="PREFERENSI ADAPTIF ANDA" style="-fx-font-size: 10.5px; -fx-font-weight: bold; -fx-text-fill: #1D4ED8;"/>
+                    <Label text="• Profil Personal" style="-fx-font-size: 10.5px; -fx-text-fill: #94A3B8;"/>
                 </HBox>
-                <Label fx:id="prefPersonalizedNoteLabel" text="Rekomendasi dan tantangan kesehatan harian disesuaikan dengan profil onboarding Anda:"
-                       style="-fx-font-size: 12.5px; -fx-text-fill: #334155;"/>
+                <Label fx:id="prefPersonalizedNoteLabel" text="Rekomendasi dan tantangan disesuaikan dengan profil onboarding:"
+                       style="-fx-font-size: 12px; -fx-text-fill: #475569;"/>
             </VBox>
-            <HBox spacing="10" alignment="CENTER_RIGHT">
+            <HBox spacing="8" alignment="CENTER_RIGHT">
                 <HBox spacing="4" alignment="CENTER">
-                    <Label text="⏱️ Waktu Luang:" style="-fx-font-size: 11.5px; -fx-text-fill: #475569;"/>
+                    <Label text="⏱️ Waktu Luang:" style="-fx-font-size: 11px; -fx-text-fill: #64748B;"/>
                     <Label fx:id="prefWaktuLuangBadge" text="1 Jam" styleClass="preference-badge-blue"/>
                 </HBox>
                 <HBox spacing="4" alignment="CENTER">
-                    <Label text="🌿 Tempat:" style="-fx-font-size: 11.5px; -fx-text-fill: #475569;"/>
+                    <Label text="🌿 Tempat:" style="-fx-font-size: 11px; -fx-text-fill: #64748B;"/>
                     <Label fx:id="prefAktivitasBadge" text="Outdoor" styleClass="preference-badge-green"/>
                 </HBox>
                 <HBox spacing="4" alignment="CENTER">
-                    <Label text="👤 Kategori:" style="-fx-font-size: 11.5px; -fx-text-fill: #475569;"/>
+                    <Label text="👤 Kategori:" style="-fx-font-size: 11px; -fx-text-fill: #64748B;"/>
                     <Label fx:id="prefKelompokUmurBadge" text="Dewasa" styleClass="preference-badge-amber"/>
                 </HBox>
             </HBox>
         </HBox>
 
-        <!-- 2. GRID UTAMA DASHBOARD -->
-        <HBox spacing="20">
+        <!-- 2. GRID UTAMA DASHBOARD (RESPONSIF) -->
+        <HBox spacing="18" alignment="TOP_LEFT">
 
             <!-- KOLOM KIRI: TANTANGAN HARI INI & REKOMENDASI AKTIF -->
-            <VBox spacing="20" HBox.hgrow="ALWAYS" prefWidth="540">
+            <VBox spacing="18" HBox.hgrow="ALWAYS" minWidth="380.0">
 
                 <!-- Card Tantangan Hari Ini -->
-                <VBox styleClass="wellness-card" spacing="16">
+                <VBox styleClass="wellness-card" spacing="14">
                     <HBox alignment="CENTER_LEFT">
-                        <VBox spacing="2">
+                        <VBox spacing="1">
                             <Label text="Tantangan Kesehatan Hari Ini" styleClass="card-title"/>
-                            <Label text="Disesuaikan dengan jadwal dan rutinitas Anda" styleClass="card-subtitle"/>
+                            <Label text="Disesuaikan dengan rutinitas dan kondisi fisik Anda" styleClass="card-subtitle"/>
                         </VBox>
                         <Region HBox.hgrow="ALWAYS"/>
                         <Button text="Lihat Semua" styleClass="btn-outline" onAction="#handleBukaTantangan"/>
                     </HBox>
 
                     <!-- Container Daftar Tantangan Ringkas -->
-                    <VBox fx:id="challengesContainer" spacing="12">
+                    <VBox fx:id="challengesContainer" spacing="10">
                         <!-- Item tantangan dimuat dinamis -->
                     </VBox>
                 </VBox>
 
                 <!-- Card Sorotan Rekomendasi -->
-                <HBox styleClass="wellness-card" spacing="18" alignment="CENTER_LEFT">
-                    <ImageView fx:id="recHighlightImageView" fitHeight="110.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
-                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <HBox styleClass="wellness-card" spacing="16" alignment="CENTER_LEFT">
+                    <ImageView fx:id="recHighlightImageView" fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true"/>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
                         <Label text="Rekomendasi Aktivitas Waktu Luang" styleClass="card-title"/>
-                        <Label fx:id="recHighlightTitleLabel" text="Peregangan Meja Kerja (Desk Stretch)" style="-fx-font-weight: 600; -fx-font-size: 14px; -fx-text-fill: #2D473B;"/>
+                        <Label fx:id="recHighlightTitleLabel" text="Peregangan Meja Kerja (Desk Stretch)" style="-fx-font-weight: 600; -fx-font-size: 13.5px; -fx-text-fill: #0F172A;"/>
                         <Label fx:id="recHighlightDescLabel" text="Luangkan 10 menit di sela aktivitas untuk meredakan ketegangan leher dan bahu." styleClass="card-subtitle" wrapText="true"/>
-                        <HBox alignment="CENTER_LEFT" spacing="12">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
                             <Label fx:id="recHighlightBadge" text="10 Menit • Relaksasi" styleClass="badge-category"/>
                             <Region HBox.hgrow="ALWAYS"/>
-                            <Button text="Eksplor Aktivitas" styleClass="btn-primary" onAction="#handleBukaRekomendasi"/>
+                            <Button text="Eksplor Aktivitas ➔" styleClass="btn-primary" onAction="#handleBukaRekomendasi"/>
                         </HBox>
                     </VBox>
                 </HBox>
@@ -100,64 +100,64 @@
             </VBox>
 
             <!-- KOLOM KANAN: RINGKASAN LOG KESEHATAN -->
-            <VBox spacing="20" prefWidth="380">
+            <VBox spacing="18" prefWidth="350" minWidth="280">
 
                 <!-- Ringkasan Hidrasi -->
-                <VBox styleClass="wellness-card" spacing="14">
+                <VBox styleClass="wellness-card" spacing="12">
                     <HBox alignment="CENTER_LEFT">
-                        <Label text="Hidrasi Air Putih" styleClass="card-title"/>
+                        <Label text="💧 Hidrasi Air Putih" styleClass="card-title"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button text="+250 ml" styleClass="btn-secondary" onAction="#handleQuickAddHydration"/>
+                        <Button text="+250 ml" styleClass="btn-secondary" style="-fx-padding: 4 10; -fx-font-size: 11.5px;" onAction="#handleQuickAddHydration"/>
                     </HBox>
-                    <HBox alignment="BASELINE_LEFT" spacing="8">
-                        <Label fx:id="hydrationCurrentLabel" text="1.250" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #3B8296;"/>
+                    <HBox alignment="BASELINE_LEFT" spacing="6">
+                        <Label fx:id="hydrationCurrentLabel" text="1.250" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0284C7;"/>
                         <Label text="/ 2.000 ml target" styleClass="card-subtitle"/>
                     </HBox>
-                    <ProgressBar fx:id="hydrationProgressBar" progress="0.62" maxWidth="Infinity" style="-fx-accent: #3B8296;"/>
+                    <ProgressBar fx:id="hydrationProgressBar" progress="0.62" maxWidth="Infinity" style="-fx-accent: #0284C7;"/>
                     <Label fx:id="hydrationStatusLabel" text="Asupan cairan tubuh sudah 62% tercapai." styleClass="card-subtitle"/>
                 </VBox>
 
                 <!-- Ringkasan Aktivitas Fisik -->
-                <VBox styleClass="wellness-card" spacing="14">
+                <VBox styleClass="wellness-card" spacing="12">
                     <HBox alignment="CENTER_LEFT">
-                        <Label text="Aktivitas Fisik Hari Ini" styleClass="card-title"/>
+                        <Label text="🏃 Aktivitas Fisik Hari Ini" styleClass="card-title"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button text="+ Catat" styleClass="btn-outline" onAction="#handleBukaKebiasaan"/>
+                        <Button text="+ Catat" styleClass="btn-outline" style="-fx-padding: 4 10; -fx-font-size: 11.5px;" onAction="#handleBukaKebiasaan"/>
                     </HBox>
-                    <HBox alignment="BASELINE_LEFT" spacing="8">
-                        <Label fx:id="activityCurrentLabel" text="20" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #3F6354;"/>
+                    <HBox alignment="BASELINE_LEFT" spacing="6">
+                        <Label fx:id="activityCurrentLabel" text="20" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
                         <Label text="menit bergerak" styleClass="card-subtitle"/>
                     </HBox>
                     <Label fx:id="activitySummaryLabel" text="Aktivitas tercatat: Jalan santai pagi" styleClass="card-subtitle"/>
                 </VBox>
 
                 <!-- Ringkasan Tidur Terakhir -->
-                <VBox styleClass="wellness-card" spacing="14">
+                <VBox styleClass="wellness-card" spacing="12">
                     <HBox alignment="CENTER_LEFT">
-                        <Label text="Waktu Tidur Terakhir" styleClass="card-title"/>
+                        <Label text="🌙 Waktu Tidur Terakhir" styleClass="card-title"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button text="Atur Jadwal" styleClass="btn-outline" onAction="#handleBukaTidur"/>
+                        <Button text="Atur Jadwal" styleClass="btn-outline" style="-fx-padding: 4 10; -fx-font-size: 11.5px;" onAction="#handleBukaTidur"/>
                     </HBox>
-                    <HBox alignment="BASELINE_LEFT" spacing="8">
-                        <Label fx:id="sleepDurationLabel" text="7.5" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #5A5EAA;"/>
+                    <HBox alignment="BASELINE_LEFT" spacing="6">
+                        <Label fx:id="sleepDurationLabel" text="7.5" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4F46E5;"/>
                         <Label text="jam istirahat" styleClass="card-subtitle"/>
                     </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="8">
+                    <HBox alignment="CENTER_LEFT" spacing="6">
                         <Label fx:id="sleepStandardBadge" text="Memenuhi Standar (≥ 5 jam)" styleClass="badge-selesai"/>
                     </HBox>
                 </VBox>
 
                 <!-- Konsistensi Mingguan Card -->
-                <VBox styleClass="wellness-card" spacing="12" style="-fx-background-color: #FAFBF9;">
+                <VBox styleClass="wellness-card" spacing="10" style="-fx-background-color: #F0FDF4; -fx-border-color: #BBF7D0;">
                     <HBox alignment="CENTER_LEFT">
-                        <VBox spacing="2">
-                            <Label text="Konsistensi Minggu Ini" styleClass="card-title"/>
-                            <Label text="Berdasarkan 7 hari terakhir" styleClass="card-subtitle"/>
+                        <VBox spacing="1">
+                            <Label text="Konsistensi Minggu Ini" styleClass="card-title" style="-fx-text-fill: #14532D;"/>
+                            <Label text="Berdasarkan 7 hari terakhir" styleClass="card-subtitle" style="-fx-text-fill: #15803D;"/>
                         </VBox>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Label fx:id="weeklyScoreBadge" text="85%" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2E7D5B;"/>
+                        <Label fx:id="weeklyScoreBadge" text="85%" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
                     </HBox>
-                    <Button text="Lihat Grafik &amp; Evaluasi Lengkap" maxWidth="Infinity" styleClass="btn-primary" onAction="#handleBukaStatistik"/>
+                    <Button text="Lihat Grafik &amp; Evaluasi Lengkap ➔" maxWidth="Infinity" styleClass="btn-primary" onAction="#handleBukaStatistik"/>
                 </VBox>
 
             </VBox>

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
@@ -17,37 +16,40 @@
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.TantanganController">
 
-    <VBox fx:id="tantanganRoot" spacing="20" styleClass="content-pane">
+    <VBox fx:id="tantanganRoot" spacing="18" styleClass="content-pane">
 
         <!-- Header Panel & Filter Tanggal -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20">
-            <VBox spacing="4" HBox.hgrow="ALWAYS">
+        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="🎯 MODUL TANTANGAN (F-01 &amp; F-09)" styleClass="preference-badge-green"/>
+                </HBox>
                 <Label text="Tantangan Kesehatan Adaptif" styleClass="page-title"/>
                 <Label text="Tantangan bertahap yang disesuaikan dengan jenis rutinitas dan kondisi fisik Anda." styleClass="page-subtitle"/>
             </VBox>
             <HBox spacing="10" alignment="CENTER_RIGHT">
                 <Label text="Tanggal:" styleClass="form-label"/>
-                <DatePicker fx:id="datePickerTanggal" onAction="#handleUbahTanggal" prefWidth="170"/>
+                <DatePicker fx:id="datePickerTanggal" onAction="#handleUbahTanggal" prefWidth="160"/>
                 <Button text="Hari Ini" styleClass="btn-secondary" onAction="#handlePilihHariIni"/>
             </HBox>
         </HBox>
 
         <!-- Progress Penyelesaian Tantangan Hari Dipilih -->
-        <VBox styleClass="wellness-card" spacing="12">
+        <VBox styleClass="wellness-card" spacing="10">
             <HBox alignment="CENTER_LEFT">
-                <VBox spacing="2">
+                <VBox spacing="1">
                     <Label fx:id="labelProgressTitle" text="Kemajuan Tantangan Hari Ini" styleClass="card-title"/>
                     <Label fx:id="labelProgressSubtitle" text="0 dari 0 tantangan selesai" styleClass="card-subtitle"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Label fx:id="labelProgressPercent" text="0%" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #3F6354;"/>
+                <Label fx:id="labelProgressPercent" text="0%" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
             </HBox>
             <ProgressBar fx:id="progressBarTantangan" progress="0.0" maxWidth="Infinity"/>
         </VBox>
 
         <!-- Filter Kategori Tantangan -->
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="Filter Kategori:" styleClass="form-label"/>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="Kategori:" styleClass="form-label"/>
             <Button fx:id="btnFilterSemua" text="Semua" styleClass="btn-primary" onAction="#handleFilterSemua"/>
             <Button fx:id="btnFilterJalan" text="Jalan Kaki" styleClass="btn-outline" onAction="#handleFilterJalan"/>
             <Button fx:id="btnFilterWorkout" text="Workout di Rumah" styleClass="btn-outline" onAction="#handleFilterWorkout"/>
@@ -56,15 +58,15 @@
         </HBox>
 
         <!-- Daftar Kartu Tantangan Dinamis -->
-        <VBox fx:id="cardsContainer" spacing="16">
-            <!-- Kartu tantangan akan digenerate secara dinamis oleh TantanganController -->
+        <VBox fx:id="cardsContainer" spacing="12">
+            <!-- Kartu tantangan digenerate secara dinamis oleh TantanganController -->
         </VBox>
 
         <!-- Empty State Container -->
         <VBox fx:id="emptyStateBox" styleClass="empty-state-box" visible="false" managed="false">
-            <ImageView fx:id="emptyStateImageView" fitHeight="130" fitWidth="160" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="emptyStateImageView" fitHeight="110" fitWidth="140" pickOnBounds="true" preserveRatio="true"/>
             <Label fx:id="labelEmptyTitle" text="Tidak ada tantangan untuk filter ini." styleClass="empty-state-title"/>
-            <Label fx:id="labelEmptySubtitle" text="Coba ubah filter kategori atau buat tantangan baru untuk tanggal ini." styleClass="empty-state-subtitle"/>
+            <Label fx:id="labelEmptySubtitle" text="Coba ubah filter kategori atau muat ulang tantangan rekomendasi untuk tanggal ini." styleClass="empty-state-subtitle"/>
             <Button fx:id="btnEmptyAction" text="Muat Tantangan Rekomendasi" styleClass="btn-primary" onAction="#handleMuatUlangTantangan"/>
         </VBox>
 

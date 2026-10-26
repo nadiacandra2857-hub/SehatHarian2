@@ -1,0 +1,3 @@
+rootProject.name = 'SehatHarian'
+include 'Backend2'
+include 'Frontend2'

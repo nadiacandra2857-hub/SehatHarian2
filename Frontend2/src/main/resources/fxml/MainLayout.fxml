@@ -20,25 +20,25 @@
         <VBox styleClass="sidebar">
             <!-- Brand Logo & Header -->
             <HBox styleClass="sidebar-brand-box" alignment="CENTER_LEFT">
-                <ImageView fx:id="brandLogoImageView" fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true"/>
-                <VBox spacing="2">
+                <ImageView fx:id="brandLogoImageView" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"/>
+                <VBox spacing="1">
                     <Label text="SehatHarian" styleClass="brand-title"/>
-                    <Label text="Wellness Adaptif" styleClass="brand-subtitle"/>
+                    <Label text="Wellness Adaptif 🌿" styleClass="brand-subtitle"/>
                 </VBox>
             </HBox>
 
             <!-- Navigasi Menu Utama -->
             <Label text="MENU UTAMA" styleClass="nav-section-label"/>
             
-            <Button fx:id="btnNavDashboard" text="Dashboard" maxWidth="Infinity" styleClass="nav-button, active" onAction="#handleNavDashboard"/>
-            <Button fx:id="btnNavTantangan" text="Tantangan Harian" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavTantangan"/>
-            <Button fx:id="btnNavRekomendasi" text="Rekomendasi Aktivitas" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavRekomendasi"/>
-            <Button fx:id="btnNavKebiasaan" text="Catatan Kebiasaan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavKebiasaan"/>
-            <Button fx:id="btnNavTidur" text="Jadwal &amp; Alarm Tidur" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavTidur"/>
+            <Button fx:id="btnNavDashboard" text="📊  Dashboard" maxWidth="Infinity" styleClass="nav-button, active" onAction="#handleNavDashboard"/>
+            <Button fx:id="btnNavTantangan" text="🎯  Tantangan Harian" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavTantangan"/>
+            <Button fx:id="btnNavRekomendasi" text="💡  Rekomendasi Aktivitas" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavRekomendasi"/>
+            <Button fx:id="btnNavKebiasaan" text="📝  Catatan Kebiasaan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavKebiasaan"/>
+            <Button fx:id="btnNavTidur" text="🌙  Jadwal &amp; Alarm Tidur" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavTidur"/>
 
             <Label text="ANALISIS &amp; LAPORAN" styleClass="nav-section-label"/>
-            <Button fx:id="btnNavStatistik" text="Statistik Mingguan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavStatistik"/>
-            <Button fx:id="btnNavEvaluasi" text="Evaluasi Mingguan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavEvaluasi"/>
+            <Button fx:id="btnNavStatistik" text="📈  Statistik Mingguan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavStatistik"/>
+            <Button fx:id="btnNavEvaluasi" text="📋  Evaluasi Mingguan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavEvaluasi"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 
@@ -47,11 +47,13 @@
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <VBox spacing="2" HBox.hgrow="ALWAYS">
                         <Label fx:id="sidebarUserNameLabel" text="Nadia Ayu Candra" styleClass="sidebar-user-name"/>
-                        <Label fx:id="sidebarUserTagLabel" text="Dewasa • Pekerja Luar Rumah" styleClass="sidebar-user-tag"/>
+                        <Label fx:id="sidebarUserTagLabel" text="Dewasa • Di Luar Rumah" styleClass="sidebar-user-tag"/>
                     </VBox>
-                    <Button fx:id="btnNavProfil" text="Profil" styleClass="btn-secondary" onAction="#handleNavProfil"/>
+                    <Button fx:id="btnNavProfil" text="Profil" styleClass="btn-secondary" style="-fx-font-size: 11px; -fx-padding: 4 8;" onAction="#handleNavProfil"/>
                 </HBox>
-                <Button text="← Keluar ke Beranda" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #A8C7B9; -fx-font-size: 11.5px; -fx-cursor: hand;" onAction="#handleLogout"/>
+                <Button text="← Keluar ke Beranda" maxWidth="Infinity"
+                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 11.5px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-padding: 4 2;"
+                        onAction="#handleLogout"/>
             </VBox>
         </VBox>
     </left>
@@ -63,29 +65,30 @@
             <top>
                 <VBox>
                     <HBox styleClass="top-header-bar" alignment="CENTER_LEFT">
-                        <VBox spacing="3">
+                        <VBox spacing="2">
                             <Label fx:id="headerTitleLabel" text="Dashboard Kesehatan" styleClass="page-title"/>
                             <Label fx:id="headerSubtitleLabel" text="Selamat datang! Pantau dan bangun kebiasaan sehat hari ini." styleClass="page-subtitle"/>
                         </VBox>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <HBox alignment="CENTER" spacing="12">
+                        <HBox alignment="CENTER" spacing="10">
                             <Label fx:id="headerDateBadgeLabel" text="Minggu, 18 Oktober 2026" styleClass="date-badge"/>
-                            <Button fx:id="btnUjiAlarm" text="Uji Alarm" styleClass="btn-secondary" onAction="#handleUjiAlarm"/>
+                            <Button fx:id="btnUjiAlarm" text="🔔 Uji Alarm" styleClass="btn-secondary" onAction="#handleUjiAlarm"/>
                         </HBox>
                     </HBox>
 
                     <!-- Banner Notifikasi Melayang (F-08 & Alerts) -->
-                    <HBox fx:id="bannerNotificationBox" styleClass="notification-banner" visible="false" managed="false">
+                    <HBox fx:id="bannerNotificationBox" styleClass="notification-banner" alignment="CENTER_LEFT" visible="false" managed="false">
+                        <Label text="🔔 " style="-fx-font-size: 13px;"/>
                         <Label fx:id="bannerNotificationText" text="Pengingat Tidur" styleClass="notification-banner-text" HBox.hgrow="ALWAYS"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button text="Tutup" styleClass="btn-outline" onAction="#handleCloseBanner"/>
+                        <Button text="Tutup" styleClass="btn-outline" style="-fx-padding: 3 10; -fx-font-size: 11px;" onAction="#handleCloseBanner"/>
                     </HBox>
                 </VBox>
             </top>
 
             <!-- Dynamic View Container -->
             <center>
-                <StackPane fx:id="contentArea" style="-fx-background-color: #F6F8F7;">
+                <StackPane fx:id="contentArea" style="-fx-background-color: #F8FAFC;">
                     <!-- Konten Halaman Aktif Dimuat di Sini Secara Dinamis -->
                 </StackPane>
             </center>

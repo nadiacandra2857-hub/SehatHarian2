@@ -2,14 +2,16 @@ package com.sehatharian.controller;
 
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.Rekomendasi;
+import com.sehatharian.model.UserSession;
 import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.RekomendasiService;
 import com.sehatharian.util.AnimationHelper;
-import com.sehatharian.util.DialogHelper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -51,72 +53,113 @@ public class RekomendasiController {
         inisialisasiPilihanFilter();
         muatDataPengguna();
         muatRekomendasi();
-        AnimationHelper.fadeIn(rekomendasiRoot, 350);
+        if (rekomendasiRoot != null) {
+            AnimationHelper.fadeIn(rekomendasiRoot, 350);
+        }
     }
 
     private void inisialisasiPilihanFilter() {
-        comboWaktuLuang.setItems(FXCollections.observableArrayList(
-            "Semua Durasi",
-            "5 Menit (Cepat)",
-            "10 Menit",
-            "15 Menit",
-            "20 Menit",
-            "30 Menit",
-            "45 Menit",
-            "60 Menit"
-        ));
-        comboWaktuLuang.setValue("30 Menit");
+        if (comboWaktuLuang != null) {
+            comboWaktuLuang.setItems(FXCollections.observableArrayList(
+                "Semua Durasi",
+                "5 Menit (Cepat)",
+                "10 Menit",
+                "15 Menit",
+                "20 Menit",
+                "30 Menit",
+                "45 Menit",
+                "60 Menit"
+            ));
+            comboWaktuLuang.setValue("30 Menit");
+        }
 
-        comboKesibukan.setItems(FXCollections.observableArrayList(
-            "Semua Kesibukan",
-            "Pekerja Luar Rumah",
-            "Pekerja Dari Rumah / Domestik"
-        ));
-        comboKesibukan.setValue("Semua Kesibukan");
+        if (comboKesibukan != null) {
+            comboKesibukan.setItems(FXCollections.observableArrayList(
+                "Semua Kesibukan",
+                "Pekerja Luar Rumah",
+                "Pekerja Dari Rumah / Domestik"
+            ));
+            comboKesibukan.setValue("Semua Kesibukan");
+        }
 
-        comboUsia.setItems(FXCollections.observableArrayList(
-            "Semua Usia",
-            "Dewasa",
-            "Lansia"
-        ));
-        comboUsia.setValue("Semua Usia");
+        if (comboUsia != null) {
+            comboUsia.setItems(FXCollections.observableArrayList(
+                "Semua Usia",
+                "Dewasa",
+                "Lansia"
+            ));
+            comboUsia.setValue("Semua Usia");
+        }
 
         try {
             var imgUrl = getClass().getResource("/images/illustration_food.png");
-            if (imgUrl != null) {
+            if (imgUrl != null && emptyStateImageView != null) {
                 emptyStateImageView.setImage(new Image(imgUrl.toExternalForm()));
             }
         } catch (Exception ignored) {}
     }
 
     private void muatDataPengguna() {
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (SQLException ignored) {}
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+            } catch (Exception ignored) {}
+        }
+
+        if (penggunaAktif == null) {
+            try {
+                penggunaAktif = penggunaRepo.getDefaultPengguna();
+            } catch (SQLException ignored) {}
+        }
+
         if (penggunaAktif == null) {
             penggunaAktif = new Pengguna(1, "Nadia", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
         }
 
         // Set default filter sesuai profil pengguna
-        if ("dalam_rumah".equalsIgnoreCase(penggunaAktif.getGolonganKesibukan())) {
-            comboKesibukan.setValue("Pekerja Dari Rumah / Domestik");
-        } else {
-            comboKesibukan.setValue("Pekerja Luar Rumah");
+        if (comboKesibukan != null) {
+            if ("dalam_rumah".equalsIgnoreCase(penggunaAktif.getGolonganKesibukan())) {
+                comboKesibukan.setValue("Pekerja Dari Rumah / Domestik");
+            } else if ("semua".equalsIgnoreCase(penggunaAktif.getGolonganKesibukan())) {
+                comboKesibukan.setValue("Semua Kesibukan");
+            } else {
+                comboKesibukan.setValue("Pekerja Luar Rumah");
+            }
         }
 
-        if ("lansia".equalsIgnoreCase(penggunaAktif.getGolonganUsia())) {
-            comboUsia.setValue("Lansia");
-        } else {
-            comboUsia.setValue("Dewasa");
+        if (comboUsia != null) {
+            if ("lansia".equalsIgnoreCase(penggunaAktif.getGolonganUsia())) {
+                comboUsia.setValue("Lansia");
+            } else if ("semua".equalsIgnoreCase(penggunaAktif.getGolonganUsia())) {
+                comboUsia.setValue("Semua Usia");
+            } else {
+                comboUsia.setValue("Dewasa");
+            }
         }
 
-        int waktu = penggunaAktif.getWaktuLuangMenit();
-        if (waktu <= 5) comboWaktuLuang.setValue("5 Menit (Cepat)");
-        else if (waktu <= 10) comboWaktuLuang.setValue("10 Menit");
-        else if (waktu <= 15) comboWaktuLuang.setValue("15 Menit");
-        else if (waktu <= 20) comboWaktuLuang.setValue("20 Menit");
-        else if (waktu <= 30) comboWaktuLuang.setValue("30 Menit");
-        else comboWaktuLuang.setValue("45 Menit");
+        if (comboWaktuLuang != null) {
+            int waktu = penggunaAktif.getWaktuLuangMenit();
+            if (waktu <= 0) {
+                comboWaktuLuang.setValue("Semua Durasi");
+            } else if (waktu <= 5) {
+                comboWaktuLuang.setValue("5 Menit (Cepat)");
+            } else if (waktu <= 10) {
+                comboWaktuLuang.setValue("10 Menit");
+            } else if (waktu <= 15) {
+                comboWaktuLuang.setValue("15 Menit");
+            } else if (waktu <= 20) {
+                comboWaktuLuang.setValue("20 Menit");
+            } else if (waktu <= 30) {
+                comboWaktuLuang.setValue("30 Menit");
+            } else if (waktu <= 45) {
+                comboWaktuLuang.setValue("45 Menit");
+            } else {
+                comboWaktuLuang.setValue("60 Menit");
+            }
+        }
     }
 
     @FXML
@@ -126,9 +169,9 @@ public class RekomendasiController {
 
     @FXML
     public void handleResetFilter() {
-        comboWaktuLuang.setValue("Semua Durasi");
-        comboKesibukan.setValue("Semua Kesibukan");
-        comboUsia.setValue("Semua Usia");
+        if (comboWaktuLuang != null) comboWaktuLuang.setValue("Semua Durasi");
+        if (comboKesibukan != null) comboKesibukan.setValue("Semua Kesibukan");
+        if (comboUsia != null) comboUsia.setValue("Semua Usia");
         tipeDipilih = "semua";
         updateTipeButtonStyles();
         muatRekomendasi();
@@ -136,45 +179,52 @@ public class RekomendasiController {
 
     public void muatRekomendasi() {
         try {
-            int maxDurasi = parseWaktuLuang(comboWaktuLuang.getValue());
-            if (maxDurasi > 0) {
-                labelWaktuLuangInfo.setText("Aktivitas dijamin ≤ " + maxDurasi + " menit");
-            } else {
-                labelWaktuLuangInfo.setText("Semua durasi aktivitas ditampilkan");
+            int maxDurasi = parseWaktuLuang(comboWaktuLuang != null ? comboWaktuLuang.getValue() : null);
+            if (labelWaktuLuangInfo != null) {
+                if (maxDurasi > 0) {
+                    labelWaktuLuangInfo.setText("Aktivitas dijamin ≤ " + maxDurasi + " menit");
+                } else {
+                    labelWaktuLuangInfo.setText("Semua durasi aktivitas ditampilkan");
+                }
             }
 
-            String kesibukan = parseKesibukan(comboKesibukan.getValue());
-            String usia = parseUsia(comboUsia.getValue());
+            String kesibukan = parseKesibukan(comboKesibukan != null ? comboKesibukan.getValue() : null);
+            String usia = parseUsia(comboUsia != null ? comboUsia.getValue() : null);
 
             List<Rekomendasi> list = service.getRekomendasiMenuDanWorkout(tipeDipilih, kesibukan, usia);
 
             // Saring durasi jika tipe aktivitas atau workout dan ada batasan waktu luang (F-02)
-            if (maxDurasi > 0) {
+            if (maxDurasi > 0 && list != null) {
                 list = list.stream()
                     .filter(r -> "menu".equalsIgnoreCase(r.getTipe()) || r.getDurasiMenit() <= maxDurasi)
                     .toList();
             }
 
-            if (labelJumlahRekomendasi != null) {
+            if (labelJumlahRekomendasi != null && list != null) {
                 labelJumlahRekomendasi.setText(list.size() + " Rekomendasi Tersedia");
             }
 
             renderCards(list);
-        } catch (SQLException e) {
-            DialogHelper.showError("Kendala Memuat Data", "Gagal memuat katalog rekomendasi: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Info muat rekomendasi: " + e.getMessage());
         }
     }
 
     private void renderCards(List<Rekomendasi> list) {
+        if (cardsContainer == null) return;
         cardsContainer.getChildren().clear();
 
-        if (list.isEmpty()) {
-            emptyStateBox.setVisible(true);
-            emptyStateBox.setManaged(true);
+        if (list == null || list.isEmpty()) {
+            if (emptyStateBox != null) {
+                emptyStateBox.setVisible(true);
+                emptyStateBox.setManaged(true);
+            }
             return;
         } else {
-            emptyStateBox.setVisible(false);
-            emptyStateBox.setManaged(false);
+            if (emptyStateBox != null) {
+                emptyStateBox.setVisible(false);
+                emptyStateBox.setManaged(false);
+            }
         }
 
         for (Rekomendasi r : list) {
@@ -267,15 +317,15 @@ public class RekomendasiController {
     }
 
     private void updateTipeButtonStyles() {
-        btnTipeSemua.getStyleClass().setAll("btn-outline");
-        btnTipeAktivitas.getStyleClass().setAll("btn-outline");
-        btnTipeMenu.getStyleClass().setAll("btn-outline");
-        btnTipeWorkout.getStyleClass().setAll("btn-outline");
+        if (btnTipeSemua != null) btnTipeSemua.getStyleClass().setAll("btn-outline");
+        if (btnTipeAktivitas != null) btnTipeAktivitas.getStyleClass().setAll("btn-outline");
+        if (btnTipeMenu != null) btnTipeMenu.getStyleClass().setAll("btn-outline");
+        if (btnTipeWorkout != null) btnTipeWorkout.getStyleClass().setAll("btn-outline");
 
-        if ("semua".equals(tipeDipilih)) btnTipeSemua.getStyleClass().setAll("btn-primary");
-        else if ("aktivitas".equals(tipeDipilih)) btnTipeAktivitas.getStyleClass().setAll("btn-primary");
-        else if ("menu".equals(tipeDipilih)) btnTipeMenu.getStyleClass().setAll("btn-primary");
-        else if ("workout".equals(tipeDipilih)) btnTipeWorkout.getStyleClass().setAll("btn-primary");
+        if ("semua".equals(tipeDipilih) && btnTipeSemua != null) btnTipeSemua.getStyleClass().setAll("btn-primary");
+        else if ("aktivitas".equals(tipeDipilih) && btnTipeAktivitas != null) btnTipeAktivitas.getStyleClass().setAll("btn-primary");
+        else if ("menu".equals(tipeDipilih) && btnTipeMenu != null) btnTipeMenu.getStyleClass().setAll("btn-primary");
+        else if ("workout".equals(tipeDipilih) && btnTipeWorkout != null) btnTipeWorkout.getStyleClass().setAll("btn-primary");
     }
 
     @FXML public void handleFilterTipeSemua() { tipeDipilih = "semua"; updateTipeButtonStyles(); muatRekomendasi(); }

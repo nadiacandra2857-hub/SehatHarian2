@@ -6,8 +6,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
@@ -17,22 +15,22 @@
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.EvaluasiMingguanController">
 
-    <VBox fx:id="evaluasiRoot" spacing="22" styleClass="content-pane">
+    <VBox fx:id="evaluasiRoot" spacing="18" styleClass="content-pane">
 
         <!-- Header Panel -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20">
-            <VBox spacing="6" HBox.hgrow="ALWAYS">
+        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="ANALISIS &amp; EVALUASI POLA HIDUP (F-05)" styleClass="sleep-header-badge"/>
+                    <Label text="📋 ANALISIS &amp; EVALUASI POLA HIDUP (F-05)" styleClass="preference-badge-blue"/>
                 </HBox>
                 <Label text="Evaluasi &amp; Rekomendasi Mingguan" styleClass="page-title"/>
                 <Label text="Analisis menyeluruh kebiasaan 7 hari terakhir yang dihitung secara objektif dari data tantangan, tidur, hidrasi, dan aktivitas Anda." styleClass="page-subtitle" wrapText="true"/>
             </VBox>
-            <Button text="Jalankan Analisis Sekarang" styleClass="btn-primary" onAction="#handleJalankanEvaluasi" style="-fx-font-size: 13.5px; -fx-padding: 10 22;"/>
+            <Button text="⚡ Jalankan Analisis Sekarang" styleClass="btn-primary" onAction="#handleJalankanEvaluasi" style="-fx-font-size: 13px; -fx-padding: 9 18;"/>
         </HBox>
 
         <!-- KARTU HASIL EVALUASI TERBARU (F-05) -->
-        <VBox styleClass="wellness-card" spacing="18">
+        <VBox styleClass="wellness-card" spacing="14">
             <HBox alignment="CENTER_LEFT">
                 <VBox spacing="2">
                     <Label text="Hasil Evaluasi Mingguan Terbaru" styleClass="card-title"/>
@@ -40,13 +38,13 @@
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
                 <VBox alignment="CENTER_RIGHT" spacing="2">
-                    <Label fx:id="labelSkorEvaluasi" text="0%" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #3F6354;"/>
+                    <Label fx:id="labelSkorEvaluasi" text="0%" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
                     <Label fx:id="labelGradeEvaluasi" text="Status Konsistensi" styleClass="badge-category"/>
                 </VBox>
             </HBox>
 
             <!-- Status Standar Tidur -->
-            <HBox fx:id="boxStatusTidur" alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #F8FAFA; -fx-padding: 12 16; -fx-background-radius: 12;">
+            <HBox fx:id="boxStatusTidur" alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #F8FAFC; -fx-padding: 10 14; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10;">
                 <Label text="Status Standar Tidur (≥ 5 Jam):" styleClass="form-label"/>
                 <Label fx:id="labelStatusTidur" text="Memenuhi Standar Minimal" styleClass="badge-selesai"/>
                 <Region HBox.hgrow="ALWAYS"/>
@@ -54,15 +52,15 @@
             </HBox>
 
             <!-- Ringkasan Kegiatan -->
-            <VBox spacing="6">
+            <VBox spacing="5">
                 <Label text="Ringkasan Pencapaian Kebiasaan:" styleClass="form-label"/>
-                <Label fx:id="labelRingkasanTeks" text="Belum ada data evaluasi. Klik 'Jalankan Evaluasi Sekarang' untuk menganalisis data riil Anda." styleClass="card-subtitle" wrapText="true" style="-fx-line-spacing: 4px;"/>
+                <Label fx:id="labelRingkasanTeks" text="Belum ada data evaluasi. Klik 'Jalankan Analisis Sekarang' untuk menganalisis data riil Anda." styleClass="card-subtitle" wrapText="true" style="-fx-line-spacing: 3px;"/>
             </VBox>
 
             <!-- Rekomendasi Solutif -->
-            <VBox spacing="8" style="-fx-background-color: #F4F8F6; -fx-padding: 16; -fx-background-radius: 12; -fx-border-color: #DDEBE3; -fx-border-radius: 12;">
-                <Label text="Rekomendasi Langkah Nyata Berkelanjutan:" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #274337;"/>
-                <Label fx:id="labelRekomendasiTeks" text="• Rekomendasi akan terbentuk secara otomatis berdasarkan catatan mingguan Anda." wrapText="true" style="-fx-line-spacing: 5px; -fx-font-size: 13.5px; -fx-text-fill: #1E3129;"/>
+            <VBox spacing="6" style="-fx-background-color: #F0FDF4; -fx-padding: 14; -fx-background-radius: 10; -fx-border-color: #BBF7D0; -fx-border-radius: 10;">
+                <Label text="Rekomendasi Langkah Nyata Berkelanjutan:" style="-fx-font-weight: bold; -fx-font-size: 13.5px; -fx-text-fill: #14532D;"/>
+                <Label fx:id="labelRekomendasiTeks" text="• Rekomendasi akan terbentuk secara otomatis berdasarkan catatan mingguan Anda." wrapText="true" style="-fx-line-spacing: 4px; -fx-font-size: 13px; -fx-text-fill: #166534;"/>
             </VBox>
 
             <!-- Disclaimer Medis Sehat Sesuai PRD -->
@@ -70,9 +68,9 @@
         </VBox>
 
         <!-- RIWAYAT ARSIP EVALUASI MINGGUAN DI MYSQL -->
-        <VBox styleClass="wellness-card" spacing="14">
+        <VBox styleClass="wellness-card" spacing="12">
             <Label text="Arsip Riwayat Evaluasi Mingguan Tersimpan di MySQL" styleClass="card-title"/>
-            <TableView fx:id="tableArsipEvaluasi" prefHeight="220" styleClass="table-view">
+            <TableView fx:id="tableArsipEvaluasi" prefHeight="200" styleClass="table-view">
                 <columns>
                     <TableColumn fx:id="colMingguMulai" text="Minggu Evaluasi" prefWidth="160"/>
                     <TableColumn fx:id="colSkor" text="Skor Konsistensi" prefWidth="140"/>

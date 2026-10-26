@@ -17,32 +17,35 @@
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.ProfilPengaturanController">
 
-    <VBox fx:id="profilRoot" spacing="22" styleClass="content-pane">
+    <VBox fx:id="profilRoot" spacing="18" styleClass="content-pane">
 
         <!-- Header Panel -->
-        <VBox styleClass="wellness-card" spacing="4">
+        <VBox styleClass="wellness-card" spacing="3">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="👤 PENGATURAN AKUN &amp; PREFERENSI" styleClass="preference-badge-blue"/>
+            </HBox>
             <Label text="Profil &amp; Pengaturan Pengguna" styleClass="page-title"/>
-            <Label text="Pengaturan tipe profil menentukan rekomendasi tantangan adaptif, filter menu, dan latihan workout harian Anda." styleClass="page-subtitle"/>
+            <Label text="Pengaturan profil menentukan rekomendasi tantangan adaptif, filter menu, dan latihan workout harian Anda." styleClass="page-subtitle"/>
         </VBox>
 
         <!-- FORM PROFIL PENGGUNA -->
-        <VBox styleClass="wellness-card" spacing="18">
+        <VBox styleClass="wellness-card" spacing="16">
             <Label text="Data Profil &amp; Klasifikasi Rutinitas" styleClass="card-title"/>
 
-            <HBox spacing="20">
+            <HBox spacing="18" alignment="TOP_LEFT">
                 <!-- Kolom Kiri Form -->
-                <VBox spacing="14" HBox.hgrow="ALWAYS">
-                    <VBox spacing="6">
+                <VBox spacing="12" HBox.hgrow="ALWAYS">
+                    <VBox spacing="4">
                         <Label text="Nama Lengkap:" styleClass="form-label"/>
                         <TextField fx:id="txtNama" promptText="Masukkan nama lengkap Anda"/>
                     </VBox>
 
-                    <VBox spacing="6">
+                    <VBox spacing="4">
                         <Label text="Tanggal Lahir:" styleClass="form-label"/>
                         <DatePicker fx:id="datePickerTanggalLahir" maxWidth="Infinity"/>
                     </VBox>
 
-                    <VBox spacing="6">
+                    <VBox spacing="4">
                         <Label text="Estimasi Waktu Luang Harian (Menit):" styleClass="form-label"/>
                         <TextField fx:id="txtWaktuLuang" promptText="Contoh: 30"/>
                         <Label text="Digunakan untuk membatasi durasi rekomendasi aktivitas (F-02)." styleClass="form-hint"/>
@@ -50,14 +53,14 @@
                 </VBox>
 
                 <!-- Kolom Kanan Form -->
-                <VBox spacing="14" HBox.hgrow="ALWAYS">
-                    <VBox spacing="6">
+                <VBox spacing="12" HBox.hgrow="ALWAYS">
+                    <VBox spacing="4">
                         <Label text="Golongan Usia (PRD):" styleClass="form-label"/>
                         <ComboBox fx:id="comboGolonganUsia" maxWidth="Infinity"/>
                         <Label text="Dewasa (18–59 tahun) atau Lansia (≥ 60 tahun)." styleClass="form-hint"/>
                     </VBox>
 
-                    <VBox spacing="6">
+                    <VBox spacing="4">
                         <Label text="Golongan Kesibukan (PRD):" styleClass="form-label"/>
                         <ComboBox fx:id="comboGolonganKesibukan" maxWidth="Infinity"/>
                         <Label text="Pekerja di luar rumah (mobilitas tinggi) atau di dalam rumah (WFH / domestik)." styleClass="form-hint"/>
@@ -65,29 +68,29 @@
                 </VBox>
             </HBox>
 
-            <HBox spacing="12" alignment="CENTER_RIGHT" style="-fx-padding: 10 0 0 0;">
+            <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
                 <Button text="↺ Muat Ulang" styleClass="btn-outline" onAction="#handleMuatUlang"/>
-                <Button text="💾 Simpan Perubahan Profil" styleClass="btn-primary" onAction="#handleSimpanProfil" style="-fx-padding: 10 24;"/>
+                <Button text="💾 Simpan Perubahan Profil" styleClass="btn-primary" onAction="#handleSimpanProfil" style="-fx-padding: 9 20;"/>
             </HBox>
         </VBox>
 
         <!-- STATUS KONEKSI DATABASE & DIAGNOSTIK -->
-        <VBox styleClass="wellness-card" spacing="14">
+        <VBox styleClass="wellness-card" spacing="12">
             <Label text="Status &amp; Diagnostik Database MySQL" styleClass="card-title"/>
             
-            <HBox spacing="16" alignment="CENTER_LEFT" style="-fx-background-color: #F8FAFA; -fx-padding: 14; -fx-background-radius: 12; -fx-border-color: #E2ECE7; -fx-border-radius: 12;">
-                <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <HBox spacing="14" alignment="CENTER_LEFT" style="-fx-background-color: #F8FAFC; -fx-padding: 12 16; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10;">
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
                     <Label text="URL Koneksi JDBC:" styleClass="form-label"/>
-                    <Label fx:id="labelJdbcUrl" text="jdbc:mysql://localhost:3306/sehatharian_db" style="-fx-font-family: monospace; -fx-font-size: 12.5px; -fx-text-fill: #34483F;"/>
+                    <Label fx:id="labelJdbcUrl" text="jdbc:mysql://localhost:3306/sehatharian_db" style="-fx-font-family: monospace; -fx-font-size: 12px; -fx-text-fill: #334155;"/>
                 </VBox>
-                <VBox spacing="4">
+                <VBox spacing="2">
                     <Label text="Status Koneksi:" styleClass="form-label"/>
                     <Label fx:id="labelDbStatus" text="✓ Terhubung (MySQL 8.0)" styleClass="badge-selesai"/>
                 </VBox>
                 <Button text="Uji Koneksi Ulang" styleClass="btn-secondary" onAction="#handleTestConnection"/>
             </HBox>
 
-            <VBox spacing="4">
+            <VBox spacing="3">
                 <Label text="Tabel Terhubung:" styleClass="form-label"/>
                 <Label text="pengguna, tantangan, rekomendasi, jadwal_tidur, aktivitas, hidrasi, kebiasaan_makan, riwayat_tantangan, evaluasi_mingguan (9 Tabel Sesuai Ketentuan PRD)." styleClass="form-hint"/>
             </VBox>

@@ -1,6 +1,8 @@
 package com.sehatharian.controller;
 
+import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
+import com.sehatharian.service.AuthService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.SceneNavigator;
 import javafx.fxml.FXML;
@@ -169,13 +171,25 @@ public class CreateAccountController {
         // Feedback visual tombol diproses
         AnimationHelper.scaleButtonFeedback(btnRegister);
 
-        // Alur Spesifikasi Tahap 6:
-        // HANYA setelah pembuatan akun berhasil, pengguna diarahkan ke onboarding slide pertama.
-        UserSession session = UserSession.getInstance();
-        session.registerNewAccount(nama, email);
+        try {
+            AuthService authService = new AuthService();
+            Pengguna penggunaBaru = authService.register(nama, email, password, confirmPassword, termsChecked);
 
-        // Arahkan ke Onboarding Slide 1
-        SceneNavigator.showOnboarding();
+            // Simpan sesi pengguna
+            UserSession session = UserSession.getInstance();
+            session.setCurrentUser(penggunaBaru);
+            session.setOnboardingSelesai(false);
+
+            // Arahkan ke Onboarding Slide 1
+            SceneNavigator.showOnboarding();
+        } catch (IllegalStateException e) {
+            showInlineError(errEmail, e.getMessage());
+            showBannerError(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            showBannerError(e.getMessage());
+        } catch (Exception e) {
+            showBannerError("Gagal mendaftarkan akun: " + e.getMessage());
+        }
     }
 
     @FXML

@@ -1,7 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://sandec.jfrog.io/artifactory/repo" }
+    }
+    dependencies {
+        classpath "one.jpro:jpro-gradle-plugin:2026.3.0"
+    }
+}
+
 plugins {
     id 'application'
     id 'java'
 }
+
+apply plugin: 'jpro-gradle-plugin'
 
 java {
     toolchain {
@@ -11,11 +24,15 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url "https://sandec.jfrog.io/artifactory/repo" }
 }
 
 def javafxVersion = '24.0.1'
 
 dependencies {
+    // JPro WebAPI
+    implementation 'one.jpro:jpro-webapi:2026.3.0'
+
     // JavaFX for Windows x64
     implementation "org.openjfx:javafx-base:${javafxVersion}"
     implementation "org.openjfx:javafx-base:${javafxVersion}:win"
@@ -31,6 +48,12 @@ dependencies {
     // MySQL JDBC Connector
     implementation 'com.mysql:mysql-connector-j:9.3.0'
 
+    // BCrypt password hashing
+    implementation 'org.mindrot:jbcrypt:0.4'
+
+    // Backend2 module dependency
+    implementation project(':Backend2')
+
     // JUnit 5
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -38,11 +61,15 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.sehatharian.AppLauncher'
+    mainClass = 'com.sehatharian.MainApp'
     applicationDefaultJvmArgs = [
         '--enable-preview',
         '--enable-native-access=ALL-UNNAMED'
     ]
+}
+
+jpro {
+    // default port is 8080
 }
 
 tasks.withType(JavaCompile).configureEach {

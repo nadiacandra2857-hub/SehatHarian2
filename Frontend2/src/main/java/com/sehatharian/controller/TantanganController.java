@@ -2,6 +2,7 @@ package com.sehatharian.controller;
 
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.RiwayatTantangan;
+import com.sehatharian.model.UserSession;
 import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.TantanganService;
 import com.sehatharian.util.AnimationHelper;
@@ -72,6 +73,17 @@ public class TantanganController {
     }
 
     private void muatDataPengguna() {
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+            return;
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+                if (penggunaAktif != null) return;
+            } catch (Exception ignored) {}
+        }
+
         try {
             penggunaAktif = penggunaRepo.getDefaultPengguna();
         } catch (Exception e) {
@@ -91,8 +103,8 @@ public class TantanganController {
                 daftarTantanganSemua = tantanganService.getTantanganByTanggal(penggunaAktif.getId(), tanggalDipilih);
             }
             renderTantangan();
-        } catch (SQLException e) {
-            DialogHelper.showError("Database Error", "Gagal mengambil riwayat tantangan: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Info muat tantangan: " + e.getMessage());
         }
     }
 

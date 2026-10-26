@@ -3,277 +3,684 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sehatharian.controller.LandingPageController"
-            stylesheets="@../css/styles.css"
-            prefWidth="1240.0" prefHeight="800.0">
+<ScrollPane fx:id="mainScrollPane" fitToWidth="true" pannable="true" focusTraversable="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+            styleClass="landing-scroll-pane" stylesheets="@../css/styles.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sehatharian.controller.LandingPageController">
 
-    <!-- A. NAVBAR -->
-    <top>
-        <HBox styleClass="landing-navbar" spacing="20.0" alignment="CENTER_LEFT">
-            <!-- Brand Logo & Name -->
-            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                <ImageView fx:id="brandLogoView" fitWidth="38.0" fitHeight="38.0" preserveRatio="true"/>
-                <VBox spacing="1.0">
-                    <Label text="SehatHarian" style="-fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                    <Label text="Kebiasaan Sehat Berkelanjutan" style="-fx-font-size: 10.5px; -fx-text-fill: #2E7D32; -fx-font-weight: 600;"/>
-                </VBox>
-            </HBox>
+    <VBox fx:id="contentVBox" spacing="0.0" alignment="TOP_CENTER" styleClass="landing-page-root">
 
-            <HBox HBox.hgrow="ALWAYS"/>
+        <!-- ================================================================ -->
+        <!-- 1. HERO SECTION (Real Background Photo + High Contrast Overlay)  -->
+        <!-- ================================================================ -->
+        <StackPane fx:id="heroStackPane" styleClass="landing-hero-stack">
+            <!-- Background Image & Vignette Overlay -->
+            <ImageView fx:id="heroBgImageView" preserveRatio="false" smooth="true" mouseTransparent="true" managed="false"/>
+            <Region fx:id="heroOverlayRegion" styleClass="hero-gradient-overlay" mouseTransparent="true" managed="false"/>
 
-            <!-- Center Navigation Links -->
-            <HBox spacing="8.0" alignment="CENTER">
-                <Button fx:id="btnNavBeranda" text="Beranda" styleClass="landing-nav-link" onAction="#handleNavBeranda"/>
-                <Button fx:id="btnNavFitur" text="Fitur Utama" styleClass="landing-nav-link" onAction="#handleNavFitur"/>
-                <Button fx:id="btnNavTentang" text="Tentang" styleClass="landing-nav-link" onAction="#handleNavTentang"/>
-                <Button fx:id="btnNavBantuan" text="Bantuan" styleClass="landing-nav-link" onAction="#handleNavBantuan"/>
-            </HBox>
+            <!-- Main Hero Container -->
+            <VBox alignment="TOP_CENTER" spacing="28.0" style="-fx-padding: 20 28 44 28;" maxWidth="1260.0" HBox.hgrow="ALWAYS">
 
-            <HBox HBox.hgrow="ALWAYS"/>
-
-            <!-- Action Buttons -->
-            <HBox spacing="12.0" alignment="CENTER_RIGHT">
-                <Button text="Masuk" styleClass="btn-outline" onAction="#handleLogin" prefHeight="38.0" minWidth="90.0"/>
-                <Button text="Buat Akun" styleClass="btn-primary" onAction="#handleCreateAccount" prefHeight="38.0" minWidth="120.0"/>
-            </HBox>
-        </HBox>
-    </top>
-
-    <!-- MAIN SCROLLABLE CONTENT -->
-    <center>
-        <ScrollPane fx:id="mainScrollPane" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent;">
-            <VBox spacing="0.0">
-
-                <!-- B. HERO SECTION -->
-                <VBox fx:id="heroSectionBox" styleClass="landing-hero-container">
-                    <HBox spacing="40.0" alignment="CENTER">
-                        <!-- Hero Left Content -->
-                        <VBox spacing="18.0" HBox.hgrow="ALWAYS" maxWidth="620.0">
-                            <HBox spacing="8.0" alignment="CENTER_LEFT">
-                                <Label text="PLATFORM KESEHATAN ADAPTIF" styleClass="landing-feature-tag"/>
-                                <Label text="•  Riset SKI Kemenkes RI" style="-fx-font-size: 11.5px; -fx-text-fill: #64748B; -fx-font-weight: 500;"/>
-                            </HBox>
-
-                            <Label text="Membangun Rutinitas Sehat Harian yang Realistis dan Konsisten."
-                                   styleClass="landing-hero-title" wrapText="true"/>
-
-                            <Label text="Bukan perubahan drastis yang sulit dipertahankan. SehatHarian menyusun tantangan mikro harian, rekomendasi nutrisi dan workout adaptif, serta pelacak kebiasaan yang selaras dengan waktu luang Anda."
-                                   styleClass="landing-hero-desc" wrapText="true"/>
-
-                            <HBox spacing="16.0" alignment="CENTER_LEFT" style="-fx-padding: 8 0 0 0;">
-                                <Button text="Mulai Sekarang — Gratis" styleClass="btn-primary" onAction="#handleCreateAccount" prefHeight="44.0" style="-fx-font-size: 14.5px; -fx-padding: 10 24;"/>
-                                <Button text="Sudah Punya Akun? Masuk" styleClass="btn-outline" onAction="#handleLogin" prefHeight="44.0" style="-fx-font-size: 13.5px;"/>
-                            </HBox>
-
-                            <HBox spacing="24.0" alignment="CENTER_LEFT" style="-fx-padding: 16 0 0 0;">
-                                <HBox spacing="8.0" alignment="CENTER_LEFT">
-                                    <Label text="✓" style="-fx-text-fill: #2E7D32; -fx-font-weight: bold;"/>
-                                    <Label text="Disesuaikan Waktu Luang" style="-fx-font-size: 12.5px; -fx-text-fill: #475569;"/>
-                                </HBox>
-                                <HBox spacing="8.0" alignment="CENTER_LEFT">
-                                    <Label text="✓" style="-fx-text-fill: #2E7D32; -fx-font-weight: bold;"/>
-                                    <Label text="Alarm Tidur Desktop" style="-fx-font-size: 12.5px; -fx-text-fill: #475569;"/>
-                                </HBox>
-                                <HBox spacing="8.0" alignment="CENTER_LEFT">
-                                    <Label text="✓" style="-fx-text-fill: #2E7D32; -fx-font-weight: bold;"/>
-                                    <Label text="Grafik Riil Mingguan" style="-fx-font-size: 12.5px; -fx-text-fill: #475569;"/>
-                                </HBox>
-                            </HBox>
-                        </VBox>
-
-                        <!-- Hero Right Image Visual -->
-                        <VBox alignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="480.0">
-                            <StackPane style="-fx-background-color: #FFFFFF; -fx-background-radius: 20px; -fx-padding: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 16, 0, 0, 4); -fx-border-color: #E2E8F0; -fx-border-radius: 20px;">
-                                <ImageView fx:id="heroImageView" fitWidth="420.0" fitHeight="280.0" preserveRatio="true"/>
-                            </StackPane>
+                <!-- A. TOP NAVBAR (Floating Glass Capsule) -->
+                <HBox alignment="CENTER" spacing="16.0" styleClass="landing-navbar-bar" maxWidth="1240.0" HBox.hgrow="ALWAYS">
+                    <!-- Brand Logo Kiri -->
+                    <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="hero-brand-badge" onMouseClicked="#handleNavBeranda">
+                        <ImageView fx:id="navbarLogoView" fitWidth="26.0" fitHeight="26.0" preserveRatio="true"/>
+                        <VBox spacing="0.0">
+                            <Label text="SehatHarian" styleClass="hero-brand-title"/>
+                            <Label text="PREVENTIVE HEALTHCARE" styleClass="hero-brand-subtitle"/>
                         </VBox>
                     </HBox>
-                </VBox>
 
-                <!-- C. DESKRIPSI PRODUK / PROBLEM & SOLUTION -->
-                <VBox fx:id="deskripsiSectionBox" styleClass="landing-section-container" spacing="32.0">
-                    <VBox spacing="8.0" alignment="CENTER">
-                        <Label text="MENGAPA SEHATHARIAN BERBEDA?" styleClass="landing-feature-tag"/>
-                        <Label text="Mengubah Pengetahuan Menjadi Tindakan Nyata" styleClass="landing-section-title"/>
-                        <Label text="Banyak orang tahu apa itu hidup sehat, namun kesulitan menerapkannya karena rutinitas yang padat." styleClass="landing-section-subtitle"/>
-                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
 
-                    <HBox spacing="24.0" alignment="CENTER">
-                        <!-- Insight SKI Card -->
-                        <VBox spacing="14.0" style="-fx-background-color: #FFFBEB; -fx-border-color: #FDE68A; -fx-border-radius: 14px; -fx-background-radius: 14px; -fx-padding: 24;" HBox.hgrow="ALWAYS">
-                            <Label text="Tantangan Gaya Hidup Nyata (SKI 2023)" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #92400E;"/>
-                            <Label text="• 37,4% penduduk Indonesia usia ≥ 10 tahun kurang beraktivitas fisik." style="-fx-font-size: 13px; -fx-text-fill: #78350F;"/>
-                            <Label text="• Alasan terbanyak: 48,7% tidak punya waktu, dan 32,6% kehilangan motivasi." style="-fx-font-size: 13px; -fx-text-fill: #78350F;"/>
-                            <Label text="• 96,7% masyarakat masih kurang asupan serat sayur dan buah harian." style="-fx-font-size: 13px; -fx-text-fill: #78350F;"/>
-                        </VBox>
-
-                        <!-- Solution SehatHarian Card -->
-                        <VBox spacing="14.0" style="-fx-background-color: #ECFDF5; -fx-border-color: #A7F3D0; -fx-border-radius: 14px; -fx-background-radius: 14px; -fx-padding: 24;" HBox.hgrow="ALWAYS">
-                            <Label text="Pendekatan Adaptif SehatHarian" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #065F46;"/>
-                            <Label text="• Tantangan mikro realistis: jalan kaki 10-30 menit atau workout rumah ringan." style="-fx-font-size: 13px; -fx-text-fill: #047857;"/>
-                            <Label text="• Menyesuaikan waktu luang tanpa membebani jadwal harian Anda." style="-fx-font-size: 13px; -fx-text-fill: #047857;"/>
-                            <Label text="• Pemantauan menyeluruh: tidur, hidrasi air putih, aktivitas, dan jadwal makan." style="-fx-font-size: 13px; -fx-text-fill: #047857;"/>
-                        </VBox>
+                    <!-- Navigasi Capsule Tengah: Deskripsi, Fitur, Downloads, Bantuan -->
+                    <HBox styleClass="hero-nav-capsule" spacing="4.0" alignment="CENTER">
+                        <Button fx:id="btnNavBeranda" text="Beranda" styleClass="hero-nav-btn, hero-nav-btn-active" onAction="#handleNavBeranda"/>
+                        <Button fx:id="btnNavTentang" text="Deskripsi" styleClass="hero-nav-btn" onAction="#handleNavTentang"/>
+                        <Button fx:id="btnNavFitur" text="Fitur" styleClass="hero-nav-btn" onAction="#handleNavFitur"/>
+                        <Button fx:id="btnNavCoba" text="Downloads" styleClass="hero-nav-btn" onAction="#handleNavCoba"/>
+                        <Button fx:id="btnNavBantuan" text="Bantuan" styleClass="hero-nav-btn" onAction="#handleNavBantuan"/>
                     </HBox>
-                </VBox>
 
-                <!-- D. FITUR UTAMA (VARIED COMPOSITION, ANTI-SLOP) -->
-                <VBox fx:id="fiturSectionBox" styleClass="landing-section-alt" spacing="36.0">
-                    <VBox spacing="8.0" alignment="CENTER">
-                        <Label text="FITUR LENGKAP PLATFORM" styleClass="landing-feature-tag"/>
-                        <Label text="Semua Alat Penting untuk Tubuh yang Lebih Bugar" styleClass="landing-section-title"/>
-                        <Label text="Dirancang secara modular berdasarkan kebutuhan fungsional F-01 sampai F-09 PRD SehatHarian." styleClass="landing-section-subtitle"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <!-- Tombol Auth Kanan -->
+                    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnNavLogin" text="Login" styleClass="btn-nav-login" onAction="#handleLogin"/>
+                        <Button fx:id="btnNavCreateAccount" text="Create Account" styleClass="btn-nav-create" onAction="#handleCreateAccount"/>
+                    </HBox>
+                </HBox>
+
+                <!-- B. HERO CENTER BODY (Clear Focus, High Trust) -->
+                <VBox fx:id="heroTextContainer" alignment="CENTER" spacing="18.0" maxWidth="940.0" style="-fx-padding: 36 16 28 16;">
+
+                    <!-- Badge Standar Kemenkes RI -->
+                    <HBox alignment="CENTER" spacing="8.0" styleClass="hero-pill-badge">
+                        <SVGPath content="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-2-9l-2-2 1.41-1.41L10 10.17l4.59-4.58L16 7l-6 6z"
+                                 styleClass="hero-badge-svg"/>
+                        <Label text="STANDAR PREVENTIF GIZI &amp; AKTIVITAS FISIK KEMENKES RI" styleClass="hero-badge-text"/>
+                    </HBox>
+
+                    <!-- Judul Utama H1 (Sesuai Wireframe: Realistis Berwarna Hijau) -->
+                    <VBox spacing="4.0" alignment="CENTER">
+                        <Label text="Membangun Rutinitas Sehat Harian" styleClass="hero-title-main" textAlignment="CENTER" wrapText="true"/>
+                        <HBox alignment="CENTER" spacing="8.0">
+                            <Label text="yang" styleClass="hero-title-main"/>
+                            <Label text="Realistis" styleClass="hero-title-main, hero-title-highlight"/>
+                            <Label text="&amp; Konsisten." styleClass="hero-title-main"/>
+                        </HBox>
                     </VBox>
 
-                    <!-- Feature Grid with Varied Cards -->
-                    <GridPane hgap="24.0" vgap="24.0" alignment="CENTER">
-                        <columnConstraints>
-                            <ColumnConstraints percentWidth="33.3"/>
-                            <ColumnConstraints percentWidth="33.3"/>
-                            <ColumnConstraints percentWidth="33.3"/>
-                        </columnConstraints>
+                    <!-- Subtitle Deskripsi Singkat -->
+                    <Label text="Bukan target ekstrem atau instruksi kaku. SehatHarian mengkalibrasi jadwal hidrasi, gerak mikro, isi piringku, dan waktu tidur berkualitas sesuai lingkungan nyata Anda. Digunakan saat mobilitas tinggi di luar rumah, bekerja dari meja WFH, maupun kenyamanan lansia."
+                           styleClass="hero-desc-text" textAlignment="CENTER" wrapText="true" maxWidth="820.0"/>
 
-                        <!-- F-01: Tantangan Harian -->
-                        <VBox spacing="12.0" styleClass="landing-feature-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                                <ImageView fx:id="walkIllustrationView" fitWidth="36.0" fitHeight="36.0" preserveRatio="true"/>
-                                <Label text="F-01 • Tantangan Sehat" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                            </HBox>
-                            <Label text="Tantangan Kesehatan Harian" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                            <Label text="Tantangan harian kecil dan realistis. Tandai disarankan, selesai, atau lewati dengan pembaruan status permanen." style="-fx-font-size: 13px; -fx-text-fill: #64748B;" wrapText="true"/>
-                        </VBox>
+                    <!-- Action Buttons: Login (Biru Tua) dan Create Account (Hijau Segar) -->
+                    <HBox spacing="16.0" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
+                        <Button fx:id="btnHeroLogin" text="Login" styleClass="btn-hero-login" onAction="#handleLogin" prefHeight="44.0" minWidth="140.0"/>
+                        <Button fx:id="btnHeroCreateAccount" text="Create Account" styleClass="btn-hero-create" onAction="#handleCreateAccount" prefHeight="44.0" minWidth="170.0"/>
+                        <Button fx:id="btnHeroDemo" text="Coba Simulasi Langsung" styleClass="btn-hero-demo" onAction="#handleNavCoba" prefHeight="44.0"/>
+                    </HBox>
 
-                        <!-- F-02 & F-06: Rekomendasi Adaptif -->
-                        <VBox spacing="12.0" styleClass="landing-feature-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                                <ImageView fx:id="foodIllustrationView" fitWidth="36.0" fitHeight="36.0" preserveRatio="true"/>
-                                <Label text="F-02 &amp; F-06 • Rekomendasi" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                            </HBox>
-                            <Label text="Rekomendasi Aktivitas &amp; Menu" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                            <Label text="Filter adaptif berdasarkan durasi waktu luang (5-45+ mnt), lingkungan aktivitas (outdoor/indoor), dan kelompok usia." style="-fx-font-size: 13px; -fx-text-fill: #64748B;" wrapText="true"/>
-                        </VBox>
+                    <!-- Trust Verification Indicators -->
+                    <HBox spacing="24.0" alignment="CENTER" style="-fx-padding: 12 0 0 0;">
+                        <HBox spacing="6.0" alignment="CENTER">
+                            <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-check-emerald"/>
+                            <Label text="Bebas Biaya Berlangganan" styleClass="hero-trust-tag"/>
+                        </HBox>
+                        <HBox spacing="6.0" alignment="CENTER">
+                            <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-check-emerald"/>
+                            <Label text="Pedoman Gizi Seimbang Kemenkes" styleClass="hero-trust-tag"/>
+                        </HBox>
+                        <HBox spacing="6.0" alignment="CENTER">
+                            <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-check-emerald"/>
+                            <Label text="Privasi Data Terenkripsi" styleClass="hero-trust-tag"/>
+                        </HBox>
+                    </HBox>
 
-                        <!-- F-03: Pelacak Kebiasaan -->
-                        <VBox spacing="12.0" styleClass="landing-feature-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                                <ImageView fx:id="waterIllustrationView" fitWidth="36.0" fitHeight="36.0" preserveRatio="true"/>
-                                <Label text="F-03 • Multi-Tracker" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                            </HBox>
-                            <Label text="Pelacak Kebiasaan Harian" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                            <Label text="Catat asupan air minum (+250ml quick add), menit aktivitas fisik, serta jadwal pola makan sehat dalam satu tempat." style="-fx-font-size: 13px; -fx-text-fill: #64748B;" wrapText="true"/>
-                        </VBox>
-
-                        <!-- F-07 & F-08: Jadwal & Alarm Tidur -->
-                        <VBox spacing="12.0" styleClass="landing-feature-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                                <ImageView fx:id="sleepIllustrationView" fitWidth="36.0" fitHeight="36.0" preserveRatio="true"/>
-                                <Label text="F-07 &amp; F-08 • Tidur &amp; Alarm" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                            </HBox>
-                            <Label text="Jadwal &amp; Pengingat Tidur" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                            <Label text="Input manual jam tidur/bangun lintas tengah malam. Standar ≥ 5 jam, notifikasi 10 menit sebelumnya dan alarm audio." style="-fx-font-size: 13px; -fx-text-fill: #64748B;" wrapText="true"/>
-                        </VBox>
-
-                        <!-- F-04: Grafik Konsistensi -->
-                        <VBox spacing="12.0" styleClass="landing-feature-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                                <Label text="📊" style="-fx-font-size: 20px;"/>
-                                <Label text="F-04 • Visualisasi JavaFX" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                            </HBox>
-                            <Label text="Grafik Konsistensi Mingguan" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                            <Label text="Visualisasi grafik batang dan garis 7 hari: skor komposit kebiasaan, tren jam tidur, asupan hidrasi, dan menit aktif." style="-fx-font-size: 13px; -fx-text-fill: #64748B;" wrapText="true"/>
-                        </VBox>
-
-                        <!-- F-05: Evaluasi Mingguan -->
-                        <VBox spacing="12.0" styleClass="landing-feature-card" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                            <HBox spacing="10.0" alignment="CENTER_LEFT">
-                                <Label text="🔍" style="-fx-font-size: 20px;"/>
-                                <Label text="F-05 • Evaluasi Cerdas" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
-                            </HBox>
-                            <Label text="Evaluasi &amp; Solusi Mingguan" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1B3245;"/>
-                            <Label text="Analisis performa riil 1 minggu terakhir, mendeteksi defisit tidur dan menyajikan rekomendasi pemulihan bertarget." style="-fx-font-size: 13px; -fx-text-fill: #64748B;" wrapText="true"/>
-                        </VBox>
-                    </GridPane>
                 </VBox>
+            </VBox>
+        </StackPane>
 
-                <!-- E. AJAKAN MENGGUNAKAN APLIKASI (CTA BANNER) -->
-                <VBox fx:id="ctaSectionBox" styleClass="landing-section-container" alignment="CENTER">
-                    <VBox styleClass="landing-cta-banner" spacing="20.0" alignment="CENTER" maxWidth="960.0">
-                        <Label text="MULAI LANGKAH SEHAT ANDA HARI INI" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #86EFAC;"/>
-                        <Label text="Siap Membangun Rutinitas Sehat yang Realistis?"
-                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;" textAlignment="CENTER" wrapText="true"/>
-                        <Label text="Buat akun dalam 1 menit, selesaikan 3 pertanyaan dasar tentang rutinitas Anda, dan dapatkan tantangan harian yang dirancang khusus."
-                               style="-fx-font-size: 14.5px; -fx-text-fill: #CBD5E1;" textAlignment="CENTER" maxWidth="680.0" wrapText="true"/>
-                        <HBox spacing="16.0" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
-                            <Button text="Buat Akun SehatHarian" styleClass="btn-primary" onAction="#handleCreateAccount" prefHeight="44.0" style="-fx-font-size: 14.5px; -fx-padding: 10 28;"/>
-                            <Button text="Masuk ke Akun" styleClass="btn-outline" onAction="#handleLogin" prefHeight="44.0" style="-fx-text-fill: #FFFFFF; -fx-border-color: #64748B; -fx-font-size: 13.5px;"/>
+        <!-- ================================================================ -->
+        <!-- 2. DESKRIPSI PRODUK (H1 di Kiri + Gambar Shape di Kanan)         -->
+        <!-- ================================================================ -->
+        <VBox fx:id="deskripsiSectionBox" styleClass="landing-section-white" alignment="CENTER">
+            <HBox spacing="44.0" alignment="CENTER" maxWidth="1240.0" HBox.hgrow="ALWAYS">
+
+                <!-- Kolom Kiri: H1 Description & Teks Metodologi -->
+                <VBox spacing="16.0" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" maxWidth="640.0">
+                    <HBox alignment="CENTER_LEFT" spacing="8.0">
+                        <Label text="DESKRIPSI PRODUK" styleClass="section-tag-pill"/>
+                    </HBox>
+
+                    <Label text="Membangun Rutinitas Sehat Harian yang Realistis dan Terukur"
+                           styleClass="section-h1-title" wrapText="true"/>
+
+                    <Label text="Mayoritas upaya hidup sehat terhenti di tengah jalan karena target awal dibuat terlalu berat tanpa mempertimbangkan dinamika aktivitas sehari-hari. SehatHarian mengintegrasikan prinsip perubahan perilaku mikro (Atomic Habits) agar Anda dapat konsisten tanpa rasa bersalah."
+                           styleClass="section-desc-clean" wrapText="true"/>
+
+                    <!-- 3 Poin Keunggulan Metodologi -->
+                    <VBox spacing="14.0" style="-fx-padding: 8 0 0 0;">
+                        <HBox spacing="14.0" alignment="TOP_LEFT">
+                            <Label text="01" styleClass="step-number-badge"/>
+                            <VBox spacing="3.0">
+                                <Label text="Pendekatan Tindakan Mikro (Micro-Habits)" styleClass="step-title"/>
+                                <Label text="Memulai dari langkah paling mudah: 1 gelas air saat bangun tidur, peregangan 5 menit di sela kerja, dan mematikan layar sebelum tidur."
+                                       styleClass="step-desc" wrapText="true"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="14.0" alignment="TOP_LEFT">
+                            <Label text="02" styleClass="step-number-badge"/>
+                            <VBox spacing="3.0">
+                                <Label text="Kalibrasi Waktu Luang &amp; Profil Usia" styleClass="step-title"/>
+                                <Label text="Target disesuaikan untuk pelajar, pekerja kantor dengan waktu terbatas, hingga lansia yang memerlukan mobilitas persendian yang aman."
+                                       styleClass="step-desc" wrapText="true"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="14.0" alignment="TOP_LEFT">
+                            <Label text="03" styleClass="step-number-badge"/>
+                            <VBox spacing="3.0">
+                                <Label text="Konsistensi Tanpa Beban Psikologis" styleClass="step-title"/>
+                                <Label text="Tidak ada reset streak yang membuat putus asa. Platform mendampingi Anda untuk melanjutkan ritme positif di hari berikutnya."
+                                       styleClass="step-desc" wrapText="true"/>
+                            </VBox>
                         </HBox>
                     </VBox>
                 </VBox>
 
-                <!-- F. FOOTER -->
-                <VBox styleClass="landing-footer" spacing="24.0">
-                    <HBox spacing="40.0" alignment="TOP_LEFT">
-                        <!-- Col 1: About App -->
-                        <VBox spacing="10.0" HBox.hgrow="ALWAYS" maxWidth="380.0">
-                            <Label text="SehatHarian" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
-                            <Label text="Platform tantangan kesehatan harian adaptif untuk membangun kebiasaan hidup sehat berkelanjutan berbasis JavaFX desktop."
-                                   styleClass="landing-footer-link" wrapText="true"/>
-                            <Label text="Dibuat untuk Praktikum Pemrograman Berbasis Objek (PBO) 2026."
-                                   style="-fx-font-size: 11.5px; -fx-text-fill: #64748B;"/>
-                        </VBox>
+                <!-- Kolom Kanan: Gambar Shape di samping kanan tulisan H1 -->
+                <VBox styleClass="description-shape-card" alignment="CENTER" spacing="12.0" maxWidth="500.0" HBox.hgrow="ALWAYS">
+                    <StackPane styleClass="shape-image-wrapper">
+                        <ImageView fx:id="aboutImageView" fitWidth="460.0" fitHeight="260.0" preserveRatio="true" smooth="true"/>
+                    </StackPane>
 
-                        <!-- Col 2: Navigation Links -->
-                        <VBox spacing="10.0" minWidth="160.0">
-                            <Label text="Navigasi Cepat" styleClass="landing-footer-title"/>
-                            <Label text="• Beranda" styleClass="landing-footer-link"/>
-                            <Label text="• Fitur Utama" styleClass="landing-footer-link"/>
-                            <Label text="• Masuk Akun" styleClass="landing-footer-link"/>
-                            <Label text="• Buat Akun Baru" styleClass="landing-footer-link"/>
-                        </VBox>
-
-                        <!-- Col 3: Tech Stack -->
-                        <VBox spacing="10.0" minWidth="180.0">
-                            <Label text="Arsitektur &amp; Teknologi" styleClass="landing-footer-title"/>
-                            <Label text="• Java 26 &amp; JavaFX Desktop" styleClass="landing-footer-link"/>
-                            <Label text="• FXML &amp; Modern CSS Styling" styleClass="landing-footer-link"/>
-                            <Label text="• Gradle Build System" styleClass="landing-footer-link"/>
-                            <Label text="• MySQL Server &amp; JDBC" styleClass="landing-footer-link"/>
-                        </VBox>
-
-                        <!-- Col 4: Tim Pengembang -->
-                        <VBox spacing="10.0" minWidth="240.0">
-                            <Label text="Tim Pengembang" styleClass="landing-footer-title"/>
-                            <Label text="• Adhitya Ramadhan (3125521047)" styleClass="landing-footer-link"/>
-                            <Label text="• Nadia Ayu Candra P. (3125521044)" styleClass="landing-footer-link"/>
-                            <Label text="• Muhammad Ai Nur Haaq (3125521052)" styleClass="landing-footer-link"/>
-                            <Label text="Dosen: Yunia Ikawati, S.ST, M.Tr.Kom." style="-fx-font-size: 11.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="PSDKU Lamongan, Politeknik Elektronika Negeri Surabaya" style="-fx-font-size: 11.5px; -fx-text-fill: #64748B;"/>
-                        </VBox>
-                    </HBox>
-
-                    <Separator style="-fx-opacity: 0.15;"/>
-
-                    <HBox alignment="CENTER">
-                        <Label text="© 2026 SehatHarian. Hak Cipta Dilindungi Undang-Undang." style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
-                    </HBox>
+                    <!-- Credential Footer di dalam Shape Card -->
+                    <VBox spacing="8.0" alignment="CENTER" style="-fx-padding: 4 8 8 8;">
+                        <HBox spacing="8.0" alignment="CENTER">
+                            <Label text="STANDAR KEMENKES RI" styleClass="shape-badge-green"/>
+                            <Label text="TERUKUR &amp; REALISTIS" styleClass="shape-badge-navy"/>
+                        </HBox>
+                        <Label text="“Panduan gizi seimbang Isi Piringku dan target hidrasi terukur untuk produktivitas prima.”"
+                               styleClass="shape-quote-text" textAlignment="CENTER" wrapText="true"/>
+                    </VBox>
                 </VBox>
 
-            </VBox>
-        </ScrollPane>
-    </center>
+            </HBox>
+        </VBox>
 
-</BorderPane>
+        <!-- ================================================================ -->
+        <!-- 3. STRIP PENILAIAN (Background Biru Tua #0F2C59, 4 Pilar)        -->
+        <!-- ================================================================ -->
+        <HBox fx:id="penilaianSectionBox" styleClass="penilaian-strip" alignment="CENTER" spacing="32.0" maxWidth="Infinity">
+            <!-- Penilaian 1: Hidrasi -->
+            <HBox spacing="12.0" alignment="CENTER" HBox.hgrow="ALWAYS">
+                <StackPane styleClass="penilaian-icon-bubble">
+                    <SVGPath content="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" styleClass="svg-pillar-icon"/>
+                </StackPane>
+                <VBox spacing="1.0">
+                    <Label text="PENILAIAN 01" styleClass="penilaian-number"/>
+                    <Label text="Kepatuhan Hidrasi Presisi" styleClass="penilaian-item-title"/>
+                    <Label text="Target 2.000 ml / 8 gelas harian" styleClass="penilaian-item-sub"/>
+                </VBox>
+            </HBox>
+
+            <Separator orientation="VERTICAL" styleClass="penilaian-vertical-divider"/>
+
+            <!-- Penilaian 2: Nutrisi -->
+            <HBox spacing="12.0" alignment="CENTER" HBox.hgrow="ALWAYS">
+                <StackPane styleClass="penilaian-icon-bubble">
+                    <SVGPath content="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10zm0-18a8 8 0 1 1-8 8 8 8 0 0 1 8-8zm0 14a6 6 0 1 0-6-6 6 6 0 0 0 6 6z"
+                             styleClass="svg-pillar-icon"/>
+                </StackPane>
+                <VBox spacing="1.0">
+                    <Label text="PENILAIAN 02" styleClass="penilaian-number"/>
+                    <Label text="Gizi Seimbang Isi Piringku" styleClass="penilaian-item-title"/>
+                    <Label text="Sayur, buah, protein, karbohidrat" styleClass="penilaian-item-sub"/>
+                </VBox>
+            </HBox>
+
+            <Separator orientation="VERTICAL" styleClass="penilaian-vertical-divider"/>
+
+            <!-- Penilaian 3: Gerak Aktif -->
+            <HBox spacing="12.0" alignment="CENTER" HBox.hgrow="ALWAYS">
+                <StackPane styleClass="penilaian-icon-bubble">
+                    <SVGPath content="M22 12h-4l-3 9L9 3l-3 9H2" styleClass="svg-pillar-icon"/>
+                </StackPane>
+                <VBox spacing="1.0">
+                    <Label text="PENILAIAN 03" styleClass="penilaian-number"/>
+                    <Label text="Gerak Mikro Adaptif" styleClass="penilaian-item-title"/>
+                    <Label text="15-30 menit latihan tanpa gym" styleClass="penilaian-item-sub"/>
+                </VBox>
+            </HBox>
+
+            <Separator orientation="VERTICAL" styleClass="penilaian-vertical-divider"/>
+
+            <!-- Penilaian 4: Tidur Sirkadian -->
+            <HBox spacing="12.0" alignment="CENTER" HBox.hgrow="ALWAYS">
+                <StackPane styleClass="penilaian-icon-bubble">
+                    <SVGPath content="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" styleClass="svg-pillar-icon"/>
+                </StackPane>
+                <VBox spacing="1.0">
+                    <Label text="PENILAIAN 04" styleClass="penilaian-number"/>
+                    <Label text="Pemulihan Tidur Sirkadian" styleClass="penilaian-item-title"/>
+                    <Label text="Pengingat malam &amp; durasi sehat" styleClass="penilaian-item-sub"/>
+                </VBox>
+            </HBox>
+        </HBox>
+
+        <!-- ================================================================ -->
+        <!-- 4. FITUR UTAMA PLATFORM SEHAT HARIAN (Interaktif & Bervariasi)   -->
+        <!-- ================================================================ -->
+        <VBox fx:id="fiturSectionBox" styleClass="landing-section-features" spacing="28.0" alignment="CENTER">
+
+            <!-- Header Section Fitur -->
+            <VBox spacing="8.0" alignment="CENTER" maxWidth="820.0">
+                <Label text="SISTEM KESEHATAN PREVENTIF TERPADU" styleClass="section-tag-pill"/>
+                <HBox alignment="CENTER" spacing="8.0">
+                    <Label text="Fitur Utama dalam Platform" styleClass="section-title-navy"/>
+                    <Label text="Sehat Harian" styleClass="section-title-emerald"/>
+                </HBox>
+                <Label text="Setiap fitur dirancang adaptif untuk mendukung kebiasaan sehat harian dengan data yang dapat ditindaklanjuti secara mandiri tanpa membuat semua kartu tampak seragam."
+                       styleClass="section-desc-clean" textAlignment="CENTER" wrapText="true"/>
+            </VBox>
+
+            <!-- Filter Tab Interaktif -->
+            <HBox spacing="10.0" alignment="CENTER">
+                <Button fx:id="btnFilterAll" text="Semua Fitur (6)" styleClass="btn-filter-pill, btn-filter-pill-active" onAction="#handleFilterAll"/>
+                <Button fx:id="btnFilterHarian" text="Aktivitas &amp; Tantangan" styleClass="btn-filter-pill" onAction="#handleFilterHarian"/>
+                <Button fx:id="btnFilterNutrisi" text="Nutrisi &amp; Tidur" styleClass="btn-filter-pill" onAction="#handleFilterNutrisi"/>
+                <Button fx:id="btnFilterLaporan" text="Grafik &amp; Evaluasi" styleClass="btn-filter-pill" onAction="#handleFilterLaporan"/>
+            </HBox>
+
+            <!-- A. INTERACTIVE LAB SECTION: Checklist Tantangan & Kalkulator -->
+            <VBox fx:id="interactiveDemoSectionBox" spacing="20.0" maxWidth="1240.0" HBox.hgrow="ALWAYS">
+                <HBox spacing="24.0" alignment="TOP_CENTER">
+
+                    <!-- Fitur 1: Checklist Tantangan Interaktif -->
+                    <VBox fx:id="cardFitur1" styleClass="interactive-card" spacing="16.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="340.0" onMouseClicked="#handleCardFitur1Click">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <StackPane styleClass="feature-icon-badge-emerald">
+                                <SVGPath content="M22 11.08V12a10 10 0 1 1-5.93-9.14 M22 4L12 14.01l-3-3" styleClass="svg-emerald"/>
+                            </StackPane>
+                            <VBox spacing="1.0">
+                                <Label text="SIMULASI INTERAKTIF • FITUR 01" styleClass="feature-kicker-emerald"/>
+                                <Label text="Tantangan Kesehatan Harian" styleClass="feature-card-title"/>
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button text="Reset Checklist" styleClass="btn-demo-reset" onAction="#handleResetDemoTantangan"/>
+                        </HBox>
+
+                        <Label text="Centang tugas mikro di bawah ini secara langsung untuk merasakan bagaimana aksi kecil membangun ritme harian Anda:"
+                               styleClass="interactive-card-subtitle" wrapText="true"/>
+
+                        <!-- Checkboxes Interaktif -->
+                        <VBox spacing="10.0" styleClass="interactive-task-container">
+                            <CheckBox fx:id="chkDemoTantangan1" text="Minum 2 gelas air putih setelah bangun tidur" styleClass="interactive-checkbox" onAction="#handleUpdateDemoTantangan"/>
+                            <CheckBox fx:id="chkDemoTantangan2" text="Jalan santai atau peregangan mikro 15 menit" styleClass="interactive-checkbox" onAction="#handleUpdateDemoTantangan"/>
+                            <CheckBox fx:id="chkDemoTantangan3" text="Lengkapi porsi makan siang dengan sayur dan buah" styleClass="interactive-checkbox" onAction="#handleUpdateDemoTantangan"/>
+                            <CheckBox fx:id="chkDemoTantangan4" text="Istirahatkan layar gawai 30 menit sebelum tidur" styleClass="interactive-checkbox" onAction="#handleUpdateDemoTantangan"/>
+                        </VBox>
+
+                        <!-- Realtime Progress Indicator -->
+                        <VBox spacing="6.0">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Progres Capaian:" styleClass="interactive-progress-label"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="lblDemoProgressText" text="1 dari 4 Selesai (25%)" styleClass="interactive-progress-percent"/>
+                            </HBox>
+                            <ProgressBar fx:id="demoProgressBar" progress="0.25" styleClass="feature-progressbar-emerald" maxWidth="Infinity" prefHeight="9.0"/>
+                            <Label fx:id="lblDemoCelebration" text="Tantangan harian tuntas! Konsistensi ritme hidup Anda meningkat." styleClass="celebration-label" visible="false" managed="false"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Fitur 3: Kalkulator Metabolisme & Hidrasi Real-time -->
+                    <VBox fx:id="cardFitur3" styleClass="interactive-card" spacing="16.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="340.0" onMouseClicked="#handleCardFitur3Click">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <StackPane styleClass="feature-icon-badge-blue">
+                                <SVGPath content="M4 21v-7 M4 10V3 M12 21v-9 M12 8V3 M20 21v-5 M20 12V3 M1 14h6 M9 8h6 M17 16h6" styleClass="svg-blue"/>
+                            </StackPane>
+                            <VBox spacing="1.0">
+                                <Label text="KALKULATOR METABOLISME • FITUR 03" styleClass="feature-kicker-blue"/>
+                                <Label text="Rekomendasi Aktivitas &amp; Hidrasi" styleClass="feature-card-title"/>
+                            </VBox>
+                        </HBox>
+
+                        <Label text="Geser berat badan Anda untuk melihat formula presisi kebutuhan cairan dan durasi gerak adaptif Kemenkes RI:"
+                               styleClass="interactive-card-subtitle" wrapText="true"/>
+
+                        <!-- Slider Berat Badan -->
+                        <VBox spacing="8.0" styleClass="slider-container">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Berat Badan Anda:" styleClass="slider-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="lblBeratBadanVal" text="60 kg" styleClass="slider-value-badge"/>
+                            </HBox>
+                            <Slider fx:id="sliderBeratBadan" min="40.0" max="110.0" value="60.0" blockIncrement="1.0"
+                                    majorTickUnit="20.0" minorTickCount="4" showTickMarks="true" showTickLabels="true"
+                                    styleClass="custom-interactive-slider"/>
+                        </VBox>
+
+                        <!-- Hasil Kalkulasi 3 Metrik Realtime -->
+                        <HBox spacing="10.0" alignment="CENTER">
+                            <VBox styleClass="calc-result-box" alignment="CENTER" spacing="3.0" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER" spacing="4.0">
+                                    <SVGPath content="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" styleClass="svg-mini-blue"/>
+                                    <Label text="Kebutuhan Air" styleClass="calc-result-title"/>
+                                </HBox>
+                                <Label fx:id="lblKebutuhanAirVal" text="2.100 ml" styleClass="calc-result-val-blue"/>
+                                <Label fx:id="lblGelasAirVal" text="≈ 8.4 Gelas / Hari" styleClass="calc-result-sub"/>
+                            </VBox>
+
+                            <VBox styleClass="calc-result-box" alignment="CENTER" spacing="3.0" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER" spacing="4.0">
+                                    <SVGPath content="M22 12h-4l-3 9L9 3l-3 9H2" styleClass="svg-mini-emerald"/>
+                                    <Label text="Target Gerak" styleClass="calc-result-title"/>
+                                </HBox>
+                                <Label fx:id="lblTargetGerakVal" text="30 Menit" styleClass="calc-result-val-emerald"/>
+                                <Label text="Aktivitas Sedang" styleClass="calc-result-sub"/>
+                            </VBox>
+
+                            <VBox styleClass="calc-result-box" alignment="CENTER" spacing="3.0" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER" spacing="4.0">
+                                    <SVGPath content="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" styleClass="svg-mini-slate"/>
+                                    <Label text="Target Tidur" styleClass="calc-result-title"/>
+                                </HBox>
+                                <Label fx:id="lblTargetTidurVal" text="7.5 Jam" styleClass="calc-result-val-slate"/>
+                                <Label text="Ritme Sirkadian" styleClass="calc-result-sub"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                </HBox>
+            </VBox>
+
+            <!-- B. VARIED FEATURE CARDS (Komposisi Berbeda: Pelacakan, Tidur, Konsistensi, Evaluasi) -->
+            <VBox spacing="20.0" maxWidth="1240.0" HBox.hgrow="ALWAYS">
+                <HBox spacing="20.0" alignment="TOP_CENTER">
+
+                    <!-- Fitur 2: Pelacakan Kebiasaan (3 Pilar) -->
+                    <VBox fx:id="cardFitur2" styleClass="feature-card-clean" spacing="12.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="280.0" onMouseClicked="#handleCardFitur2Click">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <StackPane styleClass="feature-icon-badge-blue">
+                                <SVGPath content="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" styleClass="svg-blue"/>
+                            </StackPane>
+                            <VBox spacing="1.0" HBox.hgrow="ALWAYS">
+                                <Label text="PENCATATAN RUTIN • FITUR 02" styleClass="feature-kicker-blue"/>
+                                <Label text="Pelacakan 3 Pilar Kebiasaan" styleClass="feature-card-title"/>
+                            </VBox>
+                        </HBox>
+
+                        <Label text="Catat asupan air minum, komposisi gizi 'Isi Piringku', dan menit aktif harian dengan antarmuka cepat sekali klik."
+                               styleClass="feature-card-desc" wrapText="true"/>
+
+                        <HBox spacing="8.0" alignment="CENTER" styleClass="feature-preview-widget">
+                            <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                                <Label text="8 / 8 Gelas" styleClass="widget-stat-number"/>
+                                <Label text="Hidrasi Air" styleClass="widget-stat-caption"/>
+                            </VBox>
+                            <Separator orientation="VERTICAL"/>
+                            <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                                <Label text="Isi Piringku" styleClass="widget-stat-number"/>
+                                <Label text="Sayur &amp; Buah" styleClass="widget-stat-caption"/>
+                            </VBox>
+                            <Separator orientation="VERTICAL"/>
+                            <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                                <Label text="35 Menit" styleClass="widget-stat-number"/>
+                                <Label text="Gerak Aktif" styleClass="widget-stat-caption"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Fitur 4: Jadwal & Pengingat Tidur -->
+                    <VBox fx:id="cardFitur4" styleClass="feature-card-clean" spacing="12.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="280.0" onMouseClicked="#handleCardFitur4Click">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <StackPane styleClass="feature-icon-badge-slate">
+                                <SVGPath content="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" styleClass="svg-slate"/>
+                            </StackPane>
+                            <VBox spacing="1.0" HBox.hgrow="ALWAYS">
+                                <Label text="REST &amp; RECOVERY • FITUR 04" styleClass="feature-kicker-slate"/>
+                                <Label text="Jadwal &amp; Pengingat Tidur" styleClass="feature-card-title"/>
+                            </VBox>
+                        </HBox>
+
+                        <Label text="Jaga stabilitas ritme sirkadian dengan pengingat waktu tidur bertahap dan pemantauan durasi istirahat malam yang berkualitas."
+                               styleClass="feature-card-desc" wrapText="true"/>
+
+                        <HBox styleClass="feature-preview-widget" alignment="CENTER_LEFT" spacing="10.0">
+                            <SVGPath content="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" styleClass="svg-mini-slate"/>
+                            <VBox spacing="1.0">
+                                <Label text="Target: 22.30 WIB - 06.00 WIB" styleClass="widget-value-meta"/>
+                                <Label text="Total 7.5 Jam • Kualitas Istirahat Optimal" styleClass="widget-footnote-meta"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                </HBox>
+
+                <HBox spacing="20.0" alignment="TOP_CENTER">
+
+                    <!-- Fitur 5: Grafik Konsistensi 7 Hari -->
+                    <VBox fx:id="cardFitur5" styleClass="feature-card-clean" spacing="12.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="280.0" onMouseClicked="#handleCardFitur5Click">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <StackPane styleClass="feature-icon-badge-emerald">
+                                <SVGPath content="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11z"
+                                         styleClass="svg-emerald"/>
+                            </StackPane>
+                            <VBox spacing="1.0" HBox.hgrow="ALWAYS">
+                                <Label text="TREN PERFORMA • FITUR 05" styleClass="feature-kicker-emerald"/>
+                                <Label text="Grafik Konsistensi 7 Hari" styleClass="feature-card-title"/>
+                            </VBox>
+                        </HBox>
+
+                        <Label text="Visualisasi streak 7 hari berturut-turut untuk menjaga semangat hidup sehat tanpa tekanan atau stres psikologis."
+                               styleClass="feature-card-desc" wrapText="true"/>
+
+                        <VBox styleClass="feature-preview-widget" spacing="6.0" alignment="CENTER">
+                            <HBox spacing="12.0" alignment="CENTER">
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Sen" styleClass="streak-day-label"/>
+                                    <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-streak-check"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Sel" styleClass="streak-day-label"/>
+                                    <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-streak-check"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Rab" styleClass="streak-day-label"/>
+                                    <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-streak-check"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Kam" styleClass="streak-day-label"/>
+                                    <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-streak-check"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Jum" styleClass="streak-day-label"/>
+                                    <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-streak-check"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Sab" styleClass="streak-day-label"/>
+                                    <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-streak-check"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="2.0">
+                                    <Label text="Min" styleClass="streak-day-label"/>
+                                    <Label text="Hari Ini" styleClass="streak-active-pill"/>
+                                </VBox>
+                            </HBox>
+                            <Label text="Streak Aktif: 6 Hari Beruntun Tercapai" styleClass="widget-label-meta"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Fitur 6: Evaluasi Mingguan Adaptif -->
+                    <VBox fx:id="cardFitur6" styleClass="feature-card-clean" spacing="12.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="280.0" onMouseClicked="#handleCardFitur6Click">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <StackPane styleClass="feature-icon-badge-blue">
+                                <SVGPath content="M18 20V10 M12 20V4 M6 20v-6" styleClass="svg-blue"/>
+                            </StackPane>
+                            <VBox spacing="1.0" HBox.hgrow="ALWAYS">
+                                <Label text="REFLEKSI &amp; LAPORAN • FITUR 06" styleClass="feature-kicker-blue"/>
+                                <Label text="Evaluasi &amp; Skor Mingguan" styleClass="feature-card-title"/>
+                            </VBox>
+                        </HBox>
+
+                        <Label text="Laporan berkala akhir pekan yang merangkum persentase kepatuhan, capaian tantangan, dan rekomendasi perbaikan minggu depan."
+                               styleClass="feature-card-desc" wrapText="true"/>
+
+                        <HBox styleClass="feature-preview-widget" alignment="CENTER_LEFT" spacing="12.0">
+                            <StackPane styleClass="score-pill-clean">
+                                <Label text="88" styleClass="score-pill-number"/>
+                            </StackPane>
+                            <VBox spacing="2.0">
+                                <Label text="Status: Sangat Konsisten" styleClass="widget-value-meta"/>
+                                <Label text="Capaian 12% lebih baik dari minggu lalu" styleClass="widget-footnote-meta"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                </HBox>
+            </VBox>
+
+        </VBox>
+
+        <!-- ================================================================ -->
+        <!-- 5. PUSAT FAQ & TRANSPARANSI (Accordion Halus & Jelas)             -->
+        <!-- ================================================================ -->
+        <VBox fx:id="faqSectionBox" styleClass="landing-section-white" spacing="24.0" alignment="CENTER">
+            <VBox spacing="8.0" alignment="CENTER" maxWidth="760.0">
+                <Label text="PUSAT INFORMASI &amp; TRANSPARANSI" styleClass="section-tag-pill"/>
+                <Label text="Pertanyaan yang Sering Diajukan" styleClass="section-title-navy"/>
+                <Label text="Pelajari lebih lanjut mengenai metodologi, privasi data, dan keabsahan prinsip kesehatan yang diterapkan dalam SehatHarian."
+                       styleClass="section-desc-clean" textAlignment="CENTER" wrapText="true"/>
+            </VBox>
+
+            <VBox spacing="12.0" maxWidth="960.0" HBox.hgrow="ALWAYS">
+                <!-- FAQ 1 -->
+                <VBox styleClass="faq-item-card">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="faq-header" onMouseClicked="#handleToggleFaq1">
+                        <Label text="Apakah SehatHarian dapat digunakan secara gratis?" styleClass="faq-question-text" HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblFaqArrow1" text="▼" styleClass="faq-arrow-icon"/>
+                    </HBox>
+                    <VBox fx:id="faqContent1" styleClass="faq-content-box">
+                        <Label text="Ya! Seluruh fitur inti pencatatan kebiasaan hidrasi, tantangan mikro harian, rekomendasi adaptif, dan evaluasi mingguan dapat diakses secara gratis tanpa biaya langganan tersembunyi."
+                               styleClass="faq-answer-text" wrapText="true"/>
+                    </VBox>
+                </VBox>
+
+                <!-- FAQ 2 -->
+                <VBox styleClass="faq-item-card">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="faq-header" onMouseClicked="#handleToggleFaq2">
+                        <Label text="Bagaimana SehatHarian mengkalibrasi tantangan agar realistis?" styleClass="faq-question-text" HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblFaqArrow2" text="▶" styleClass="faq-arrow-icon"/>
+                    </HBox>
+                    <VBox fx:id="faqContent2" styleClass="faq-content-box" visible="false" managed="false">
+                        <Label text="Pada saat awal bergabung (Onboarding), Anda mengisi waktu luang harian dan kelompok aktivitas Anda. Algoritma kami menyesuaikan target agar tidak membebani, misalnya 5-10 menit peregangan untuk pekerja kantoran dan aktivitas mobilitas aman untuk lansia."
+                               styleClass="faq-answer-text" wrapText="true"/>
+                    </VBox>
+                </VBox>
+
+                <!-- FAQ 3 -->
+                <VBox styleClass="faq-item-card">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="faq-header" onMouseClicked="#handleToggleFaq3">
+                        <Label text="Bagaimana privasi dan kerahasiaan data rutinitas kesehatan saya?" styleClass="faq-question-text" HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblFaqArrow3" text="▶" styleClass="faq-arrow-icon"/>
+                    </HBox>
+                    <VBox fx:id="faqContent3" styleClass="faq-content-box" visible="false" managed="false">
+                        <Label text="Keamanan dan privasi Anda terjamin. Catatan aktivitas, riwayat tidur, dan informasi profil disimpan secara aman di basis data terisolasi dan tidak pernah dibagikan atau dijual ke pihak ketiga manapun."
+                               styleClass="faq-answer-text" wrapText="true"/>
+                    </VBox>
+                </VBox>
+
+                <!-- FAQ 4 -->
+                <VBox styleClass="faq-item-card">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="faq-header" onMouseClicked="#handleToggleFaq4">
+                        <Label text="Apakah aplikasi ini menggantikan konsultasi dengan dokter?" styleClass="faq-question-text" HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblFaqArrow4" text="▶" styleClass="faq-arrow-icon"/>
+                    </HBox>
+                    <VBox fx:id="faqContent4" styleClass="faq-content-box" visible="false" managed="false">
+                        <Label text="Tidak. SehatHarian adalah platform pendukung gaya hidup mandiri dan pembentukan kebiasaan sehat preventif. Untuk diagnosis penyakit atau keluhan kesehatan spesifik, selalu konsultasikan secara langsung dengan dokter atau tenaga kesehatan profesional."
+                               styleClass="faq-answer-text" wrapText="true"/>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </VBox>
+
+        <!-- ================================================================ -->
+        <!-- 6. AJAKAN MENGGUNAKAN APLIKASI (Background Biru Tua #0F2C59)      -->
+        <!-- ================================================================ -->
+        <VBox fx:id="downloadSectionBox" styleClass="landing-cta-banner" alignment="CENTER" spacing="22.0">
+            <VBox alignment="CENTER" spacing="10.0" maxWidth="780.0">
+                <HBox alignment="CENTER">
+                    <Label text="LANGKAH PERTAMA GAYA HIDUP SEHAT" styleClass="cta-kicker"/>
+                </HBox>
+                <Label text="Siap Membangun Rutinitas Sehat Hari Ini?" styleClass="cta-title" textAlignment="CENTER" wrapText="true"/>
+                <Label text="Bergabunglah tanpa biaya sekarang. Mulai dari satu kebiasaan kecil hari ini dan rasakan konsistensi energi serta kebugaran tubuh Anda secara berkelanjutan."
+                       styleClass="cta-subtitle" textAlignment="CENTER" wrapText="true"/>
+            </VBox>
+
+            <HBox spacing="16.0" alignment="CENTER">
+                <Button fx:id="btnCtaCreateAccount" text="Download for Mobile / Buat Akun" styleClass="btn-cta-primary" onAction="#handleCreateAccount" prefHeight="44.0"/>
+                <Button fx:id="btnCtaLogin" text="Masuk ke Akun Anda" styleClass="btn-cta-secondary" onAction="#handleLogin" prefHeight="44.0"/>
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="8.0" style="-fx-padding: 6 0 0 0;">
+                <Label text="Ketersediaan Platform: Versi Desktop &amp; Web JPro Aktif Penuh." styleClass="cta-distribution-info"/>
+                <Button fx:id="btnDistribusiInfo" text="Informasi Distribusi Aplikasi ➔" styleClass="btn-link-white" onAction="#handleAppDistributionInfo"/>
+            </HBox>
+        </VBox>
+
+        <!-- ================================================================ -->
+        <!-- 7. FOOTER RESMI (Tipografi Rapi & Penyangkalan Medis)            -->
+        <!-- ================================================================ -->
+        <VBox fx:id="footerSectionBox" styleClass="landing-footer-wrapper" spacing="24.0" alignment="CENTER">
+            <VBox spacing="20.0" maxWidth="1240.0" HBox.hgrow="ALWAYS">
+
+                <HBox spacing="48.0" alignment="TOP_LEFT">
+                    <!-- Kolom 1: Profil Brand & Verifikasi -->
+                    <VBox spacing="12.0" HBox.hgrow="ALWAYS" maxWidth="480.0">
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                            <ImageView fx:id="footerLogoView" fitWidth="26.0" fitHeight="26.0" preserveRatio="true"/>
+                            <Label text="SehatHarian" styleClass="footer-brand-title"/>
+                        </HBox>
+                        <Label text="Platform kesehatan preventif mandiri yang memandu masyarakat membangun kebiasaan hidup sehat secara bertahap, realistis, dan konsisten berdasarkan prinsip gizi dan aktivitas fisik terukur."
+                               styleClass="footer-brand-desc" wrapText="true"/>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-padding: 4 0 0 0;">
+                            <Label text="Versi 2.4.3" styleClass="badge-versi"/>
+                            <HBox spacing="5.0" alignment="CENTER_LEFT">
+                                <SVGPath content="M20 6L9 17l-5-5" styleClass="svg-check-emerald"/>
+                                <Label text="Pedoman Gizi Seimbang Kemenkes RI" styleClass="footer-verified-text"/>
+                            </HBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Kolom 2: Navigasi Cepat -->
+                    <VBox spacing="8.0" minWidth="180.0">
+                        <Label text="NAVIGASI CEPAT" styleClass="footer-col-title"/>
+                        <Button text="Beranda Utama" styleClass="footer-link-btn" onAction="#handleNavBeranda"/>
+                        <Button text="Deskripsi &amp; Metodologi" styleClass="footer-link-btn" onAction="#handleNavTentang"/>
+                        <Button text="Fitur Platform" styleClass="footer-link-btn" onAction="#handleNavFitur"/>
+                        <Button text="Simulasi &amp; Downloads" styleClass="footer-link-btn" onAction="#handleNavCoba"/>
+                        <Button text="Pusat Bantuan &amp; FAQ" styleClass="footer-link-btn" onAction="#handleNavBantuan"/>
+                    </VBox>
+
+                    <!-- Kolom 3: Layanan Bantuan -->
+                    <VBox spacing="8.0" minWidth="260.0" maxWidth="340.0">
+                        <Label text="PUSAT BANTUAN &amp; DUKUNGAN" styleClass="footer-col-title"/>
+                        <Label text="Layanan informasi dan edukasi untuk pengguna SehatHarian:"
+                               styleClass="footer-brand-desc" wrapText="true"/>
+                        <Label text="Senin - Jumat: 08.00 - 17.00 WIB" styleClass="footer-hours-text"/>
+                        <HBox spacing="8.0" alignment="CENTER_LEFT" style="-fx-padding: 4 0 0 0;">
+                            <SVGPath content="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4l8 5 8-5V6l-8 5-8-5v2z"
+                                     styleClass="svg-mail-slate"/>
+                            <Label text="bantuan@sehatharian.id" styleClass="footer-email-link" onMouseClicked="#handleContactEmail"/>
+                        </HBox>
+                        <Button text="Kirim Pertanyaan / Masukan" styleClass="footer-action-btn" onAction="#handleContactEmail"/>
+                    </VBox>
+                </HBox>
+
+                <Separator styleClass="footer-separator"/>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="© 2026 SehatHarian Indonesia. Seluruh hak cipta dilindungi undang-undang."
+                           styleClass="footer-copyright-text"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox spacing="16.0" alignment="CENTER_RIGHT">
+                        <Button text="Kebijakan Privasi" styleClass="footer-link-btn" onAction="#handleFooterPrivacy"/>
+                        <Label text="•" styleClass="footer-bullet"/>
+                        <Button text="Syarat &amp; Ketentuan" styleClass="footer-link-btn" onAction="#handleFooterTerms"/>
+                    </HBox>
+                </HBox>
+
+                <HBox alignment="CENTER">
+                    <VBox styleClass="disclaimer-box" alignment="CENTER" HBox.hgrow="ALWAYS">
+                        <Label text="Penyangkalan Medis: Informasi, pelacakan, dan saran yang disediakan oleh SehatHarian ditujukan semata-mata untuk tujuan edukasi gaya hidup mandiri dan pembentukan kebiasaan sehat preventif. Layanan ini bukan merupakan diagnosis medis, rekomendasi klinis, atau pengganti nasihat dari dokter dan tenaga kesehatan profesional."
+                               styleClass="disclaimer-text" wrapText="true"/>
+                    </VBox>
+                </HBox>
+
+            </VBox>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

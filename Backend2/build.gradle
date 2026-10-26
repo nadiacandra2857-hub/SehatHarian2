@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.sehatharian'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(26)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://sandec.jfrog.io/artifactory/repo" }
+}
+
+def javafxVersion = '24.0.1'
+
+dependencies {
+    // MySQL JDBC Driver
+    api 'com.mysql:mysql-connector-j:9.3.0'
+
+    // Password Hashing (BCrypt)
+    api 'org.mindrot:jbcrypt:0.4'
+
+    // JavaFX base and graphics for Platform.runLater and observable bindings
+    api "org.openjfx:javafx-base:${javafxVersion}"
+    api "org.openjfx:javafx-base:${javafxVersion}:win"
+    api "org.openjfx:javafx-graphics:${javafxVersion}"
+    api "org.openjfx:javafx-graphics:${javafxVersion}:win"
+    api "org.openjfx:javafx-controls:${javafxVersion}"
+    api "org.openjfx:javafx-controls:${javafxVersion}:win"
+    api "org.openjfx:javafx-media:${javafxVersion}"
+    api "org.openjfx:javafx-media:${javafxVersion}:win"
+
+    // JUnit 5 Testing
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation']
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs(['--enable-preview'])
+}

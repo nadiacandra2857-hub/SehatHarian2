@@ -2,6 +2,7 @@ package com.sehatharian.controller;
 
 import com.sehatharian.model.EvaluasiMingguan;
 import com.sehatharian.model.Pengguna;
+import com.sehatharian.model.UserSession;
 import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.EvaluasiService;
 import com.sehatharian.util.AnimationHelper;
@@ -103,6 +104,17 @@ public class EvaluasiMingguanController {
     }
 
     private void muatDataPengguna() {
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+            return;
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+                if (penggunaAktif != null) return;
+            } catch (Exception ignored) {}
+        }
+
         try {
             penggunaAktif = penggunaRepo.getDefaultPengguna();
         } catch (SQLException ignored) {}
@@ -131,8 +143,8 @@ public class EvaluasiMingguanController {
                 labelRingkasanTeks.setText("Sistem belum memiliki evaluasi yang tersimpan. Klik tombol 'Jalankan Evaluasi Sekarang' untuk menganalisis 7 hari terakhir.");
                 labelRekomendasiTeks.setText("• Rekomendasi otomatis akan ditampilkan setelah evaluasi dijalankan.");
             }
-        } catch (SQLException e) {
-            DialogHelper.showError("Database Error", "Gagal mengambil data evaluasi: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Info muat evaluasi: " + e.getMessage());
         }
     }
 

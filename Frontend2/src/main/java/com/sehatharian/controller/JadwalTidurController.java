@@ -2,6 +2,7 @@ package com.sehatharian.controller;
 
 import com.sehatharian.model.JadwalTidur;
 import com.sehatharian.model.Pengguna;
+import com.sehatharian.model.UserSession;
 import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.EvaluasiService;
 import com.sehatharian.service.PengingatTidurService;
@@ -189,6 +190,17 @@ public class JadwalTidurController {
     }
 
     private void muatDataPengguna() {
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+            return;
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+                if (penggunaAktif != null) return;
+            } catch (Exception ignored) {}
+        }
+
         try {
             penggunaAktif = penggunaRepo.getDefaultPengguna();
         } catch (SQLException ignored) {}
@@ -210,8 +222,8 @@ public class JadwalTidurController {
                 pengingatService.updateJadwal(terbaru.getJamTidur(), terbaru.isPengingatAktif());
                 updateStatusPengingatUI();
             }
-        } catch (SQLException e) {
-            DialogHelper.showError("Kendala Memuat Data", "Gagal memuat riwayat istirahat dari database: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Info muat riwayat tidur: " + e.getMessage());
         }
     }
 

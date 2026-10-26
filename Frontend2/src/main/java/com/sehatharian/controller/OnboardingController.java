@@ -1,6 +1,7 @@
 package com.sehatharian.controller;
 
 import com.sehatharian.model.UserSession;
+import com.sehatharian.service.PenggunaService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.SceneNavigator;
 import javafx.fxml.FXML;
@@ -195,13 +196,31 @@ public class OnboardingController {
 
         AnimationHelper.scaleButtonFeedback(btnFinish);
 
+        String waktuLabel = selectedWaktuLuangLabel != null ? selectedWaktuLuangLabel : (selectedWaktuLuang + " jam");
+
         // Simpan jawaban ke UserSession
-        UserSession.getInstance().completeOnboarding(
+        UserSession session = UserSession.getInstance();
+        session.completeOnboarding(
                 selectedWaktuLuang,
-                selectedWaktuLuangLabel != null ? selectedWaktuLuangLabel : (selectedWaktuLuang + " jam"),
+                waktuLabel,
                 selectedJenisAktivitas,
                 selectedKelompokUmur
         );
+
+        // Persist ke database melalui PenggunaService
+        try {
+            PenggunaService penggunaService = new PenggunaService();
+            int userId = session.getUserId() > 0 ? session.getUserId() : 1;
+            penggunaService.simpanOnboarding(
+                    userId,
+                    selectedWaktuLuang,
+                    waktuLabel,
+                    selectedJenisAktivitas,
+                    selectedKelompokUmur
+            );
+        } catch (Exception e) {
+            System.err.println("Gagal menyimpan onboarding ke database: " + e.getMessage());
+        }
 
         // Arahkan ke Dashboard
         SceneNavigator.showMainApp();

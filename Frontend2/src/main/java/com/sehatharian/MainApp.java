@@ -28,8 +28,8 @@ public class MainApp extends Application {
                 }
             } catch (Exception ignored) {}
 
-            primaryStage.setMinWidth(1000);
-            primaryStage.setMinHeight(680);
+            primaryStage.setMinWidth(360);
+            primaryStage.setMinHeight(480);
 
             // Bersihkan thread background saat aplikasi ditutup
             primaryStage.setOnCloseRequest(event -> {

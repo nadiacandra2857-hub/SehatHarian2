@@ -15,28 +15,28 @@
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.RekomendasiController">
 
-    <VBox fx:id="rekomendasiRoot" spacing="22" styleClass="content-pane">
+    <VBox fx:id="rekomendasiRoot" spacing="18" styleClass="content-pane">
 
         <!-- 1. HEADER SECTION -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20">
-            <VBox spacing="6" HBox.hgrow="ALWAYS">
+        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="SISTEM REKOMENDASI ADAPTIF (F-02 &amp; F-06)" styleClass="sleep-header-badge"/>
+                    <Label text="💡 SISTEM REKOMENDASI ADAPTIF (F-02 &amp; F-06)" styleClass="preference-badge-blue"/>
                 </HBox>
-                <Label text="Rekomendasi Aktivitas, Menu &amp; Gerak" styleClass="page-title"/>
-                <Label text="Katalog aktivitas harian, menu bernutrisi seimbang, dan latihan terpandu yang otomatis disaring agar tidak pernah melebihi batas waktu luang yang Anda miliki."
+                <Label text="Rekomendasi Aktivitas, Menu &amp; Workout" styleClass="page-title"/>
+                <Label text="Katalog aktivitas harian, menu nutrisi seimbang, dan latihan terpandu yang otomatis disaring sesuai batasan waktu luang dan usia Anda."
                        styleClass="page-subtitle" wrapText="true"/>
             </VBox>
-            <VBox alignment="CENTER_RIGHT" spacing="4">
+            <VBox alignment="CENTER_RIGHT" spacing="2">
                 <Label fx:id="labelJumlahRekomendasi" text="0 Rekomendasi Tersedia" styleClass="sleep-table-count"/>
                 <Label text="Sesuai kriteria filter" styleClass="form-hint"/>
             </VBox>
         </HBox>
 
         <!-- 2. KONTROL FILTER (F-02 WAKTU LUANG & F-06 KATEGORI DEMOGRAFI) -->
-        <VBox styleClass="wellness-card" spacing="16">
+        <VBox styleClass="wellness-card" spacing="14">
             <HBox alignment="CENTER_LEFT">
-                <VBox spacing="2">
+                <VBox spacing="1">
                     <Label text="Penyaringan Rekomendasi Adaptif" styleClass="card-title"/>
                     <Label text="Sesuaikan dengan waktu luang aktual dan rutinitas kerja Anda hari ini" styleClass="card-subtitle"/>
                 </VBox>
@@ -45,34 +45,34 @@
             </HBox>
 
             <!-- Tiga Dimensi Filter -->
-            <HBox spacing="16" alignment="TOP_LEFT">
+            <HBox spacing="14" alignment="TOP_LEFT">
 
                 <!-- F-02: Batas Waktu Luang -->
-                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
                     <Label text="Ketersediaan Waktu Luang:" styleClass="form-label"/>
-                    <ComboBox fx:id="comboWaktuLuang" prefWidth="200" maxWidth="Infinity" onAction="#handleFilterChanged"/>
+                    <ComboBox fx:id="comboWaktuLuang" prefWidth="180" maxWidth="Infinity" onAction="#handleFilterChanged"/>
                     <Label fx:id="labelWaktuLuangInfo" text="Aktivitas dijamin ≤ 30 menit" styleClass="form-hint"/>
                 </VBox>
 
                 <!-- F-06: Golongan Kesibukan -->
-                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
                     <Label text="Tipe Rutinitas Kerja:" styleClass="form-label"/>
-                    <ComboBox fx:id="comboKesibukan" prefWidth="220" maxWidth="Infinity" onAction="#handleFilterChanged"/>
-                    <Label text="Dalam rumah (WFX) vs luar kantor" styleClass="form-hint"/>
+                    <ComboBox fx:id="comboKesibukan" prefWidth="200" maxWidth="Infinity" onAction="#handleFilterChanged"/>
+                    <Label text="Dalam rumah (WFH) vs luar kantor" styleClass="form-hint"/>
                 </VBox>
 
                 <!-- F-06: Golongan Usia -->
-                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
                     <Label text="Kelompok Usia Pengguna:" styleClass="form-label"/>
-                    <ComboBox fx:id="comboUsia" prefWidth="180" maxWidth="Infinity" onAction="#handleFilterChanged"/>
+                    <ComboBox fx:id="comboUsia" prefWidth="170" maxWidth="Infinity" onAction="#handleFilterChanged"/>
                     <Label text="Penyesuaian intensitas fisik" styleClass="form-hint"/>
                 </VBox>
             </HBox>
 
             <!-- Kategori Tipe Rekomendasi (Segmented Control) -->
-            <VBox spacing="8" style="-fx-padding: 8 0 0 0; -fx-border-color: #EEF3F0; -fx-border-width: 1 0 0 0;">
+            <VBox spacing="6" style="-fx-padding: 8 0 0 0; -fx-border-color: #F1F5F9; -fx-border-width: 1 0 0 0;">
                 <Label text="Kategori Rekomendasi:" styleClass="form-label"/>
-                <HBox spacing="10" alignment="CENTER_LEFT">
+                <HBox spacing="8" alignment="CENTER_LEFT">
                     <Button fx:id="btnTipeSemua" text="Semua Kategori" styleClass="btn-primary" onAction="#handleFilterTipeSemua"/>
                     <Button fx:id="btnTipeAktivitas" text="Aktivitas Waktu Luang" styleClass="btn-outline" onAction="#handleFilterTipeAktivitas"/>
                     <Button fx:id="btnTipeMenu" text="Menu Makanan &amp; Nutrisi" styleClass="btn-outline" onAction="#handleFilterTipeMenu"/>
@@ -82,17 +82,17 @@
         </VBox>
 
         <!-- 3. CONTAINER DAFTAR KARTU REKOMENDASI -->
-        <VBox fx:id="cardsContainer" spacing="16">
+        <VBox fx:id="cardsContainer" spacing="12">
             <!-- Kartu dinamis dimuat oleh RekomendasiController -->
         </VBox>
 
         <!-- 4. EMPTY STATE KETIKA FILTER TERLALU KETAT -->
         <VBox fx:id="emptyStateBox" styleClass="empty-state-box" visible="false" managed="false">
-            <ImageView fx:id="emptyStateImageView" fitHeight="130" fitWidth="160" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="emptyStateImageView" fitHeight="110" fitWidth="140" pickOnBounds="true" preserveRatio="true"/>
             <Label text="Tidak Ada Rekomendasi yang Memenuhi Kriteria Filter" styleClass="empty-state-title"/>
             <Label text="Cobalah meningkatkan pilihan batas waktu luang atau ubah pilihan rutinitas kerja untuk melihat opsi rekomendasi lainnya."
                    styleClass="empty-state-subtitle" wrapText="true"/>
-            <Button text="Lihat Semua Rekomendasi" styleClass="btn-primary" onAction="#handleResetFilter" style="-fx-padding: 8 18;"/>
+            <Button text="Lihat Semua Rekomendasi" styleClass="btn-primary" onAction="#handleResetFilter"/>
         </VBox>
 
     </VBox>

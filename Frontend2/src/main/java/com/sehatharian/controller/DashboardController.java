@@ -93,17 +93,27 @@ public class DashboardController {
     }
 
     public void muatDataPenggunaDanDashboard() {
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (Exception e) {
-            System.err.println("Gagal memuat pengguna default: " + e.getMessage());
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+            } catch (Exception ignored) {}
+        }
+
+        if (penggunaAktif == null) {
+            try {
+                penggunaAktif = penggunaRepo.getDefaultPengguna();
+            } catch (Exception e) {
+                System.err.println("Gagal memuat pengguna default: " + e.getMessage());
+            }
         }
         if (penggunaAktif == null) {
             penggunaAktif = new Pengguna(1, "Pengguna Sehat", LocalDate.of(2000, 1, 1), "dewasa", "luar_rumah", 30);
         }
 
-        // Sinkronisasi data dari UserSession aktif
-        UserSession session = UserSession.getInstance();
+        // Sinkronisasi nama tampilan dari UserSession aktif bila ada
         if (session.isLoggedIn() && session.getUserName() != null && !session.getUserName().trim().isEmpty()) {
             penggunaAktif.setNama(session.getUserName());
         }
@@ -183,8 +193,8 @@ public class DashboardController {
             double rataRata = Math.round((totalSkor / 7.0) * 10.0) / 10.0;
             weeklyScoreBadge.setText(String.format("%.0f%%", rataRata));
 
-        } catch (SQLException e) {
-            DialogHelper.showError("Database Error", "Gagal memuat data dashboard dari MySQL: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Info muat data dashboard: " + e.getMessage());
         }
     }
 

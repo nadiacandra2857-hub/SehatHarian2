@@ -69,40 +69,38 @@ Aplikasi mengadopsi pola arsitektur berlapis (*Layered Architecture / MVC*) pada
 
 ---
 
-## 📁 Struktur Direktori
+## 📁 Struktur Direktori Multi-Project
 
 ```text
 SehatHarian2/
+├── build.gradle                        # Root Gradle multi-project build configuration
+├── settings.gradle                     # Registrasi modul (:Backend2, :Frontend2)
+├── gradlew / gradlew.bat               # Gradle Wrapper multi-project
+├── gradle/wrapper/                     # Wrapper binaries & properties (Gradle 9.8.1)
+├── .gitignore                          # Aturan ignore file build, cache, IDE, dan OS
 ├── README.md                           # Dokumentasi utama proyek
-├── prd_extracted.txt                   # Dokumen PRD versi teks
-├── PRD_SehatHarian_Revisi_TechStack.docx # Dokumen PRD versi Word
-├── Backend2/                           # Placeholder / struktur direktori cadangan
-└── Frontend2/                          # Proyek utama aplikasi desktop JavaFX
-    ├── build.gradle                    # Konfigurasi dependensi dan build Gradle
-    ├── gradlew / gradlew.bat           # Gradle Wrapper
-    ├── settings.gradle                 # Nama root project
-    ├── sql/
-    │   ├── schema.sql                  # Skrip DDL tabel database MySQL
-    │   └── seed.sql                    # Data awal (seeding katalog tantangan & rekomendasi)
+├── docs/
+│   └── prd_extracted.txt               # Dokumen Product Requirements Document (PRD)
+├── Backend2/                           # Modul internal Java backend & persistence layer
+│   ├── build.gradle                    # Library plugin, JDBC driver, BCrypt, dan unit testing
+│   ├── README.md                       # Dokumentasi arsitektur Backend2
+│   ├── sql/
+│   │   ├── schema.sql                  # DDL skema database MySQL (9 tabel relasional)
+│   │   └── seed.sql                    # Data katalog awal tantangan, rekomendasi, akun demo
+│   └── src/
+│       ├── main/
+│       │   ├── java/com/sehatharian/   # config, model, repository, service, util
+│       │   └── resources/
+│       │       └── db.properties       # Kredensial koneksi JDBC MySQL lokal
+│       └── test/java/com/sehatharian/  # Unit tests layer backend (34 tests)
+└── Frontend2/                          # Modul antarmuka desktop JavaFX
+    ├── build.gradle                    # Application plugin, JavaFX 24, dependensi :Backend2
+    ├── README.md                       # Dokumentasi modul Frontend2
     └── src/
         ├── main/
-        │   ├── java/com/sehatharian/
-        │   │   ├── AppLauncher.java    # Entry point alternatif untuk JavaFX runtime
-        │   │   ├── MainApp.java        # Entry point utama JavaFX Application
-        │   │   ├── config/             # Konfigurasi Database JDBC
-        │   │   ├── controller/         # Controller FXML tiap tampilan
-        │   │   ├── model/              # Domain models & UserSession
-        │   │   ├── repository/         # Lapisan akses data (JDBC DAO)
-        │   │   ├── service/            # Lapisan logika bisnis & background service
-        │   │   └── util/               # Navigasi, audio player, date helper, animasi
-        │   └── resources/
-        │       ├── css/styles.css      # Styling tampilan UI
-        │       ├── fxml/               # Berkas FXML tiap halaman/layar
-        │       ├── images/             # Aset gambar & ilustrasi
-        │       ├── sounds/             # Aset audio pengingat tidur
-        │       └── db.properties       # Kredensial koneksi MySQL lokal
-        └── test/
-            └── java/com/sehatharian/   # Unit tests JUnit 5
+        │   ├── java/com/sehatharian/   # MainApp, AppLauncher, controller, UI util
+        │   └── resources/              # css/styles.css, fxml/ (13 views), images, sounds
+        └── test/java/com/sehatharian/  # Unit & UI integration tests (33 tests)
 ```
 
 ---
@@ -127,16 +125,16 @@ cd SehatHarian2
 ### 2. Setup Database MySQL
 1. Buka MySQL client favorit Anda (phpMyAdmin, MySQL Workbench, DBeaver, atau Command Line).
 2. Eksekusi skrip DDL untuk membuat database dan tabel:
-   ```sql
-   -- Jalankan berkas Frontend2/sql/schema.sql
+   ```bash
+   mysql -u root < Backend2/sql/schema.sql
    ```
-3. Eksekusi skrip data awal (seed) untuk mengisi katalog:
-   ```sql
-   -- Jalankan berkas Frontend2/sql/seed.sql
+3. Eksekusi skrip data awal (seed) untuk mengisi katalog dan akun pengujian:
+   ```bash
+   mysql -u root < Backend2/sql/seed.sql
    ```
 
 ### 3. Konfigurasi Koneksi Database
-Buka berkas `Frontend2/src/main/resources/db.properties` dan sesuaikan kredensial MySQL lokal Anda:
+Buka berkas `Backend2/src/main/resources/db.properties` dan sesuaikan kredensial MySQL lokal Anda:
 ```properties
 db.host=localhost
 db.port=3306
@@ -147,30 +145,34 @@ db.useSSL=false
 db.allowPublicKeyRetrieval=true
 db.serverTimezone=Asia/Jakarta
 ```
+> *Catatan*: Jika MySQL offline, sistem secara otomatis mengaktifkan fail-safe *in-memory data store* sehingga antarmuka desktop tetap dapat dioperasikan.
 
-### 4. Menjalankan Aplikasi
-Masuk ke direktori `Frontend2` dan gunakan Gradle Wrapper untuk menjalankan aplikasi:
+### 4. Menjalankan Aplikasi Desktop
+Jalankan perintah Gradle Wrapper langsung dari direktori root proyek:
 
 * **Di Windows (PowerShell / Command Prompt)**:
   ```powershell
-  cd Frontend2
-  .\gradlew.bat run
+  .\gradlew.bat :Frontend2:run
   ```
 
 * **Di macOS / Linux**:
   ```bash
-  cd Frontend2
-  ./gradlew run
+  ./gradlew :Frontend2:run
   ```
 
-### 5. Menjalankan Pengujian Otomatis (Unit Test)
-Untuk memastikan seluruh logika bisnis, validasi tidur, rekomendasi, dan evaluasi berfungsi optimal:
+### 5. Menjalankan Pengujian Otomatis (Unit & Integration Tests)
+Jalankan seluruh test suite dari kedua modul (Backend2 + Frontend2) dari root:
 ```powershell
-cd Frontend2
 .\gradlew.bat test
 ```
-Laporan hasil pengujian akan dihasilkan pada:
-`Frontend2/build/reports/tests/test/index.html`
+Atau uji modul secara spesifik:
+```powershell
+.\gradlew.bat :Backend2:test   # 34 tests
+.\gradlew.bat :Frontend2:test  # 33 tests
+```
+Laporan hasil pengujian HTML akan tersedia di:
+- `Backend2/build/reports/tests/test/index.html`
+- `Frontend2/build/reports/tests/test/index.html`
 
 ---
 

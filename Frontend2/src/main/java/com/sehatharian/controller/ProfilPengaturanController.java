@@ -2,6 +2,7 @@ package com.sehatharian.controller;
 
 import com.sehatharian.config.DatabaseConfig;
 import com.sehatharian.model.Pengguna;
+import com.sehatharian.model.UserSession;
 import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.DialogHelper;
@@ -56,10 +57,21 @@ public class ProfilPengaturanController {
     }
 
     private void muatDataPengguna() {
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (SQLException e) {
-            System.err.println("Gagal memuat profil pengguna dari DB: " + e.getMessage());
+        UserSession session = UserSession.getInstance();
+        if (session.isLoggedIn() && session.getActiveUser() != null) {
+            penggunaAktif = session.getActiveUser();
+        } else if (session.isLoggedIn() && session.getUserId() > 0) {
+            try {
+                penggunaAktif = penggunaRepo.getById(session.getUserId());
+            } catch (Exception ignored) {}
+        }
+
+        if (penggunaAktif == null) {
+            try {
+                penggunaAktif = penggunaRepo.getDefaultPengguna();
+            } catch (SQLException e) {
+                System.err.println("Gagal memuat profil pengguna dari DB: " + e.getMessage());
+            }
         }
         if (penggunaAktif == null) {
             penggunaAktif = new Pengguna(1, "Nadia Ayu Candra", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
@@ -118,12 +130,13 @@ public class ProfilPengaturanController {
             penggunaAktif.setGolonganKesibukan(kesibukan);
 
             penggunaRepo.updatePengguna(penggunaAktif);
+            UserSession.getInstance().setCurrentUser(penggunaAktif);
 
             if (mainController != null) {
                 mainController.updateUserInfoSidebar(penggunaAktif);
             }
 
-            DialogHelper.showSuccess("Sukses", "Profil pengguna berhasil diperbarui di MySQL!");
+            DialogHelper.showSuccess("Sukses", "Profil pengguna berhasil diperbarui!");
         } catch (SQLException e) {
             DialogHelper.showError("Database Error", "Gagal menyimpan perubahan profil: " + e.getMessage());
         }

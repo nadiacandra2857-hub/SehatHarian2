@@ -62,8 +62,8 @@ public class SceneNavigator {
             }
 
             primaryStage.setTitle(title);
-            primaryStage.setMinWidth(1000);
-            primaryStage.setMinHeight(680);
+            primaryStage.setMinWidth(360);
+            primaryStage.setMinHeight(480);
 
             AnimationHelper.fadeIn(root, 300);
 

@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -18,15 +19,15 @@
             styleClass="onboarding-root"
             prefWidth="1120.0" prefHeight="760.0">
 
-    <StackPane alignment="CENTER" style="-fx-padding: 30 20;">
-        <VBox styleClass="onboarding-card" spacing="24.0">
+    <StackPane alignment="CENTER" style="-fx-padding: 32 20;">
+        <VBox styleClass="onboarding-card" spacing="22.0" maxWidth="720.0">
 
             <!-- HEADER & PROGRESS BAR -->
-            <VBox spacing="14.0">
+            <VBox spacing="12.0">
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <Label text="INFORMASI DASAR" styleClass="onboarding-top-badge"/>
-                    <HBox HBox.hgrow="ALWAYS"/>
-                    <HBox spacing="8.0" alignment="CENTER_RIGHT">
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox spacing="12.0" alignment="CENTER_RIGHT">
                         <Label fx:id="step1Badge" text="1. Waktu Luang" styleClass="onboarding-step-indicator, active"/>
                         <Label fx:id="step2Badge" text="2. Aktivitas" styleClass="onboarding-step-indicator"/>
                         <Label fx:id="step3Badge" text="3. Kelompok Umur" styleClass="onboarding-step-indicator"/>
@@ -42,18 +43,18 @@
             <!-- ================================================================= -->
             <!-- SLIDE 1: WAKTU LUANG (Maksimal 4 Jam) -->
             <!-- ================================================================= -->
-            <VBox fx:id="slide1Container" spacing="18.0">
-                <VBox spacing="6.0">
-                    <Label text="Berapa lama waktu luang yang kamu miliki setiap hari?"
+            <VBox fx:id="slide1Container" spacing="16.0">
+                <VBox spacing="4.0">
+                    <Label text="Berapa lama waktu luang yang Anda miliki setiap hari?"
                            styleClass="onboarding-question-title" wrapText="true"/>
-                    <Label text="Pilih durasi waktu luang terbesar yang realistis dapat kamu luangkan setiap hari (maksimal 4 jam)."
+                    <Label text="Pilih durasi waktu luang terbesar yang realistis dapat Anda luangkan setiap hari (maksimal 4 jam)."
                            styleClass="onboarding-question-subtitle" wrapText="true"/>
                 </VBox>
 
                 <!-- Options List (1 choice only, max 4 hours) -->
-                <VBox spacing="10.0">
+                <VBox spacing="9.0">
                     <!-- Option 0: Kurang dari 1 jam -->
-                    <HBox fx:id="cardWaktu0" styleClass="onboarding-option-card" spacing="14.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu0">
+                    <HBox fx:id="cardWaktu0" styleClass="onboarding-option-card" spacing="12.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu0">
                         <StackPane styleClass="onboarding-option-radio">
                             <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                         </StackPane>
@@ -65,7 +66,7 @@
                     </HBox>
 
                     <!-- Option 1: 1 jam -->
-                    <HBox fx:id="cardWaktu1" styleClass="onboarding-option-card" spacing="14.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu1">
+                    <HBox fx:id="cardWaktu1" styleClass="onboarding-option-card" spacing="12.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu1">
                         <StackPane styleClass="onboarding-option-radio">
                             <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                         </StackPane>
@@ -77,7 +78,7 @@
                     </HBox>
 
                     <!-- Option 2: 2 jam -->
-                    <HBox fx:id="cardWaktu2" styleClass="onboarding-option-card" spacing="14.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu2">
+                    <HBox fx:id="cardWaktu2" styleClass="onboarding-option-card" spacing="12.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu2">
                         <StackPane styleClass="onboarding-option-radio">
                             <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                         </StackPane>
@@ -89,7 +90,7 @@
                     </HBox>
 
                     <!-- Option 3: 3 jam -->
-                    <HBox fx:id="cardWaktu3" styleClass="onboarding-option-card" spacing="14.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu3">
+                    <HBox fx:id="cardWaktu3" styleClass="onboarding-option-card" spacing="12.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu3">
                         <StackPane styleClass="onboarding-option-radio">
                             <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                         </StackPane>
@@ -101,7 +102,7 @@
                     </HBox>
 
                     <!-- Option 4: 4 jam (Batas Maksimal) -->
-                    <HBox fx:id="cardWaktu4" styleClass="onboarding-option-card" spacing="14.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu4">
+                    <HBox fx:id="cardWaktu4" styleClass="onboarding-option-card" spacing="12.0" alignment="CENTER_LEFT" onMouseClicked="#handlePilihWaktu4">
                         <StackPane styleClass="onboarding-option-radio">
                             <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                         </StackPane>
@@ -117,57 +118,55 @@
             <!-- ================================================================= -->
             <!-- SLIDE 2: AKTIVITAS YANG DILAKUKAN (OUTDOOR VS INDOOR) -->
             <!-- ================================================================= -->
-            <VBox fx:id="slide2Container" spacing="18.0" visible="false" managed="false">
-                <VBox spacing="6.0">
-                    <Label text="Di mana kamu lebih sering melakukan aktivitas?"
+            <VBox fx:id="slide2Container" spacing="16.0" visible="false" managed="false">
+                <VBox spacing="4.0">
+                    <Label text="Di mana Anda lebih sering melakukan aktivitas?"
                            styleClass="onboarding-question-title" wrapText="true"/>
-                    <Label text="Pilih lingkungan aktivitas utama yang paling nyaman dan sering kamu lakukan sehari-hari."
+                    <Label text="Pilih lingkungan aktivitas utama yang paling nyaman dan sering Anda lakukan sehari-hari."
                            styleClass="onboarding-question-subtitle" wrapText="true"/>
                 </VBox>
 
                 <!-- Two Distinct Choice Cards -->
-                <HBox spacing="18.0" alignment="CENTER">
+                <HBox spacing="16.0" alignment="CENTER">
                     <!-- OUTDOOR CARD -->
-                    <VBox fx:id="cardOutdoor" styleClass="onboarding-option-card" spacing="14.0" HBox.hgrow="ALWAYS" onMouseClicked="#handlePilihOutdoor">
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
-                            <ImageView fx:id="imgOutdoorView" fitWidth="48.0" fitHeight="48.0" preserveRatio="true"/>
-                            <VBox spacing="2.0" HBox.hgrow="ALWAYS">
-                                <Label text="Outdoor" styleClass="onboarding-option-title" style="-fx-font-size: 17px;"/>
-                                <Label text="Aktivitas di Luar Ruangan" style="-fx-font-size: 12px; -fx-text-fill: #2E7D32; -fx-font-weight: 600;"/>
+                    <VBox fx:id="cardOutdoor" styleClass="onboarding-option-card" spacing="12.0" HBox.hgrow="ALWAYS" onMouseClicked="#handlePilihOutdoor">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <ImageView fx:id="imgOutdoorView" fitWidth="42.0" fitHeight="42.0" preserveRatio="true"/>
+                            <VBox spacing="1.0" HBox.hgrow="ALWAYS">
+                                <Label text="Outdoor" styleClass="onboarding-option-title" style="-fx-font-size: 16px;"/>
+                                <Label text="Aktivitas di Luar Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #059669; -fx-font-weight: 600;"/>
                             </VBox>
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                             </StackPane>
                         </HBox>
 
-                        <VBox spacing="6.0" style="-fx-padding: 6 0 0 0;">
-                            <Label text="Contoh aktivitas yang disarankan:" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
-                            <Label text="• Berjalan kaki di taman atau rute sekitar rumah" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Jogging santai pagi atau sore hari" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Bersepeda keliling kompleks atau jalur hijau" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Aktivitas luar ruangan bernuansa alam lainnya" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
+                        <VBox spacing="5.0" style="-fx-padding: 4 0 0 0;">
+                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                            <Label text="• Berjalan kaki di taman atau rute sekitar rumah" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                            <Label text="• Jogging santai pagi atau sore hari" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                            <Label text="• Bersepeda keliling kompleks perumahan" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
                         </VBox>
                     </VBox>
 
                     <!-- INDOOR CARD -->
-                    <VBox fx:id="cardIndoor" styleClass="onboarding-option-card" spacing="14.0" HBox.hgrow="ALWAYS" onMouseClicked="#handlePilihIndoor">
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
-                            <ImageView fx:id="imgIndoorView" fitWidth="48.0" fitHeight="48.0" preserveRatio="true"/>
-                            <VBox spacing="2.0" HBox.hgrow="ALWAYS">
-                                <Label text="Indoor" styleClass="onboarding-option-title" style="-fx-font-size: 17px;"/>
-                                <Label text="Aktivitas di Dalam Ruangan" style="-fx-font-size: 12px; -fx-text-fill: #2E7D32; -fx-font-weight: 600;"/>
+                    <VBox fx:id="cardIndoor" styleClass="onboarding-option-card" spacing="12.0" HBox.hgrow="ALWAYS" onMouseClicked="#handlePilihIndoor">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <ImageView fx:id="imgIndoorView" fitWidth="42.0" fitHeight="42.0" preserveRatio="true"/>
+                            <VBox spacing="1.0" HBox.hgrow="ALWAYS">
+                                <Label text="Indoor" styleClass="onboarding-option-title" style="-fx-font-size: 16px;"/>
+                                <Label text="Aktivitas di Dalam Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #059669; -fx-font-weight: 600;"/>
                             </VBox>
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                             </StackPane>
                         </HBox>
 
-                        <VBox spacing="6.0" style="-fx-padding: 6 0 0 0;">
-                            <Label text="Contoh aktivitas yang disarankan:" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
-                            <Label text="• Peregangan otot dan mobilitas tubuh di rumah" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Latihan beban tubuh ringan (bodyweight workout)" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Yoga dan latihan pernapasan rileks" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Senam lantai atau latihan fleksibilitas lainnya" style="-fx-font-size: 12.5px; -fx-text-fill: #64748B;"/>
+                        <VBox spacing="5.0" style="-fx-padding: 4 0 0 0;">
+                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                            <Label text="• Peregangan otot dan mobilitas tubuh di rumah" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                            <Label text="• Latihan beban tubuh ringan (bodyweight workout)" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                            <Label text="• Yoga dan latihan relaksasi pernapasan" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
                         </VBox>
                     </VBox>
                 </HBox>
@@ -176,19 +175,19 @@
             <!-- ================================================================= -->
             <!-- SLIDE 3: KELOMPOK UMUR (REMAJA, DEWASA, TUA / LANSIA) -->
             <!-- ================================================================= -->
-            <VBox fx:id="slide3Container" spacing="18.0" visible="false" managed="false">
-                <VBox spacing="6.0">
-                    <Label text="Kamu termasuk kelompok umur yang mana?"
+            <VBox fx:id="slide3Container" spacing="16.0" visible="false" managed="false">
+                <VBox spacing="4.0">
+                    <Label text="Anda termasuk dalam kelompok usia mana?"
                            styleClass="onboarding-question-title" wrapText="true"/>
                     <Label text="Tingkat intensitas tantangan dan anjuran kebiasaan sehat akan disesuaikan dengan rentang usia Anda."
                            styleClass="onboarding-question-subtitle" wrapText="true"/>
                 </VBox>
 
                 <!-- Three Large, Elderly-Accessible Cards -->
-                <VBox spacing="12.0">
+                <VBox spacing="10.0">
                     <!-- Option 1: Remaja -->
-                    <VBox fx:id="cardRemaja" styleClass="onboarding-option-card" spacing="6.0" onMouseClicked="#handlePilihRemaja">
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <VBox fx:id="cardRemaja" styleClass="onboarding-option-card" spacing="5.0" onMouseClicked="#handlePilihRemaja">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                             </StackPane>
@@ -196,12 +195,12 @@
                             <Label text="Fase Pertumbuhan &amp; Energi" styleClass="preference-badge-blue"/>
                         </HBox>
                         <Label text="Fokus pada pembentukan kebiasaan harian aktif, postur tubuh baik, hidrasi cukup, dan pola tidur konsisten."
-                               styleClass="onboarding-age-desc" style="-fx-padding: 0 0 0 32;"/>
+                               styleClass="onboarding-age-desc" style="-fx-padding: 0 0 0 28;"/>
                     </VBox>
 
                     <!-- Option 2: Dewasa -->
-                    <VBox fx:id="cardDewasa" styleClass="onboarding-option-card" spacing="6.0" onMouseClicked="#handlePilihDewasa">
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <VBox fx:id="cardDewasa" styleClass="onboarding-option-card" spacing="5.0" onMouseClicked="#handlePilihDewasa">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                             </StackPane>
@@ -209,12 +208,12 @@
                             <Label text="Produktif &amp; Keseimbangan Kerja" styleClass="preference-badge-green"/>
                         </HBox>
                         <Label text="Fokus pada manajemen stres, pencegahan gaya hidup sedentary karena duduk bekerja, workout teratur, dan istirahat berkualitas."
-                               styleClass="onboarding-age-desc" style="-fx-padding: 0 0 0 32;"/>
+                               styleClass="onboarding-age-desc" style="-fx-padding: 0 0 0 28;"/>
                     </VBox>
 
                     <!-- Option 3: Tua / Lansia -->
-                    <VBox fx:id="cardLansia" styleClass="onboarding-option-card" spacing="6.0" onMouseClicked="#handlePilihLansia">
-                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <VBox fx:id="cardLansia" styleClass="onboarding-option-card" spacing="5.0" onMouseClicked="#handlePilihLansia">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
                             </StackPane>
@@ -222,7 +221,7 @@
                             <Label text="Mobilitas Aman &amp; Kebugaran Tulang" styleClass="preference-badge-amber"/>
                         </HBox>
                         <Label text="Fokus pada kelenturan sendi, keseimbangan, latihan jalan santai rendah benturan, hidrasi aman, dan tidur malam yang pulas."
-                               styleClass="onboarding-age-desc" style="-fx-padding: 0 0 0 32;"/>
+                               styleClass="onboarding-age-desc" style="-fx-padding: 0 0 0 28;"/>
                     </VBox>
                 </VBox>
             </VBox>
@@ -231,20 +230,13 @@
             <!-- ACTION BAR & VALIDATION MESSAGE -->
             <!-- ================================================================= -->
             <VBox spacing="10.0" styleClass="onboarding-action-bar">
-                <!-- Validation Message Feedback -->
                 <Label fx:id="validationMessageLabel" text="Silakan pilih salah satu jawaban untuk melanjutkan."
-                       styleClass="auth-inline-error" style="-fx-font-size: 13px; -fx-font-weight: bold;" visible="false" managed="false"/>
+                       styleClass="auth-inline-error" visible="false" managed="false"/>
 
                 <HBox spacing="12.0" alignment="CENTER_RIGHT">
-                    <!-- Tombol Kembali: Tersembunyi pada slide 1 -->
                     <Button fx:id="btnPrev" text="← Kembali" styleClass="onboarding-btn-prev" onAction="#handlePrev" visible="false" managed="false"/>
-
-                    <HBox HBox.hgrow="ALWAYS"/>
-
-                    <!-- Tombol Berikutnya: Aktif pada slide 1 & 2 -->
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Button fx:id="btnNext" text="Berikutnya →" styleClass="onboarding-btn-next" onAction="#handleNext"/>
-
-                    <!-- Tombol Selesai: Menggantikan Berikutnya pada slide 3 -->
                     <Button fx:id="btnFinish" text="Selesai &amp; Buka Dashboard" styleClass="onboarding-btn-finish" onAction="#handleFinish" visible="false" managed="false"/>
                 </HBox>
             </VBox>

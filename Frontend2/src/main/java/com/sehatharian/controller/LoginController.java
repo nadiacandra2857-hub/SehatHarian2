@@ -2,7 +2,7 @@ package com.sehatharian.controller;
 
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
+import com.sehatharian.service.AuthService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.DialogHelper;
 import com.sehatharian.util.SceneNavigator;
@@ -29,12 +29,13 @@ public class LoginController {
     @FXML private Button btnLogin;
 
     private boolean isPasswordVisible = false;
+    private final AuthService authService = new AuthService();
 
     @FXML
     public void initialize() {
         try {
             var logoUrl = getClass().getResource("/images/logo.png");
-            if (logoUrl != null) {
+            if (logoUrl != null && brandLogoView != null) {
                 brandLogoView.setImage(new Image(logoUrl.toExternalForm()));
             }
         } catch (Exception ignored) {
@@ -42,7 +43,9 @@ public class LoginController {
         }
 
         // Sinkronisasi teks password tersembunyi dan terlihat
-        txtPasswordVisible.textProperty().bindBidirectional(txtPassword.textProperty());
+        if (txtPasswordVisible != null && txtPassword != null) {
+            txtPasswordVisible.textProperty().bindBidirectional(txtPassword.textProperty());
+        }
 
         // Default sembunyikan error
         hideError();
@@ -52,21 +55,33 @@ public class LoginController {
     public void handleTogglePassword() {
         isPasswordVisible = !isPasswordVisible;
         if (isPasswordVisible) {
-            txtPasswordVisible.setVisible(true);
-            txtPasswordVisible.setManaged(true);
-            txtPassword.setVisible(false);
-            txtPassword.setManaged(false);
-            btnTogglePassword.setText("Sembunyikan");
-            txtPasswordVisible.requestFocus();
-            txtPasswordVisible.positionCaret(txtPasswordVisible.getText() != null ? txtPasswordVisible.getText().length() : 0);
+            if (txtPasswordVisible != null) {
+                txtPasswordVisible.setVisible(true);
+                txtPasswordVisible.setManaged(true);
+                txtPasswordVisible.requestFocus();
+                txtPasswordVisible.positionCaret(txtPasswordVisible.getText() != null ? txtPasswordVisible.getText().length() : 0);
+            }
+            if (txtPassword != null) {
+                txtPassword.setVisible(false);
+                txtPassword.setManaged(false);
+            }
+            if (btnTogglePassword != null) {
+                btnTogglePassword.setText("Sembunyikan");
+            }
         } else {
-            txtPassword.setVisible(true);
-            txtPassword.setManaged(true);
-            txtPasswordVisible.setVisible(false);
-            txtPasswordVisible.setManaged(false);
-            btnTogglePassword.setText("Lihat");
-            txtPassword.requestFocus();
-            txtPassword.positionCaret(txtPassword.getText() != null ? txtPassword.getText().length() : 0);
+            if (txtPassword != null) {
+                txtPassword.setVisible(true);
+                txtPassword.setManaged(true);
+                txtPassword.requestFocus();
+                txtPassword.positionCaret(txtPassword.getText() != null ? txtPassword.getText().length() : 0);
+            }
+            if (txtPasswordVisible != null) {
+                txtPasswordVisible.setVisible(false);
+                txtPasswordVisible.setManaged(false);
+            }
+            if (btnTogglePassword != null) {
+                btnTogglePassword.setText("Lihat");
+            }
         }
     }
 
@@ -74,60 +89,58 @@ public class LoginController {
     public void handleLogin() {
         hideError();
 
-        String identity = txtUsername.getText() != null ? txtUsername.getText().trim() : "";
-        String password = txtPassword.getText() != null ? txtPassword.getText() : "";
+        String identity = (txtUsername != null && txtUsername.getText() != null) ? txtUsername.getText().trim() : "";
+        String password = (txtPassword != null && txtPassword.getText() != null) ? txtPassword.getText() : "";
 
         // Validasi input kosong
         if (identity.isEmpty()) {
             showError("Silakan masukkan email atau nama pengguna Anda.");
-            txtUsername.requestFocus();
+            if (txtUsername != null) txtUsername.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
             showError("Silakan masukkan kata sandi Anda.");
-            txtPassword.requestFocus();
+            if (txtPassword != null) txtPassword.requestFocus();
             return;
         }
 
         if (password.length() < 4) {
             showError("Kata sandi minimal 4 karakter.");
-            txtPassword.requestFocus();
+            if (txtPassword != null) txtPassword.requestFocus();
             return;
         }
 
         // Feedback visual tombol
-        AnimationHelper.scaleButtonFeedback(btnLogin);
+        if (btnLogin != null) {
+            AnimationHelper.scaleButtonFeedback(btnLogin);
+        }
 
-        // Simulasi proses login frontend terisolasi
-        // Periksa apakah ada pengguna yang tersimpan di MySQL
-        String namaTampilan = identity;
         try {
-            PenggunaRepository repo = new PenggunaRepository();
-            Pengguna p = repo.getDefaultPengguna();
-            if (p != null && p.getNama() != null && !p.getNama().trim().isEmpty()) {
-                namaTampilan = p.getNama();
+            Pengguna user = authService.login(identity, password);
+            if (user == null) {
+                showError("Email atau kata sandi yang Anda masukkan salah.");
+                return;
             }
-        } catch (Exception ignored) {
-            // Abaikan jika database lokal belum aktif, gunakan nama identitas default
+
+            boolean rememberMe = chkRememberMe != null && chkRememberMe.isSelected();
+            UserSession session = UserSession.getInstance();
+            session.setCurrentUser(user);
+            if (rememberMe) {
+                session.setDemoMode(false);
+            }
+
+            // Arahkan ke Onboarding jika belum selesai, atau langsung ke Dashboard jika sudah
+            if (user.isOnboardingSelesai()) {
+                SceneNavigator.showMainApp();
+            } else {
+                SceneNavigator.showOnboarding();
+            }
+        } catch (IllegalArgumentException e) {
+            showError(e.getMessage());
+        } catch (Exception e) {
+            showError("Terjadi kesalahan saat masuk: " + e.getMessage());
         }
-
-        // Periksa opsi Ingat Saya
-        boolean rememberMe = chkRememberMe != null && chkRememberMe.isSelected();
-
-        // Inisialisasi sesi login pengguna
-        UserSession session = UserSession.getInstance();
-        session.login(identity, namaTampilan);
-        if (rememberMe) {
-            session.setDemoMode(true);
-        }
-
-        // Login pengguna yang sudah ada menandai onboarding sudah selesai
-        // agar tidak memunculkan onboarding ulang sesuai PRD Ketentuan 5
-        session.setOnboardingSelesai(true);
-
-        // Arahkan ke Halaman Utama / Dashboard
-        SceneNavigator.showMainApp();
     }
 
     @FXML
@@ -148,14 +161,20 @@ public class LoginController {
     }
 
     private void showError(String message) {
-        errorBannerLabel.setText(message);
-        errorBannerBox.setVisible(true);
-        errorBannerBox.setManaged(true);
-        AnimationHelper.pulseSuccess(errorBannerBox);
+        if (errorBannerLabel != null) {
+            errorBannerLabel.setText(message);
+        }
+        if (errorBannerBox != null) {
+            errorBannerBox.setVisible(true);
+            errorBannerBox.setManaged(true);
+            AnimationHelper.pulseSuccess(errorBannerBox);
+        }
     }
 
     private void hideError() {
-        errorBannerBox.setVisible(false);
-        errorBannerBox.setManaged(false);
+        if (errorBannerBox != null) {
+            errorBannerBox.setVisible(false);
+            errorBannerBox.setManaged(false);
+        }
     }
 }

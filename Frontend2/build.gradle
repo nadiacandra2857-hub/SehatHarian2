@@ -2,7 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         gradlePluginPortal()
-        maven { url "https://sandec.jfrog.io/artifactory/repo" }
+        maven { url = "https://sandec.jfrog.io/artifactory/repo" }
     }
     dependencies {
         classpath "one.jpro:jpro-gradle-plugin:2026.3.0"
@@ -24,7 +24,7 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url "https://sandec.jfrog.io/artifactory/repo" }
+    maven { url = "https://sandec.jfrog.io/artifactory/repo" }
 }
 
 def javafxVersion = '24.0.1'
@@ -79,5 +79,5 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     useJUnitPlatform()
-    jvmArgs(['--enable-preview'])
+    jvmArgs(['--enable-preview', '--enable-native-access=ALL-UNNAMED'])
 }

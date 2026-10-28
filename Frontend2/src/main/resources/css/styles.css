@@ -1061,7 +1061,7 @@
 }
 
 .hero-animated-gradient-region {
-    -fx-background-color: linear-gradient(from 10% 90% to 90% 10%, #0009B9 0%, #407EBD 45%, #82F5C1 100%);
+    -fx-background-color: linear-gradient(from 0% 100% to 100% 0%, #0009B9 0%, #1748B1 28%, #407EBD 52%, #54E3A0 78%, #82F5C1 100%);
 }
 
 .hero-brand-badge {
@@ -1201,37 +1201,38 @@
 
 /* 2. SECTION 2: SHOWCASE SECTION ("Foto 1") */
 .section-sketch-showcase {
-    -fx-background-color: #EBF8F4;
-    -fx-padding: 56px 28px;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #B8F9DC 0%, #CBFBE5 45%, #E8FAF2 100%);
+    -fx-padding: 64px 36px;
 }
 
 .sketch-photo1-card {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 20px;
-    -fx-border-color: #D6EBE0;
+    -fx-border-color: #CDE8DB;
     -fx-border-width: 1.5px;
     -fx-border-radius: 20px;
-    -fx-padding: 16px;
+    -fx-padding: 20px;
     -fx-effect: dropshadow(gaussian, rgba(0, 9, 185, 0.08), 24, 0, 0, 6);
 }
 
 /* 3. GRADIENT TRANSITION BANDS */
 .sketch-gradient-band-1 {
-    -fx-min-height: 76px;
-    -fx-pref-height: 76px;
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #0009B9 0%, #407EBD 50%, #82F5C1 100%);
+    -fx-min-height: 72px;
+    -fx-pref-height: 72px;
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #0009B9 0%, #1748B1 25%, #407EBD 55%, #54E3A0 85%, #82F5C1 100%);
 }
 
 .sketch-gradient-band-2 {
-    -fx-min-height: 180px;
-    -fx-background-color: #0009B9;
+    -fx-min-height: 200px;
+    -fx-pref-height: 200px;
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #0009B9 0%, #1748B1 25%, #407EBD 55%, #54E3A0 85%, #82F5C1 100%);
     -fx-alignment: CENTER;
 }
 
 /* 4. SECTION 3: FITUR UTAMA */
 .section-sketch-features {
-    -fx-background-color: #EBF8F4;
-    -fx-padding: 64px 28px 72px 28px;
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #D3FBE9 0%, #E6FDF2 45%, #F8FEFB 80%, #FFFFFF 100%);
+    -fx-padding: 68px 32px 76px 32px;
 }
 
 .sketch-features-title-blue {
@@ -1244,7 +1245,7 @@
 .sketch-features-title-green {
     -fx-font-size: 28px;
     -fx-font-weight: 800;
-    -fx-text-fill: #0009B9;
+    -fx-text-fill: #007A55;
     -fx-text-alignment: CENTER;
 }
 

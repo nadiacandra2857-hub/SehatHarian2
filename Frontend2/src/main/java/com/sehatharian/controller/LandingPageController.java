@@ -125,38 +125,53 @@ public class LandingPageController {
 
     /**
      * Memperbarui LinearGradient pada background berdasarkan fase animasi p (0.0 .. 1.0).
+     * Disesuaikan presisi dengan desain referensi:
+     * 1. Hero: Diagonal dari Bawah-Kiri (#0009B9) ke Atas-Kanan (#82F5C1) dengan transisi #1748B1, #407EBD, #54E3A0.
+     * 2. Band 1 & Band 2: Horizontal penuh dari Kiri (#0009B9) ke Kanan (#82F5C1).
      */
     private void updateGradientBackground(double p) {
-        // Vektor gradasi berosilasi lembut dari diagonal kiri-bawah ke kanan-atas
-        double startX = 0.05 + 0.12 * p;
-        double startY = 0.95 - 0.15 * (1.0 - p);
-        double endX   = 0.88 + 0.12 * (1.0 - p);
-        double endY   = 0.05 + 0.15 * p;
+        // --- 1. HERO GRADIENT (Diagonal Bawah-Kiri -> Atas-Kanan) ---
+        double heroStartX = 0.0 + 0.08 * p;
+        double heroStartY = 1.0 - 0.08 * (1.0 - p);
+        double heroEndX   = 1.0 - 0.08 * (1.0 - p);
+        double heroEndY   = 0.0 + 0.08 * p;
 
-        double mid1 = 0.35 + 0.15 * p;
-        double mid2 = 0.72 + 0.15 * (1.0 - p);
-
-        Stop[] stops = new Stop[] {
+        Stop[] heroStops = new Stop[] {
             new Stop(0.0, Color.web("#0009B9")),
-            new Stop(Math.min(0.60, Math.max(0.20, mid1)), Color.web("#407EBD")),
-            new Stop(Math.min(0.95, Math.max(0.65, mid2)), Color.web("#82F5C1")),
+            new Stop(0.28 + 0.06 * p, Color.web("#1748B1")),
+            new Stop(0.52 + 0.06 * (1.0 - p), Color.web("#407EBD")),
+            new Stop(0.78 + 0.05 * p, Color.web("#54E3A0")),
             new Stop(1.0, Color.web("#82F5C1"))
         };
 
-        LinearGradient gradient = new LinearGradient(
-            startX, startY, endX, endY, true, CycleMethod.NO_CYCLE, stops
+        LinearGradient heroGradient = new LinearGradient(
+            heroStartX, heroStartY, heroEndX, heroEndY, true, CycleMethod.NO_CYCLE, heroStops
         );
-
-        Background bg = new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY));
+        Background heroBg = new Background(new BackgroundFill(heroGradient, CornerRadii.EMPTY, Insets.EMPTY));
 
         if (heroAnimatedRegion != null) {
-            heroAnimatedRegion.setBackground(bg);
+            heroAnimatedRegion.setBackground(heroBg);
         }
+
+        // --- 2. HORIZONTAL BANDS GRADIENT (Horizontal Kiri -> Kanan) ---
+        Stop[] bandStops = new Stop[] {
+            new Stop(0.0, Color.web("#0009B9")),
+            new Stop(0.25 + 0.05 * p, Color.web("#1748B1")),
+            new Stop(0.55 + 0.05 * (1.0 - p), Color.web("#407EBD")),
+            new Stop(0.82 + 0.04 * p, Color.web("#54E3A0")),
+            new Stop(1.0, Color.web("#82F5C1"))
+        };
+
+        LinearGradient bandGradient = new LinearGradient(
+            0.0, 0.5, 1.0, 0.5, true, CycleMethod.NO_CYCLE, bandStops
+        );
+        Background bandBg = new Background(new BackgroundFill(bandGradient, CornerRadii.EMPTY, Insets.EMPTY));
+
         if (gradientBand1 != null) {
-            gradientBand1.setBackground(bg);
+            gradientBand1.setBackground(bandBg);
         }
         if (gradientBand2 != null) {
-            gradientBand2.setBackground(bg);
+            gradientBand2.setBackground(bandBg);
         }
     }
 

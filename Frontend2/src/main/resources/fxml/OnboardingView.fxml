@@ -134,7 +134,7 @@
                             <ImageView fx:id="imgOutdoorView" fitWidth="42.0" fitHeight="42.0" preserveRatio="true"/>
                             <VBox spacing="1.0" HBox.hgrow="ALWAYS">
                                 <Label text="Outdoor" styleClass="onboarding-option-title" style="-fx-font-size: 16px;"/>
-                                <Label text="Aktivitas di Luar Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #059669; -fx-font-weight: 600;"/>
+                                <Label text="Aktivitas di Luar Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #22C55E; -fx-font-weight: 600;"/>
                             </VBox>
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
@@ -142,10 +142,10 @@
                         </HBox>
 
                         <VBox spacing="5.0" style="-fx-padding: 4 0 0 0;">
-                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
-                            <Label text="• Berjalan kaki di taman atau rute sekitar rumah" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Jogging santai pagi atau sore hari" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Bersepeda keliling kompleks perumahan" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #E5E7EB;"/>
+                            <Label text="• Berjalan kaki di taman atau rute sekitar rumah" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
+                            <Label text="• Jogging santai pagi atau sore hari" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
+                            <Label text="• Bersepeda keliling kompleks perumahan" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
                         </VBox>
                     </VBox>
 
@@ -155,7 +155,7 @@
                             <ImageView fx:id="imgIndoorView" fitWidth="42.0" fitHeight="42.0" preserveRatio="true"/>
                             <VBox spacing="1.0" HBox.hgrow="ALWAYS">
                                 <Label text="Indoor" styleClass="onboarding-option-title" style="-fx-font-size: 16px;"/>
-                                <Label text="Aktivitas di Dalam Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #059669; -fx-font-weight: 600;"/>
+                                <Label text="Aktivitas di Dalam Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #22C55E; -fx-font-weight: 600;"/>
                             </VBox>
                             <StackPane styleClass="onboarding-option-radio">
                                 <Label text="•" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold;"/>
@@ -163,10 +163,10 @@
                         </HBox>
 
                         <VBox spacing="5.0" style="-fx-padding: 4 0 0 0;">
-                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
-                            <Label text="• Peregangan otot dan mobilitas tubuh di rumah" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Latihan beban tubuh ringan (bodyweight workout)" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
-                            <Label text="• Yoga dan latihan relaksasi pernapasan" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/>
+                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #E5E7EB;"/>
+                            <Label text="• Peregangan otot dan mobilitas tubuh di rumah" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
+                            <Label text="• Latihan beban tubuh ringan (bodyweight workout)" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
+                            <Label text="• Yoga dan latihan relaksasi pernapasan" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
                         </VBox>
                     </VBox>
                 </HBox>

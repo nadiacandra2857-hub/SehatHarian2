@@ -15,15 +15,16 @@
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.RekomendasiController">
 
-    <VBox fx:id="rekomendasiRoot" spacing="18" styleClass="content-pane">
+    <VBox fx:id="rekomendasiRoot" spacing="20" styleClass="content-pane">
 
-        <!-- 1. HEADER SECTION -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
+        <!-- 1. HEADER SECTION SESUAI MOCKUP -->
+        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18" style="-fx-padding: 22px 24px;">
             <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="💡 SISTEM REKOMENDASI ADAPTIF (F-02 &amp; F-06)" styleClass="preference-badge-blue"/>
+                    <Label text="💡 REKOMENDASI ADAPTIF" styleClass="badge-selesai"/>
+                    <Label text="• Sesuai Waktu Luang Anda" styleClass="card-subtitle" style="-fx-font-size: 11px;"/>
                 </HBox>
-                <Label text="Rekomendasi Aktivitas, Menu &amp; Workout" styleClass="page-title"/>
+                <Label text="Rekomendasi Aktivitas, Menu &amp; Workout" styleClass="page-title" style="-fx-font-size: 22px;"/>
                 <Label text="Katalog aktivitas harian, menu nutrisi seimbang, dan latihan terpandu yang otomatis disaring sesuai batasan waktu luang dan usia Anda."
                        styleClass="page-subtitle" wrapText="true"/>
             </VBox>
@@ -33,7 +34,7 @@
             </VBox>
         </HBox>
 
-        <!-- 2. KONTROL FILTER (F-02 WAKTU LUANG & F-06 KATEGORI DEMOGRAFI) -->
+        <!-- 2. KONTROL FILTER (WAKTU LUANG & KATEGORI DEMOGRAFI) -->
         <VBox styleClass="wellness-card" spacing="14">
             <HBox alignment="CENTER_LEFT">
                 <VBox spacing="1">
@@ -41,28 +42,28 @@
                     <Label text="Sesuaikan dengan waktu luang aktual dan rutinitas kerja Anda hari ini" styleClass="card-subtitle"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button text="Atur Ulang Filter" styleClass="btn-outline" onAction="#handleResetFilter"/>
+                <Button text="Atur Ulang Filter" styleClass="btn-outline" onAction="#handleResetFilter" style="-fx-font-size: 12px; -fx-padding: 5 12;"/>
             </HBox>
 
             <!-- Tiga Dimensi Filter -->
             <HBox spacing="14" alignment="TOP_LEFT">
 
-                <!-- F-02: Batas Waktu Luang -->
-                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <!-- Batas Waktu Luang -->
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
                     <Label text="Ketersediaan Waktu Luang:" styleClass="form-label"/>
                     <ComboBox fx:id="comboWaktuLuang" prefWidth="180" maxWidth="Infinity" onAction="#handleFilterChanged"/>
                     <Label fx:id="labelWaktuLuangInfo" text="Aktivitas dijamin ≤ 30 menit" styleClass="form-hint"/>
                 </VBox>
 
-                <!-- F-06: Golongan Kesibukan -->
-                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <!-- Tipe Rutinitas Kerja -->
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
                     <Label text="Tipe Rutinitas Kerja:" styleClass="form-label"/>
                     <ComboBox fx:id="comboKesibukan" prefWidth="200" maxWidth="Infinity" onAction="#handleFilterChanged"/>
                     <Label text="Dalam rumah (WFH) vs luar kantor" styleClass="form-hint"/>
                 </VBox>
 
-                <!-- F-06: Golongan Usia -->
-                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <!-- Golongan Usia -->
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
                     <Label text="Kelompok Usia Pengguna:" styleClass="form-label"/>
                     <ComboBox fx:id="comboUsia" prefWidth="170" maxWidth="Infinity" onAction="#handleFilterChanged"/>
                     <Label text="Penyesuaian intensitas fisik" styleClass="form-hint"/>
@@ -70,13 +71,13 @@
             </HBox>
 
             <!-- Kategori Tipe Rekomendasi (Segmented Control) -->
-            <VBox spacing="6" style="-fx-padding: 8 0 0 0; -fx-border-color: #F1F5F9; -fx-border-width: 1 0 0 0;">
+            <VBox spacing="8" style="-fx-padding: 8 0 0 0; -fx-border-color: #374151; -fx-border-width: 1 0 0 0;">
                 <Label text="Kategori Rekomendasi:" styleClass="form-label"/>
                 <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Button fx:id="btnTipeSemua" text="Semua Kategori" styleClass="btn-primary" onAction="#handleFilterTipeSemua"/>
-                    <Button fx:id="btnTipeAktivitas" text="Aktivitas Waktu Luang" styleClass="btn-outline" onAction="#handleFilterTipeAktivitas"/>
-                    <Button fx:id="btnTipeMenu" text="Menu Makanan &amp; Nutrisi" styleClass="btn-outline" onAction="#handleFilterTipeMenu"/>
-                    <Button fx:id="btnTipeWorkout" text="Workout di Rumah" styleClass="btn-outline" onAction="#handleFilterTipeWorkout"/>
+                    <Button fx:id="btnTipeSemua" text="Semua Kategori" styleClass="btn-primary" onAction="#handleFilterTipeSemua" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+                    <Button fx:id="btnTipeAktivitas" text="Aktivitas Waktu Luang" styleClass="btn-outline" onAction="#handleFilterTipeAktivitas" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+                    <Button fx:id="btnTipeMenu" text="Menu Makanan &amp; Nutrisi" styleClass="btn-outline" onAction="#handleFilterTipeMenu" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+                    <Button fx:id="btnTipeWorkout" text="Workout di Rumah" styleClass="btn-outline" onAction="#handleFilterTipeWorkout" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
                 </HBox>
             </VBox>
         </VBox>

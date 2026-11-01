@@ -12,65 +12,80 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane fitToWidth="true" styleClass="main-content-scroll" stylesheets="@../css/styles.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.StatistikMingguanController">
 
-    <VBox fx:id="statistikRoot" spacing="18" styleClass="content-pane">
+    <VBox fx:id="statistikRoot" spacing="20" styleClass="content-pane">
 
-        <!-- Header Panel -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
+        <!-- 1. HEADER PANEL SESUAI GAMBAR MOCKUP -->
+        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18" style="-fx-padding: 22px 24px;">
             <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="📈 VISUALISASI KESEHATAN (F-04)" styleClass="preference-badge-blue"/>
+                    <Label text="📊 GRAFIK &amp; EVALUASI" styleClass="badge-selesai"/>
+                    <Label text="• Analisis Visual 7 Hari" styleClass="card-subtitle" style="-fx-font-size: 11px;"/>
                 </HBox>
-                <Label text="Grafik &amp; Analisis Konsistensi Mingguan" styleClass="page-title"/>
+                <Label text="Grafik &amp; Evaluasi" styleClass="page-title" style="-fx-font-size: 22px;"/>
                 <Label fx:id="labelPeriodeSubtitle" text="Data riil kebiasaan sehat 7 hari terakhir dari database MySQL" styleClass="page-subtitle"/>
             </VBox>
             <HBox spacing="10" alignment="CENTER_RIGHT">
                 <Label text="Akhir Periode:" styleClass="form-label"/>
-                <DatePicker fx:id="datePickerAkhir" onAction="#handleUbahPeriode" prefWidth="160"/>
-                <Button text="Segarkan Data" styleClass="btn-secondary" onAction="#handleSegarkan"/>
+                <DatePicker fx:id="datePickerAkhir" onAction="#handleUbahPeriode" prefWidth="150"/>
+                <Button text="Segarkan" styleClass="btn-secondary" onAction="#handleSegarkan" style="-fx-padding: 7 14;"/>
             </HBox>
         </HBox>
 
-        <!-- KARTU RINGKASAN METRIK MINGGUAN -->
+        <!-- 2. SUB-TABS PILLS SESUAI GAMBAR MOCKUP -->
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Button text="Aktivitas" styleClass="btn-primary" style="-fx-background-radius: 20px; -fx-padding: 6 18;"/>
+            <Button text="Hidrasi" styleClass="btn-outline" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+            <Button text="Nutrisi" styleClass="btn-outline" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+            <Button text="Tidur" styleClass="btn-outline" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+            <Button text="Evaluasi" styleClass="btn-outline" style="-fx-background-radius: 20px; -fx-padding: 6 16;"/>
+        </HBox>
+
+        <!-- 3. KARTU RINGKASAN METRIK MINGGUAN (4 METRIK SESUAI GAMBAR) -->
         <HBox spacing="14">
-            <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
-                <Label text="Rata-rata Skor Konsistensi" styleClass="card-subtitle"/>
-                <Label fx:id="metricSkorLabel" text="0%" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
-                <Label text="Komposit tantangan, tidur, hidrasi &amp; gerak" styleClass="form-hint"/>
+            <VBox styleClass="wellness-card" spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Rata-rata Skor Konsistensi" styleClass="card-subtitle" style="-fx-font-size: 11.5px;"/>
+                <Label fx:id="metricSkorLabel" text="0%" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #22C55E;"/>
+                <Label text="Tantangan, tidur, air &amp; gerak" styleClass="form-hint"/>
             </VBox>
 
-            <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
-                <Label text="Rata-rata Jam Tidur" styleClass="card-subtitle"/>
-                <Label fx:id="metricTidurLabel" text="0.0 Jam" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4F46E5;"/>
+            <VBox styleClass="wellness-card" spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Rata-rata Jam Tidur" styleClass="card-subtitle" style="-fx-font-size: 11.5px;"/>
+                <Label fx:id="metricTidurLabel" text="0.0 Jam" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #06B6D4;"/>
                 <Label fx:id="metricTidurStandarLabel" text="Standar minimal: ≥ 5.0 jam" styleClass="form-hint"/>
             </VBox>
 
-            <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
-                <Label text="Total Hidrasi 7 Hari" styleClass="card-subtitle"/>
-                <Label fx:id="metricHidrasiLabel" text="0 ml" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0284C7;"/>
-                <Label text="Target: 2.000 ml per hari" styleClass="form-hint"/>
+            <VBox styleClass="wellness-card" spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Total Hidrasi 7 Hari" styleClass="card-subtitle" style="-fx-font-size: 11.5px;"/>
+                <Label fx:id="metricHidrasiLabel" text="0 ml" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #06B6D4;"/>
+                <Label text="Target: 2.000 ml / hari" styleClass="form-hint"/>
             </VBox>
 
-            <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
-                <Label text="Total Aktivitas Fisik" styleClass="card-subtitle"/>
-                <Label fx:id="metricAktivitasLabel" text="0 Menit" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #D97706;"/>
+            <VBox styleClass="wellness-card" spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Total Aktivitas Fisik" styleClass="card-subtitle" style="-fx-font-size: 11.5px;"/>
+                <Label fx:id="metricAktivitasLabel" text="0 Menit" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #22C55E;"/>
                 <Label text="Target mingguan: ≥ 150 menit" styleClass="form-hint"/>
             </VBox>
         </HBox>
 
-        <!-- GRID GRAFIK JAVAFX -->
+        <!-- 4. GRID GRAFIK JAVAFX MODERN SESUAI GAMBAR MOCKUP -->
         <HBox spacing="18">
             <!-- 1. GRAFIK KONSISTENSI KOMPOSIT -->
             <VBox styleClass="wellness-card" spacing="10" HBox.hgrow="ALWAYS" prefWidth="480">
-                <Label text="Skor Konsistensi Komposit Harian (%)" styleClass="card-title"/>
-                <BarChart fx:id="chartKonsistensi" legendVisible="false" prefHeight="260">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Skor Konsistensi Komposit Harian (%)" styleClass="card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="7 Hari Terakhir" styleClass="badge-category"/>
+                </HBox>
+                <BarChart fx:id="chartKonsistensi" legendVisible="false" prefHeight="240">
                     <xAxis>
-                        <CategoryAxis fx:id="axisHariKonsistensi" label="Hari"/>
+                        <CategoryAxis label="Hari"/>
                     </xAxis>
                     <yAxis>
                         <NumberAxis label="Skor (%)" lowerBound="0" upperBound="100" autoRanging="false" tickUnit="20"/>
@@ -78,12 +93,16 @@
                 </BarChart>
             </VBox>
 
-            <!-- 2. GRAFIK DURASI TIDUR (DENGAN GARIS STANDAR) -->
+            <!-- 2. GRAFIK DURASI TIDUR -->
             <VBox styleClass="wellness-card" spacing="10" HBox.hgrow="ALWAYS" prefWidth="480">
-                <Label text="Durasi Tidur Harian vs Standar 5 Jam" styleClass="card-title"/>
-                <LineChart fx:id="chartTidur" legendVisible="true" prefHeight="260">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Durasi Tidur Harian vs Standar 5 Jam" styleClass="card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Garis Target ≥ 5 Jam" styleClass="badge-category"/>
+                </HBox>
+                <LineChart fx:id="chartTidur" legendVisible="true" prefHeight="240">
                     <xAxis>
-                        <CategoryAxis fx:id="axisHariTidur" label="Hari"/>
+                        <CategoryAxis label="Hari"/>
                     </xAxis>
                     <yAxis>
                         <NumberAxis label="Durasi (Jam)" lowerBound="0" upperBound="12" autoRanging="false" tickUnit="2"/>
@@ -95,10 +114,14 @@
         <HBox spacing="18">
             <!-- 3. GRAFIK ASUPAN HIDRASI -->
             <VBox styleClass="wellness-card" spacing="10" HBox.hgrow="ALWAYS" prefWidth="480">
-                <Label text="Asupan Hidrasi Air Putih Harian (ml)" styleClass="card-title"/>
-                <BarChart fx:id="chartHidrasi" legendVisible="false" prefHeight="260">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Asupan Hidrasi Air Putih Harian (ml)" styleClass="card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Target 2.000 ml" styleClass="badge-category"/>
+                </HBox>
+                <BarChart fx:id="chartHidrasi" legendVisible="false" prefHeight="240">
                     <xAxis>
-                        <CategoryAxis fx:id="axisHariHidrasi" label="Hari"/>
+                        <CategoryAxis label="Hari"/>
                     </xAxis>
                     <yAxis>
                         <NumberAxis label="Mililiter (ml)" lowerBound="0" upperBound="3000" autoRanging="true"/>
@@ -108,15 +131,35 @@
 
             <!-- 4. GRAFIK DURASI AKTIVITAS FISIK -->
             <VBox styleClass="wellness-card" spacing="10" HBox.hgrow="ALWAYS" prefWidth="480">
-                <Label text="Durasi Aktivitas Fisik (Menit)" styleClass="card-title"/>
-                <BarChart fx:id="chartAktivitas" legendVisible="false" prefHeight="260">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Durasi Aktivitas Fisik (Menit)" styleClass="card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="Kardio &amp; Mobilitas" styleClass="badge-category"/>
+                </HBox>
+                <BarChart fx:id="chartAktivitas" legendVisible="false" prefHeight="240">
                     <xAxis>
-                        <CategoryAxis fx:id="axisHariAktivitas" label="Hari"/>
+                        <CategoryAxis label="Hari"/>
                     </xAxis>
                     <yAxis>
                         <NumberAxis label="Menit" lowerBound="0" upperBound="120" autoRanging="true"/>
                     </yAxis>
                 </BarChart>
+            </VBox>
+        </HBox>
+
+        <!-- 5. STATISTIK RINGKASAN BAWAH SESUAI GAMBAR MOCKUP -->
+        <HBox spacing="16" styleClass="wellness-card" alignment="CENTER">
+            <VBox alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Total Durasi Bergerak" styleClass="card-subtitle"/>
+                <Label text="196 menit" style="-fx-font-size: 20px; -fx-font-weight: 800; -fx-text-fill: #E5E7EB;"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Rata-rata Harian" styleClass="card-subtitle"/>
+                <Label text="28 menit" style="-fx-font-size: 20px; -fx-font-weight: 800; -fx-text-fill: #22C55E;"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Hari Terbaik ⭐" styleClass="card-subtitle"/>
+                <Label text="Sabtu • 45 menit" style="-fx-font-size: 20px; -fx-font-weight: 800; -fx-text-fill: #F59E0B;"/>
             </VBox>
         </HBox>
 

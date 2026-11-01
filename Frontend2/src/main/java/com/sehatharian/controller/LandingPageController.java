@@ -130,18 +130,17 @@ public class LandingPageController {
      * 2. Band 1 & Band 2: Horizontal penuh dari Kiri (#0009B9) ke Kanan (#82F5C1).
      */
     private void updateGradientBackground(double p) {
-        // --- 1. HERO GRADIENT (Diagonal Bawah-Kiri -> Atas-Kanan) ---
+        // --- 1. HERO GRADIENT (Soft Mint Tint -> Pure White -> Warm Light Tint) ---
         double heroStartX = 0.0 + 0.08 * p;
         double heroStartY = 1.0 - 0.08 * (1.0 - p);
         double heroEndX   = 1.0 - 0.08 * (1.0 - p);
         double heroEndY   = 0.0 + 0.08 * p;
 
         Stop[] heroStops = new Stop[] {
-            new Stop(0.0, Color.web("#0009B9")),
-            new Stop(0.28 + 0.06 * p, Color.web("#1748B1")),
-            new Stop(0.52 + 0.06 * (1.0 - p), Color.web("#407EBD")),
-            new Stop(0.78 + 0.05 * p, Color.web("#54E3A0")),
-            new Stop(1.0, Color.web("#82F5C1"))
+            new Stop(0.0, Color.web("#111827")),
+            new Stop(0.35 + 0.05 * p, Color.web("#14232B")),
+            new Stop(0.70 + 0.05 * (1.0 - p), Color.web("#1F2937")),
+            new Stop(1.0, Color.web("#111827"))
         };
 
         LinearGradient heroGradient = new LinearGradient(
@@ -153,13 +152,12 @@ public class LandingPageController {
             heroAnimatedRegion.setBackground(heroBg);
         }
 
-        // --- 2. HORIZONTAL BANDS GRADIENT (Horizontal Kiri -> Kanan) ---
+        // --- 2. HORIZONTAL BANDS GRADIENT (Emerald to Cyan / Aqua Breeze) ---
         Stop[] bandStops = new Stop[] {
-            new Stop(0.0, Color.web("#0009B9")),
-            new Stop(0.25 + 0.05 * p, Color.web("#1748B1")),
-            new Stop(0.55 + 0.05 * (1.0 - p), Color.web("#407EBD")),
-            new Stop(0.82 + 0.04 * p, Color.web("#54E3A0")),
-            new Stop(1.0, Color.web("#82F5C1"))
+            new Stop(0.0, Color.web("#15803D")),
+            new Stop(0.30 + 0.05 * p, Color.web("#22C55E")),
+            new Stop(0.65 + 0.05 * (1.0 - p), Color.web("#06B6D4")),
+            new Stop(1.0, Color.web("#22C55E"))
         };
 
         LinearGradient bandGradient = new LinearGradient(

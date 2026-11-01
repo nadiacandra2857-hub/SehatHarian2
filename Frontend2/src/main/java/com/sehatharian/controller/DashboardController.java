@@ -204,7 +204,7 @@ public class DashboardController {
         if (daftar.isEmpty()) {
             VBox emptyBox = new VBox(8);
             emptyBox.setAlignment(Pos.CENTER);
-            emptyBox.setStyle("-fx-padding: 16; -fx-background-color: #FAFBF9; -fx-background-radius: 12;");
+            emptyBox.setStyle("-fx-padding: 16; -fx-background-color: #1F2937; -fx-background-radius: 12;");
             Label lbl = new Label("Belum ada tantangan aktif hari ini. Klik 'Kerjakan Tantangan' untuk memulai!");
             lbl.getStyleClass().add("card-subtitle");
             emptyBox.getChildren().add(lbl);
@@ -219,7 +219,15 @@ public class DashboardController {
 
             HBox card = new HBox(12);
             card.setAlignment(Pos.CENTER_LEFT);
-            card.setStyle("-fx-padding: 12 16; -fx-background-color: #FAFBF9; -fx-background-radius: 12; -fx-border-color: #E6EDE9; -fx-border-radius: 12;");
+            card.getStyleClass().add("task-item-card");
+            if (rt.isSelesai()) {
+                card.getStyleClass().add("completed");
+            }
+
+            Label lblCheckIcon = new Label(rt.isSelesai() ? "✔" : "○");
+            lblCheckIcon.setStyle(rt.isSelesai() ? 
+                "-fx-text-fill: #22C55E; -fx-font-weight: bold; -fx-font-size: 16px; -fx-min-width: 22px;" : 
+                "-fx-text-fill: #9CA3AF; -fx-font-size: 16px; -fx-min-width: 22px;");
 
             VBox info = new VBox(3);
             HBox.setHgrow(info, Priority.ALWAYS);
@@ -227,7 +235,7 @@ public class DashboardController {
             HBox titleRow = new HBox(8);
             titleRow.setAlignment(Pos.CENTER_LEFT);
             Label lblJudul = new Label(rt.getTantanganJudul());
-            lblJudul.setStyle("-fx-font-weight: 600; -fx-font-size: 13.5px; -fx-text-fill: #1E3129;");
+            lblJudul.setStyle("-fx-font-weight: 600; -fx-font-size: 13.5px; -fx-text-fill: #E5E7EB;");
             Label lblBadge = new Label(rt.getTantanganKategori() + " • " + rt.getDurasiTargetMenit() + " Menit");
             lblBadge.getStyleClass().add("badge-category");
             titleRow.getChildren().addAll(lblJudul, lblBadge);
@@ -240,15 +248,15 @@ public class DashboardController {
 
             Button btnAction = new Button();
             if (rt.isSelesai()) {
-                btnAction.setText("Selesai");
+                btnAction.setText("Selesai  ›");
                 btnAction.getStyleClass().setAll("btn-success");
                 btnAction.setDisable(true);
             } else if (rt.isDilewati()) {
-                btnAction.setText("Dilewati");
+                btnAction.setText("Dilewati  ›");
                 btnAction.getStyleClass().setAll("btn-outline");
                 btnAction.setDisable(true);
             } else {
-                btnAction.setText("Tandai Selesai");
+                btnAction.setText("Tandai Selesai  ›");
                 btnAction.getStyleClass().setAll("btn-primary");
                 btnAction.setOnAction(ev -> {
                     try {
@@ -262,7 +270,7 @@ public class DashboardController {
                 });
             }
 
-            card.getChildren().addAll(info, btnAction);
+            card.getChildren().addAll(lblCheckIcon, info, btnAction);
             challengesContainer.getChildren().add(card);
         }
 

@@ -7,16 +7,20 @@ version = '1.0.0'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(26)
+        languageVersion = JavaLanguageVersion.of(27)
     }
 }
 
 repositories {
     mavenCentral()
-    maven { url = "https://sandec.jfrog.io/artifactory/repo" }
+    maven { url "https://sandec.jfrog.io/artifactory/repo" }
 }
 
 def javafxVersion = '24.0.1'
+def osName = System.getProperty('os.name').toLowerCase()
+def arm64 = System.getProperty('os.arch') in ['aarch64', 'arm64']
+def javafxPlatform = osName.contains('win') ? 'win' :
+    (osName.contains('mac') ? (arm64 ? 'mac-aarch64' : 'mac') : (arm64 ? 'linux-aarch64' : 'linux'))
 
 dependencies {
     // MySQL JDBC Driver
@@ -27,13 +31,13 @@ dependencies {
 
     // JavaFX base and graphics for Platform.runLater and observable bindings
     api "org.openjfx:javafx-base:${javafxVersion}"
-    api "org.openjfx:javafx-base:${javafxVersion}:win"
+    api "org.openjfx:javafx-base:${javafxVersion}:${javafxPlatform}"
     api "org.openjfx:javafx-graphics:${javafxVersion}"
-    api "org.openjfx:javafx-graphics:${javafxVersion}:win"
+    api "org.openjfx:javafx-graphics:${javafxVersion}:${javafxPlatform}"
     api "org.openjfx:javafx-controls:${javafxVersion}"
-    api "org.openjfx:javafx-controls:${javafxVersion}:win"
+    api "org.openjfx:javafx-controls:${javafxVersion}:${javafxPlatform}"
     api "org.openjfx:javafx-media:${javafxVersion}"
-    api "org.openjfx:javafx-media:${javafxVersion}:win"
+    api "org.openjfx:javafx-media:${javafxVersion}:${javafxPlatform}"
 
     // JUnit 5 Testing
     testImplementation platform('org.junit:junit-bom:5.11.4')
@@ -48,5 +52,15 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     useJUnitPlatform()
-    jvmArgs(['--enable-preview', '--enable-native-access=ALL-UNNAMED'])
+    jvmArgs(['--enable-preview'])
+}
+
+// Package the canonical SQL files for automatic first-run initialization.
+sourceSets.main.resources {
+    srcDir('sql')
+}
+
+tasks.register('createAdmin', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.sehatharian.config.CreateAdmin'
 }

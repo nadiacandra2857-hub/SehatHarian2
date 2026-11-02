@@ -9,13 +9,14 @@ import java.util.Properties;
 /**
  * DatabaseConfig mengelola konfigurasi dan koneksi JDBC ke MySQL.
  * Mendukung pembacaan berkas eksternal db.properties, connection timeout,
- * dan fail-safe check agar UI desktop tidak mengalami freezing jika database offline.
+ * dan cache ketersediaan koneksi; cache bukan bukti hasil baca/tulis.
  */
 public class DatabaseConfig {
     private static final Properties props = new Properties();
     private static String jdbcUrl;
     private static String username;
     private static String password;
+    private static String databaseName;
     private static boolean isInitialized = false;
 
     static {
@@ -31,16 +32,17 @@ public class DatabaseConfig {
             System.err.println("Peringatan: Gagal membaca db.properties, menggunakan konfigurasi default: " + e.getMessage());
         }
 
-        String host = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : props.getProperty("db.host", "localhost");
-        String port = System.getenv("DB_PORT") != null ? System.getenv("DB_PORT") : props.getProperty("db.port", "3306");
+        String host = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : props.getProperty("db.host", "127.0.0.1");
+        String port = System.getenv("DB_PORT") != null ? System.getenv("DB_PORT") : props.getProperty("db.port", "13306");
         String dbName = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : props.getProperty("db.name", "sehatharian_db");
+        databaseName = dbName;
         username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : props.getProperty("db.user", "root");
         password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : props.getProperty("db.password", "");
         String useSSL = props.getProperty("db.useSSL", "false");
         String allowPublicKey = props.getProperty("db.allowPublicKeyRetrieval", "true");
         String timezone = props.getProperty("db.serverTimezone", "Asia/Jakarta");
 
-        // Timeout pendek (1.5 detik) agar operasi UI cepat fallback jika MySQL mati
+        // Timeout pendek (1.5 detik) agar kegagalan koneksi cepat dilaporkan jika MySQL mati
         jdbcUrl = String.format(
             "jdbc:mysql://%s:%s/%s?useSSL=%s&allowPublicKeyRetrieval=%s&serverTimezone=%s&connectTimeout=1500&socketTimeout=2000",
             host, port, dbName, useSSL, allowPublicKey, timezone
@@ -73,7 +75,7 @@ public class DatabaseConfig {
 
         long now = System.currentTimeMillis();
         if (Boolean.FALSE.equals(dbAvailable) && (now - lastCheckTime < CHECK_COOLDOWN_MS)) {
-            throw new SQLException("MySQL Server lokal sedang offline (mode in-memory demo aktif).");
+            throw new SQLException("Database belum dapat dihubungi. Data contoh tidak diaktifkan otomatis.");
         }
 
         try {
@@ -106,6 +108,14 @@ public class DatabaseConfig {
 
     public static String getJdbcUrl() {
         return jdbcUrl;
+    }
+
+    static String getDatabaseName() {
+        return databaseName;
+    }
+
+    static String getPassword() {
+        return password;
     }
 
     public static String getUsername() {

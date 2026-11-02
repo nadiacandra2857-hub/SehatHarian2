@@ -2,6 +2,8 @@ package com.sehatharian;
 
 import com.sehatharian.model.UserSession;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import java.sql.SQLException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Pengujian Skenario & Validasi Frontend Flow (Tahap E)")
 class FrontendFlowValidationTest {
+    private final UserSession session = new UserSession();
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
     @BeforeEach
     void setUp() {
-        UserSession.getInstance().logout();
+        session.logout();
     }
+
+    @AfterEach void tearDown() { session.logout(); }
 
     @Test
     @DisplayName("Skenario Validasi Format Email Form Pendaftaran")
@@ -86,7 +91,8 @@ class FrontendFlowValidationTest {
 
     @Test
     @DisplayName("Skenario Alur Slide 3: Hanya selesai jika seluruh ketiga slide telah terisi")
-    void testSlide3CompletionValidation() {
+    void testSlide3CompletionValidation() throws SQLException {
+        FrontendAuthFixture.register(session, "Fixture User", "fixture@example.test");
         Integer waktuLuang = 3; // Slide 1
         String aktivitas = "INDOOR"; // Slide 2
         String umur = null; // Slide 3 belum dipilih
@@ -100,15 +106,14 @@ class FrontendFlowValidationTest {
         assertTrue(allAnswered, "Semua jawaban telah lengkap, tombol Selesai dapat dieksekusi");
 
         // Selesaikan
-        UserSession.getInstance().completeOnboarding(waktuLuang, "3 jam", aktivitas, umur);
-        assertTrue(UserSession.getInstance().isOnboardingSelesai());
+        session.completeOnboarding(waktuLuang, "3 jam", aktivitas, umur);
+        assertTrue(session.isOnboardingSelesai());
     }
 
     @Test
     @DisplayName("Skenario Login Langsung ke Dashboard Tanpa Onboarding Ulang")
-    void testLoginBypassesOnboardingForExistingUser() {
-        UserSession session = UserSession.getInstance();
-        session.login("nadia@sehatharian.id", "Nadia Ayu");
+    void testLoginBypassesOnboardingForExistingUser() throws SQLException {
+        FrontendAuthFixture.login(session, "Nadia Ayu", "nadia@sehatharian.id");
         session.setOnboardingSelesai(true);
 
         assertTrue(session.isLoggedIn());

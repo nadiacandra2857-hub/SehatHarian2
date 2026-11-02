@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sehatharian.util.EditorialImage?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
@@ -15,14 +16,24 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<ScrollPane fx:id="authRoot" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sehatharian.controller.CreateAccountController"
-            stylesheets="@../css/styles.css"
+            stylesheets="@../css/styles.css, @../css/sehat-theme.css, @../css/ui2.css"
             fitToWidth="true" fitToHeight="true"
-            styleClass="auth-page-root"
-            prefWidth="1080.0" prefHeight="780.0">
+            styleClass="auth-page-root, ui2"
+            prefWidth="1080.0" prefHeight="780.0" minWidth="0">
 
-    <StackPane alignment="CENTER" style="-fx-padding: 32 20; -fx-background-color: #111827;">
+    <HBox styleClass="auth-split-root">
+        <!-- Panel hero kiri (disembunyikan otomatis pada jendela sempit / layar ponsel) -->
+        <VBox fx:id="authHeroPane" styleClass="auth-hero-pane" prefWidth="560" minWidth="480" maxWidth="600" alignment="CENTER_LEFT">
+            <Label text="SehatHarian" styleClass="brand-title" style="-fx-font-size: 20px;" wrapText="true"/>
+            <Label text="Mulai Perjalanan Sehatmu Hari Ini" styleClass="auth-hero-title" wrapText="true"/>
+            <Label text="Daftar sekali, lalu sesuaikan tantangan dan rekomendasi dengan rutinitasmu." styleClass="auth-hero-sub" wrapText="true"/>
+            <EditorialImage/>
+
+        </VBox>
+
+        <StackPane alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="auth-form-pane">
         <VBox alignment="CENTER" spacing="16.0" maxWidth="480.0">
 
             <!-- Top Back to Landing link -->
@@ -33,17 +44,14 @@
             <!-- Main Register Card -->
             <VBox styleClass="auth-card" spacing="16.0">
                 <!-- Brand Header -->
-                <VBox spacing="6.0" alignment="CENTER_LEFT">
-                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                        <ImageView fx:id="brandLogoView" fitWidth="36.0" fitHeight="36.0" preserveRatio="true"/>
-                        <Label text="Buat Akun SehatHarian" styleClass="auth-header-title"/>
-                    </HBox>
-                    <Label text="Mulai langkah kecil untuk kebiasaan hidup sehat yang berkelanjutan" styleClass="card-subtitle" wrapText="true"/>
+                <VBox spacing="6.0" alignment="CENTER">
+                    <ImageView fx:id="brandLogoView" fitWidth="44.0" fitHeight="44.0" preserveRatio="true"/>
+                    <Label text="Buat Akun SehatHarian" styleClass="auth-header-title" wrapText="true"/>
+                    <Label text="Mulai langkah kecil untuk kebiasaan hidup sehat yang berkelanjutan" styleClass="auth-header-subtitle" wrapText="true"/>
                 </VBox>
 
                 <!-- Top Error Banner -->
                 <HBox fx:id="errorBannerBox" styleClass="auth-error-banner" spacing="8.0" alignment="CENTER_LEFT" visible="false" managed="false">
-                    <Label text="⚠️" style="-fx-font-size: 14px;"/>
                     <Label fx:id="errorBannerLabel" text="Pesan kesalahan validasi" styleClass="auth-error-text" wrapText="true"/>
                 </HBox>
 
@@ -51,70 +59,66 @@
                 <VBox spacing="11.0">
                     <!-- Nama Lengkap -->
                     <VBox spacing="4.0">
-                        <Label text="Nama Lengkap" styleClass="auth-input-label"/>
+                        <Label text="Nama Lengkap" styleClass="auth-input-label" wrapText="true"/>
                         <TextField fx:id="txtNama" promptText="misal: Nadia Ayu Candra" styleClass="auth-text-field" prefHeight="38.0"/>
-                        <Label fx:id="errNama" styleClass="auth-inline-error" visible="false" managed="false"/>
+                        <Label fx:id="errNama" styleClass="auth-inline-error" visible="false" managed="false" wrapText="true"/>
                     </VBox>
 
                     <!-- Email -->
                     <VBox spacing="4.0">
-                        <Label text="Alamat Email" styleClass="auth-input-label"/>
+                        <Label text="Alamat Email" styleClass="auth-input-label" wrapText="true"/>
                         <TextField fx:id="txtEmail" promptText="misal: nadia@sehatharian.id" styleClass="auth-text-field" prefHeight="38.0"/>
-                        <Label fx:id="errEmail" styleClass="auth-inline-error" visible="false" managed="false"/>
+                        <Label fx:id="errEmail" styleClass="auth-inline-error" visible="false" managed="false" wrapText="true"/>
                     </VBox>
 
                     <!-- Password -->
                     <VBox spacing="4.0">
-                        <Label text="Kata Sandi (Minimal 6 Karakter)" styleClass="auth-input-label"/>
+                        <Label text="Kata Sandi (Minimal 6 Karakter)" styleClass="auth-input-label" wrapText="true"/>
                         <HBox spacing="8.0" alignment="CENTER_LEFT">
                             <StackPane HBox.hgrow="ALWAYS">
                                 <PasswordField fx:id="txtPassword" promptText="Buat kata sandi aman" styleClass="auth-text-field" prefHeight="38.0"/>
                                 <TextField fx:id="txtPasswordVisible" promptText="Buat kata sandi aman" styleClass="auth-text-field" prefHeight="38.0" visible="false" managed="false"/>
                             </StackPane>
-                            <Button fx:id="btnTogglePassword" text="👁" styleClass="auth-btn-toggle-eye" onAction="#handleTogglePassword" prefHeight="38.0" minWidth="46.0"/>
+                            <Button fx:id="btnTogglePassword" text="Lihat" styleClass="auth-btn-toggle-eye" onAction="#handleTogglePassword" prefHeight="38.0" minWidth="65.0"/>
                         </HBox>
-                        <Label fx:id="errPassword" styleClass="auth-inline-error" visible="false" managed="false"/>
+                        <Label fx:id="errPassword" styleClass="auth-inline-error" visible="false" managed="false" wrapText="true"/>
                     </VBox>
 
                     <!-- Konfirmasi Password -->
                     <VBox spacing="4.0">
-                        <Label text="Konfirmasi Kata Sandi" styleClass="auth-input-label"/>
+                        <Label text="Konfirmasi Kata Sandi" styleClass="auth-input-label" wrapText="true"/>
                         <HBox spacing="8.0" alignment="CENTER_LEFT">
                             <StackPane HBox.hgrow="ALWAYS">
                                 <PasswordField fx:id="txtConfirmPassword" promptText="Ulangi kata sandi" styleClass="auth-text-field" prefHeight="38.0"/>
                                 <TextField fx:id="txtConfirmPasswordVisible" promptText="Ulangi kata sandi" styleClass="auth-text-field" prefHeight="38.0" visible="false" managed="false"/>
                             </StackPane>
-                            <Button fx:id="btnToggleConfirmPassword" text="👁" styleClass="auth-btn-toggle-eye" onAction="#handleToggleConfirmPassword" prefHeight="38.0" minWidth="46.0"/>
+                            <Button fx:id="btnToggleConfirmPassword" text="Lihat" styleClass="auth-btn-toggle-eye" onAction="#handleToggleConfirmPassword" prefHeight="38.0" minWidth="65.0"/>
                         </HBox>
-                        <Label fx:id="errConfirmPassword" styleClass="auth-inline-error" visible="false" managed="false"/>
+                        <Label fx:id="errConfirmPassword" styleClass="auth-inline-error" visible="false" managed="false" wrapText="true"/>
                     </VBox>
 
                     <!-- Terms & Conditions Checkbox -->
                     <VBox spacing="3.0" style="-fx-padding: 4 0 0 0;">
                         <CheckBox fx:id="chkTerms" text="Saya menyetujui Syarat &amp; Ketentuan serta Kebijakan Privasi"
-                                  wrapText="true" style="-fx-font-size: 12px;"/>
-                        <Label fx:id="errTerms" styleClass="auth-inline-error" visible="false" managed="false"/>
+                                  wrapText="true"/>
+                        <Label fx:id="errTerms" styleClass="auth-inline-error" visible="false" managed="false" wrapText="true"/>
                     </VBox>
                 </VBox>
 
                 <!-- Action Button -->
                 <VBox spacing="12.0" style="-fx-padding: 4 0 0 0;">
-                    <Button fx:id="btnRegister" text="Daftar Akun &amp; Mulai Onboarding" styleClass="auth-btn-primary" onAction="#handleRegister" maxWidth="Infinity" prefHeight="42.0"/>
+                    <Button fx:id="btnRegister" text="Buat akun" styleClass="auth-btn-primary" onAction="#handleRegister" maxWidth="Infinity" prefHeight="42.0"/>
 
                     <HBox alignment="CENTER" spacing="6.0">
-                        <Label text="Sudah memiliki akun?" style="-fx-font-size: 12.5px; -fx-text-fill: #9CA3AF;"/>
-                        <Button text="Masuk" onAction="#handleGoToLogin"
-                                style="-fx-background-color: transparent; -fx-text-fill: #22C55E; -fx-font-size: 12.5px; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 0;"/>
+                        <Label text="Sudah memiliki akun?" style="-fx-font-size: 12.5px; -fx-text-fill: #202121;" wrapText="true"/>
+                        <Button text="Masuk" onAction="#handleGoToLogin" styleClass="auth-link"/>
                     </HBox>
                 </VBox>
 
-                <!-- Demo Notice -->
-                <VBox styleClass="auth-demo-badge" spacing="4.0" alignment="CENTER_LEFT">
-                    <Label text="Alur Pendaftaran Terproteksi" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #22C55E;"/>
-                    <Label text="Setelah pendaftaran berhasil, Anda akan diarahkan ke 3 langkah onboarding untuk menyesuaikan profil kesehatan Anda." styleClass="auth-demo-text" wrapText="true"/>
-                </VBox>
+
             </VBox>
         </VBox>
     </StackPane>
+        </HBox>
 
 </ScrollPane>

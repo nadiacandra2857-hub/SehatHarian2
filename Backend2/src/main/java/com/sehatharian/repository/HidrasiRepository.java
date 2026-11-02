@@ -1,6 +1,7 @@
 package com.sehatharian.repository;
 
-import com.sehatharian.config.DatabaseConfig;
+import com.sehatharian.storage.WriteTransaction;
+import com.sehatharian.model.SessionAccess;
 import com.sehatharian.model.Hidrasi;
 
 import java.sql.*;
@@ -8,126 +9,118 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HidrasiRepository {
+public class HidrasiRepository extends OwnedRepository {
+    public HidrasiRepository(SessionAccess access) { super(access); }
+    public HidrasiRepository(SessionAccess access, PenggunaRepository.ConnectionFactory connections) {
+        super(access, connections);
+    }
 
     public List<Hidrasi> getByTanggal(int penggunaId, LocalDate tanggal) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getHidrasiByTanggal(penggunaId, tanggal);
-        }
+        access.owner(penggunaId);
 
         List<Hidrasi> list = new ArrayList<>();
         String sql = "SELECT id, pengguna_id, tanggal, jumlah_ml, catatan, created_at " +
                      "FROM hidrasi WHERE pengguna_id = ? AND tanggal = ? ORDER BY id DESC";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
             ps.setDate(2, Date.valueOf(tanggal));
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 while (rs.next()) {
                     list.add(mapResultSetToHidrasi(rs));
                 }
             }
-            return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getByTanggal hidrasi: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getHidrasiByTanggal(penggunaId, tanggal);
+            return access.result(list);
         }
     }
 
     public List<Hidrasi> getByRange(int penggunaId, LocalDate start, LocalDate end) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getHidrasiByRange(penggunaId, start, end);
-        }
+        access.owner(penggunaId);
 
         List<Hidrasi> list = new ArrayList<>();
         String sql = "SELECT id, pengguna_id, tanggal, jumlah_ml, catatan, created_at " +
                      "FROM hidrasi WHERE pengguna_id = ? AND tanggal BETWEEN ? AND ? ORDER BY tanggal ASC, id ASC";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
             ps.setDate(2, Date.valueOf(start));
             ps.setDate(3, Date.valueOf(end));
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 while (rs.next()) {
                     list.add(mapResultSetToHidrasi(rs));
                 }
             }
-            return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getByRange hidrasi: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getHidrasiByRange(penggunaId, start, end);
+            return access.result(list);
         }
     }
 
     public int simpan(Hidrasi h) throws SQLException {
-        int inMemoryId = InMemoryDataStore.getInstance().tambahHidrasi(h);
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return inMemoryId;
-        }
+        access.owner(h.getPenggunaId());
 
-        String sql = "INSERT INTO hidrasi (pengguna_id, tanggal, jumlah_ml, catatan) " +
-                     "VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, h.getPenggunaId());
-            ps.setDate(2, Date.valueOf(h.getTanggal()));
-            ps.setInt(3, h.getJumlahMl());
-            ps.setString(4, h.getCatatan());
+        WriteTransaction tx = new WriteTransaction(access, connections);
+        try {
 
-            ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
-                if (rs.next()) {
-                    int genId = rs.getInt(1);
-                    h.setId(genId);
-                    return genId;
+            String sql = "INSERT INTO hidrasi (pengguna_id, tanggal, jumlah_ml, catatan) " +
+                         "VALUES (?, ?, ?, ?)";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, access.owner());
+                ps.setDate(2, Date.valueOf(h.getTanggal()));
+                ps.setInt(3, h.getJumlahMl());
+                ps.setString(4, h.getCatatan());
+
+                if (tx.execute(ps) <= 0) throw new SQLException("Penyimpanan belum dikonfirmasi.");
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int genId = rs.getInt(1);
+                        if (genId <= 0) throw new SQLException("ID penyimpanan belum dikonfirmasi.");
+                        return tx.confirm(genId);
+                    }
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada simpan hidrasi: " + e.getMessage());
-        }
-        return inMemoryId;
+            throw new SQLException("Penyimpanan belum dikonfirmasi.");
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
-    public boolean hapus(int id) throws SQLException {
-        InMemoryDataStore.getInstance().hapusHidrasi(id);
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return true;
-        }
+    public boolean hapus(int id, int penggunaId) throws SQLException {
+        access.owner(penggunaId);
 
-        String sql = "DELETE FROM hidrasi WHERE id = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Database error pada hapus hidrasi: " + e.getMessage());
-            return true;
-        }
+        WriteTransaction tx = new WriteTransaction(access, connections);
+        try {
+
+            String sql = "DELETE FROM hidrasi WHERE id = ? AND pengguna_id = ?";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ps.setInt(2, access.owner(penggunaId));
+                return tx.affected(tx.execute(ps));
+            }
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
     public int getTotalMlHariIni(int penggunaId, LocalDate tanggal) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getTotalHidrasiHariIni(penggunaId, tanggal);
-        }
+        access.owner(penggunaId);
 
         String sql = "SELECT COALESCE(SUM(jumlah_ml), 0) FROM hidrasi WHERE pengguna_id = ? AND tanggal = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
             ps.setDate(2, Date.valueOf(tanggal));
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 if (rs.next()) {
-                    return rs.getInt(1);
+                    return access.result(rs.getInt(1));
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada getTotalMlHariIni hidrasi: " + e.getMessage());
         }
-        return InMemoryDataStore.getInstance().getTotalHidrasiHariIni(penggunaId, tanggal);
+        throw new SQLException("Pembacaan belum dikonfirmasi.");
     }
 
     private Hidrasi mapResultSetToHidrasi(ResultSet rs) throws SQLException {

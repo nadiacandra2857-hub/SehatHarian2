@@ -1,0 +1,33 @@
+.ui1-scroll,.ui1-scroll > .viewport { -fx-background-color:#eeeeee; -fx-padding:0; }
+.ui1 { -fx-background-color:#eeeeee; -fx-font-family:"SansSerif"; -fx-font-size:14; }
+.ui1 .label { -fx-text-fill:#202121; }
+.ui1 .ui1-heading { -fx-font-size:19; -fx-font-weight:bold; }
+.ui1 .ui1-title { -fx-font-size:14; -fx-font-weight:bold; }
+.ui1 .ui1-value { -fx-font-size:23; -fx-font-weight:bold; }
+.ui1 .ui1-muted { -fx-font-size:12; -fx-text-fill:#747575; }
+.ui1-card { -fx-background-color:white; -fx-background-radius:17; -fx-padding:12; -fx-border-width:0; }
+.ui1 .ui1-button { -fx-background-color:#f4f4f3; -fx-background-radius:9; -fx-text-fill:#292a29; -fx-font-size:12; -fx-padding:6 9; -fx-cursor:hand; -fx-effect:null; }
+.ui1 .ui1-button.selected { -fx-background-color:#dcf63c; }
+.ui1 .ui1-button:focused { -fx-border-color:#242424; -fx-border-radius:9; }
+.ui1 .ui1-icon { -fx-fill:#181919; }
+.ui1-shell { -fx-padding:39 21 8 21; -fx-background-color:#dedede; }
+.ui1-shell .sidebar-scroll { -fx-pref-width:64; -fx-min-width:64; -fx-max-width:64; -fx-background-color:white; -fx-background-radius:17; }
+.ui1-shell .sidebar { -fx-padding:12 4; -fx-background-color:white; -fx-spacing:10; }
+.ui1-shell .sidebar .nav-button { -fx-padding:10 3; -fx-min-width:44; -fx-background-color:white; }
+.ui1-shell .sidebar .nav-button.active { -fx-background-color:#def53c; }
+.ui1-shell .sidebar-user-card { -fx-padding:0; }
+.ui1-shell .sidebar-brand-box { -fx-padding:0; }
+.ui1-shell .sidebar .svg-icon { -fx-fill:#333333; }
+.ui1-shell:mobile { -fx-padding:0; }
+.ui1-shell:mobile .ui1 { -fx-font-size:16; }
+.ui1-shell:mobile .ui1-title,.ui1-shell:mobile .ui1-muted { -fx-font-size:14; }
+.ui1-shell { -fx-padding:39 21 8 34; }
+.ui1-card:focused { -fx-border-color:#252525; -fx-border-width:2; -fx-border-radius:17; }
+.ui1 .ui1-metric { -fx-padding:10; }
+.ui1 .ui1-tabs .ui1-button { -fx-min-height:34; -fx-pref-height:34; }
+.ui1-shell:mobile .ui1-tabs .ui1-button { -fx-min-height:44; }
+.ui1 .ui1-metric { -fx-padding:6 10; }
+.ui1-shell { -fx-padding:39 34 8 34; -fx-background-color:#dedede,#eeeeee; -fx-background-insets:0,39 21 8 21; -fx-background-radius:0,26; }
+.ui1-shell:mobile { -fx-padding:0; -fx-background-insets:0; -fx-background-radius:0; }
+.ui1 .ui1-metric { -fx-min-height:90; }
+.ui1-shell:mobile .ui1-metric { -fx-min-height:110; }

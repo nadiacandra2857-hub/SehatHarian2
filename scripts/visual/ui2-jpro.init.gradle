@@ -1,0 +1,10 @@
+// Explicit opt-in visual harness. Production launcher/config remain unchanged.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject.project(':Frontend2')
+    p.application.mainClass = 'com.sehatharian.Ui2Browser'
+    p.dependencies.add('runtimeOnly', p.files('/tmp/ui2-harness.jar'))
+    p.jpro.useMainMethod = false
+    p.jpro.openURLOnStartup = false
+    p.jpro.port = 8087
+    p.jpro.setJVMArgs(p.jpro.getJVMArgs() + ['-DDB_HOST=127.0.0.1', '-DDB_PORT=1'])
+}

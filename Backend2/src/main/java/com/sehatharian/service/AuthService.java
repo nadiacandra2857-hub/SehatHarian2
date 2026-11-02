@@ -2,7 +2,9 @@ package com.sehatharian.service;
 
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
+import com.sehatharian.repository.AccountRepository;
+import java.util.Locale;
+import java.util.Objects;
 import com.sehatharian.util.PasswordUtil;
 import com.sehatharian.util.ValidationUtil;
 
@@ -14,14 +16,20 @@ import java.sql.SQLException;
  */
 public class AuthService {
 
-    private final PenggunaRepository penggunaRepo;
+    public static final String INVALID_CREDENTIALS = "Email atau kata sandi tidak valid.";
+    private final AccountRepository penggunaRepo;
+    private final UserSession session;
 
-    public AuthService() {
-        this.penggunaRepo = new PenggunaRepository();
+    /** Only AuthService can produce this proof; UI/profile setters cannot authenticate. */
+    public static final class VerifiedAccount {
+        private final Pengguna pengguna;
+        private VerifiedAccount(Pengguna pengguna) { this.pengguna = pengguna; }
+        public Pengguna getPengguna() { return pengguna; }
     }
 
-    public AuthService(PenggunaRepository penggunaRepo) {
-        this.penggunaRepo = penggunaRepo;
+    public AuthService(AccountRepository penggunaRepo, UserSession session) {
+        this.penggunaRepo = Objects.requireNonNull(penggunaRepo);
+        this.session = Objects.requireNonNull(session);
     }
 
     /**
@@ -44,6 +52,7 @@ public class AuthService {
 
     public Pengguna register(String nama, String email, String password, String confirmPassword, boolean agreeTerms)
             throws IllegalArgumentException, IllegalStateException, SQLException {
+        long requestGeneration = session.getGeneration();
 
         // 1. Validasi Syarat & Ketentuan
         if (!agreeTerms) {
@@ -70,7 +79,7 @@ public class AuthService {
             throw new IllegalArgumentException("Konfirmasi kata sandi tidak cocok dengan kata sandi.");
         }
 
-        String emailTrimmed = email.trim().toLowerCase();
+        String emailTrimmed = email.trim().toLowerCase(Locale.ROOT);
 
         // 6. Pemeriksaan Email Duplikat
         if (penggunaRepo.existsByEmail(emailTrimmed)) {
@@ -94,75 +103,41 @@ public class AuthService {
         );
 
         int newId = penggunaRepo.createPengguna(baru);
+        if (newId <= 0) {
+            throw new SQLException("Pembuatan akun belum dikonfirmasi oleh penyimpanan.");
+        }
         baru.setId(newId);
 
         // 9. Inisialisasi UserSession
-        UserSession session = UserSession.getInstance();
-        session.setCurrentUser(baru);
+        if (session.getGeneration() != requestGeneration) throw new SecurityException("Permintaan sesi sudah tidak berlaku.");
+        session.authenticate(new VerifiedAccount(baru));
         session.setOnboardingSelesai(false);
 
         return baru;
     }
 
-    /**
-     * Memverifikasi kredensial login pengguna.
-     *
-     * @param emailOrUsername Email atau nama pengguna
-     * @param password Kata sandi teks biasa
-     * @return Pengguna yang berhasil login
-     * @throws IllegalArgumentException jika input kosong
-     * @throws SecurityException jika kredensial tidak cocok
-     * @throws SQLException jika terjadi error database
-     */
-    public Pengguna login(String emailOrUsername, String password) throws IllegalArgumentException, SecurityException, SQLException {
-        if (emailOrUsername == null || emailOrUsername.trim().isEmpty()) {
-            throw new IllegalArgumentException("Silakan masukkan email atau nama pengguna Anda.");
+    /** Normal login supports the unique email identity only; passwords are never normalized. */
+    public Pengguna login(String email, String password) throws SQLException {
+        long requestGeneration = session.getGeneration();
+        if (!ValidationUtil.isValidEmail(email)) {
+            throw new IllegalArgumentException("Masukkan alamat email yang valid.");
         }
         if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Silakan masukkan kata sandi Anda.");
+            throw new IllegalArgumentException("Kata sandi wajib diisi.");
         }
-
-        String identity = emailOrUsername.trim();
-
-        // Cari pengguna berdasarkan email
-        Pengguna p = penggunaRepo.findByEmail(identity);
-
-        // Jika tidak ditemukan lewat email dan identity bukan format email, cari default pengguna
-        if (p == null) {
-            Pengguna defaultP = penggunaRepo.getDefaultPengguna();
-            if (defaultP != null && (identity.equalsIgnoreCase(defaultP.getNama()) || identity.equalsIgnoreCase(defaultP.getEmail()))) {
-                p = defaultP;
-            }
+        Pengguna pengguna = penggunaRepo.findByEmail(email.trim().toLowerCase(Locale.ROOT));
+        if (pengguna == null || pengguna.getId() <= 0
+                || pengguna.getEmail() == null
+                || !email.trim().equalsIgnoreCase(pengguna.getEmail())
+                || !PasswordUtil.checkPassword(password, pengguna.getPasswordHash())) {
+            throw new SecurityException(INVALID_CREDENTIALS);
         }
-
-        if (p == null) {
-            throw new SecurityException("Akun tidak ditemukan. Periksa kembali email atau nama pengguna Anda.");
-        }
-
-        // Verifikasi kata sandi BCrypt
-        if (p.getPasswordHash() != null && !p.getPasswordHash().isEmpty()) {
-            boolean valid = PasswordUtil.checkPassword(password, p.getPasswordHash());
-            if (!valid) {
-                // Berikan toleransi kata sandi default demo jika hash inisial
-                if (!password.equals("password123") && !password.equals("admin123")) {
-                    throw new SecurityException("Kata sandi yang Anda masukkan salah.");
-                }
-            }
-        } else {
-            // Jika hash kosong pada legacy data, minimal 4 karakter
-            if (password.length() < 4) {
-                throw new SecurityException("Kata sandi yang Anda masukkan salah.");
-            }
-        }
-
-        // Perbarui sesi desktop
-        UserSession session = UserSession.getInstance();
-        session.setCurrentUser(p);
-
-        return p;
+        if (session.getGeneration() != requestGeneration) throw new SecurityException("Permintaan sesi sudah tidak berlaku.");
+        session.authenticate(new VerifiedAccount(pengguna));
+        return pengguna;
     }
 
     public void logout() {
-        UserSession.getInstance().logout();
+        session.logout();
     }
 }

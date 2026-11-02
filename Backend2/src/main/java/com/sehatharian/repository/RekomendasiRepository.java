@@ -7,34 +7,30 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** SQL catalog only. An empty result or SQL failure never selects sample data. */
 public class RekomendasiRepository {
+    private final PenggunaRepository.ConnectionFactory connections;
+
+    public RekomendasiRepository() { this(DatabaseConfig::getConnection); }
+    public RekomendasiRepository(PenggunaRepository.ConnectionFactory connections) {
+        this.connections = java.util.Objects.requireNonNull(connections);
+    }
 
     public List<Rekomendasi> getAll() throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getAllRekomendasi();
-        }
-
         List<Rekomendasi> list = new ArrayList<>();
         String sql = "SELECT id, tipe, judul, deskripsi, golongan_kesibukan, golongan_usia, durasi_menit, created_at " +
                      "FROM rekomendasi ORDER BY id ASC";
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = connections.open();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 list.add(mapResultSetToRekomendasi(rs));
             }
             return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getAll rekomendasi: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getAllRekomendasi();
         }
     }
 
     public List<Rekomendasi> getFiltered(String tipe, String kesibukan, String usia, int maxDurasi) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getFilteredRekomendasi(tipe, kesibukan, usia, maxDurasi);
-        }
-
         List<Rekomendasi> list = new ArrayList<>();
         StringBuilder sql = new StringBuilder(
             "SELECT id, tipe, judul, deskripsi, golongan_kesibukan, golongan_usia, durasi_menit, created_at " +
@@ -65,7 +61,7 @@ public class RekomendasiRepository {
 
         sql.append(" ORDER BY id ASC");
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = connections.open();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {
             for (int i = 0; i < params.size(); i++) {
                 ps.setObject(i + 1, params.get(i));
@@ -76,9 +72,6 @@ public class RekomendasiRepository {
                 }
             }
             return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getFiltered rekomendasi: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getFilteredRekomendasi(tipe, kesibukan, usia, maxDurasi);
         }
     }
 

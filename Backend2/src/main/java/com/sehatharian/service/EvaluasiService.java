@@ -11,25 +11,28 @@ import java.util.List;
 import java.util.Locale;
 
 public class EvaluasiService {
+    private final SessionAccess access;
     private final RiwayatTantanganRepository riwayatRepo;
     private final JadwalTidurRepository tidurRepo;
     private final AktivitasRepository aktivitasRepo;
     private final HidrasiRepository hidrasiRepo;
     private final EvaluasiMingguanRepository evaluasiRepo;
 
-    public EvaluasiService() {
-        this.riwayatRepo = new RiwayatTantanganRepository();
-        this.tidurRepo = new JadwalTidurRepository();
-        this.aktivitasRepo = new AktivitasRepository();
-        this.hidrasiRepo = new HidrasiRepository();
-        this.evaluasiRepo = new EvaluasiMingguanRepository();
+    public EvaluasiService(SessionAccess access) {
+        this.access = java.util.Objects.requireNonNull(access);
+        this.riwayatRepo = new RiwayatTantanganRepository(access);
+        this.tidurRepo = new JadwalTidurRepository(access);
+        this.aktivitasRepo = new AktivitasRepository(access);
+        this.hidrasiRepo = new HidrasiRepository(access);
+        this.evaluasiRepo = new EvaluasiMingguanRepository(access);
     }
 
-    public EvaluasiService(RiwayatTantanganRepository riwayatRepo,
+    public EvaluasiService(SessionAccess access, RiwayatTantanganRepository riwayatRepo,
                            JadwalTidurRepository tidurRepo,
                            AktivitasRepository aktivitasRepo,
                            HidrasiRepository hidrasiRepo,
                            EvaluasiMingguanRepository evaluasiRepo) {
+        this.access = java.util.Objects.requireNonNull(access);
         this.riwayatRepo = riwayatRepo;
         this.tidurRepo = tidurRepo;
         this.aktivitasRepo = aktivitasRepo;
@@ -41,19 +44,23 @@ public class EvaluasiService {
      * F-04: Menghasilkan data konsistensi 7 hari terakhir berdasarkan data riil dari database.
      */
     public List<RingkasanKonsistensi> getKonsistensi7HariTerakhir(int penggunaId, LocalDate tanggalAkhir) throws SQLException {
+        access.owner(penggunaId);
         List<RingkasanKonsistensi> result = new ArrayList<>();
         LocalDate tanggalMulai = tanggalAkhir.minusDays(6);
 
         // Ambil data dalam rentang
-        List<RiwayatTantangan> listTantangan = riwayatRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir);
-        List<Aktivitas> listAktivitas = aktivitasRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir);
-        List<Hidrasi> listHidrasi = hidrasiRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir);
-        List<JadwalTidur> listTidur = tidurRepo.getRiwayatByPengguna(penggunaId, 14);
+        List<RiwayatTantangan> listTantangan = access.rows(access.call(() -> riwayatRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir)), RiwayatTantangan::getPenggunaId);
+        List<Aktivitas> listAktivitas = access.rows(access.call(() -> aktivitasRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir)), Aktivitas::getPenggunaId);
+        List<Hidrasi> listHidrasi = access.rows(access.call(() -> hidrasiRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir)), Hidrasi::getPenggunaId);
+        List<JadwalTidur> listTidur = access.rows(access.call(() -> tidurRepo.getByRange(penggunaId, tanggalMulai, tanggalAkhir)), JadwalTidur::getPenggunaId);
 
         for (int i = 0; i < 7; i++) {
             LocalDate tgl = tanggalMulai.plusDays(i);
             String labelHari = tgl.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.of("id", "ID"));
             RingkasanKonsistensi rk = new RingkasanKonsistensi(tgl, labelHari);
+            rk.setAktivitasTercatat(listAktivitas.stream().anyMatch(a -> tgl.equals(a.getTanggal())));
+            rk.setHidrasiTercatat(listHidrasi.stream().anyMatch(h -> tgl.equals(h.getTanggal())));
+            rk.setTidurTercatat(listTidur.stream().anyMatch(t -> tgl.equals(t.getTanggal())));
 
             // Tantangan
             int selesai = 0;
@@ -109,7 +116,7 @@ public class EvaluasiService {
             result.add(rk);
         }
 
-        return result;
+        return access.result(result);
     }
 
     /**
@@ -117,7 +124,10 @@ public class EvaluasiService {
      * dan menyimpannya ke MySQL.
      */
     public EvaluasiMingguan buatEvaluasiMingguan(int penggunaId, LocalDate tanggalAcuan) throws SQLException {
+        access.owner(penggunaId);
         List<RingkasanKonsistensi> harian = getKonsistensi7HariTerakhir(penggunaId, tanggalAcuan);
+        if (harian.stream().noneMatch(RingkasanKonsistensi::hasRecordedData))
+            throw new IllegalStateException("Belum ada catatan untuk dievaluasi pada periode ini.");
         LocalDate mingguMulai = tanggalAcuan.minusDays(6);
 
         double totalSkor = 0;
@@ -145,8 +155,8 @@ public class EvaluasiService {
         }
 
         double rataRataSkor = Math.round((totalSkor / 7.0) * 10.0) / 10.0;
-        double rataRataTidur = hariTidurTercatat > 0 
-            ? Math.round((totalJamTidur / hariTidurTercatat) * 10.0) / 10.0 
+        double rataRataTidur = hariTidurTercatat > 0
+            ? Math.round((totalJamTidur / hariTidurTercatat) * 10.0) / 10.0
             : 0.0;
 
         boolean memenuhiStandarTidur = (rataRataTidur >= 5.0 && hariKurangTidur == 0);
@@ -169,7 +179,9 @@ public class EvaluasiService {
 
         // Susun rekomendasi solutif
         StringBuilder rekomendasi = new StringBuilder();
-        if (!memenuhiStandarTidur) {
+        if (hariTidurTercatat == 0) {
+            rekomendasi.append("• Belum ada catatan tidur; durasi tidur belum dapat dinilai.\n");
+        } else if (!memenuhiStandarTidur) {
             rekomendasi.append("• Prioritas Istirahat: Durasi tidur Anda kurang dari 5 jam. Sangat disarankan tidur lebih awal 30–45 menit malam ini, redupkan lampu, dan hindari paparan layar gawai minimal 30 menit sebelum tidur.\n");
         } else if (rataRataTidur >= 7.0) {
             rekomendasi.append("• Kualitas Istirahat: Pola tidur Anda sangat baik dan memenuhi standar pemulihan tubuh optimal.\n");
@@ -177,31 +189,38 @@ public class EvaluasiService {
             rekomendasi.append("• Optimasi Tidur: Durasi tidur mencukupi batas minimal, usahakan menambah durasi istirahat menuju 7 jam untuk pemulihan energi penuh.\n");
         }
 
-        if (totalAirMl < 10000) {
+        if (harian.stream().noneMatch(RingkasanKonsistensi::isHidrasiTercatat)) {
+            rekomendasi.append("• Belum ada catatan hidrasi; jumlah yang dikonsumsi belum dapat dinilai.\n");
+        } else if (totalAirMl < 10000) {
             rekomendasi.append("• Peningkatan Hidrasi: Asupan air masih di bawah anjuran. Siapkan botol air 1 liter di meja aktivitas dan minum bertahap sepanjang hari.\n");
         } else {
             rekomendasi.append("• Kebiasaan Hidrasi: Bagus! Pertahankan konsistensi konsumsi cairan tubuh agar sirkulasi dan metabolisme tetap prima.\n");
         }
 
-        if (totalAktivitasMenit < 90) {
+        if (harian.stream().noneMatch(RingkasanKonsistensi::isAktivitasTercatat)) {
+            rekomendasi.append("• Belum ada catatan aktivitas; kegiatan aktual belum dapat dinilai.\n");
+        } else if (totalAktivitasMenit < 90) {
             rekomendasi.append("• Gerak Aktif: Tingkatkan aktivitas fisik harian dengan jalan kaki 15 menit atau peregangan ringan di sela waktu luang.\n");
         } else {
             rekomendasi.append("• Konsistensi Gerak: Aktivitas fisik Anda sudah aktif dan seimbang dengan ritme harian Anda.");
         }
 
-        EvaluasiMingguan em = new EvaluasiMingguan(0, penggunaId, mingguMulai, rataRataSkor, 
-            rataRataTidur, memenuhiStandarTidur, ringkasan.toString(), rekomendasi.toString());
+        EvaluasiMingguan em = new EvaluasiMingguan(0, access.owner(), mingguMulai, rataRataSkor,
+            hariTidurTercatat > 0 ? rataRataTidur : null, memenuhiStandarTidur, ringkasan.toString(), rekomendasi.toString());
 
-        int id = evaluasiRepo.simpan(em);
+        int id = access.call(() -> evaluasiRepo.simpan(em));
+        if (id <= 0) throw new SQLException("Penyimpanan belum dikonfirmasi.");
         em.setId(id);
-        return em;
+        return access.result(em);
     }
 
     public EvaluasiMingguan getEvaluasiTerbaru(int penggunaId) throws SQLException {
-        return evaluasiRepo.getTerbaruByPengguna(penggunaId);
+        access.owner(penggunaId);
+        return access.row(access.call(() -> evaluasiRepo.getTerbaruByPengguna(penggunaId)), EvaluasiMingguan::getPenggunaId);
     }
 
     public List<EvaluasiMingguan> getDaftarEvaluasi(int penggunaId) throws SQLException {
-        return evaluasiRepo.getAllByPengguna(penggunaId);
+        access.owner(penggunaId);
+        return access.rows(access.call(() -> evaluasiRepo.getAllByPengguna(penggunaId)), EvaluasiMingguan::getPenggunaId);
     }
 }

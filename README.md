@@ -1,7 +1,9 @@
+> **Menjalankan di Linux:** `bash jalankan-linux-macos.sh`. Database lokal pada port 13306 dinyalakan otomatis dan SQL bawaan diimpor saat pertama dijalankan. Lihat [BACA_DULU.md](BACA_DULU.md) untuk konfigurasi terbaru; bagian setup manual di bawah hanya referensi server eksternal.
+
 # SehatHarian 🌿
 **Platform Tantangan Kesehatan Harian yang Adaptif untuk Membangun Kebiasaan Hidup Sehat Berkelanjutan**
 
-[![Java Version](https://img.shields.io/badge/Java-26-orange.svg)](https://openjdk.org/)
+[![Java Version](https://img.shields.io/badge/Java-27-orange.svg)](https://openjdk.org/)
 [![JavaFX](https://img.shields.io/badge/JavaFX-24.0.1-blue.svg)](https://openjfx.io/)
 [![Build Tool](https://img.shields.io/badge/Gradle-9.8.1-brightgreen.svg)](https://gradle.org/)
 [![Database](https://img.shields.io/badge/Database-MySQL%208.0+-4479A1.svg)](https://www.mysql.com/)
@@ -51,7 +53,7 @@ Sesuai dengan *Product Requirements Document* (PRD), fitur-fitur utama aplikasi 
 
 Aplikasi mengadopsi pola arsitektur berlapis (*Layered Architecture / MVC*) pada aplikasi desktop mandiri tanpa server backend API terpisah:
 
-- **Bahasa Pemrograman**: Java 26 (OpenJDK)
+- **Bahasa Pemrograman**: Java 27 (OpenJDK)
 - **UI Framework**: JavaFX 24.0.1 (FXML, CSS Styling, JavaFX Charts, JavaFX Media)
 - **Build Tool**: Gradle 9.8.1 (menggunakan Gradle Wrapper)
 - **Database & Akses Data**: MySQL 8.0+ dengan JDBC API dan `mysql-connector-j` 9.3.0 (`PreparedStatement` query)
@@ -65,7 +67,7 @@ Aplikasi mengadopsi pola arsitektur berlapis (*Layered Architecture / MVC*) pada
 5. **Model (`com.sehatharian.model`)**: Representasi entitas data (`Pengguna`, `Tantangan`, `JadwalTidur`, `Aktivitas`, `Hidrasi`, `KebiasaanMakan`, `EvaluasiMingguan`).
 6. **Utility & Config (`com.sehatharian.config`, `util`)**: Manajemen koneksi database, navigator halaman, sound player, dan animasi UI.
 
-> **Catatan Mode Demo (Fallback)**: Jika MySQL lokal tidak aktif saat aplikasi dijalankan, sistem otomatis mengaktifkan mode demo/fallback (*in-memory*) agar antarmuka desktop tetap dapat diuji coba tanpa *crash*.
+> **Sumber data**: Akun, catatan pribadi dan katalog menggunakan SQL. Kegagalan database tidak mengaktifkan data contoh otomatis. Halaman rekomendasi menyediakan pilihan **Pratinjau Data Contoh** yang diberi label dan tidak menyimpan data ke akun.
 
 ---
 
@@ -108,7 +110,7 @@ SehatHarian2/
 ## ⚙️ Prasyarat Sistem
 
 Sebelum menjalankan proyek, pastikan perangkat Anda telah terpasang:
-1. **Java Development Kit (JDK)**: Versi 26 (atau JDK 21+ yang mendukung preview features JavaFX).
+1. **Java Development Kit (JDK)**: Versi 27, sesuai toolchain proyek.
 2. **MySQL Server**: Versi 8.0 atau lebih baru (dapat menggunakan MySQL bawaan XAMPP, Laragon, atau MySQL Standalone).
 3. **Koneksi Internet**: Dibutuhkan pada saat build pertama kali untuk mengunduh dependensi Maven melalui Gradle.
 
@@ -145,7 +147,7 @@ db.useSSL=false
 db.allowPublicKeyRetrieval=true
 db.serverTimezone=Asia/Jakarta
 ```
-> *Catatan*: Jika MySQL offline, sistem secara otomatis mengaktifkan fail-safe *in-memory data store* sehingga antarmuka desktop tetap dapat dioperasikan.
+> *Catatan*: Saat database tidak tersedia, operasi SQL melaporkan kegagalan. Pratinjau contoh rekomendasi harus dipilih secara eksplisit; fitur akun dan penyimpanan tetap memerlukan database.
 
 ### 4. Menjalankan Aplikasi Desktop
 Jalankan perintah Gradle Wrapper langsung dari direktori root proyek:
@@ -191,3 +193,7 @@ Pengujian otomatis mencakup skenario kunci:
 
 Proyek ini dikembangkan untuk tujuan edukasi dan akademik dalam mata kuliah **Praktikum Pemrograman Berbasis Objek**, PENS PSDKU Lamongan (2026).
 Hak Cipta © 2026 Tim Pengembang SehatHarian.
+
+## Katalog latihan RepDB
+
+Exercise data by [RepDB](https://repdb.co). Katalog lokal menggunakan RepDB Free Tier v1.0, dengan instruksi bahasa Inggris dan ilustrasi statis. [Cara penyiapan dan batas lisensi](docs/repdb/README.md). Data runtime/aset mentah tidak disertakan dalam source/ZIP publik.

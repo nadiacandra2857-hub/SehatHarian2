@@ -1,5 +1,6 @@
 package com.sehatharian.repository;
 
+import com.sehatharian.model.SessionAccess;
 import com.sehatharian.config.DatabaseConfig;
 import com.sehatharian.model.ProgresHarian;
 
@@ -14,20 +15,18 @@ import java.time.LocalDate;
  * ProgresHarianRepository menjalankan query agregasi metrik harian
  * dari tabel riwayat_tantangan, hidrasi, aktivitas, dan jadwal_tidur.
  */
-public class ProgresHarianRepository {
-
-    private final RiwayatTantanganRepository riwayatRepo = new RiwayatTantanganRepository();
-    private final HidrasiRepository hidrasiRepo = new HidrasiRepository();
-    private final AktivitasRepository aktivitasRepo = new AktivitasRepository();
-    private final JadwalTidurRepository tidurRepo = new JadwalTidurRepository();
+public class ProgresHarianRepository extends OwnedRepository {
+    public ProgresHarianRepository(SessionAccess access) { super(access); }
+    public ProgresHarianRepository(SessionAccess access, PenggunaRepository.ConnectionFactory connections) { super(access, connections); }
 
     public ProgresHarian getProgresHari(int penggunaId, LocalDate tanggal) throws SQLException {
+        access.owner(penggunaId);
         ProgresHarian p = new ProgresHarian();
         p.setPenggunaId(penggunaId);
         p.setTanggal(tanggal);
 
-        if (DatabaseConfig.isDatabaseAvailable()) {
-            try (Connection conn = DatabaseConfig.getConnection()) {
+        {
+            try (Connection conn = open()) {
                 // 1. Agregasi Tantangan
                 String sqlTantangan = "SELECT " +
                         "COUNT(*) AS total, " +
@@ -36,7 +35,7 @@ public class ProgresHarianRepository {
                 try (PreparedStatement ps = conn.prepareStatement(sqlTantangan)) {
                     ps.setInt(1, penggunaId);
                     ps.setDate(2, Date.valueOf(tanggal));
-                    try (ResultSet rs = ps.executeQuery()) {
+                    try (ResultSet rs = access.call(ps::executeQuery)) {
                         if (rs.next()) {
                             int total = rs.getInt("total");
                             int selesai = rs.getInt("selesai");
@@ -52,7 +51,7 @@ public class ProgresHarianRepository {
                 try (PreparedStatement ps = conn.prepareStatement(sqlHidrasi)) {
                     ps.setInt(1, penggunaId);
                     ps.setDate(2, Date.valueOf(tanggal));
-                    try (ResultSet rs = ps.executeQuery()) {
+                    try (ResultSet rs = access.call(ps::executeQuery)) {
                         if (rs.next()) {
                             int totalMl = rs.getInt("total_ml");
                             p.setTotalHidrasiMl(totalMl);
@@ -66,7 +65,7 @@ public class ProgresHarianRepository {
                 try (PreparedStatement ps = conn.prepareStatement(sqlAktivitas)) {
                     ps.setInt(1, penggunaId);
                     ps.setDate(2, Date.valueOf(tanggal));
-                    try (ResultSet rs = ps.executeQuery()) {
+                    try (ResultSet rs = access.call(ps::executeQuery)) {
                         if (rs.next()) {
                             int totalMenit = rs.getInt("total_menit");
                             p.setTotalAktivitasMenit(totalMenit);
@@ -80,7 +79,7 @@ public class ProgresHarianRepository {
                 try (PreparedStatement ps = conn.prepareStatement(sqlTidur)) {
                     ps.setInt(1, penggunaId);
                     ps.setDate(2, Date.valueOf(tanggal));
-                    try (ResultSet rs = ps.executeQuery()) {
+                    try (ResultSet rs = access.call(ps::executeQuery)) {
                         if (rs.next()) {
                             p.setDurasiTidurJam(rs.getDouble("durasi_jam"));
                             p.setTidurMemenuhiStandar(rs.getBoolean("memenuhi_standar"));
@@ -98,43 +97,8 @@ public class ProgresHarianRepository {
                 double bobotTidur = (p.getDurasiTidurJam() >= 5.0 ? 15.0 : (p.getDurasiTidurJam() > 0 ? (p.getDurasiTidurJam() / 5.0) * 10.0 : 0.0));
                 p.setSkorKompositHarian(Math.round((bobotTantangan + bobotHidrasi + bobotAktivitas + bobotTidur) * 10.0) / 10.0);
 
-                return p;
-            } catch (SQLException e) {
-                System.err.println("Database error pada getProgresHari: " + e.getMessage());
+                return access.result(p);
             }
         }
-
-        // Fallback in-memory
-        var listTantangan = riwayatRepo.getByTanggal(penggunaId, tanggal);
-        int total = listTantangan.size();
-        int selesai = 0;
-        for (var rt : listTantangan) {
-            if (rt.isSelesai()) selesai++;
-        }
-        p.setTotalTantangan(total);
-        p.setTantanganSelesai(selesai);
-        p.setPersenTantangan(total > 0 ? ((double) selesai / total) * 100.0 : 0.0);
-
-        int totalMl = hidrasiRepo.getTotalMlHariIni(penggunaId, tanggal);
-        p.setTotalHidrasiMl(totalMl);
-        p.setPersenHidrasi(Math.min(((double) totalMl / p.getTargetHidrasiMl()) * 100.0, 100.0));
-
-        int totalMenit = aktivitasRepo.getTotalDurasiHariIni(penggunaId, tanggal);
-        p.setTotalAktivitasMenit(totalMenit);
-        p.setPersenAktivitas(Math.min(((double) totalMenit / p.getTargetAktivitasMenit()) * 100.0, 100.0));
-
-        var jt = tidurRepo.getByTanggal(penggunaId, tanggal);
-        if (jt != null) {
-            p.setDurasiTidurJam(jt.getDurasiJam());
-            p.setTidurMemenuhiStandar(jt.isMemenuhiStandar());
-        }
-
-        double bobotTantangan = p.getPersenTantangan() * 0.40;
-        double bobotHidrasi = p.getPersenHidrasi() * 0.25;
-        double bobotAktivitas = p.getPersenAktivitas() * 0.20;
-        double bobotTidur = (p.getDurasiTidurJam() >= 5.0 ? 15.0 : (p.getDurasiTidurJam() > 0 ? (p.getDurasiTidurJam() / 5.0) * 10.0 : 0.0));
-        p.setSkorKompositHarian(Math.round((bobotTantangan + bobotHidrasi + bobotAktivitas + bobotTidur) * 10.0) / 10.0);
-
-        return p;
     }
 }

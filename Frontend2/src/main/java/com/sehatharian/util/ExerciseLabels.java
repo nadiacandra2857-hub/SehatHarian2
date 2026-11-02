@@ -1,0 +1,14 @@
+package com.sehatharian.util;
+
+import java.util.*;
+
+/** Indonesian UI vocabulary only. Exercise instructions remain unreviewed source English. */
+public final class ExerciseLabels {
+    private ExerciseLabels() {}
+    private static final Map<String,String> LABELS = new HashMap<>();
+    static {
+        String pairs = "beginner=Pemula;intermediate=Menengah;advanced=Lanjutan;strength=Kekuatan;stretching=Peregangan;cardio=Kardio;olympic=Angkat beban Olimpiade;plyometrics=Pliometrik;upper_legs=Paha;back=Punggung;core=Inti tubuh;shoulders=Bahu;upper_arms=Lengan atas;chest=Dada;full_body=Seluruh tubuh;lower_legs=Betis;lower_arms=Lengan bawah;_unspecified=Alat tidak dicantumkan;dumbbell=Dumbel;barbell=Barbel;kettlebell=Kettlebell;cable=Kabel;pull_up_bar=Palang tarik;ez_bar=Barbel EZ;smith_machine=Mesin Smith;flat_bench=Bangku datar;loop_band=Karet lingkar;resistance_band=Karet resistansi;suspension_trainer=Tali suspensi;rings=Gelang senam;bosu_ball=Bola Bosu;stability_ball=Bola keseimbangan;leg_press=Mesin dorong kaki;dip_station=Palang dip;plates=Piring beban;leg_curl=Mesin tekuk kaki;dip_machine=Mesin dip;battle_rope=Tali latihan;lat_pulldown_machine=Mesin tarik punggung;plyo_box=Kotak lompat;hack_squat=Mesin hack squat;treadmill=Treadmill;leg_extension=Mesin lurus kaki;standing_calf_raise_machine=Mesin angkat betis berdiri;shoulder_press_machine=Mesin dorong bahu;plate_loaded_lateral_raise_machine=Mesin angkat bahu samping;sled=Kereta beban;ab_wheel=Roda perut;air_bike=Sepeda kipas;assisted_pullup_machine=Mesin tarik berbantuan;chest_press_machine=Mesin dorong dada;seated_row_machine=Mesin dayung duduk;bicycle=Sepeda;elliptical=Mesin eliptikal;trap_bar=Barbel heksagonal;hip_abduction_machine=Mesin buka paha;hip_adduction_machine=Mesin rapat paha;jump_rope=Tali lompat;back_extension_machine=Mesin ekstensi punggung;bicep_curl_machine=Mesin tekuk bisep;chest_fly_machine=Mesin rentang dada;preacher_curl_machine=Mesin bisep bersandar;reverse_fly_machine=Mesin rentang balik;ab_crunch_machine=Mesin tekuk perut;tricep_extension_machine=Mesin ekstensi trisep;medicine_ball=Bola beban;slam_ball=Bola banting;glute_ham_developer=Bangku glute-ham;pec_deck=Mesin pec deck;donkey_calf_raise_machine=Mesin betis membungkuk;hip_thrust_machine=Mesin dorong pinggul;plate_loaded_dip_machine=Mesin dip berpiring;shrug_machine=Mesin angkat bahu;climbing_rope=Tali panjat;rower=Mesin dayung;sandbag=Karung beban;seated_calf_raise_machine=Mesin betis duduk;ski_erg=Mesin ski;stair_climber=Mesin tangga;stationary_bike=Sepeda statis;wall_ball=Bola dinding;wrist_roller=Penggulung pergelangan";
+        for(String pair:pairs.split(";")) { String[] kv=pair.split("=",2);LABELS.put(kv[0],kv[1]); }
+    }
+    public static String label(String value) { return value==null || value.isEmpty()?"Semua":LABELS.getOrDefault(value,value+" (istilah sumber)"); }
+}

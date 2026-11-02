@@ -1,0 +1,612 @@
+{
+  "generatedAt": "2026-11-01T23:55:00.250Z",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/153.0.8010.12",
+    "revision": "@971a7443b0c9b0a9b2860529b33331b76077ec62",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "jsVersion": "15.3.76.4"
+  },
+  "records": [
+    {
+      "route": "Dashboard",
+      "state": "filled",
+      "width": 1440,
+      "screenshot": "browser-Dashboard-filled-1440.png",
+      "metrics": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 812
+    },
+    {
+      "route": "Dashboard",
+      "state": "filled",
+      "width": 768,
+      "screenshot": "browser-Dashboard-filled-768.png",
+      "metrics": {
+        "width": 768,
+        "scrollWidth": 768,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 812
+    },
+    {
+      "route": "Dashboard",
+      "state": "filled",
+      "width": 390,
+      "screenshot": "browser-Dashboard-filled-390.png",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 827
+    },
+    {
+      "route": "Dashboard",
+      "state": "filled",
+      "width": 360,
+      "screenshot": "browser-Dashboard-filled-360.png",
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 826
+    },
+    {
+      "route": "Dashboard",
+      "state": "empty",
+      "width": 1440,
+      "screenshot": "browser-Dashboard-empty-1440.png",
+      "metrics": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 793
+    },
+    {
+      "route": "Dashboard",
+      "state": "empty",
+      "width": 768,
+      "screenshot": "browser-Dashboard-empty-768.png",
+      "metrics": {
+        "width": 768,
+        "scrollWidth": 768,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 793
+    },
+    {
+      "route": "Dashboard",
+      "state": "empty",
+      "width": 390,
+      "screenshot": "browser-Dashboard-empty-390.png",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 808
+    },
+    {
+      "route": "Dashboard",
+      "state": "empty",
+      "width": 360,
+      "screenshot": "browser-Dashboard-empty-360.png",
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 806
+    },
+    {
+      "route": "Dashboard",
+      "state": "failed",
+      "width": 1440,
+      "screenshot": "browser-Dashboard-failed-1440.png",
+      "metrics": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 709
+    },
+    {
+      "route": "Dashboard",
+      "state": "failed",
+      "width": 768,
+      "screenshot": "browser-Dashboard-failed-768.png",
+      "metrics": {
+        "width": 768,
+        "scrollWidth": 768,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 709
+    },
+    {
+      "route": "Dashboard",
+      "state": "failed",
+      "width": 390,
+      "screenshot": "browser-Dashboard-failed-390.png",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 725
+    },
+    {
+      "route": "Dashboard",
+      "state": "failed",
+      "width": 360,
+      "screenshot": "browser-Dashboard-failed-360.png",
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 723
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "filled",
+      "width": 1440,
+      "screenshot": "browser-CatatanKebiasaan-filled-1440.png",
+      "metrics": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 616
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "filled",
+      "width": 768,
+      "screenshot": "browser-CatatanKebiasaan-filled-768.png",
+      "metrics": {
+        "width": 768,
+        "scrollWidth": 768,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 617
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "filled",
+      "width": 390,
+      "screenshot": "browser-CatatanKebiasaan-filled-390.png",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 633
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "filled",
+      "width": 360,
+      "screenshot": "browser-CatatanKebiasaan-filled-360.png",
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": true,
+      "textLength": 631
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "empty",
+      "width": 1440,
+      "screenshot": "browser-CatatanKebiasaan-empty-1440.png",
+      "metrics": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 614
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "empty",
+      "width": 768,
+      "screenshot": "browser-CatatanKebiasaan-empty-768.png",
+      "metrics": {
+        "width": 768,
+        "scrollWidth": 768,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 577
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "empty",
+      "width": 390,
+      "screenshot": "browser-CatatanKebiasaan-empty-390.png",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 593
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "empty",
+      "width": 360,
+      "screenshot": "browser-CatatanKebiasaan-empty-360.png",
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 591
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "failed",
+      "width": 1440,
+      "screenshot": "browser-CatatanKebiasaan-failed-1440.png",
+      "metrics": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 638
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "failed",
+      "width": 768,
+      "screenshot": "browser-CatatanKebiasaan-failed-768.png",
+      "metrics": {
+        "width": 768,
+        "scrollWidth": 768,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 601
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "failed",
+      "width": 390,
+      "screenshot": "browser-CatatanKebiasaan-failed-390.png",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 604
+    },
+    {
+      "route": "CatatanKebiasaan",
+      "state": "failed",
+      "width": 360,
+      "screenshot": "browser-CatatanKebiasaan-failed-360.png",
+      "metrics": {
+        "width": 360,
+        "scrollWidth": 360,
+        "inputs": [
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          },
+          {
+            "label": null,
+            "type": "text"
+          }
+        ],
+        "renderPending": "0"
+      },
+      "textIncludesExpected": null,
+      "textLength": 596
+    }
+  ]
+}

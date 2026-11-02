@@ -3,7 +3,6 @@ package com.sehatharian.controller;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.RingkasanKonsistensi;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.EvaluasiService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.DateHelper;
@@ -20,10 +19,20 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 
-public class StatistikMingguanController {
+public class StatistikMingguanController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+
+    public StatistikMingguanController(UserSession session) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.evaluasiService = new EvaluasiService(access);
+    }
+
 
     @FXML private VBox statistikRoot;
     @FXML private Label labelPeriodeSubtitle;
+    @FXML private Label labelCoverage;
     @FXML private DatePicker datePickerAkhir;
 
     @FXML private Label metricSkorLabel;
@@ -37,13 +46,13 @@ public class StatistikMingguanController {
     @FXML private BarChart<String, Number> chartHidrasi;
     @FXML private BarChart<String, Number> chartAktivitas;
 
-    private final EvaluasiService evaluasiService = new EvaluasiService();
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
+    private final EvaluasiService evaluasiService;
     private Pengguna penggunaAktif;
     private LocalDate tanggalAkhir;
 
     @FXML
     public void initialize() {
+        access.owner();
         tanggalAkhir = LocalDate.now();
         if (datePickerAkhir != null) {
             datePickerAkhir.setValue(tanggalAkhir);
@@ -63,26 +72,11 @@ public class StatistikMingguanController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-            return;
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-                if (penggunaAktif != null) return;
-            } catch (Exception ignored) {}
-        }
-
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (SQLException ignored) {}
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
     }
 
     public void muatDanTampilkanGrafik() {
+        access.owner();
         if (penggunaAktif == null) return;
         try {
             if (tanggalAkhir == null) {
@@ -96,6 +90,10 @@ public class StatistikMingguanController {
 
             List<RingkasanKonsistensi> data7Hari = evaluasiService.getKonsistensi7HariTerakhir(penggunaAktif.getId(), tanggalAkhir);
 
+            if(labelCoverage!=null) {
+                long days=data7Hari.stream().filter(RingkasanKonsistensi::hasRecordedData).count();
+                labelCoverage.setText(days + "/7 hari memiliki catatan. Hari tanpa catatan tidak berarti nilai nol. Rata-rata indikator memakai periode 7 hari; tidur adalah rencana, bukan pengukuran aktual.");
+            }
             // Bersihkan chart
             if (chartKonsistensi != null) chartKonsistensi.getData().clear();
             if (chartTidur != null) chartTidur.getData().clear();
@@ -106,10 +104,10 @@ public class StatistikMingguanController {
             seriesKonsistensi.setName("Skor Konsistensi");
 
             XYChart.Series<String, Number> seriesTidur = new XYChart.Series<>();
-            seriesTidur.setName("Durasi Tidur (Jam)");
+            seriesTidur.setName("Rencana tidur (jam)");
 
             XYChart.Series<String, Number> seriesStandarTidur = new XYChart.Series<>();
-            seriesStandarTidur.setName("Standar PRD (5 Jam)");
+            seriesStandarTidur.setName("Aturan aplikasi (5 jam)");
 
             XYChart.Series<String, Number> seriesHidrasi = new XYChart.Series<>();
             seriesHidrasi.setName("Asupan Air (ml)");
@@ -128,11 +126,11 @@ public class StatistikMingguanController {
                     String labelHari = rk.getLabelHari() + " (" + rk.getTanggal().getDayOfMonth() + ")";
 
                     // 1. Konsistensi
-                    seriesKonsistensi.getData().add(new XYChart.Data<>(labelHari, rk.getSkorHarianPersen()));
+                    if (rk.hasRecordedData()) seriesKonsistensi.getData().add(new XYChart.Data<>(labelHari, rk.getSkorHarianPersen()));
                     totalSkor += rk.getSkorHarianPersen();
 
                     // 2. Tidur
-                    seriesTidur.getData().add(new XYChart.Data<>(labelHari, rk.getDurasiTidurJam()));
+                    if (rk.isTidurTercatat()) seriesTidur.getData().add(new XYChart.Data<>(labelHari, rk.getDurasiTidurJam()));
                     seriesStandarTidur.getData().add(new XYChart.Data<>(labelHari, 5.0)); // Standar PRD 5 Jam
                     if (rk.getDurasiTidurJam() > 0) {
                         totalJamTidur += rk.getDurasiTidurJam();
@@ -140,11 +138,11 @@ public class StatistikMingguanController {
                     }
 
                     // 3. Hidrasi
-                    seriesHidrasi.getData().add(new XYChart.Data<>(labelHari, rk.getTotalHidrasiMl()));
+                    if (rk.isHidrasiTercatat()) seriesHidrasi.getData().add(new XYChart.Data<>(labelHari, rk.getTotalHidrasiMl()));
                     totalHidrasi += rk.getTotalHidrasiMl();
 
                     // 4. Aktivitas
-                    seriesAktivitas.getData().add(new XYChart.Data<>(labelHari, rk.getDurasiAktivitasMenit()));
+                    if (rk.isAktivitasTercatat()) seriesAktivitas.getData().add(new XYChart.Data<>(labelHari, rk.getDurasiAktivitasMenit()));
                     totalAktivitas += rk.getDurasiAktivitasMenit();
                 }
             }
@@ -161,15 +159,18 @@ public class StatistikMingguanController {
             int countHari = (data7Hari != null && !data7Hari.isEmpty()) ? data7Hari.size() : 7;
             double rataRataSkor = countHari > 0 ? Math.round((totalSkor / countHari) * 10.0) / 10.0 : 0.0;
             if (metricSkorLabel != null) {
-                metricSkorLabel.setText(String.format(Locale.US, "%.0f%%", rataRataSkor));
+                metricSkorLabel.setText(data7Hari.stream().noneMatch(RingkasanKonsistensi::hasRecordedData) ? "Belum tercatat" : String.format(Locale.US, "%.0f%%", rataRataSkor));
             }
 
             double rataRataTidur = countTidur > 0 ? Math.round((totalJamTidur / countTidur) * 10.0) / 10.0 : 0.0;
             if (metricTidurLabel != null) {
-                metricTidurLabel.setText(String.format(Locale.US, "%.1f Jam", rataRataTidur));
+                metricTidurLabel.setText(countTidur == 0 ? "Belum tercatat" : String.format(Locale.US, "%.1f Jam", rataRataTidur));
             }
             if (metricTidurStandarLabel != null) {
-                if (rataRataTidur >= 5.0) {
+                if (countTidur == 0) {
+                    metricTidurStandarLabel.setText("Belum ada catatan tidur; belum dinilai.");
+                    metricTidurStandarLabel.setStyle("");
+                } else if (rataRataTidur >= 5.0) {
                     metricTidurStandarLabel.setText("Status: Memenuhi standar PRD (≥ 5.0 jam)");
                     metricTidurStandarLabel.setStyle("-fx-text-fill: #1E7E34; -fx-font-weight: 600;");
                 } else {
@@ -179,19 +180,30 @@ public class StatistikMingguanController {
             }
 
             if (metricHidrasiLabel != null) {
-                metricHidrasiLabel.setText(String.format(Locale.US, "%,d ml", totalHidrasi));
+                metricHidrasiLabel.setText(data7Hari.stream().noneMatch(RingkasanKonsistensi::isHidrasiTercatat) ? "Belum tercatat" : String.format(Locale.US, "%,d ml", totalHidrasi));
             }
             if (metricAktivitasLabel != null) {
-                metricAktivitasLabel.setText(totalAktivitas + " Menit");
+                metricAktivitasLabel.setText(data7Hari.stream().noneMatch(RingkasanKonsistensi::isAktivitasTercatat) ? "Belum tercatat" : totalAktivitas + " Menit");
             }
 
         } catch (Exception e) {
-            System.err.println("Info muat statistik: " + e.getMessage());
+            access.owner();
+            if (chartKonsistensi != null) chartKonsistensi.getData().clear();
+            if (chartTidur != null) chartTidur.getData().clear();
+            if (chartHidrasi != null) chartHidrasi.getData().clear();
+            if (chartAktivitas != null) chartAktivitas.getData().clear();
+            if(labelCoverage!=null)labelCoverage.setText("Gagal memuat catatan. Segarkan untuk mencoba kembali; kelengkapan belum dapat dinilai.");
+            if(metricHidrasiLabel!=null)metricHidrasiLabel.setText("Gagal memuat");
+            if(metricAktivitasLabel!=null)metricAktivitasLabel.setText("Gagal memuat");
+            if (metricSkorLabel != null) metricSkorLabel.setText("Gagal memuat");
+            if (metricTidurLabel != null) metricTidurLabel.setText("Gagal memuat");
+            if (metricTidurStandarLabel != null) metricTidurStandarLabel.setText("Belum dapat dinilai.");
         }
     }
 
     @FXML
     public void handleUbahPeriode() {
+        access.owner();
         if (datePickerAkhir != null && datePickerAkhir.getValue() != null) {
             tanggalAkhir = datePickerAkhir.getValue();
             muatDanTampilkanGrafik();
@@ -200,9 +212,11 @@ public class StatistikMingguanController {
 
     @FXML
     public void handleSegarkan() {
+        access.owner();
         if (datePickerAkhir != null && datePickerAkhir.getValue() != null) {
             tanggalAkhir = datePickerAkhir.getValue();
         }
         muatDanTampilkanGrafik();
     }
+    @Override public void close() { access.close(); }
 }

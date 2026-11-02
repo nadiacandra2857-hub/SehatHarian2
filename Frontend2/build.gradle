@@ -2,7 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         gradlePluginPortal()
-        maven { url = "https://sandec.jfrog.io/artifactory/repo" }
+        maven { url "https://sandec.jfrog.io/artifactory/repo" }
     }
     dependencies {
         classpath "one.jpro:jpro-gradle-plugin:2026.3.0"
@@ -18,32 +18,36 @@ apply plugin: 'jpro-gradle-plugin'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(26)
+        languageVersion = JavaLanguageVersion.of(27)
     }
 }
 
 repositories {
     mavenCentral()
-    maven { url = "https://sandec.jfrog.io/artifactory/repo" }
+    maven { url "https://sandec.jfrog.io/artifactory/repo" }
 }
 
 def javafxVersion = '24.0.1'
+def osName = System.getProperty('os.name').toLowerCase()
+def arm64 = System.getProperty('os.arch') in ['aarch64', 'arm64']
+def javafxPlatform = osName.contains('win') ? 'win' :
+    (osName.contains('mac') ? (arm64 ? 'mac-aarch64' : 'mac') : (arm64 ? 'linux-aarch64' : 'linux'))
 
 dependencies {
     // JPro WebAPI
     implementation 'one.jpro:jpro-webapi:2026.3.0'
 
-    // JavaFX for Windows x64
+    // JavaFX natives for the current operating system
     implementation "org.openjfx:javafx-base:${javafxVersion}"
-    implementation "org.openjfx:javafx-base:${javafxVersion}:win"
+    implementation "org.openjfx:javafx-base:${javafxVersion}:${javafxPlatform}"
     implementation "org.openjfx:javafx-graphics:${javafxVersion}"
-    implementation "org.openjfx:javafx-graphics:${javafxVersion}:win"
+    implementation "org.openjfx:javafx-graphics:${javafxVersion}:${javafxPlatform}"
     implementation "org.openjfx:javafx-controls:${javafxVersion}"
-    implementation "org.openjfx:javafx-controls:${javafxVersion}:win"
+    implementation "org.openjfx:javafx-controls:${javafxVersion}:${javafxPlatform}"
     implementation "org.openjfx:javafx-fxml:${javafxVersion}"
-    implementation "org.openjfx:javafx-fxml:${javafxVersion}:win"
+    implementation "org.openjfx:javafx-fxml:${javafxVersion}:${javafxPlatform}"
     implementation "org.openjfx:javafx-media:${javafxVersion}"
-    implementation "org.openjfx:javafx-media:${javafxVersion}:win"
+    implementation "org.openjfx:javafx-media:${javafxVersion}:${javafxPlatform}"
 
     // MySQL JDBC Connector
     implementation 'com.mysql:mysql-connector-j:9.3.0'
@@ -61,7 +65,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.sehatharian.MainApp'
+    mainClass = 'com.sehatharian.AppLauncher'
     applicationDefaultJvmArgs = [
         '--enable-preview',
         '--enable-native-access=ALL-UNNAMED'
@@ -79,5 +83,10 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     useJUnitPlatform()
-    jvmArgs(['--enable-preview', '--enable-native-access=ALL-UNNAMED'])
+    jvmArgs(['--enable-preview'])
+}
+
+// Keep local runtime data and launcher lookup rooted in the project directory.
+tasks.named('run', JavaExec) {
+    workingDir rootProject.projectDir
 }

@@ -17,8 +17,9 @@ public class TidurServiceTest {
     private TidurService tidurService;
 
     @BeforeEach
-    void setUp() {
-        tidurService = new TidurService();
+    void setUp() throws SQLException {
+        OwnershipFixtures fixture = new OwnershipFixtures();
+        tidurService = fixture.tidur();
     }
 
     @Test

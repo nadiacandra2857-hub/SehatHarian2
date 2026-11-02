@@ -9,13 +9,12 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * InMemoryDataStore menyediakan state penyimpanan in-memory yang lengkap dan reaktif
- * untuk aplikasi SehatHarian. Ini memastikan seluruh fitur (Autentikasi, Onboarding,
- * Tantangan, Rekomendasi, Catatan Kebiasaan, Jadwal Tidur, Grafik Statistik, dan Evaluasi Mingguan)
- * dapat berjalan dengan lancar tanpa crash atau freeze bahkan saat MySQL server lokal offline.
+/** Legacy fixture retained for compatibility. Application repositories never fall back here.
+ * Explicit read-only catalog previews use DemoCatalog without initializing personal samples.
  */
+@Deprecated
 public class InMemoryDataStore {
+    // Personal-data helpers remain private legacy internals; no production callers.
 
     private static final InMemoryDataStore INSTANCE = new InMemoryDataStore();
 
@@ -149,18 +148,18 @@ public class InMemoryDataStore {
     // ==========================================
     // PENGGUNA & AUTENTIKASI
     // ==========================================
-    public synchronized Pengguna getPengguna() {
+    private synchronized Pengguna getPengguna() {
         return daftarPengguna.isEmpty() ? null : daftarPengguna.get(0);
     }
 
-    public synchronized Pengguna getPenggunaById(int id) {
+    private synchronized Pengguna getPenggunaById(int id) {
         for (Pengguna p : daftarPengguna) {
             if (p.getId() == id) return p;
         }
         return null;
     }
 
-    public synchronized Pengguna findPenggunaByEmail(String email) {
+    private synchronized Pengguna findPenggunaByEmail(String email) {
         if (email == null) return null;
         for (Pengguna p : daftarPengguna) {
             if (email.equalsIgnoreCase(p.getEmail())) return p;
@@ -168,7 +167,7 @@ public class InMemoryDataStore {
         return null;
     }
 
-    public synchronized void updatePengguna(Pengguna p) {
+    private synchronized void updatePengguna(Pengguna p) {
         if (p != null) {
             for (int i = 0; i < daftarPengguna.size(); i++) {
                 if (daftarPengguna.get(i).getId() == p.getId()) {
@@ -180,7 +179,7 @@ public class InMemoryDataStore {
         }
     }
 
-    public synchronized int simpanPenggunaBaru(Pengguna p) {
+    private synchronized int simpanPenggunaBaru(Pengguna p) {
         int id = idGenerator.incrementAndGet();
         p.setId(id);
         p.setCreatedAt(LocalDateTime.now());
@@ -218,7 +217,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public List<RiwayatTantangan> getRiwayatTantanganByTanggal(int penggunaId, LocalDate tanggal) {
+    private List<RiwayatTantangan> getRiwayatTantanganByTanggal(int penggunaId, LocalDate tanggal) {
         List<RiwayatTantangan> res = new ArrayList<>();
         for (RiwayatTantangan rt : daftarRiwayatTantangan) {
             if (rt.getPenggunaId() == penggunaId && rt.getTanggal().equals(tanggal)) {
@@ -231,7 +230,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public List<RiwayatTantangan> getRiwayatTantanganByRange(int penggunaId, LocalDate start, LocalDate end) {
+    private List<RiwayatTantangan> getRiwayatTantanganByRange(int penggunaId, LocalDate start, LocalDate end) {
         List<RiwayatTantangan> res = new ArrayList<>();
         for (RiwayatTantangan rt : daftarRiwayatTantangan) {
             if (rt.getPenggunaId() == penggunaId && !rt.getTanggal().isBefore(start) && !rt.getTanggal().isAfter(end)) {
@@ -244,7 +243,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public boolean updateStatusRiwayatTantangan(int id, String status) {
+    private boolean updateStatusRiwayatTantangan(int id, String status) {
         for (RiwayatTantangan rt : daftarRiwayatTantangan) {
             if (rt.getId() == id) {
                 rt.setStatus(status);
@@ -259,7 +258,7 @@ public class InMemoryDataStore {
         return false;
     }
 
-    public int tambahRiwayatTantangan(RiwayatTantangan rt) {
+    private int tambahRiwayatTantangan(RiwayatTantangan rt) {
         int newId = idGenerator.incrementAndGet();
         rt.setId(newId);
         attachTantanganDetails(rt, rt.getTantanganId());
@@ -267,7 +266,7 @@ public class InMemoryDataStore {
         return newId;
     }
 
-    public boolean existsRiwayatForDate(int penggunaId, int tantanganId, LocalDate tanggal) {
+    private boolean existsRiwayatForDate(int penggunaId, int tantanganId, LocalDate tanggal) {
         for (RiwayatTantangan rt : daftarRiwayatTantangan) {
             if (rt.getPenggunaId() == penggunaId && rt.getTantanganId() == tantanganId && rt.getTanggal().equals(tanggal)) {
                 return true;
@@ -276,7 +275,7 @@ public class InMemoryDataStore {
         return false;
     }
 
-    public boolean hapusRiwayatByPenggunaDanTanggal(int penggunaId, LocalDate tanggal) {
+    private boolean hapusRiwayatByPenggunaDanTanggal(int penggunaId, LocalDate tanggal) {
         return daftarRiwayatTantangan.removeIf(rt -> rt.getPenggunaId() == penggunaId && rt.getTanggal().equals(tanggal));
     }
 
@@ -307,7 +306,7 @@ public class InMemoryDataStore {
     // ==========================================
     // HIDRASI
     // ==========================================
-    public List<Hidrasi> getHidrasiByTanggal(int penggunaId, LocalDate tanggal) {
+    private List<Hidrasi> getHidrasiByTanggal(int penggunaId, LocalDate tanggal) {
         List<Hidrasi> res = new ArrayList<>();
         for (Hidrasi h : daftarHidrasi) {
             if (h.getPenggunaId() == penggunaId && h.getTanggal().equals(tanggal)) {
@@ -318,7 +317,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public List<Hidrasi> getHidrasiByRange(int penggunaId, LocalDate start, LocalDate end) {
+    private List<Hidrasi> getHidrasiByRange(int penggunaId, LocalDate start, LocalDate end) {
         List<Hidrasi> res = new ArrayList<>();
         for (Hidrasi h : daftarHidrasi) {
             if (h.getPenggunaId() == penggunaId && !h.getTanggal().isBefore(start) && !h.getTanggal().isAfter(end)) {
@@ -328,7 +327,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public int tambahHidrasi(Hidrasi h) {
+    private int tambahHidrasi(Hidrasi h) {
         int newId = idGenerator.incrementAndGet();
         h.setId(newId);
         h.setCreatedAt(LocalDateTime.now());
@@ -336,11 +335,11 @@ public class InMemoryDataStore {
         return newId;
     }
 
-    public boolean hapusHidrasi(int id) {
+    private boolean hapusHidrasi(int id) {
         return daftarHidrasi.removeIf(h -> h.getId() == id);
     }
 
-    public int getTotalHidrasiHariIni(int penggunaId, LocalDate tanggal) {
+    private int getTotalHidrasiHariIni(int penggunaId, LocalDate tanggal) {
         int total = 0;
         for (Hidrasi h : daftarHidrasi) {
             if (h.getPenggunaId() == penggunaId && h.getTanggal().equals(tanggal)) {
@@ -353,7 +352,7 @@ public class InMemoryDataStore {
     // ==========================================
     // AKTIVITAS
     // ==========================================
-    public List<Aktivitas> getAktivitasByTanggal(int penggunaId, LocalDate tanggal) {
+    private List<Aktivitas> getAktivitasByTanggal(int penggunaId, LocalDate tanggal) {
         List<Aktivitas> res = new ArrayList<>();
         for (Aktivitas a : daftarAktivitas) {
             if (a.getPenggunaId() == penggunaId && a.getTanggal().equals(tanggal)) {
@@ -364,7 +363,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public List<Aktivitas> getAktivitasByRange(int penggunaId, LocalDate start, LocalDate end) {
+    private List<Aktivitas> getAktivitasByRange(int penggunaId, LocalDate start, LocalDate end) {
         List<Aktivitas> res = new ArrayList<>();
         for (Aktivitas a : daftarAktivitas) {
             if (a.getPenggunaId() == penggunaId && !a.getTanggal().isBefore(start) && !a.getTanggal().isAfter(end)) {
@@ -374,7 +373,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public int tambahAktivitas(Aktivitas a) {
+    private int tambahAktivitas(Aktivitas a) {
         int newId = idGenerator.incrementAndGet();
         a.setId(newId);
         a.setCreatedAt(LocalDateTime.now());
@@ -382,11 +381,11 @@ public class InMemoryDataStore {
         return newId;
     }
 
-    public boolean hapusAktivitas(int id) {
+    private boolean hapusAktivitas(int id) {
         return daftarAktivitas.removeIf(a -> a.getId() == id);
     }
 
-    public int getTotalAktivitasHariIni(int penggunaId, LocalDate tanggal) {
+    private int getTotalAktivitasHariIni(int penggunaId, LocalDate tanggal) {
         int total = 0;
         for (Aktivitas a : daftarAktivitas) {
             if (a.getPenggunaId() == penggunaId && a.getTanggal().equals(tanggal)) {
@@ -399,7 +398,7 @@ public class InMemoryDataStore {
     // ==========================================
     // KEBIASAAN MAKAN
     // ==========================================
-    public List<KebiasaanMakan> getMakanByTanggal(int penggunaId, LocalDate tanggal) {
+    private List<KebiasaanMakan> getMakanByTanggal(int penggunaId, LocalDate tanggal) {
         List<KebiasaanMakan> res = new ArrayList<>();
         for (KebiasaanMakan km : daftarMakan) {
             if (km.getPenggunaId() == penggunaId && km.getTanggal().equals(tanggal)) {
@@ -410,7 +409,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public int tambahMakan(KebiasaanMakan km) {
+    private int tambahMakan(KebiasaanMakan km) {
         int newId = idGenerator.incrementAndGet();
         km.setId(newId);
         km.setCreatedAt(LocalDateTime.now());
@@ -418,14 +417,14 @@ public class InMemoryDataStore {
         return newId;
     }
 
-    public boolean hapusMakan(int id) {
+    private boolean hapusMakan(int id) {
         return daftarMakan.removeIf(m -> m.getId() == id);
     }
 
     // ==========================================
     // JADWAL TIDUR
     // ==========================================
-    public List<JadwalTidur> getRiwayatTidur(int penggunaId, int limit) {
+    private List<JadwalTidur> getRiwayatTidur(int penggunaId, int limit) {
         List<JadwalTidur> res = new ArrayList<>();
         for (JadwalTidur jt : daftarTidur) {
             if (jt.getPenggunaId() == penggunaId) {
@@ -442,12 +441,12 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public JadwalTidur getJadwalTidurTerbaru(int penggunaId) {
+    private JadwalTidur getJadwalTidurTerbaru(int penggunaId) {
         List<JadwalTidur> list = getRiwayatTidur(penggunaId, 1);
         return list.isEmpty() ? null : list.get(0);
     }
 
-    public JadwalTidur getJadwalTidurByTanggal(int penggunaId, LocalDate tanggal) {
+    private JadwalTidur getJadwalTidurByTanggal(int penggunaId, LocalDate tanggal) {
         for (JadwalTidur jt : daftarTidur) {
             if (jt.getPenggunaId() == penggunaId && jt.getTanggal().equals(tanggal)) {
                 return jt;
@@ -456,7 +455,7 @@ public class InMemoryDataStore {
         return null;
     }
 
-    public int simpanJadwalTidur(JadwalTidur jt) {
+    private int simpanJadwalTidur(JadwalTidur jt) {
         int newId = idGenerator.incrementAndGet();
         jt.setId(newId);
         jt.setCreatedAt(LocalDateTime.now());
@@ -465,7 +464,7 @@ public class InMemoryDataStore {
         return newId;
     }
 
-    public boolean setPengingatTidurAktif(int id, boolean aktif) {
+    private boolean setPengingatTidurAktif(int id, boolean aktif) {
         for (JadwalTidur jt : daftarTidur) {
             if (jt.getId() == id) {
                 jt.setPengingatAktif(aktif);
@@ -475,14 +474,14 @@ public class InMemoryDataStore {
         return false;
     }
 
-    public boolean hapusJadwalTidur(int id) {
+    private boolean hapusJadwalTidur(int id) {
         return daftarTidur.removeIf(jt -> jt.getId() == id);
     }
 
     // ==========================================
     // EVALUASI MINGGUAN
     // ==========================================
-    public EvaluasiMingguan getEvaluasiTerbaru(int penggunaId) {
+    private EvaluasiMingguan getEvaluasiTerbaru(int penggunaId) {
         for (EvaluasiMingguan em : daftarEvaluasi) {
             if (em.getPenggunaId() == penggunaId) {
                 return em;
@@ -491,7 +490,7 @@ public class InMemoryDataStore {
         return null;
     }
 
-    public List<EvaluasiMingguan> getAllEvaluasi(int penggunaId) {
+    private List<EvaluasiMingguan> getAllEvaluasi(int penggunaId) {
         List<EvaluasiMingguan> res = new ArrayList<>();
         for (EvaluasiMingguan em : daftarEvaluasi) {
             if (em.getPenggunaId() == penggunaId) {
@@ -502,7 +501,7 @@ public class InMemoryDataStore {
         return res;
     }
 
-    public int simpanEvaluasi(EvaluasiMingguan em) {
+    private int simpanEvaluasi(EvaluasiMingguan em) {
         int newId = idGenerator.incrementAndGet();
         em.setId(newId);
         em.setDibuatPada(LocalDateTime.now());

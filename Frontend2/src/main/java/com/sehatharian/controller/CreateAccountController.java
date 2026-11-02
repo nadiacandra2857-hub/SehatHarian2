@@ -1,7 +1,5 @@
 package com.sehatharian.controller;
 
-import com.sehatharian.model.Pengguna;
-import com.sehatharian.model.UserSession;
 import com.sehatharian.service.AuthService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.SceneNavigator;
@@ -17,9 +15,25 @@ import javafx.scene.layout.HBox;
 
 import java.util.regex.Pattern;
 
-public class CreateAccountController {
+public class CreateAccountController implements AutoCloseable {
+    private final com.sehatharian.model.UserSession session;
+    private final long viewGeneration;
+    private boolean saving, reviewRequired, released;
+    private javafx.animation.PauseTransition registerPulse;
+    private final AuthService authService;
+    private final SceneNavigator navigator;
+
+    public CreateAccountController(com.sehatharian.model.UserSession session, AuthService authService, SceneNavigator navigator) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.viewGeneration = session.getGeneration();
+        this.authService = java.util.Objects.requireNonNull(authService);
+        this.navigator = java.util.Objects.requireNonNull(navigator);
+    }
+
 
     @FXML private ImageView brandLogoView;
+    @FXML private javafx.scene.control.ScrollPane authRoot;
+    @FXML private javafx.scene.layout.VBox authHeroPane;
     @FXML private TextField txtNama;
     @FXML private TextField txtEmail;
 
@@ -51,6 +65,7 @@ public class CreateAccountController {
 
     @FXML
     public void initialize() {
+        com.sehatharian.util.AuthLayoutHelper.bindResponsiveHero(authRoot, authHeroPane);
         try {
             var logoUrl = getClass().getResource("/images/logo.png");
             if (logoUrl != null) {
@@ -111,6 +126,7 @@ public class CreateAccountController {
 
     @FXML
     public void handleRegister() {
+        if (released || session.getGeneration() != viewGeneration || saving || reviewRequired) return;
         resetErrors();
 
         String nama = txtNama.getText() != null ? txtNama.getText().trim() : "";
@@ -171,35 +187,52 @@ public class CreateAccountController {
         // Feedback visual tombol diproses
         AnimationHelper.scaleButtonFeedback(btnRegister);
 
+        saving = true;
+        btnRegister.setDisable(true);
+        btnRegister.setText("Membuat akun…");
+        registerPulse = new javafx.animation.PauseTransition(javafx.util.Duration.millis(80));
+        registerPulse.setOnFinished(event -> { if(!released) performRegister(nama,email,password,confirmPassword,termsChecked); });
+        registerPulse.play();
+    }
+    private void performRegister(String nama,String email,String password,String confirmPassword,boolean termsChecked) {
+        if(released || session.getGeneration()!=viewGeneration)return;
         try {
-            AuthService authService = new AuthService();
-            Pengguna penggunaBaru = authService.register(nama, email, password, confirmPassword, termsChecked);
-
-            // Simpan sesi pengguna
-            UserSession session = UserSession.getInstance();
-            session.setCurrentUser(penggunaBaru);
-            session.setOnboardingSelesai(false);
+            authService.register(nama, email, password, confirmPassword, termsChecked);
 
             // Arahkan ke Onboarding Slide 1
-            SceneNavigator.showOnboarding();
+            navigator.showOnboarding();
         } catch (IllegalStateException e) {
             showInlineError(errEmail, e.getMessage());
             showBannerError(e.getMessage());
         } catch (IllegalArgumentException e) {
             showBannerError(e.getMessage());
+        } catch (com.sehatharian.storage.WriteException e) {
+            if (session.getGeneration() != viewGeneration || released) return;
+            reviewRequired = e.result().needsReview();
+            showBannerError(e.result().message() + " Jika akun sudah dibuat, gunakan halaman Masuk.");
+        } catch (java.sql.SQLException e) {
+            showBannerError("Layanan akun belum tersedia. Pendaftaran belum dapat dikonfirmasi.");
         } catch (Exception e) {
-            showBannerError("Gagal mendaftarkan akun: " + e.getMessage());
+            if (session.getGeneration() == viewGeneration && !released)
+                showBannerError("Pendaftaran belum dapat diproses. Silakan coba lagi.");
+        } finally {
+            Runnable release = () -> {
+                saving = false;
+                if (!released && session.getGeneration() == viewGeneration) { btnRegister.setDisable(reviewRequired); btnRegister.setText(reviewRequired ? "Perlu ditinjau" : "Buat akun"); }
+            };
+            try { javafx.application.Platform.runLater(release); }
+            catch (IllegalStateException closedToolkit) { saving = false; }
         }
     }
 
     @FXML
     public void handleGoToLogin() {
-        SceneNavigator.showLogin();
+        navigator.showLogin();
     }
 
     @FXML
     public void handleBackToLanding() {
-        SceneNavigator.showLandingPage();
+        navigator.showLandingPage();
     }
 
     private void showInlineError(Label label, String message) {
@@ -228,4 +261,5 @@ public class CreateAccountController {
             }
         }
     }
+    @Override public void close() { released = true; if(registerPulse!=null)registerPulse.stop(); }
 }

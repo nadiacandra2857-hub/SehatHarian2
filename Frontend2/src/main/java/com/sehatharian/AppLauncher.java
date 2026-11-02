@@ -1,7 +1,7 @@
 package com.sehatharian;
 
 public class AppLauncher {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         MainApp.main(args);
     }
 }

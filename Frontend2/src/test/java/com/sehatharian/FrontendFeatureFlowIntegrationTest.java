@@ -23,22 +23,24 @@ class FrontendFeatureFlowIntegrationTest {
     private TidurService tidurService;
     private EvaluasiService evaluasiService;
     private PenggunaRepository penggunaRepo;
+    private FrontendOwnershipFixtures fixture;
 
     @BeforeEach
-    void setUp() {
-        tantanganService = new TantanganService();
-        rekomendasiService = new RekomendasiService();
-        kebiasaanService = new KebiasaanService();
-        tidurService = new TidurService();
-        evaluasiService = new EvaluasiService();
-        penggunaRepo = new PenggunaRepository();
-        UserSession.getInstance().logout();
+    void setUp() throws SQLException {
+        fixture = new FrontendOwnershipFixtures();
+        tantanganService = fixture.tantangan();
+        rekomendasiService = fixture.rekomendasi();
+        kebiasaanService = fixture.kebiasaan();
+        tidurService = fixture.tidur();
+        evaluasiService = fixture.evaluasi();
+        penggunaRepo = new PenggunaRepository(fixture.db::connection);
+        fixture.seedEvidence();
     }
 
     @Test
     @DisplayName("Fitur F-01 & F-09: Tantangan harian dapat dimuat dan diselesaikan")
     void testTantanganFlow() throws SQLException {
-        Pengguna p = penggunaRepo.getDefaultPengguna();
+        Pengguna p = penggunaRepo.getById(fixture.access.owner(), fixture.access);
         assertNotNull(p);
 
         LocalDate today = LocalDate.now();
@@ -74,7 +76,7 @@ class FrontendFeatureFlowIntegrationTest {
     @Test
     @DisplayName("Fitur F-03: Pencatatan kebiasaan hidrasi, aktivitas, dan makan")
     void testKebiasaanFlow() throws SQLException {
-        Pengguna p = penggunaRepo.getDefaultPengguna();
+        Pengguna p = penggunaRepo.getById(fixture.access.owner(), fixture.access);
         LocalDate today = LocalDate.now();
 
         // 1. Hidrasi
@@ -98,7 +100,7 @@ class FrontendFeatureFlowIntegrationTest {
     @Test
     @DisplayName("Fitur F-07 & F-08: Pencatatan tidur lintas tengah malam dan standar PRD minimal 5 jam")
     void testTidurFlow() throws SQLException {
-        Pengguna p = penggunaRepo.getDefaultPengguna();
+        Pengguna p = penggunaRepo.getById(fixture.access.owner(), fixture.access);
         LocalDate today = LocalDate.now();
 
         // Catat tidur 23:00 ke 06:30 (7.5 jam -> memenuhi standar)
@@ -116,7 +118,7 @@ class FrontendFeatureFlowIntegrationTest {
     @Test
     @DisplayName("Fitur F-04 & F-05: Perhitungan konsistensi 7 hari dan pembuatan evaluasi mingguan")
     void testEvaluasiDanKonsistensiFlow() throws SQLException {
-        Pengguna p = penggunaRepo.getDefaultPengguna();
+        Pengguna p = penggunaRepo.getById(fixture.access.owner(), fixture.access);
         LocalDate today = LocalDate.now();
 
         List<RingkasanKonsistensi> list7Hari = evaluasiService.getKonsistensi7HariTerakhir(p.getId(), today);
@@ -137,14 +139,14 @@ class FrontendFeatureFlowIntegrationTest {
     @Test
     @DisplayName("Fitur Profil: Pembaruan profil pengguna dan persistensi state")
     void testProfilFlow() throws SQLException {
-        Pengguna p = penggunaRepo.getDefaultPengguna();
+        Pengguna p = penggunaRepo.getById(fixture.access.owner(), fixture.access);
         p.setNama("Nadia Candra Testing");
         p.setWaktuLuangMenit(60);
 
-        boolean updated = penggunaRepo.updatePengguna(p);
+        boolean updated = penggunaRepo.updatePengguna(p, fixture.access);
         assertTrue(updated);
 
-        Pengguna refreshed = penggunaRepo.getDefaultPengguna();
+        Pengguna refreshed = penggunaRepo.getById(fixture.access.owner(), fixture.access);
         assertEquals("Nadia Candra Testing", refreshed.getNama());
         assertEquals(60, refreshed.getWaktuLuangMenit());
     }

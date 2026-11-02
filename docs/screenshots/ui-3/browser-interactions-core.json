@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-11-02T01:46:37.604Z",
+  "proof": [
+    {
+      "test": "keyboardTab",
+      "activeTag": "INPUT"
+    },
+    {
+      "test": "search",
+      "query": "Clean",
+      "resultCount": 3
+    },
+    {
+      "test": "missingImagePlaceholder",
+      "passed": true
+    },
+    {
+      "test": "selection",
+      "name": "Clean",
+      "duration": "17",
+      "additionalWrites": 0
+    },
+    {
+      "test": "failedWriteRetainsForm",
+      "passed": true
+    },
+    {
+      "test": "uncertainBlocksRepeat",
+      "passed": true,
+      "sqlExecutions": 2
+    },
+    {
+      "test": "mobileCatalogDetailScroll",
+      "passed": true,
+      "width": 360
+    },
+    {
+      "test": "staleViewAfterReplacement",
+      "passed": true,
+      "owner": 2
+    }
+  ]
+}

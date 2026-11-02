@@ -3,6 +3,14 @@ package com.sehatharian.model;
 import java.time.LocalDate;
 
 public class RingkasanKonsistensi {
+    private boolean aktivitasTercatat, hidrasiTercatat, tidurTercatat;
+    public boolean isAktivitasTercatat() { return aktivitasTercatat; }
+    public void setAktivitasTercatat(boolean value) { aktivitasTercatat = value; }
+    public boolean isHidrasiTercatat() { return hidrasiTercatat; }
+    public void setHidrasiTercatat(boolean value) { hidrasiTercatat = value; }
+    public boolean isTidurTercatat() { return tidurTercatat; }
+    public void setTidurTercatat(boolean value) { tidurTercatat = value; }
+    public boolean hasRecordedData() { return aktivitasTercatat || hidrasiTercatat || tidurTercatat || totalTantangan > 0; }
     private LocalDate tanggal;
     private String labelHari;
     private int tantanganSelesai;

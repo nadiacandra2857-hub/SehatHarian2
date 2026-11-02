@@ -177,4 +177,30 @@ public class AnimationHelper {
     public static void animateProgressBar(ProgressBar bar, double targetValue) {
         gsapProgressBar(bar, targetValue, 500);
     }
+
+    /**
+     * Micro-interaction: kartu terangkat 2px saat di-hover dan kembali saat kursor keluar.
+     * Aman dipanggil berulang pada node yang sama (handler lama diganti).
+     */
+    public static void installHoverLift(Node node) {
+        if (node == null) return;
+        node.setOnMouseEntered(e -> {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(140), node);
+            tt.setToY(-2);
+            tt.setInterpolator(GSAP_POWER2_OUT);
+            tt.play();
+        });
+        node.setOnMouseExited(e -> {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(160), node);
+            tt.setToY(0);
+            tt.setInterpolator(GSAP_POWER2_OUT);
+            tt.play();
+        });
+    }
+
+    /** Transisi halaman: fade + geser naik ringan (dipakai saat berpindah menu). */
+    public static void pageTransition(Node node) {
+        if (node == null) return;
+        gsapSlideInUp(node, 14, 300);
+    }
 }

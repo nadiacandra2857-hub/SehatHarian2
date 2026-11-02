@@ -3,158 +3,221 @@ package com.sehatharian;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
 import com.sehatharian.service.AuthService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
+import com.sehatharian.service.PenggunaService;
+import com.sehatharian.repository.PenggunaRepository;
+import com.sehatharian.util.PasswordUtil;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.*;
+import org.mindrot.jbcrypt.BCrypt;
 import java.sql.SQLException;
-
+import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AuthServiceTest {
+class AuthServiceTest {
+    private final UserSession session = new UserSession();
+    private AuthFixtures.Accounts accounts;
+    private AuthService auth;
 
-    private AuthService authService;
+    @BeforeEach void setUp() { session.logout(); accounts = new AuthFixtures.Accounts(); auth = new AuthService(accounts, session); }
+    @AfterEach void tearDown() { session.logout(); }
 
-    @BeforeEach
-    void setUp() {
-        authService = new AuthService();
-        UserSession.getInstance().logout();
+    @Test void adminRoleRequiresVerifiedLoginAndEndsOnLogout() throws SQLException {
+        accounts.rows.get(AuthFixtures.EMAIL).setRole("admin");
+        auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        assertTrue(session.isAdmin());
+        assertTrue(session.getActiveUser().isAdmin());
+        session.logout();
+        assertFalse(session.isAdmin());
     }
 
-    @Test
-    @DisplayName("Registrasi berhasil dengan data valid dan password terenkripsi BCrypt")
-    void testRegisterSuccess() throws SQLException {
-        String uniqueEmail = "user_" + System.currentTimeMillis() + "@sehatharian.test";
-        Pengguna user = authService.register(
-            "Budi Santoso",
-            uniqueEmail,
-            "password123",
-            "password123",
-            true
-        );
-
-        assertNotNull(user, "Pengguna baru harus berhasil dibuat");
-        assertTrue(user.getId() > 0, "ID pengguna harus bernilai positif");
-        assertEquals("Budi Santoso", user.getNama());
-        assertEquals(uniqueEmail, user.getEmail());
-        assertFalse(user.isOnboardingSelesai(), "Akun baru harus belum menyelesaikan onboarding");
-        assertTrue(user.getPasswordHash().startsWith("$2a$") || user.getPasswordHash().startsWith("$2b$"),
-                "Kata sandi harus di-hash dengan BCrypt");
-
-        // Periksa UserSession
-        UserSession session = UserSession.getInstance();
-        assertTrue(session.isLoggedIn(), "Sesi pengguna harus berstatus login");
-        assertEquals(user.getId(), session.getUserId());
-        assertFalse(session.isOnboardingSelesai(), "Status sesi onboarding harus belum selesai");
+    @Test void profileRefreshCannotPromoteSession() throws SQLException {
+        auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        Pengguna profile = session.getActiveUser();
+        profile.setRole("admin");
+        session.refreshCurrentUser(profile);
+        assertFalse(session.isAdmin());
+        assertFalse(session.getActiveUser().isAdmin());
     }
 
-    @Test
-    @DisplayName("Registrasi gagal saat syarat & ketentuan tidak disetujui")
-    void testRegisterTermsNotAgreed() {
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
-            authService.register("Budi Santoso", "budi@test.com", "secret123", "secret123", false)
-        );
-        assertTrue(ex.getMessage().contains("syarat & ketentuan"));
+    @Test void testRegisterSuccess() throws SQLException {
+        Pengguna p = auth.register("New User", " New@Example.Test ", "Register Secret 9", "Register Secret 9", true);
+        assertSame(accounts.created, p);
+        assertEquals(38, p.getId());
+        assertEquals("new@example.test", p.getEmail());
+        assertTrue(PasswordUtil.checkPassword("Register Secret 9", p.getPasswordHash()));
+        assertFalse(p.isOnboardingSelesai());
+        assertEquals(p.getId(), session.getUserId());
+        assertTrue(session.isLoggedIn());
+        assertEquals("user", p.getRole());
+        assertFalse(session.isAdmin());
     }
-
-    @Test
-    @DisplayName("Registrasi gagal saat nama kurang dari 3 karakter")
-    void testRegisterInvalidName() {
-        assertThrows(IllegalArgumentException.class, () ->
-            authService.register("Al", "ali@test.com", "secret123", "secret123", true)
-        );
-        assertThrows(IllegalArgumentException.class, () ->
-            authService.register("   ", "ali@test.com", "secret123", "secret123", true)
-        );
+    @Test void testRegisterTermsNotAgreed() {
+        assertThrows(IllegalArgumentException.class, () -> auth.register("New User", "new@example.test", "abcdef", "abcdef", false));
+        assertFalse(session.isLoggedIn());
     }
-
-    @Test
-    @DisplayName("Registrasi gagal saat format email tidak valid")
-    void testRegisterInvalidEmail() {
-        assertThrows(IllegalArgumentException.class, () ->
-            authService.register("Ahmad Fauzi", "ahmadfauzi.com", "secret123", "secret123", true)
-        );
-        assertThrows(IllegalArgumentException.class, () ->
-            authService.register("Ahmad Fauzi", "ahmad@", "secret123", "secret123", true)
-        );
+    @Test void testRegisterInvalidName() {
+        assertThrows(IllegalArgumentException.class, () -> auth.register("Al", "new@example.test", "abcdef", "abcdef", true));
     }
-
-    @Test
-    @DisplayName("Registrasi gagal saat kata sandi kurang dari 6 karakter")
-    void testRegisterShortPassword() {
-        assertThrows(IllegalArgumentException.class, () ->
-            authService.register("Siti Aminah", "siti@test.com", "12345", "12345", true)
-        );
+    @Test void testRegisterInvalidEmail() {
+        assertThrows(IllegalArgumentException.class, () -> auth.register("New User", "invalid", "abcdef", "abcdef", true));
     }
-
-    @Test
-    @DisplayName("Registrasi gagal saat konfirmasi kata sandi tidak cocok")
-    void testRegisterMismatchedPassword() {
-        assertThrows(IllegalArgumentException.class, () ->
-            authService.register("Siti Aminah", "siti@test.com", "password123", "different123", true)
-        );
+    @Test void testRegisterShortPassword() {
+        assertThrows(IllegalArgumentException.class, () -> auth.register("New User", "new@example.test", "12345", "12345", true));
     }
-
-    @Test
-    @DisplayName("Registrasi gagal saat email sudah terdaftar (Pemeriksaan duplikat)")
-    void testRegisterDuplicateEmail() throws SQLException {
-        String email = "duplikat_" + System.currentTimeMillis() + "@sehatharian.test";
-
-        // Registrasi pertama berhasil
-        authService.register("User Pertama", email, "password123", "password123", true);
-
-        // Registrasi kedua dengan email yang sama harus gagal
-        IllegalStateException ex = assertThrows(IllegalStateException.class, () ->
-            authService.register("User Kedua", email, "password123", "password123", true)
-        );
-        assertTrue(ex.getMessage().contains("sudah terdaftar"));
+    @Test void testRegisterMismatchedPassword() {
+        assertThrows(IllegalArgumentException.class, () -> auth.register("New User", "new@example.test", "abcdef", "ABCDEF", true));
     }
-
-    @Test
-    @DisplayName("Login berhasil dengan kredensial yang tepat")
-    void testLoginSuccess() throws SQLException {
-        String email = "login_" + System.currentTimeMillis() + "@sehatharian.test";
-        authService.register("Rina Melati", email, "password123", "password123", true);
-        UserSession.getInstance().logout();
-
-        Pengguna loggedInUser = authService.login(email, "password123");
-        assertNotNull(loggedInUser);
-        assertEquals("Rina Melati", loggedInUser.getNama());
-        assertTrue(UserSession.getInstance().isLoggedIn());
+    @Test void testRegisterDuplicateEmail() {
+        assertThrows(IllegalStateException.class, () -> auth.register("New User", AuthFixtures.EMAIL, "abcdef", "abcdef", true));
+        assertFalse(session.isLoggedIn());
     }
-
-    @Test
-    @DisplayName("Login gagal saat kata sandi salah")
-    void testLoginWrongPassword() throws SQLException {
-        String email = "wrongpass_" + System.currentTimeMillis() + "@sehatharian.test";
-        authService.register("Dewi Lestari", email, "password123", "password123", true);
-        UserSession.getInstance().logout();
-
-        SecurityException ex = assertThrows(SecurityException.class, () ->
-            authService.login(email, "passwordSalah")
-        );
-        assertTrue(ex.getMessage().contains("Kata sandi yang Anda masukkan salah"));
+    @Test void testLoginSuccess() throws SQLException {
+        Pengguna p = auth.login("  FIXTURE@EXAMPLE.TEST ", AuthFixtures.SECRET);
+        assertEquals(37, p.getId());
+        assertEquals(AuthFixtures.EMAIL, accounts.queriedEmail);
+        assertTrue(session.isLoggedIn());
+        assertEquals(p.getId(), session.getUserId());
+        assertEquals(p.getEmail(), session.getUserEmail());
+        assertEquals(p.getNama(), session.getUserName());
+        assertEquals(p.getId(), session.getActiveUser().getId());
     }
-
-    @Test
-    @DisplayName("Login gagal saat akun tidak ditemukan")
-    void testLoginUserNotFound() {
-        SecurityException ex = assertThrows(SecurityException.class, () ->
-            authService.login("nonexistent_" + System.currentTimeMillis() + "@sehatharian.test", "password123")
-        );
-        assertTrue(ex.getMessage().contains("tidak ditemukan"));
+    @Test void testLoginWrongPassword() { rejected("Wrong password"); }
+    @ParameterizedTest @ValueSource(strings = {"password123", "admin123"})
+    void universalPasswordsDoNotOverrideAnotherAccountsHash(String password) { rejected(password); }
+    @ParameterizedTest @ValueSource(strings = {"password123", "admin123", "Password123"})
+    void matchingHashForPreviouslyUniversalPasswordStillWorks(String password) throws SQLException {
+        accounts.rows.put(AuthFixtures.EMAIL, AuthFixtures.account(BCrypt.hashpw(password, BCrypt.gensalt(4))));
+        assertNotNull(auth.login(AuthFixtures.EMAIL, password));
+        assertTrue(session.isLoggedIn());
     }
-
-    @Test
-    @DisplayName("Logout membersihkan seluruh status sesi pengguna")
-    void testLogoutClearsSession() throws SQLException {
-        String email = "logout_" + System.currentTimeMillis() + "@sehatharian.test";
-        authService.register("User Logout", email, "password123", "password123", true);
-        assertTrue(UserSession.getInstance().isLoggedIn());
-
-        authService.logout();
-        assertFalse(UserSession.getInstance().isLoggedIn());
-        assertEquals("", UserSession.getInstance().getUserEmail());
-        assertFalse(UserSession.getInstance().isOnboardingSelesai());
+    @Test void testLoginUserNotFound() {
+        SecurityException missing = assertThrows(SecurityException.class, () -> auth.login("missing@example.test", AuthFixtures.SECRET));
+        SecurityException wrong = assertThrows(SecurityException.class, () -> auth.login(AuthFixtures.EMAIL, "incorrect"));
+        assertEquals(AuthService.INVALID_CREDENTIALS, missing.getMessage());
+        assertEquals(missing.getMessage(), wrong.getMessage());
+        assertFalse(session.isLoggedIn());
+    }
+    @ParameterizedTest @NullAndEmptySource
+    @ValueSource(strings = {" ", "not-a-hash", "$2a$04$short", "$2a$99$....................................................."})
+    void absentOrBrokenHashRejectsWithoutAuthenticating(String hash) {
+        accounts.rows.put(AuthFixtures.EMAIL, AuthFixtures.account(hash));
+        rejected(AuthFixtures.SECRET);
+    }
+    @ParameterizedTest @ValueSource(strings = {"$2b$", "$2y$", "$2x$"})
+    void unsupportedRevisionRejectsEvenWithOtherwiseMatchingHash(String revision) {
+        accounts.rows.put(AuthFixtures.EMAIL, AuthFixtures.account(revision + AuthFixtures.HASH.substring(4)));
+        rejected(AuthFixtures.SECRET);
+    }
+    @ParameterizedTest @NullAndEmptySource @ValueSource(strings = {" ", "Fixture User", "invalid@", "missing-domain"})
+    void invalidIdentityDoesNotReadRepository(String identity) {
+        assertThrows(IllegalArgumentException.class, () -> auth.login(identity, AuthFixtures.SECRET));
+        assertEquals(0, accounts.reads);
+        assertFalse(session.isLoggedIn());
+    }
+    @ParameterizedTest @NullAndEmptySource
+    void absentPasswordDoesNotReadRepository(String password) {
+        assertThrows(IllegalArgumentException.class, () -> auth.login(AuthFixtures.EMAIL, password));
+        assertEquals(0, accounts.reads);
+        assertFalse(session.isLoggedIn());
+    }
+    @Test void identityNormalizationDoesNotDependOnOperatingSystemLocale() throws SQLException {
+        Locale previous = Locale.getDefault();
+        try {
+            Locale.setDefault(Locale.forLanguageTag("tr-TR"));
+            assertNotNull(auth.login("FIXTURE@EXAMPLE.TEST", AuthFixtures.SECRET));
+            assertEquals(AuthFixtures.EMAIL, accounts.queriedEmail);
+        } finally { Locale.setDefault(previous); }
+    }
+    @Test void passwordIsNeverTrimmedOrCaseNormalized() throws SQLException {
+        String password = "  Mixed Case Secret  ";
+        accounts.rows.put(AuthFixtures.EMAIL, AuthFixtures.account(BCrypt.hashpw(password, BCrypt.gensalt(4))));
+        rejected(password.trim());
+        rejected(password.toLowerCase(Locale.ROOT));
+        assertNotNull(auth.login(AuthFixtures.EMAIL, password));
+    }
+    @Test void readFailurePropagatesAndCannotAuthenticateDemo() {
+        accounts.readFailure = new SQLException("synthetic infrastructure failure");
+        assertSame(accounts.readFailure, assertThrows(SQLException.class, () -> auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET)));
+        assertFalse(session.isLoggedIn());
+        assertNull(session.getActiveUser());
+    }
+    @Test void failedLoginPreservesExistingVerifiedIdentity() throws SQLException {
+        auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        accounts.rows.put("other@example.test", new Pengguna(99, "Other User", "other@example.test", AuthFixtures.HASH, null, "dewasa", "luar_rumah", 30, true));
+        assertThrows(SecurityException.class, () -> auth.login("other@example.test", "incorrect"));
+        assertEquals(37, session.getUserId());
+        assertEquals(AuthFixtures.EMAIL, session.getUserEmail());
+        accounts.readFailure = new SQLException("synthetic failure");
+        assertThrows(SQLException.class, () -> auth.login("other@example.test", AuthFixtures.SECRET));
+        assertEquals(37, session.getUserId());
+    }
+    @Test void invalidRepositoryIdentityCannotAuthenticate() {
+        accounts.rows.put(AuthFixtures.EMAIL, new Pengguna(0, "Invalid", AuthFixtures.EMAIL, AuthFixtures.HASH, null, "dewasa", "luar_rumah", 30, true));
+        rejected(AuthFixtures.SECRET);
+        accounts.rows.put(AuthFixtures.EMAIL, new Pengguna(99, "Other", "other@example.test", AuthFixtures.HASH, null, "dewasa", "luar_rumah", 30, true));
+        rejected(AuthFixtures.SECRET);
+    }
+    @Test void testLogoutClearsSession() throws SQLException {
+        auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        auth.logout();
+        assertFalse(session.isLoggedIn());
+        assertNull(session.getActiveUser());
+        assertEquals(0, session.getUserId());
+        assertEquals("", session.getUserEmail());
+        assertFalse(session.isOnboardingSelesai());
+    }
+    @Test void registrationReadFailureCannotAuthenticate() {
+        accounts.readFailure = new SQLException("synthetic read failure");
+        assertThrows(SQLException.class, () -> auth.register("New User", "new@example.test", "abcdef", "abcdef", true));
+        assertNull(accounts.created);
+        assertFalse(session.isLoggedIn());
+    }
+    @Test void registrationWriteFailureCannotAuthenticate() {
+        accounts.writeFailure = new SQLException("synthetic write failure");
+        assertThrows(SQLException.class, () -> auth.register("New User", "new@example.test", "abcdef", "abcdef", true));
+        assertFalse(session.isLoggedIn());
+        assertNull(session.getActiveUser());
+    }
+    @ParameterizedTest @ValueSource(ints = {0, -1})
+    void registrationRequiresPositiveCommittedId(int id) {
+        accounts.createId = id;
+        assertThrows(SQLException.class, () -> auth.register("New User", "new@example.test", "abcdef", "abcdef", true));
+        assertFalse(session.isLoggedIn());
+    }
+    @Test void failedRegistrationPreservesPreviousIdentity() throws SQLException {
+        auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        accounts.writeFailure = new SQLException("synthetic failure");
+        assertThrows(SQLException.class, () -> auth.register("New User", "new@example.test", "abcdef", "abcdef", true));
+        assertEquals(37, session.getUserId());
+        assertEquals(AuthFixtures.EMAIL, session.getUserEmail());
+    }
+    @Test void activeUserLookupDoesNotRecoverDefaultIdentity() throws SQLException {
+        PenggunaRepository noFallback = new PenggunaRepository(() -> {
+            throw new AssertionError("No database access during active-user lookup");
+        }) {
+        };
+        assertNull(new PenggunaService(noFallback, session).getPenggunaAktif());
+        assertFalse(session.isLoggedIn());
+        assertThrows(SecurityException.class, () -> session.requireActiveUser());
+    }
+    @Test void profileRefreshAndMutableCopiesCannotCreateOrReplaceSession() throws SQLException {
+        assertThrows(SecurityException.class, () -> session.refreshCurrentUser(AuthFixtures.account(AuthFixtures.HASH)));
+        auth.login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        Pengguna copy = session.getActiveUser(); copy.setId(99);
+        assertEquals(37, session.getActiveUser().getId());
+        assertThrows(SecurityException.class, () -> session.refreshCurrentUser(copy));
+        assertEquals(37, session.getUserId());
+    }
+    @Test void unverifiedSessionShortcutsAreNotPublicApi() {
+        for (var method : UserSession.class.getMethods()) {
+            assertFalse(java.util.Set.of("login", "registerNewAccount", "setCurrentUser", "setLoggedIn", "setUserId", "setUserEmail", "setUserName").contains(method.getName()));
+        }
+        assertEquals(0, AuthService.VerifiedAccount.class.getConstructors().length);
+    }
+    private void rejected(String password) {
+        assertEquals(AuthService.INVALID_CREDENTIALS, assertThrows(SecurityException.class, () -> auth.login(AuthFixtures.EMAIL, password)).getMessage());
+        assertFalse(session.isLoggedIn());
+        assertNull(session.getActiveUser());
     }
 }

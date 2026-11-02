@@ -1,3 +1,5 @@
+> Konfigurasi peluncur terbaru: database lokal otomatis di `127.0.0.1:13306/sehatharian_db`. Jalankan `bash jalankan-linux-macos.sh` dari root proyek. Lihat [BACA_DULU.md](../BACA_DULU.md); setup manual di bawah hanya untuk server eksternal.
+
 # Frontend SehatHarian (`Frontend2`)
 
 Modul frontend antarmuka pengguna untuk aplikasi desktop **SehatHarian**, dibangun menggunakan **JavaFX 24.0.1** dengan arsitektur FXML, JavaFX CSS modern, dan terintegrasi langsung dengan modul internal `Backend2`.
@@ -6,7 +8,7 @@ Modul frontend antarmuka pengguna untuk aplikasi desktop **SehatHarian**, dibang
 
 ## 1. Tech Stack Frontend
 
-- **Bahasa Pemrograman:** Java 26 (Preview enabled)
+- **Bahasa Pemrograman:** Java 27 (Preview enabled)
 - **UI Framework:** JavaFX 24.0.1 (`javafx-base`, `javafx-graphics`, `javafx-controls`, `javafx-fxml`, `javafx-media`)
 - **Plugin Pendukung:** JPro Gradle Plugin `2026.3.0`
 - **Build Tool:** Gradle 9.8.1 (Subproject dari root multi-project `SehatHarian`)

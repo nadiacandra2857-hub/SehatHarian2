@@ -1,8 +1,9 @@
 package com.sehatharian.repository;
 
+import com.sehatharian.storage.WriteTransaction;
+import com.sehatharian.model.SessionAccess;
 import com.sehatharian.config.DatabaseConfig;
 import com.sehatharian.model.Pengguna;
-import com.sehatharian.model.UserSession;
 
 import java.sql.*;
 
@@ -11,239 +12,160 @@ import java.sql.*;
  * Mendukung autentikasi kredensial, verifikasi email unik, pembaruan profil,
  * serta penyimpanan preferensi onboarding ke MySQL.
  */
-public class PenggunaRepository {
+public class PenggunaRepository implements AccountRepository {
 
-    public Pengguna getDefaultPengguna() throws SQLException {
-        if (DatabaseConfig.isDatabaseAvailable()) {
-            String sql = "SELECT id, nama, email, password_hash, tanggal_lahir, golongan_usia, " +
-                         "golongan_kesibukan, waktu_luang_menit, onboarding_selesai, created_at " +
-                         "FROM pengguna ORDER BY id ASC LIMIT 1";
-            try (Connection conn = DatabaseConfig.getConnection();
-                 PreparedStatement ps = conn.prepareStatement(sql);
-                 ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return mapResultSetToPengguna(rs);
-                }
-            } catch (SQLException e) {
-                System.err.println("Database offline pada getDefaultPengguna: " + e.getMessage());
-            }
-        }
+    @FunctionalInterface
+    public interface ConnectionFactory {
+        Connection open() throws SQLException;
+    }
+    private final ConnectionFactory accountConnections;
 
-        // Fallback in-memory
-        UserSession session = UserSession.getInstance();
-        Pengguna p = InMemoryDataStore.getInstance().getPengguna();
-        if (p == null) {
-            p = new Pengguna(1, "Nadia Ayu Candra", "nadia@sehatharian.local", "",
-                    java.time.LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 45, true);
-            InMemoryDataStore.getInstance().updatePengguna(p);
-        }
-        if (session.isLoggedIn() && session.getUserName() != null && !session.getUserName().trim().isEmpty()) {
-            p.setNama(session.getUserName().trim());
-        }
-        return p;
+    public PenggunaRepository() { this(DatabaseConfig::getConnection); }
+
+    /** Connection seam for isolated JDBC contracts; account and owned profile paths use this factory. */
+    public PenggunaRepository(ConnectionFactory accountConnections) {
+        this.accountConnections = java.util.Objects.requireNonNull(accountConnections);
     }
 
-    public Pengguna getById(int id) throws SQLException {
-        if (DatabaseConfig.isDatabaseAvailable()) {
-            String sql = "SELECT id, nama, email, password_hash, tanggal_lahir, golongan_usia, " +
-                         "golongan_kesibukan, waktu_luang_menit, onboarding_selesai, created_at " +
-                         "FROM pengguna WHERE id = ?";
-            try (Connection conn = DatabaseConfig.getConnection();
-                 PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setInt(1, id);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next()) {
-                        return mapResultSetToPengguna(rs);
-                    }
-                }
-            } catch (SQLException e) {
-                System.err.println("Database error pada getById: " + e.getMessage());
-            }
+    public Pengguna getById(int id, SessionAccess access) throws SQLException {
+        access.owner(id);
+        String sql = "SELECT id, role, nama, email, password_hash, tanggal_lahir, golongan_usia, golongan_kesibukan, waktu_luang_menit, onboarding_selesai, created_at FROM pengguna WHERE id = ?";
+        try (Connection conn = OwnedRepository.open(access, accountConnections); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, access.owner(id));
+            try (ResultSet rs = access.call(ps::executeQuery)) { return access.result(rs.next() ? mapResultSetToPengguna(rs) : null); }
         }
-        return InMemoryDataStore.getInstance().getPenggunaById(id);
     }
 
+    @Override
     public Pengguna findByEmail(String email) throws SQLException {
         if (email == null) return null;
-        String trimmed = email.trim();
-
-        if (DatabaseConfig.isDatabaseAvailable()) {
-            String sql = "SELECT id, nama, email, password_hash, tanggal_lahir, golongan_usia, " +
-                         "golongan_kesibukan, waktu_luang_menit, onboarding_selesai, created_at " +
-                         "FROM pengguna WHERE LOWER(email) = LOWER(?)";
-            try (Connection conn = DatabaseConfig.getConnection();
-                 PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setString(1, trimmed);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next()) {
-                        return mapResultSetToPengguna(rs);
-                    }
-                }
-            } catch (SQLException e) {
-                System.err.println("Database error pada findByEmail: " + e.getMessage());
+        String sql = "SELECT id, role, nama, email, password_hash, tanggal_lahir, golongan_usia, " +
+                "golongan_kesibukan, waktu_luang_menit, onboarding_selesai, created_at " +
+                "FROM pengguna WHERE LOWER(email) = LOWER(?)";
+        try (Connection conn = accountConnections.open();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email.trim());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
+                Pengguna pengguna = mapResultSetToPengguna(rs);
+                if (rs.next()) throw new SQLException("Identitas akun tidak unik.");
+                return pengguna;
             }
         }
-        return InMemoryDataStore.getInstance().findPenggunaByEmail(trimmed);
     }
 
+    @Override
     public boolean existsByEmail(String email) throws SQLException {
-        if (email == null) return false;
-        String trimmed = email.trim();
+        // Share the strict SQL-only lookup, including failure and duplicate handling.
+        return findByEmail(email) != null;
+    }
 
-        if (DatabaseConfig.isDatabaseAvailable()) {
-            String sql = "SELECT COUNT(*) FROM pengguna WHERE LOWER(email) = LOWER(?)";
-            try (Connection conn = DatabaseConfig.getConnection();
-                 PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setString(1, trimmed);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next()) {
-                        return rs.getInt(1) > 0;
+    @Override
+    public int createPengguna(Pengguna p) throws SQLException {
+        WriteTransaction tx = WriteTransaction.accountCreation(accountConnections);
+        try {
+            String sql = "INSERT INTO pengguna (nama, email, password_hash, tanggal_lahir, " +
+                    "golongan_usia, golongan_kesibukan, waktu_luang_menit, onboarding_selesai) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            Connection conn = tx.open();
+
+            try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, p.getNama());
+                ps.setString(2, p.getEmail());
+                ps.setString(3, p.getPasswordHash());
+                if (p.getTanggalLahir() == null) ps.setNull(4, Types.DATE);
+                else ps.setDate(4, Date.valueOf(p.getTanggalLahir()));
+                ps.setString(5, p.getGolonganUsia());
+                ps.setString(6, p.getGolonganKesibukan());
+                ps.setInt(7, p.getWaktuLuangMenit());
+                ps.setBoolean(8, p.isOnboardingSelesai());
+                if (tx.execute(ps) != 1) throw new SQLException("Akun belum tersimpan.");
+                int id;
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (!rs.next() || (id = rs.getInt(1)) <= 0) {
+                        throw new SQLException("ID akun belum dikonfirmasi.");
                     }
                 }
-            } catch (SQLException e) {
-                System.err.println("Database error pada existsByEmail: " + e.getMessage());
+                return tx.confirm(id);
             }
-        }
-        return InMemoryDataStore.getInstance().findPenggunaByEmail(trimmed) != null;
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
-    public int createPengguna(Pengguna p) throws SQLException {
-        // Simpan in-memory untuk sinkronisasi state fallback
-        int inMemoryId = InMemoryDataStore.getInstance().simpanPenggunaBaru(p);
+    public boolean updatePengguna(Pengguna p, SessionAccess access) throws SQLException {
+        access.owner(p.getId());
 
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            p.setId(inMemoryId);
-            return inMemoryId;
-        }
-
-        String sql = "INSERT INTO pengguna (nama, email, password_hash, tanggal_lahir, " +
-                     "golongan_usia, golongan_kesibukan, waktu_luang_menit, onboarding_selesai) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, p.getNama());
-            ps.setString(2, p.getEmail());
-            ps.setString(3, p.getPasswordHash());
-            if (p.getTanggalLahir() != null) {
-                ps.setDate(4, Date.valueOf(p.getTanggalLahir()));
-            } else {
-                ps.setNull(4, Types.DATE);
-            }
-            ps.setString(5, p.getGolonganUsia() != null ? p.getGolonganUsia() : "dewasa");
-            ps.setString(6, p.getGolonganKesibukan() != null ? p.getGolonganKesibukan() : "luar_rumah");
-            ps.setInt(7, p.getWaktuLuangMenit() > 0 ? p.getWaktuLuangMenit() : 30);
-            ps.setBoolean(8, p.isOnboardingSelesai());
-
-            ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
-                if (rs.next()) {
-                    int generatedId = rs.getInt(1);
-                    p.setId(generatedId);
-                    return generatedId;
+        WriteTransaction tx = new WriteTransaction(access, accountConnections);
+        try {
+            String sql = "UPDATE pengguna SET nama = ?, tanggal_lahir = ?, golongan_usia = ?, " +
+                         "golongan_kesibukan = ?, waktu_luang_menit = ?, onboarding_selesai = ? WHERE id = ?";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, p.getNama());
+                if (p.getTanggalLahir() != null) {
+                    ps.setDate(2, Date.valueOf(p.getTanggalLahir()));
+                } else {
+                    ps.setNull(2, Types.DATE);
                 }
+                ps.setString(3, p.getGolonganUsia());
+                ps.setString(4, p.getGolonganKesibukan());
+                ps.setInt(5, p.getWaktuLuangMenit());
+                ps.setBoolean(6, p.isOnboardingSelesai());
+                ps.setInt(7, access.owner(p.getId()));
+                return tx.affected(tx.execute(ps));
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada createPengguna: " + e.getMessage());
-            throw e;
-        }
-
-        p.setId(inMemoryId);
-        return inMemoryId;
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
-    public boolean updatePengguna(Pengguna p) throws SQLException {
-        InMemoryDataStore.getInstance().updatePengguna(p);
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return true;
-        }
+    public boolean updateOnboarding(int penggunaId, int waktuLuangMenit, String kesibukan, String usia, boolean selesai, SessionAccess access) throws SQLException {
+        access.owner(penggunaId);
 
-        String sql = "UPDATE pengguna SET nama = ?, tanggal_lahir = ?, golongan_usia = ?, " +
-                     "golongan_kesibukan = ?, waktu_luang_menit = ?, onboarding_selesai = ? WHERE id = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, p.getNama());
-            if (p.getTanggalLahir() != null) {
-                ps.setDate(2, Date.valueOf(p.getTanggalLahir()));
-            } else {
-                ps.setNull(2, Types.DATE);
+        WriteTransaction tx = new WriteTransaction(access, accountConnections);
+        try {
+            String sql = "UPDATE pengguna SET waktu_luang_menit = ?, golongan_kesibukan = ?, " +
+                         "golongan_usia = ?, onboarding_selesai = ? WHERE id = ?";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, waktuLuangMenit);
+                ps.setString(2, kesibukan);
+                ps.setString(3, usia);
+                ps.setBoolean(4, selesai);
+                ps.setInt(5, access.owner(penggunaId));
+                return tx.affected(tx.execute(ps));
             }
-            ps.setString(3, p.getGolonganUsia());
-            ps.setString(4, p.getGolonganKesibukan());
-            ps.setInt(5, p.getWaktuLuangMenit());
-            ps.setBoolean(6, p.isOnboardingSelesai());
-            ps.setInt(7, p.getId());
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Database error pada updatePengguna: " + e.getMessage());
-            throw e;
-        }
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
-    public boolean updateOnboarding(int penggunaId, int waktuLuangMenit, String kesibukan, String usia, boolean selesai) throws SQLException {
-        Pengguna p = getById(penggunaId);
-        if (p != null) {
-            p.setWaktuLuangMenit(waktuLuangMenit);
-            p.setGolonganKesibukan(kesibukan);
-            p.setGolonganUsia(usia);
-            p.setOnboardingSelesai(selesai);
-            InMemoryDataStore.getInstance().updatePengguna(p);
-        }
+    public boolean updatePassword(int penggunaId, String newPasswordHash, SessionAccess access) throws SQLException {
+        access.owner(penggunaId);
 
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return true;
-        }
-
-        String sql = "UPDATE pengguna SET waktu_luang_menit = ?, golongan_kesibukan = ?, " +
-                     "golongan_usia = ?, onboarding_selesai = ? WHERE id = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, waktuLuangMenit);
-            ps.setString(2, kesibukan);
-            ps.setString(3, usia);
-            ps.setBoolean(4, selesai);
-            ps.setInt(5, penggunaId);
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Database error pada updateOnboarding: " + e.getMessage());
-            throw e;
-        }
-    }
-
-    public boolean updatePassword(int penggunaId, String newPasswordHash) throws SQLException {
-        Pengguna p = getById(penggunaId);
-        if (p != null) {
-            p.setPasswordHash(newPasswordHash);
-            InMemoryDataStore.getInstance().updatePengguna(p);
-        }
-
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return true;
-        }
-
-        String sql = "UPDATE pengguna SET password_hash = ? WHERE id = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, newPasswordHash);
-            ps.setInt(2, penggunaId);
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Database error pada updatePassword: " + e.getMessage());
-            throw e;
-        }
+        WriteTransaction tx = new WriteTransaction(access, accountConnections);
+        try {
+            String sql = "UPDATE pengguna SET password_hash = ? WHERE id = ?";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, newPasswordHash);
+                ps.setInt(2, access.owner(penggunaId));
+                return tx.affected(tx.execute(ps));
+            }
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
     private Pengguna mapResultSetToPengguna(ResultSet rs) throws SQLException {
         Pengguna p = new Pengguna();
         p.setId(rs.getInt("id"));
+        p.setRole(rs.getString("role"));
         p.setNama(rs.getString("nama"));
 
-        try {
-            p.setEmail(rs.getString("email"));
-        } catch (SQLException ignored) {}
-
-        try {
-            p.setPasswordHash(rs.getString("password_hash"));
-        } catch (SQLException ignored) {}
+        p.setEmail(rs.getString("email"));
+        p.setPasswordHash(rs.getString("password_hash"));
 
         Date tgl = rs.getDate("tanggal_lahir");
         if (tgl != null) {

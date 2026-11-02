@@ -1,6 +1,9 @@
 package com.sehatharian;
 
 import javafx.application.Platform;
+import com.sehatharian.context.ApplicationContext;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Pengujian Validasi Seluruh FXML dan Inisialisasi Controller")
 class AllFxmlViewsLoadTest {
+    private ApplicationContext context;
 
     @BeforeAll
     static void initJFX() throws InterruptedException {
@@ -28,6 +32,9 @@ class AllFxmlViewsLoadTest {
         }
         assertTrue(latch.await(5, TimeUnit.SECONDS));
     }
+
+    @BeforeEach void clearSession() { context = FrontendAuthFixture.context(); }
+    @AfterEach void cleanSession() { context.session().logout(); }
 
     @ParameterizedTest
     @ValueSource(strings = {
@@ -45,7 +52,7 @@ class AllFxmlViewsLoadTest {
         "/fxml/ProfilPengaturanView.fxml",
         "/fxml/RekomendasiView.fxml"
     })
-    @DisplayName("Memuat FXML dan memeriksa tidak ada error parsing atau binding controller")
+    @DisplayName("Halaman publik dimuat; halaman pribadi menolak sesi anonim")
     void testFxmlLoad(String fxmlPath) throws Exception {
         CountDownLatch latch = new CountDownLatch(1);
         final Throwable[] error = new Throwable[1];
@@ -54,7 +61,7 @@ class AllFxmlViewsLoadTest {
             try {
                 var url = getClass().getResource(fxmlPath);
                 assertNotNull(url, "File FXML harus ditemukan: " + fxmlPath);
-                FXMLLoader loader = new FXMLLoader(url);
+                FXMLLoader loader = context.navigator().newLoader(fxmlPath);
                 Parent root = loader.load();
                 assertNotNull(root, "Root node tidak boleh null untuk: " + fxmlPath);
                 assertNotNull(loader.getController(), "Controller tidak boleh null untuk: " + fxmlPath);
@@ -67,8 +74,13 @@ class AllFxmlViewsLoadTest {
 
         boolean completed = latch.await(10, TimeUnit.SECONDS);
         assertTrue(completed, "Loading FXML timeout untuk: " + fxmlPath);
-        if (error[0] != null) {
-            error[0].printStackTrace();
+        boolean protectedPage = !java.util.Set.of("/fxml/LandingPageView.fxml", "/fxml/LoginView.fxml",
+                "/fxml/CreateAccountView.fxml").contains(fxmlPath);
+        if (protectedPage) {
+            Throwable cause = error[0];
+            while (cause != null && !(cause instanceof SecurityException)) cause = cause.getCause();
+            assertTrue(cause instanceof SecurityException, "Protected FXML must reject an anonymous identity");
+        } else if (error[0] != null) {
             throw new RuntimeException("Error memuat FXML: " + fxmlPath, error[0]);
         }
     }

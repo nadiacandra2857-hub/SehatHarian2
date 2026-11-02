@@ -9,99 +9,98 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import com.sehatharian.util.AdaptiveRow?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" styleClass="main-content-scroll" stylesheets="@../css/styles.css"
+<ScrollPane fitToWidth="true" styleClass="main-content-scroll, ui2" stylesheets="@../css/styles.css, @../css/sehat-theme.css, @../css/ui2.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sehatharian.controller.ProfilPengaturanController">
+            fx:controller="com.sehatharian.controller.ProfilPengaturanController" minWidth="0">
 
-    <VBox fx:id="profilRoot" spacing="20" styleClass="content-pane">
+    <VBox fx:id="profilRoot" spacing="18" styleClass="content-pane">
 
-        <!-- 1. HEADER PROFILE AVATAR SESUAI GAMBAR MOCKUP (BOTTOM RIGHT SCREEN) -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 22px 24px;">
-            <StackPane styleClass="header-avatar-circle" style="-fx-pref-width: 60px; -fx-pref-height: 60px; -fx-min-width: 60px; -fx-min-height: 60px; -fx-background-radius: 30px; -fx-border-radius: 30px;">
-                <Label text="👩" style="-fx-font-size: 26px;"/>
-            </StackPane>
-            <VBox spacing="3" HBox.hgrow="ALWAYS">
-                <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Label text="PROFIL &amp; PENGATURAN" styleClass="badge-selesai"/>
-                    <Label text="• Terverifikasi Aktif" styleClass="card-subtitle" style="-fx-font-size: 11px;"/>
-                </HBox>
-                <Label text="Nadia Ayu Candra" styleClass="page-title" style="-fx-font-size: 22px;"/>
-                <Label text="nadiacandra@email.com • Kelola data profil, preferensi waktu luang, dan pengaturan akun" styleClass="page-subtitle"/>
-            </VBox>
-        </HBox>
+        <!-- Header Panel -->
+        <VBox styleClass="wellness-card" spacing="3">
+            <AdaptiveRow alignment="CENTER_LEFT" spacing="8">
+                <Label text="PENGATURAN AKUN &amp; PREFERENSI" styleClass="preference-badge-blue" wrapText="true"/>
+            </AdaptiveRow>
+            <Label text="Profil &amp; pengaturan" styleClass="page-title" wrapText="true"/>
+            <Label text="Pengaturan profil menentukan rekomendasi tantangan adaptif, filter menu, dan latihan workout harian Anda." styleClass="page-subtitle" wrapText="true"/>
+        </VBox>
 
-        <!-- 2. FORM DATA PRIBADI & KLASIFIKASI RUTINITAS -->
+        <!-- FORM PROFIL PENGGUNA -->
         <VBox styleClass="wellness-card" spacing="16">
-            <Label text="Data Pribadi &amp; Klasifikasi Rutinitas" styleClass="card-title"/>
+            <Label text="Identitas &amp; rutinitas" styleClass="card-title" wrapText="true"/>
 
-            <HBox spacing="20" alignment="TOP_LEFT">
+            <AdaptiveRow spacing="18" alignment="TOP_LEFT">
                 <!-- Kolom Kiri Form -->
-                <VBox spacing="14" HBox.hgrow="ALWAYS">
+                <VBox spacing="12" HBox.hgrow="ALWAYS">
                     <VBox spacing="4">
-                        <Label text="Nama Lengkap:" styleClass="form-label"/>
-                        <TextField fx:id="txtNama" promptText="Masukkan nama lengkap Anda" styleClass="auth-text-field"/>
+                        <Label text="Nama Lengkap:" styleClass="form-label" wrapText="true"/>
+                        <TextField fx:id="txtNama" promptText="Masukkan nama lengkap Anda"/>
                     </VBox>
 
                     <VBox spacing="4">
-                        <Label text="Tanggal Lahir:" styleClass="form-label"/>
+                        <Label text="Tanggal Lahir:" styleClass="form-label" wrapText="true"/>
                         <DatePicker fx:id="datePickerTanggalLahir" maxWidth="Infinity"/>
                     </VBox>
 
                     <VBox spacing="4">
-                        <Label text="Estimasi Waktu Luang Harian (Menit):" styleClass="form-label"/>
-                        <TextField fx:id="txtWaktuLuang" promptText="Contoh: 30" styleClass="auth-text-field"/>
-                        <Label text="Digunakan untuk membatasi durasi rekomendasi aktivitas (F-02)." styleClass="form-hint"/>
+                        <Label text="Estimasi Waktu Luang Harian (Menit):" styleClass="form-label" wrapText="true"/>
+                        <TextField fx:id="txtWaktuLuang" promptText="Contoh: 30"/>
+                        <Label text="Membatasi durasi pilihan aktivitas." styleClass="form-hint" wrapText="true"/>
                     </VBox>
                 </VBox>
 
                 <!-- Kolom Kanan Form -->
-                <VBox spacing="14" HBox.hgrow="ALWAYS">
+                <VBox spacing="12" HBox.hgrow="ALWAYS">
                     <VBox spacing="4">
-                        <Label text="Kelompok Usia (PRD):" styleClass="form-label"/>
+                        <Label text="Kelompok usia" styleClass="form-label" wrapText="true"/>
                         <ComboBox fx:id="comboGolonganUsia" maxWidth="Infinity"/>
-                        <Label text="Dewasa (18–59 tahun) atau Lansia (≥ 60 tahun)." styleClass="form-hint"/>
+                        <Label text="Dewasa (18–59 tahun) atau Lansia (≥ 60 tahun)." styleClass="form-hint" wrapText="true"/>
                     </VBox>
 
                     <VBox spacing="4">
-                        <Label text="Tipe Rutinitas Kerja (PRD):" styleClass="form-label"/>
+                        <Label text="Rutinitas harian" styleClass="form-label" wrapText="true"/>
                         <ComboBox fx:id="comboGolonganKesibukan" maxWidth="Infinity"/>
-                        <Label text="Pekerja di luar rumah (mobilitas tinggi) atau di dalam rumah (WFH / domestik)." styleClass="form-hint"/>
+                        <Label text="Pekerja di luar rumah (mobilitas tinggi) atau di dalam rumah (WFH / domestik)." styleClass="form-hint" wrapText="true"/>
                     </VBox>
                 </VBox>
-            </HBox>
+            </AdaptiveRow>
 
-            <HBox spacing="12" alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
-                <Button text="↺ Muat Ulang" styleClass="btn-outline" onAction="#handleMuatUlang" style="-fx-padding: 8 16;"/>
-                <Button text="💾 Simpan Perubahan Profil" styleClass="btn-primary" onAction="#handleSimpanProfil" style="-fx-padding: 8 22;"/>
-            </HBox>
+            <AdaptiveRow spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
+                <Button text="↺ Muat Ulang" styleClass="btn-outline" onAction="#handleMuatUlang"/>
+                <Button text="Simpan Perubahan Profil" styleClass="btn-primary, write-command" onAction="#handleSimpanProfil" style="-fx-padding: 9 20;"/>
+            </AdaptiveRow>
         </VBox>
 
-        <!-- 3. STATUS KONEKSI DATABASE & DIAGNOSTIK -->
-        <VBox styleClass="wellness-card" spacing="14">
-            <Label text="Status &amp; Diagnostik Database MySQL" styleClass="card-title"/>
+        <!-- STATUS KONEKSI DATABASE & DIAGNOSTIK -->
+        <VBox styleClass="wellness-card" spacing="12">
+            <Label text="Koneksi layanan" styleClass="card-title" wrapText="true"/>
             
-            <HBox spacing="14" alignment="CENTER_LEFT" style="-fx-background-color: #111827; -fx-padding: 12 16; -fx-background-radius: 10; -fx-border-color: #374151; -fx-border-radius: 10;">
+            <AdaptiveRow spacing="14" alignment="CENTER_LEFT" style="-fx-background-color: #F8FAFC; -fx-padding: 12 16; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10;">
                 <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="URL Koneksi JDBC:" styleClass="form-label"/>
-                    <Label fx:id="labelJdbcUrl" text="jdbc:mysql://localhost:3306/sehatharian_db" style="-fx-font-family: monospace; -fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
+                    <Label text="URL Koneksi JDBC:" styleClass="form-label" wrapText="true"/>
+                    <Label fx:id="labelJdbcUrl" text="jdbc:mysql://localhost:3306/sehatharian_db" style="-fx-font-family: monospace; -fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
                 </VBox>
                 <VBox spacing="2">
-                    <Label text="Status Koneksi:" styleClass="form-label"/>
-                    <Label fx:id="labelDbStatus" text="✓ Terhubung (MySQL 8.0)" styleClass="badge-selesai"/>
+                    <Label text="Status Koneksi:" styleClass="form-label" wrapText="true"/>
+                    <Label fx:id="labelDbStatus" text="Terhubung (MySQL 8.0)" styleClass="badge-selesai" wrapText="true"/>
                 </VBox>
-                <Button text="Uji Koneksi" styleClass="btn-secondary" onAction="#handleTestConnection" style="-fx-padding: 6 14;"/>
-            </HBox>
+                <Button text="Uji Koneksi Ulang" styleClass="btn-secondary" onAction="#handleTestConnection"/>
+            </AdaptiveRow>
 
             <VBox spacing="3">
-                <Label text="Tabel Terhubung:" styleClass="form-label"/>
-                <Label text="pengguna, tantangan, rekomendasi, jadwal_tidur, aktivitas, hidrasi, kebiasaan_makan, riwayat_tantangan, evaluasi_mingguan (9 Tabel Sesuai Ketentuan PRD)." styleClass="form-hint"/>
+                <Label text="Cakupan layanan" styleClass="form-label" wrapText="true"/>
+                <Label text="Profil, catatan kebiasaan, jadwal, tantangan dan evaluasi." styleClass="form-hint" wrapText="true"/>
             </VBox>
         </VBox>
 
+        <VBox styleClass="wellness-card" spacing="10">
+            <Label text="Sesi akun" styleClass="card-title"/>
+            <Label text="Keluar mengakhiri sesi dan menutup data pribadi pada perangkat ini." wrapText="true" styleClass="card-subtitle"/>
+            <Button text="Keluar dari akun" styleClass="btn-secondary" onAction="#handleLogout"/>
+        </VBox>
     </VBox>
 </ScrollPane>

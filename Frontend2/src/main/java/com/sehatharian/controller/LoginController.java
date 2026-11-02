@@ -1,7 +1,6 @@
 package com.sehatharian.controller;
 
 import com.sehatharian.model.Pengguna;
-import com.sehatharian.model.UserSession;
 import com.sehatharian.service.AuthService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.DialogHelper;
@@ -16,9 +15,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class LoginController {
+public class LoginController implements AutoCloseable {
+    private boolean saving, released;
+    private javafx.animation.PauseTransition loginPulse;
+    @FXML private Label errIdentity, errPassword;
+    private final AuthService authService;
+    private final SceneNavigator navigator;
+
+    public LoginController(AuthService authService, SceneNavigator navigator) {
+        this.authService = java.util.Objects.requireNonNull(authService);
+        this.navigator = java.util.Objects.requireNonNull(navigator);
+    }
+
 
     @FXML private ImageView brandLogoView;
+    @FXML private javafx.scene.control.ScrollPane authRoot;
+    @FXML private javafx.scene.layout.VBox authHeroPane;
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtPassword;
     @FXML private TextField txtPasswordVisible;
@@ -29,10 +41,10 @@ public class LoginController {
     @FXML private Button btnLogin;
 
     private boolean isPasswordVisible = false;
-    private final AuthService authService = new AuthService();
 
     @FXML
     public void initialize() {
+        com.sehatharian.util.AuthLayoutHelper.bindResponsiveHero(authRoot, authHeroPane);
         try {
             var logoUrl = getClass().getResource("/images/logo.png");
             if (logoUrl != null && brandLogoView != null) {
@@ -87,26 +99,22 @@ public class LoginController {
 
     @FXML
     public void handleLogin() {
+        if (saving || released) return;
         hideError();
+        inline(errIdentity, ""); inline(errPassword, "");
 
         String identity = (txtUsername != null && txtUsername.getText() != null) ? txtUsername.getText().trim() : "";
         String password = (txtPassword != null && txtPassword.getText() != null) ? txtPassword.getText() : "";
 
         // Validasi input kosong
         if (identity.isEmpty()) {
-            showError("Silakan masukkan email atau nama pengguna Anda.");
+            inline(errIdentity, "Silakan masukkan alamat email Anda.");
             if (txtUsername != null) txtUsername.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
-            showError("Silakan masukkan kata sandi Anda.");
-            if (txtPassword != null) txtPassword.requestFocus();
-            return;
-        }
-
-        if (password.length() < 4) {
-            showError("Kata sandi minimal 4 karakter.");
+            inline(errPassword, "Silakan masukkan kata sandi Anda.");
             if (txtPassword != null) txtPassword.requestFocus();
             return;
         }
@@ -116,48 +124,51 @@ public class LoginController {
             AnimationHelper.scaleButtonFeedback(btnLogin);
         }
 
+        saving = true; btnLogin.setDisable(true); btnLogin.setText("Memeriksa akun…");
+        loginPulse = new javafx.animation.PauseTransition(javafx.util.Duration.millis(80));
+        loginPulse.setOnFinished(event -> { if (!released) performLogin(identity, password); });
+        loginPulse.play();
+    }
+    private void performLogin(String identity, String password) {
         try {
             Pengguna user = authService.login(identity, password);
             if (user == null) {
-                showError("Email atau kata sandi yang Anda masukkan salah.");
+                showError(AuthService.INVALID_CREDENTIALS);
                 return;
-            }
-
-            boolean rememberMe = chkRememberMe != null && chkRememberMe.isSelected();
-            UserSession session = UserSession.getInstance();
-            session.setCurrentUser(user);
-            if (rememberMe) {
-                session.setDemoMode(false);
             }
 
             // Arahkan ke Onboarding jika belum selesai, atau langsung ke Dashboard jika sudah
             if (user.isOnboardingSelesai()) {
-                SceneNavigator.showMainApp();
+                navigator.showMainApp();
             } else {
-                SceneNavigator.showOnboarding();
+                navigator.showOnboarding();
             }
+        } catch (SecurityException e) {
+            showError(AuthService.INVALID_CREDENTIALS);
+        } catch (java.sql.SQLException e) {
+            showError("Layanan akun belum tersedia. Silakan coba lagi.");
         } catch (IllegalArgumentException e) {
             showError(e.getMessage());
         } catch (Exception e) {
-            showError("Terjadi kesalahan saat masuk: " + e.getMessage());
-        }
+            showError("Tidak dapat masuk saat ini. Silakan coba lagi.");
+        } finally { saving=false; if(!released) {btnLogin.setDisable(false);btnLogin.setText("Masuk ke Akun");} }
     }
 
     @FXML
     public void handleForgotPassword() {
-        DialogHelper.showInfo("Lupa Kata Sandi",
+        DialogHelper.showInfo(authRoot, "Lupa Kata Sandi",
                 "Fitur reset kata sandi belum terhubung ke server autentikasi eksternal.\n\n" +
-                "Untuk demonstrasi frontend saat ini, Anda dapat langsung masuk menggunakan akun apa pun atau membuat akun baru di halaman Buat Akun.");
+                "Gunakan kredensial akun yang terdaftar. Hubungi pengelola jika memerlukan bantuan pemulihan akun.");
     }
 
     @FXML
     public void handleGoToCreateAccount() {
-        SceneNavigator.showCreateAccount();
+        navigator.showCreateAccount();
     }
 
     @FXML
     public void handleBackToLanding() {
-        SceneNavigator.showLandingPage();
+        navigator.showLandingPage();
     }
 
     private void showError(String message) {
@@ -171,6 +182,10 @@ public class LoginController {
         }
     }
 
+    private void inline(Label label,String text) {
+        if(label==null)return;label.setText(text);label.setVisible(!text.isEmpty());label.setManaged(!text.isEmpty());
+    }
+    @Override public void close() { released=true;if(loginPulse!=null)loginPulse.stop(); }
     private void hideError() {
         if (errorBannerBox != null) {
             errorBannerBox.setVisible(false);

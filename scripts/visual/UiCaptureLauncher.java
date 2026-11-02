@@ -1,0 +1,1 @@
+package com.sehatharian; public class UiCaptureLauncher {public static void main(String[] args){javafx.application.Application.launch(UiCapture.class,args);}}

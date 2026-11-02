@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sehatharian.util.Illustrations?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,70 +9,68 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import com.sehatharian.util.AdaptiveRow?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" styleClass="main-content-scroll" stylesheets="@../css/styles.css"
+<ScrollPane fitToWidth="true" styleClass="main-content-scroll, ui2" stylesheets="@../css/styles.css, @../css/sehat-theme.css, @../css/ui2.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sehatharian.controller.TantanganController">
+            fx:controller="com.sehatharian.controller.TantanganController" minWidth="0">
 
-    <VBox fx:id="tantanganRoot" spacing="20" styleClass="content-pane">
+    <VBox fx:id="tantanganRoot" spacing="18" styleClass="content-pane">
 
-        <!-- 1. HEADER SECTION SESUAI GAMBAR MOCKUP -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 22px 24px;">
-            <VBox spacing="4" HBox.hgrow="ALWAYS">
-                <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Label text="🎯 TANTANGAN HARIAN" styleClass="badge-selesai"/>
-                    <Label text="• Langkah Kecil, Hasil Nyata" styleClass="card-subtitle" style="-fx-font-size: 11px;"/>
-                </HBox>
-                <Label text="Tantangan Harian" styleClass="page-title" style="-fx-font-size: 22px;"/>
-                <Label text="Mulai dari langkah kecil untuk perubahan besar yang konsisten setiap hari." styleClass="page-subtitle"/>
+        <!-- Header Panel & Filter Tanggal -->
+        <AdaptiveRow styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <AdaptiveRow spacing="8" alignment="CENTER_LEFT">
+                    <Label text="TANTANGAN &amp; RIWAYAT" styleClass="preference-badge-green" wrapText="true"/>
+                </AdaptiveRow>
+                <Label text="Langkah kecil hari ini" styleClass="page-title" wrapText="true"/>
+                <Label text="Pilih kategori untuk melihat detail dan status. Gunakan tanggal untuk membuka riwayat." styleClass="page-subtitle" wrapText="true"/>
             </VBox>
+            <AdaptiveRow spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Tanggal:" styleClass="form-label" wrapText="true"/>
+                <DatePicker fx:id="datePickerTanggal" onAction="#handleUbahTanggal" prefWidth="160"/>
+                <Button text="Hari Ini" styleClass="btn-secondary" onAction="#handlePilihHariIni"/>
+            </AdaptiveRow>
 
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Label text="Tanggal:" styleClass="form-label"/>
-                <DatePicker fx:id="datePickerTanggal" onAction="#handleUbahTanggal" prefWidth="150"/>
-                <Button text="Hari Ini" styleClass="btn-secondary" onAction="#handlePilihHariIni" style="-fx-padding: 7 14;"/>
-            </HBox>
-        </HBox>
+        </AdaptiveRow>
 
-        <!-- 2. CARD PROGRESS PENYELESAIAN TANTANGAN SESUAI GAMBAR -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="24" style="-fx-padding: 20px 24px; -fx-background-color: #1F2937;">
-            <!-- Circular Progress Badge Sesuai Gambar -->
-            <StackPane style="-fx-background-color: rgba(34, 197, 94, 0.18); -fx-border-color: #22C55E; -fx-border-width: 3px; -fx-border-radius: 40px; -fx-background-radius: 40px; -fx-pref-width: 80px; -fx-pref-height: 80px; -fx-min-width: 80px; -fx-min-height: 80px;">
-                <Label fx:id="labelProgressPercent" text="50%" style="-fx-font-size: 20px; -fx-font-weight: 900; -fx-text-fill: #22C55E;"/>
-            </StackPane>
+        <!-- Progress Penyelesaian Tantangan Hari Dipilih -->
+        <VBox styleClass="wellness-card" spacing="10">
+            <AdaptiveRow alignment="CENTER_LEFT">
+                <VBox spacing="1">
+                    <Label fx:id="labelProgressTitle" text="Kemajuan Tantangan Hari Ini" styleClass="card-title" wrapText="true"/>
+                    <Label fx:id="labelProgressSubtitle" text="0 dari 0 tantangan selesai" styleClass="card-subtitle" wrapText="true"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="labelProgressPercent" text="0%" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+            </AdaptiveRow>
+            <ProgressBar fx:id="progressBarTantangan" progress="0.0" maxWidth="Infinity"/>
+        </VBox>
 
-            <!-- Teks Progress -->
-            <VBox spacing="6" HBox.hgrow="ALWAYS">
-                <Label fx:id="labelProgressTitle" text="Kemajuan Tantangan Hari Ini" styleClass="card-title"/>
-                <Label fx:id="labelProgressSubtitle" text="2 dari 4 selesai" styleClass="card-subtitle" style="-fx-font-size: 13.5px; -fx-font-weight: 600; -fx-text-fill: #22C55E;"/>
-                <ProgressBar fx:id="progressBarTantangan" progress="0.5" maxWidth="Infinity" styleClass="progress-bar"/>
-            </VBox>
-        </HBox>
+        <!-- Filter Kategori Tantangan -->
+        <AdaptiveRow spacing="8" alignment="CENTER_LEFT">
+            <Label text="Kategori:" styleClass="form-label" wrapText="true"/>
+            <Button fx:id="btnFilterSemua" text="Semua" styleClass="btn-primary" onAction="#handleFilterSemua"/>
+            <Button fx:id="btnFilterJalan" text="Jalan Kaki" styleClass="btn-outline" onAction="#handleFilterJalan"/>
+            <Button fx:id="btnFilterWorkout" text="Latihan rumah" styleClass="btn-outline" onAction="#handleFilterWorkout"/>
+            <Button fx:id="btnFilterPeregangan" text="Peregangan" styleClass="btn-outline" onAction="#handleFilterPeregangan"/>
+            <Button fx:id="btnFilterHidrasi" text="Minum &amp; makan" styleClass="btn-outline" onAction="#handleFilterHidrasi"/>
+        </AdaptiveRow>
 
-        <!-- 3. FILTER TABS & KATEGORI SESUAI GAMBAR -->
-        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 4 0;">
-            <Button fx:id="btnFilterSemua" text="Hari ini" styleClass="btn-primary" onAction="#handleFilterSemua" style="-fx-padding: 7 18; -fx-background-radius: 20px;"/>
-            <Button fx:id="btnFilterJalan" text="Jalan Kaki" styleClass="btn-outline" onAction="#handleFilterJalan" style="-fx-padding: 7 16; -fx-background-radius: 20px;"/>
-            <Button fx:id="btnFilterWorkout" text="Workout" styleClass="btn-outline" onAction="#handleFilterWorkout" style="-fx-padding: 7 16; -fx-background-radius: 20px;"/>
-            <Button fx:id="btnFilterPeregangan" text="Peregangan" styleClass="btn-outline" onAction="#handleFilterPeregangan" style="-fx-padding: 7 16; -fx-background-radius: 20px;"/>
-            <Button fx:id="btnFilterHidrasi" text="Hidrasi &amp; Nutrisi" styleClass="btn-outline" onAction="#handleFilterHidrasi" style="-fx-padding: 7 16; -fx-background-radius: 20px;"/>
-        </HBox>
-
-        <!-- 4. DAFTAR KARTU TANTANGAN DINAMIS SESUAI GAMBAR -->
+        <!-- Daftar Kartu Tantangan Dinamis -->
         <VBox fx:id="cardsContainer" spacing="12">
             <!-- Kartu tantangan digenerate secara dinamis oleh TantanganController -->
         </VBox>
 
-        <!-- 5. EMPTY STATE CONTAINER -->
+        <!-- Empty State Container -->
         <VBox fx:id="emptyStateBox" styleClass="empty-state-box" visible="false" managed="false">
             <ImageView fx:id="emptyStateImageView" fitHeight="110" fitWidth="140" pickOnBounds="true" preserveRatio="true"/>
-            <Label fx:id="labelEmptyTitle" text="Tidak ada tantangan untuk filter ini." styleClass="empty-state-title"/>
-            <Label fx:id="labelEmptySubtitle" text="Coba ubah filter kategori atau muat ulang tantangan rekomendasi untuk tanggal ini." styleClass="empty-state-subtitle"/>
-            <Button fx:id="btnEmptyAction" text="Muat Tantangan Rekomendasi" styleClass="btn-primary" onAction="#handleMuatUlangTantangan"/>
+            <Label fx:id="labelEmptyTitle" text="Tidak ada tantangan untuk filter ini." styleClass="empty-state-title" wrapText="true"/>
+            <Label fx:id="labelEmptySubtitle" text="Coba ubah filter kategori atau muat ulang tantangan rekomendasi untuk tanggal ini." styleClass="empty-state-subtitle" wrapText="true"/>
+            <Button fx:id="btnEmptyAction" text="Muat Tantangan Rekomendasi" styleClass="btn-primary, write-command" onAction="#handleMuatUlangTantangan"/>
         </VBox>
 
     </VBox>

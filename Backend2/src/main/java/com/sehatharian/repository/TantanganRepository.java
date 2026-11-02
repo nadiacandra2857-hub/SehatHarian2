@@ -7,37 +7,33 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** SQL catalog only. An empty result or SQL failure never selects sample data. */
 public class TantanganRepository {
+    private final PenggunaRepository.ConnectionFactory connections;
+
+    public TantanganRepository() { this(DatabaseConfig::getConnection); }
+    public TantanganRepository(PenggunaRepository.ConnectionFactory connections) {
+        this.connections = java.util.Objects.requireNonNull(connections);
+    }
 
     public List<Tantangan> getAll() throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getAllTantangan();
-        }
-
         List<Tantangan> list = new ArrayList<>();
         String sql = "SELECT id, judul, deskripsi, kategori, durasi_menit, golongan_kesibukan, golongan_usia, created_at " +
                      "FROM tantangan ORDER BY id ASC";
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = connections.open();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 list.add(mapResultSetToTantangan(rs));
             }
             return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getAll tantangan: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getAllTantangan();
         }
     }
 
     public Tantangan getById(int id) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getTantanganById(id);
-        }
-
         String sql = "SELECT id, judul, deskripsi, kategori, durasi_menit, golongan_kesibukan, golongan_usia, created_at " +
                      "FROM tantangan WHERE id = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = connections.open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -45,17 +41,11 @@ public class TantanganRepository {
                     return mapResultSetToTantangan(rs);
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada getById tantangan: " + e.getMessage());
         }
-        return InMemoryDataStore.getInstance().getTantanganById(id);
+        return null;
     }
 
     public List<Tantangan> getByFilter(String kesibukan, String usia, int maxDurasi) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getTantanganByFilter(kesibukan, usia, maxDurasi);
-        }
-
         List<Tantangan> list = new ArrayList<>();
         StringBuilder sql = new StringBuilder(
             "SELECT id, judul, deskripsi, kategori, durasi_menit, golongan_kesibukan, golongan_usia, created_at " +
@@ -81,7 +71,7 @@ public class TantanganRepository {
 
         sql.append(" ORDER BY id ASC");
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = connections.open();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {
             for (int i = 0; i < params.size(); i++) {
                 ps.setObject(i + 1, params.get(i));
@@ -92,9 +82,6 @@ public class TantanganRepository {
                 }
             }
             return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getByFilter tantangan: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getTantanganByFilter(kesibukan, usia, maxDurasi);
         }
     }
 

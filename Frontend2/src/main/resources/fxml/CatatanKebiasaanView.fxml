@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sehatharian.util.Illustrations?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -8,188 +9,136 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import com.sehatharian.util.ResponsiveTabs?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import com.sehatharian.util.EditorialImage?>
 <?import javafx.scene.layout.HBox?>
+<?import com.sehatharian.util.AdaptiveRow?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" styleClass="main-content-scroll" stylesheets="@../css/styles.css"
+<ScrollPane fitToWidth="true" styleClass="main-content-scroll, ui2" stylesheets="@../css/styles.css, @../css/sehat-theme.css, @../css/ui2.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sehatharian.controller.CatatanKebiasaanController">
+            fx:controller="com.sehatharian.controller.CatatanKebiasaanController" minWidth="0">
 
-    <VBox fx:id="kebiasaanRoot" spacing="20" styleClass="content-pane">
+    <VBox fx:id="kebiasaanRoot" spacing="18" styleClass="content-pane">
 
-        <!-- Header Panel Sesuai Gambar Mockup -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18" style="-fx-padding: 22px 24px;">
+        <!-- Header Panel & Tanggal Pencatatan -->
+        <AdaptiveRow styleClass="wellness-card" alignment="CENTER_LEFT" spacing="18">
             <VBox spacing="3" HBox.hgrow="ALWAYS">
-                <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Label text="💧 NUTRISI &amp; HIDRASI" styleClass="badge-selesai"/>
-                    <Label text="• Panduan Pola Hidup Seimbang" styleClass="card-subtitle" style="-fx-font-size: 11px;"/>
-                </HBox>
-                <Label text="Nutrisi &amp; Hidrasi" styleClass="page-title" style="-fx-font-size: 22px;"/>
-                <Label text="Catat konsumsi air putih, aktivitas gerak, dan pola makan bergizi untuk memantau konsistensi Anda." styleClass="page-subtitle"/>
+                <AdaptiveRow spacing="8" alignment="CENTER_LEFT">
+                    <Label text="CATATAN HARIAN" styleClass="preference-badge-blue" wrapText="true"/>
+                </AdaptiveRow>
+                <Label text="Kebiasaan harian" styleClass="page-title" wrapText="true"/>
+                <Label text="Catat asupan hidrasi air putih, durasi bergerak aktif, dan pola makan bergizi untuk memantau konsistensi Anda." styleClass="page-subtitle" wrapText="true"/>
             </VBox>
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Label text="Tanggal Log:" styleClass="form-label"/>
-                <DatePicker fx:id="datePickerTanggal" onAction="#handleUbahTanggal" prefWidth="150"/>
-                <Button text="Hari Ini" styleClass="btn-secondary" onAction="#handlePilihHariIni" style="-fx-padding: 7 14;"/>
-            </HBox>
-        </HBox>
+            <AdaptiveRow spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Tanggal catatan" styleClass="form-label" wrapText="true"/>
+                <DatePicker fx:id="datePickerTanggal" onAction="#handleUbahTanggal" prefWidth="160"/>
+                <Button text="Hari ini" styleClass="btn-secondary" onAction="#handlePilihHariIni"/>
+            </AdaptiveRow>
 
-        <!-- SUB-TABS PELACAK KEBIASAAN SESUAI GAMBAR MOCKUP -->
-        <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="wellness-card">
+        </AdaptiveRow>
 
-            <!-- 1. TAB HIDRASI AIR PUTIH (Tampilan 2 Kolom Sesuai Gambar Mockup) -->
-            <Tab text="💧 Hidrasi Air">
-                <VBox spacing="20" style="-fx-padding: 16 4 10 4;">
+        <!-- SUB-TABS PELACAK KEBIASAAN -->
+        <ResponsiveTabs fx:id="tabPaneKebiasaan" tabClosingPolicy="UNAVAILABLE" styleClass="wellness-card">
 
-                    <!-- Dua Kolom: Kebutuhan Air Harian (Kiri) & Kalkulator Kebutuhan (Kanan) -->
-                    <HBox spacing="24" alignment="TOP_LEFT">
-
-                        <!-- Kolom Kiri: Kebutuhan Air Harian -->
-                        <VBox spacing="14" HBox.hgrow="ALWAYS" style="-fx-background-color: #1F2937; -fx-padding: 16; -fx-background-radius: 14; -fx-border-color: #374151; -fx-border-radius: 14;">
-                            <HBox alignment="CENTER_LEFT">
-                                <VBox spacing="2">
-                                    <Label text="Kebutuhan Air Harian" styleClass="card-title"/>
-                                    <Label text="Berdasarkan standar Kemenkes RI (2.000 ml)" styleClass="card-subtitle"/>
-                                </VBox>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <!-- Circular Progress Sesuai Gambar Mockup -->
-                                <StackPane style="-fx-background-color: rgba(6, 182, 212, 0.18); -fx-border-color: #06B6D4; -fx-border-width: 3px; -fx-border-radius: 35px; -fx-background-radius: 35px; -fx-pref-width: 70px; -fx-pref-height: 70px; -fx-min-width: 70px; -fx-min-height: 70px;">
-                                    <Label text="78%" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #06B6D4;"/>
-                                </StackPane>
-                            </HBox>
-
-                            <HBox alignment="BASELINE_LEFT" spacing="8">
-                                <Label fx:id="labelTotalHidrasi" text="2.100" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #06B6D4;"/>
-                                <Label text="ml  (6 dari 8 gelas)" styleClass="card-subtitle" style="-fx-font-size: 13px; -fx-font-weight: 600;"/>
-                            </HBox>
-                            <ProgressBar fx:id="progressBarHidrasi" progress="0.78" maxWidth="Infinity" styleClass="metric-progress-blue"/>
-
-                            <!-- Baris Ikon Gelas Air Sesuai Gambar Mockup -->
-                            <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding: 6 0;">
-                                <Label text="🥛" style="-fx-font-size: 20px;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px; -fx-opacity: 0.3;"/>
-                                <Label text="🥛" style="-fx-font-size: 20px; -fx-opacity: 0.3;"/>
-                            </HBox>
-
-                            <!-- Tombol Tambah Gelas Hijau Sesuai Gambar -->
-                            <HBox spacing="10" alignment="CENTER_LEFT">
-                                <Button text="+ Tambah Gelas (250 ml)" styleClass="btn-primary" onAction="#handleQuick250" style="-fx-padding: 8 18;"/>
-                                <Button text="+ Botol (500 ml)" styleClass="btn-secondary" onAction="#handleQuick500"/>
-                                <Button text="+600 ml" styleClass="btn-secondary" onAction="#handleQuick600"/>
-                            </HBox>
-
-                            <!-- Banner Tips Edukasi Hidrasi Sesuai Gambar Mockup -->
-                            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: rgba(34, 197, 94, 0.12); -fx-border-color: rgba(34, 197, 94, 0.3); -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10 14;">
-                                <Label text="💡" style="-fx-font-size: 16px;"/>
-                                <Label text="Minum air secara cukup membantu menjaga konsentrasi, energi, dan fungsi metabolisme tubuh."
-                                       styleClass="card-subtitle" style="-fx-text-fill: #22C55E; -fx-font-size: 11.5px;" wrapText="true"/>
-                            </HBox>
+            <!-- 1. TAB HIDRASI AIR PUTIH -->
+            <Tab text="Minum">
+                <VBox spacing="16" style="-fx-padding: 16 4 10 4;">
+                    <AdaptiveRow spacing="18" alignment="CENTER_LEFT">
+                        <EditorialImage fx:id="waterImageView" quadrant="0"/>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Total Asupan Air Minum Hari terpilih" styleClass="card-subtitle" wrapText="true"/>
+                            <AdaptiveRow alignment="BASELINE_LEFT" spacing="8">
+                                <Label fx:id="labelTotalHidrasi" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                                <Label text="ml · acuan aplikasi 2.000 ml" styleClass="card-subtitle" wrapText="true"/>
+                            </AdaptiveRow>
+                            <ProgressBar fx:id="progressBarHidrasi" progress="0.0" maxWidth="Infinity" styleClass="pb-blue"/>
+                            <AdaptiveRow fx:id="waterGlassesBox" spacing="6" alignment="CENTER_LEFT"/>
                         </VBox>
+                    </AdaptiveRow>
 
-                        <!-- Kolom Kanan: Form Tambah Manual / Kalkulator Kebutuhan Sesuai Gambar Mockup -->
-                        <VBox spacing="14" prefWidth="380" style="-fx-background-color: #1F2937; -fx-padding: 16; -fx-background-radius: 14; -fx-border-color: #374151; -fx-border-radius: 14;">
-                            <Label text="Kalkulator &amp; Tambah Manual" styleClass="card-title"/>
-                            
-                            <VBox spacing="4">
-                                <Label text="Jumlah Air Minum (ml):" styleClass="form-label"/>
-                                <TextField fx:id="txtCustomHidrasi" promptText="misal: 300" styleClass="auth-text-field"/>
-                            </VBox>
-
-                            <VBox spacing="4">
-                                <Label text="Catatan / Waktu Minum:" styleClass="form-label"/>
-                                <TextField fx:id="txtCatatanHidrasi" promptText="misal: setelah sarapan" styleClass="auth-text-field"/>
-                            </VBox>
-
-                            <HBox alignment="CENTER_LEFT" spacing="10">
-                                <ImageView fx:id="waterImageView" fitHeight="60" fitWidth="80" pickOnBounds="true" preserveRatio="true"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Button text="Tambah Air" styleClass="btn-primary" onAction="#handleTambahHidrasiManual" style="-fx-padding: 8 20;"/>
-                            </HBox>
-                        </VBox>
-
-                    </HBox>
+                    <!-- Form Tambah Hidrasi -->
+                    <AdaptiveRow spacing="10" alignment="CENTER_LEFT" styleClass="form-panel">
+                        <Button text="+250 ml (1 Gelas)" styleClass="btn-secondary, write-command" onAction="#handleQuick250"/>
+                        <Button text="+500 ml (Botol)" styleClass="btn-secondary, write-command" onAction="#handleQuick500"/>
+                        <Button text="+600 ml" styleClass="btn-secondary, write-command" onAction="#handleQuick600"/>
+                    </AdaptiveRow>
+                    <AdaptiveRow spacing="10" styleClass="form-panel">
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Jumlah air (ml)" styleClass="form-label"/><TextField fx:id="txtCustomHidrasi" promptText="Jumlah ml (misal 300)" prefWidth="150"/></VBox>
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Catatan (opsional)" styleClass="form-label"/><TextField fx:id="txtCatatanHidrasi" promptText="Catatan (opsional)" prefWidth="180"/></VBox>
+                        <Button text="Tambah Air" styleClass="btn-primary, write-command" onAction="#handleTambahHidrasiManual"/>
+                    </AdaptiveRow>
 
                     <!-- Tabel Riwayat Hidrasi Hari Terpilih -->
-                    <VBox spacing="8">
-                        <Label text="Riwayat Log Air Putih Hari Ini" styleClass="form-label"/>
-                        <TableView fx:id="tableHidrasi" prefHeight="180" styleClass="table-view">
-                            <columns>
-                                <TableColumn fx:id="colHidrasiJumlah" text="Jumlah Air" prefWidth="160"/>
-                                <TableColumn fx:id="colHidrasiCatatan" text="Catatan / Waktu Minum" prefWidth="480"/>
-                                <TableColumn fx:id="colHidrasiAksi" text="Tindakan" prefWidth="120"/>
-                            </columns>
-                        </TableView>
-                    </VBox>
-
+                    <TableView fx:id="tableHidrasi" prefHeight="200" styleClass="table-view">
+                        <columns>
+                            <TableColumn fx:id="colHidrasiJumlah" text="Jumlah Air" prefWidth="150"/>
+                            <TableColumn fx:id="colHidrasiCatatan" text="Catatan / Waktu Minum" prefWidth="420"/>
+                            <TableColumn fx:id="colHidrasiAksi" text="Aksi" prefWidth="110"/>
+                        </columns>
+                    </TableView>
                 </VBox>
             </Tab>
 
             <!-- 2. TAB AKTIVITAS FISIK -->
-            <Tab text="🏃 Aktivitas Fisik">
+            <Tab text="Aktivitas">
                 <VBox spacing="16" style="-fx-padding: 16 4 10 4;">
-                    <HBox spacing="18" alignment="CENTER_LEFT" style="-fx-background-color: rgba(34, 197, 94, 0.12); -fx-padding: 14; -fx-background-radius: 12; -fx-border-color: rgba(34, 197, 94, 0.3); -fx-border-radius: 12;">
-                        <ImageView fx:id="activityImageView" fitHeight="80" fitWidth="110" pickOnBounds="true" preserveRatio="true"/>
-                        <VBox spacing="4" HBox.hgrow="ALWAYS">
-                            <Label text="Total Durasi Aktivitas Fisik Hari Ini" styleClass="card-subtitle" style="-fx-text-fill: #22C55E;"/>
-                            <HBox alignment="BASELINE_LEFT" spacing="8">
-                                <Label fx:id="labelTotalAktivitas" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #22C55E;"/>
-                                <Label text="menit aktif bergerak" styleClass="card-subtitle" style="-fx-font-weight: 600;"/>
-                            </HBox>
-                            <Label fx:id="labelAktivitasStatus" text="WHO menganjurkan aktivitas fisik rutin minimal 150 menit per minggu." styleClass="card-subtitle" style="-fx-font-size: 11.5px;"/>
+                    <AdaptiveRow spacing="18" alignment="CENTER_LEFT">
+                        <EditorialImage fx:id="activityImageView" quadrant="3"/>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Total Durasi Aktivitas Hari terpilih" styleClass="card-subtitle" wrapText="true"/>
+                            <AdaptiveRow alignment="BASELINE_LEFT" spacing="8">
+                                <Label fx:id="labelTotalAktivitas" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                                <Label text="menit aktif bergerak" styleClass="card-subtitle" wrapText="true"/>
+                            </AdaptiveRow>
+                            <Label fx:id="labelAktivitasStatus" text="Durasi yang Anda catat pada tanggal terpilih." styleClass="card-subtitle" wrapText="true"/>
                         </VBox>
-                    </HBox>
+                    </AdaptiveRow>
 
                     <!-- Form Tambah Aktivitas -->
-                    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #1F2937; -fx-padding: 12; -fx-background-radius: 10; -fx-border-color: #374151; -fx-border-radius: 10;">
-                        <ComboBox fx:id="comboPresetAktivitas" promptText="Pilih Jenis Aktivitas" prefWidth="200"/>
-                        <TextField fx:id="txtDurasiAktivitas" promptText="Durasi (menit)" prefWidth="120"/>
-                        <TextField fx:id="txtKeteranganAktivitas" promptText="Keterangan / Lokasi" HBox.hgrow="ALWAYS"/>
-                        <Button text="Simpan Aktivitas" styleClass="btn-primary" onAction="#handleSimpanAktivitas"/>
-                    </HBox>
+                    <AdaptiveRow spacing="10" alignment="CENTER_LEFT" styleClass="form-panel">
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Jenis aktivitas" styleClass="form-label"/><ComboBox fx:id="comboPresetAktivitas" promptText="Pilih atau tulis nama aktivitas" prefWidth="200" maxWidth="Infinity"/><Button fx:id="btnKatalogLatihan" text="Jelajahi katalog latihan RepDB" onAction="#handleBukaKatalogLatihan" styleClass="btn-outline" wrapText="true"/></VBox>
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Durasi (menit)" styleClass="form-label"/><TextField fx:id="txtDurasiAktivitas" promptText="Durasi (menit)" prefWidth="110"/></VBox>
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Keterangan (opsional)" styleClass="form-label"/><TextField fx:id="txtKeteranganAktivitas" promptText="Keterangan / Lokasi"/></VBox>
+                        <Button text="Simpan Aktivitas" styleClass="btn-primary, write-command" onAction="#handleSimpanAktivitas"/>
+                    </AdaptiveRow>
 
-                    <!-- Tabel Aktivitas Fisik -->
+                    <!-- Tabel Aktivitas -->
                     <TableView fx:id="tableAktivitas" prefHeight="200" styleClass="table-view">
                         <columns>
                             <TableColumn fx:id="colAktivitasJenis" text="Jenis Aktivitas" prefWidth="220"/>
                             <TableColumn fx:id="colAktivitasDurasi" text="Durasi (Menit)" prefWidth="130"/>
                             <TableColumn fx:id="colAktivitasKeterangan" text="Keterangan" prefWidth="320"/>
-                            <TableColumn fx:id="colAktivitasAksi" text="Tindakan" prefWidth="110"/>
+                            <TableColumn fx:id="colAktivitasAksi" text="Aksi" prefWidth="110"/>
                         </columns>
                     </TableView>
                 </VBox>
             </Tab>
 
             <!-- 3. TAB POLA & KEBIASAAN MAKAN -->
-            <Tab text="🥗 Pola Makan">
+            <Tab text="Makan">
                 <VBox spacing="16" style="-fx-padding: 16 4 10 4;">
-                    <HBox spacing="18" alignment="CENTER_LEFT" style="-fx-background-color: rgba(245, 158, 11, 0.12); -fx-padding: 14; -fx-background-radius: 12; -fx-border-color: rgba(245, 158, 11, 0.3); -fx-border-radius: 12;">
-                        <ImageView fx:id="mealImageView" fitHeight="80" fitWidth="110" pickOnBounds="true" preserveRatio="true"/>
-                        <VBox spacing="3" HBox.hgrow="ALWAYS">
-                            <Label text="Pencatatan Kebiasaan Makan Sehat (Isi Piringku)" styleClass="card-title" style="-fx-text-fill: #F59E0B;"/>
+                    <AdaptiveRow spacing="18" alignment="CENTER_LEFT">
+                        <EditorialImage fx:id="mealImageView" quadrant="1"/>
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Pencatatan Kebiasaan Makan Sehat" styleClass="card-title" wrapText="true"/>
                             <Label text="Catat sarapan, makan siang, makan malam, dan camilan untuk membangun pola gizi seimbang dengan cukup sayur, buah, dan protein." styleClass="card-subtitle" wrapText="true"/>
                         </VBox>
-                    </HBox>
+                    </AdaptiveRow>
 
                     <!-- Form Tambah Makanan -->
-                    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #1F2937; -fx-padding: 12; -fx-background-radius: 10; -fx-border-color: #374151; -fx-border-radius: 10;">
-                        <ComboBox fx:id="comboWaktuMakan" prefWidth="150"/>
-                        <TextField fx:id="txtNamaMenu" promptText="Nama Menu Makanan / Minuman" prefWidth="260"/>
-                        <TextField fx:id="txtKeteranganMakan" promptText="Keterangan (porsi sayur, buah, dll)" HBox.hgrow="ALWAYS"/>
-                        <Button text="Simpan Menu" styleClass="btn-primary" onAction="#handleSimpanMakan"/>
-                    </HBox>
+                    <AdaptiveRow spacing="10" alignment="CENTER_LEFT" styleClass="form-panel">
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Waktu makan" styleClass="form-label"/><ComboBox fx:id="comboWaktuMakan" prefWidth="150"/></VBox>
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Nama menu" styleClass="form-label"/><TextField fx:id="txtNamaMenu" promptText="Nama Menu Makanan / Minuman" prefWidth="260"/></VBox>
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Porsi / keterangan (opsional)" styleClass="form-label"/><TextField fx:id="txtKeteranganMakan" promptText="Keterangan (porsi sayur, buah, dll)"/></VBox>
+                        <Button text="Simpan Menu" styleClass="btn-primary, write-command" onAction="#handleSimpanMakan"/>
+                    </AdaptiveRow>
 
                     <!-- Tabel Kebiasaan Makan -->
                     <TableView fx:id="tableMakan" prefHeight="200" styleClass="table-view">
@@ -197,13 +146,13 @@
                             <TableColumn fx:id="colMakanWaktu" text="Waktu Makan" prefWidth="150"/>
                             <TableColumn fx:id="colMakanMenu" text="Menu Makanan" prefWidth="280"/>
                             <TableColumn fx:id="colMakanKeterangan" text="Keterangan Gizi / Serat" prefWidth="280"/>
-                            <TableColumn fx:id="colMakanAksi" text="Tindakan" prefWidth="110"/>
+                            <TableColumn fx:id="colMakanAksi" text="Aksi" prefWidth="110"/>
                         </columns>
                     </TableView>
                 </VBox>
             </Tab>
 
-        </TabPane>
+        </ResponsiveTabs>
 
     </VBox>
 </ScrollPane>

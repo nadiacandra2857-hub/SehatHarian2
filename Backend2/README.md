@@ -1,12 +1,14 @@
+> Konfigurasi peluncur terbaru: database lokal otomatis di `127.0.0.1:13306/sehatharian_db`. Jalankan `bash jalankan-linux-macos.sh` dari root proyek. Lihat [BACA_DULU.md](../BACA_DULU.md); setup manual di bawah hanya untuk server eksternal.
+
 # Backend SehatHarian (`Backend2`)
 
-Modul backend terintegrasi untuk aplikasi desktop **SehatHarian**, dibangun sesuai Product Requirements Document (PRD) SehatHarian. Modul ini menyediakan arsitektur berlapis (*Service & Repository Layer*), koneksi relasional MySQL melalui JDBC dengan connection pooling (*fail-safe in-memory fallback*), pengamanan kredensial menggunakan hashing password BCrypt (cost factor 12), serta terintegrasi langsung dengan modul `Frontend2`.
+Modul backend terintegrasi untuk aplikasi desktop **SehatHarian**, dibangun sesuai Product Requirements Document (PRD) SehatHarian. Modul ini menyediakan arsitektur berlapis (*Service & Repository Layer*), koneksi relasional MySQL melalui JDBC dengan transaksi eksplisit untuk operasi tulis pribadi, pengamanan kredensial menggunakan hashing password BCrypt (cost factor 12), serta terintegrasi langsung dengan modul `Frontend2`.
 
 ---
 
 ## 1. Tech Stack Backend
 
-- **Bahasa Pemrograman:** Java 26 (Preview enabled)
+- **Bahasa Pemrograman:** Java 27 (Preview enabled)
 - **Build Tool:** Gradle 9.8.1
 - **Database:** MySQL / MariaDB (Database: `sehatharian_db`)
 - **Driver Database:** MySQL Connector/J `9.3.0` (`com.mysql:mysql-connector-j`)
@@ -47,7 +49,7 @@ Backend2/
     │       │   ├── ProgresHarian.java        # DTO rekap progres kesehatan harian
     │       │   └── UserSession.java          # Session management desktop aktif
     │       ├── repository/
-    │       │   ├── InMemoryDataStore.java    # Offline in-memory fallback store
+    │       │   ├── InMemoryDataStore.java    # Fixture legacy; tidak dipakai sebagai fallback aplikasi
     │       │   ├── PenggunaRepository.java   # Operasi database akun & profil
     │       │   ├── TantanganRepository.java  # Query katalog tantangan
     │       │   ├── RiwayatTantanganRepository.java # CRUD riwayat pengerjaan tantangan
@@ -138,3 +140,10 @@ Hasil: **79 tests PASSED (34 Backend2 + 45 Frontend2), 0 FAILURES, 100% Success*
 gradlew.bat :Frontend2:run
 ```
 Aplikasi akan membuka antarmuka desktop SehatHarian yang langsung terintegrasi dengan backend MySQL.
+
+
+## Sumber katalog dan verifikasi terisolasi
+
+Repository katalog hanya membaca SQL; hasil kosong, ID tidak ditemukan dan kegagalan SQL tidak digantikan data contoh. `RekomendasiService.bacaKatalog` menyediakan `ReadResult` dengan sumber DATABASE, DEMO atau UNAVAILABLE. `DemoCatalog` adalah pratinjau rekomendasi terpisah yang dipilih eksplisit dari frontend, tanpa akun contoh, koneksi atau operasi tulis. Hasil baca bukan receipt operasi tulis sebelumnya.
+
+Dari root proyek, `python3 scripts/verify-source-tests.py` mengompilasi source/test dengan dependency cache lokal dan menjalankan kelas terisolasi pilihan, tanpa Gradle atau bootstrap database. Probe JDBC nyata memerlukan `--jdbc` serta environment `SEHATHARIAN_JDBC_TEST_*` dan skema uji khusus. Lihat [laporan P1C-2](../docs/LAPORAN_P1C_2.md) untuk syarat, batas bukti dan perintah lengkap.

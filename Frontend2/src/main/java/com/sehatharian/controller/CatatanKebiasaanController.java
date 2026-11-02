@@ -5,9 +5,10 @@ import com.sehatharian.model.Hidrasi;
 import com.sehatharian.model.KebiasaanMakan;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.KebiasaanService;
 import com.sehatharian.util.AnimationHelper;
+import com.sehatharian.util.IconFactory;
+import com.sehatharian.util.SoundEffects;
 import com.sehatharian.util.DialogHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -23,7 +24,22 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CatatanKebiasaanController {
+public class CatatanKebiasaanController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+    private final com.sehatharian.util.WriteAction writes;
+
+    private Dialog<Void> exerciseDialog;
+    private final SoundEffects.View sounds;
+
+    public CatatanKebiasaanController(UserSession session, SoundEffects effects) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.writes = new com.sehatharian.util.WriteAction(access);
+        this.service = new KebiasaanService(access);
+        this.sounds = java.util.Objects.requireNonNull(effects).forView();
+    }
+
 
     @FXML private VBox kebiasaanRoot;
     @FXML private DatePicker datePickerTanggal;
@@ -32,6 +48,8 @@ public class CatatanKebiasaanController {
     @FXML private ImageView waterImageView;
     @FXML private Label labelTotalHidrasi;
     @FXML private ProgressBar progressBarHidrasi;
+    @FXML private javafx.scene.layout.HBox waterGlassesBox;
+    @FXML private javafx.scene.control.TabPane tabPaneKebiasaan;
     @FXML private TextField txtCustomHidrasi;
     @FXML private TextField txtCatatanHidrasi;
     @FXML private TableView<Hidrasi> tableHidrasi;
@@ -63,8 +81,7 @@ public class CatatanKebiasaanController {
     @FXML private TableColumn<KebiasaanMakan, String> colMakanKeterangan;
     @FXML private TableColumn<KebiasaanMakan, Void> colMakanAksi;
 
-    private final KebiasaanService service = new KebiasaanService();
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
+    private final KebiasaanService service;
     private Pengguna penggunaAktif;
     private LocalDate tanggalDipilih;
 
@@ -74,6 +91,7 @@ public class CatatanKebiasaanController {
 
     @FXML
     public void initialize() {
+        access.owner();
         tanggalDipilih = LocalDate.now();
         datePickerTanggal.setValue(tanggalDipilih);
 
@@ -83,23 +101,34 @@ public class CatatanKebiasaanController {
 
         muatDataPengguna();
         muatSemuaData();
+        pasangIkonTab();
         AnimationHelper.fadeIn(kebiasaanRoot, 350);
+    }
+
+    private void pasangIkonTab() {
+        if (tabPaneKebiasaan == null) return;
+        String[] ikon = {"drop", "run", "utensils"};
+        String[] warna = {"svg-icon-blue", "svg-icon", "svg-icon-orange"};
+        for (int i = 0; i < ikon.length && i < tabPaneKebiasaan.getTabs().size(); i++) {
+            tabPaneKebiasaan.getTabs().get(i).setGraphic(IconFactory.icon(ikon[i], 16, warna[i]));
+        }
     }
 
     private void inisialisasiGambar() {
         try {
             var waterUrl = getClass().getResource("/images/illustration_water.png");
-            if (waterUrl != null) waterImageView.setImage(new Image(waterUrl.toExternalForm()));
+
 
             var actUrl = getClass().getResource("/images/illustration_stretch.png");
-            if (actUrl != null) activityImageView.setImage(new Image(actUrl.toExternalForm()));
+
 
             var mealUrl = getClass().getResource("/images/illustration_food.png");
-            if (mealUrl != null) mealImageView.setImage(new Image(mealUrl.toExternalForm()));
+
         } catch (Exception ignored) {}
     }
 
     private void inisialisasiFormInputs() {
+        comboPresetAktivitas.setEditable(true);
         comboPresetAktivitas.setItems(FXCollections.observableArrayList(
             "Jalan Santai",
             "Jalan Cepat",
@@ -122,15 +151,17 @@ public class CatatanKebiasaanController {
 
     private void setupTableColumns() {
         // Kolom Hidrasi
-        colHidrasiJumlah.setCellValueFactory(data -> 
+        colHidrasiJumlah.setCellValueFactory(data ->
             new SimpleStringProperty(data.getValue().getJumlahMl() + " ml (" + String.format("%.2f", data.getValue().getJumlahLiter()) + " L)"));
         colHidrasiCatatan.setCellValueFactory(new PropertyValueFactory<>("catatan"));
         setupAksiHapusColumn(colHidrasiAksi, item -> {
             try {
-                service.hapusHidrasi(item.getId());
+                writes.submit(kebiasaanRoot, () -> service.hapusHidrasi(item.getId()), () -> {
                 muatHidrasi();
+            });
             } catch (SQLException e) {
-                DialogHelper.showError("Error", "Gagal menghapus log hidrasi: " + e.getMessage());
+            access.owner();
+                DialogHelper.showError(kebiasaanRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
             }
         });
         tableHidrasi.setItems(listHidrasi);
@@ -141,10 +172,12 @@ public class CatatanKebiasaanController {
         colAktivitasKeterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         setupAksiHapusColumn(colAktivitasAksi, item -> {
             try {
-                service.hapusAktivitas(item.getId());
+                writes.submit(kebiasaanRoot, () -> service.hapusAktivitas(item.getId()), () -> {
                 muatAktivitas();
+            });
             } catch (SQLException e) {
-                DialogHelper.showError("Error", "Gagal menghapus log aktivitas: " + e.getMessage());
+            access.owner();
+                DialogHelper.showError(kebiasaanRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
             }
         });
         tableAktivitas.setItems(listAktivitas);
@@ -155,10 +188,12 @@ public class CatatanKebiasaanController {
         colMakanKeterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         setupAksiHapusColumn(colMakanAksi, item -> {
             try {
-                service.hapusMakan(item.getId());
+                writes.submit(kebiasaanRoot, () -> service.hapusMakan(item.getId()), () -> {
                 muatMakan();
+            });
             } catch (SQLException e) {
-                DialogHelper.showError("Error", "Gagal menghapus log makanan: " + e.getMessage());
+            access.owner();
+                DialogHelper.showError(kebiasaanRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
             }
         });
         tableMakan.setItems(listMakan);
@@ -167,13 +202,15 @@ public class CatatanKebiasaanController {
     private <T> void setupAksiHapusColumn(TableColumn<T, Void> column, java.util.function.Consumer<T> deleteAction) {
         column.setCellFactory(param -> new TableCell<>() {
             private final Button btnHapus = new Button("Hapus");
+            { btnHapus.getStyleClass().add("write-command"); }
             {
                 btnHapus.getStyleClass().add("btn-danger");
                 btnHapus.setOnAction(event -> {
+                    access.owner();
                     int index = getIndex();
                     if (index >= 0 && index < getTableView().getItems().size()) {
                         T item = getTableView().getItems().get(index);
-                        if (DialogHelper.showConfirmation("Konfirmasi Hapus", "Yakin ingin menghapus catatan ini?")) {
+                        if (DialogHelper.showConfirmation(kebiasaanRoot, "Konfirmasi Hapus", "Yakin ingin menghapus catatan ini?")) {
                             deleteAction.accept(item);
                         }
                     }
@@ -186,6 +223,7 @@ public class CatatanKebiasaanController {
                 if (empty) {
                     setGraphic(null);
                 } else {
+                    btnHapus.setDisable(writes.reviewRequired());
                     setGraphic(btnHapus);
                 }
             }
@@ -193,29 +231,24 @@ public class CatatanKebiasaanController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-            return;
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-                if (penggunaAktif != null) return;
-            } catch (Exception ignored) {}
-        }
-
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (SQLException ignored) {}
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
     }
 
     public void muatSemuaData() {
+        access.owner();
         muatHidrasi();
         muatAktivitas();
         muatMakan();
+    }
+
+    /** Delapan gelas (@250 ml): terisi sesuai total hidrasi riil hari yang dipilih. */
+    private void gambarGelas(int totalMl) {
+        if (waterGlassesBox == null) return;
+        int terisi = Math.min(8, totalMl / 250);
+        waterGlassesBox.getChildren().clear();
+        for (int i = 0; i < 8; i++) {
+            waterGlassesBox.getChildren().add(IconFactory.icon("drop", 20, i < terisi ? "svg-icon-blue" : "glass-empty"));
+        }
     }
 
     private void muatHidrasi() {
@@ -223,12 +256,16 @@ public class CatatanKebiasaanController {
         try {
             List<Hidrasi> data = service.getHidrasiHariIni(penggunaAktif.getId(), tanggalDipilih);
             listHidrasi.setAll(data);
+            tableHidrasi.setPlaceholder(new Label("Belum ada catatan minum pada tanggal ini."));
             int total = service.getTotalHidrasiMl(penggunaAktif.getId(), tanggalDipilih);
-            labelTotalHidrasi.setText(String.format("%,d", total));
+            labelTotalHidrasi.setText(data.isEmpty() ? "—" : String.format("%,d", total));
             double rasio = Math.min(total / 2000.0, 1.0);
             AnimationHelper.animateProgressBar(progressBarHidrasi, rasio);
+            gambarGelas(total);
         } catch (SQLException e) {
-            System.err.println("Gagal memuat hidrasi: " + e.getMessage());
+            access.owner();
+            listHidrasi.clear(); labelTotalHidrasi.setText("—"); progressBarHidrasi.setProgress(0); gambarGelas(0);
+            tableHidrasi.setPlaceholder(new Label("Gagal memuat catatan minum. Pilih tanggal kembali untuk mencoba."));
         }
     }
 
@@ -237,15 +274,21 @@ public class CatatanKebiasaanController {
         try {
             List<Aktivitas> data = service.getAktivitasHariIni(penggunaAktif.getId(), tanggalDipilih);
             listAktivitas.setAll(data);
+            tableAktivitas.setPlaceholder(new Label("Belum ada aktivitas pada tanggal ini."));
             int total = service.getTotalDurasiAktivitas(penggunaAktif.getId(), tanggalDipilih);
-            labelTotalAktivitas.setText(String.valueOf(total));
-            if (total >= 30) {
+            labelTotalAktivitas.setText(data.isEmpty() ? "—" : String.valueOf(total));
+            if (data.isEmpty()) {
+                labelAktivitasStatus.setText("Belum ada catatan; belum dapat menilai aktivitas hari ini.");
+            } else if (total >= 30) {
                 labelAktivitasStatus.setText("Luar biasa! Target aktivitas fisik harian minimal 30 menit sudah tercapai.");
             } else {
                 labelAktivitasStatus.setText("Saran: Tambah " + (30 - total) + " menit lagi untuk mencapai rekomendasi harian 30 menit.");
             }
         } catch (SQLException e) {
-            System.err.println("Gagal memuat aktivitas: " + e.getMessage());
+            access.owner();
+            listAktivitas.clear(); labelTotalAktivitas.setText("—");
+            labelAktivitasStatus.setText("Aktivitas gagal dimuat. Pilih tanggal kembali untuk mencoba.");
+            tableAktivitas.setPlaceholder(new Label("Gagal memuat aktivitas."));
         }
     }
 
@@ -254,78 +297,126 @@ public class CatatanKebiasaanController {
         try {
             List<KebiasaanMakan> data = service.getMakanHariIni(penggunaAktif.getId(), tanggalDipilih);
             listMakan.setAll(data);
+            tableMakan.setPlaceholder(new Label("Belum ada menu pada tanggal ini."));
         } catch (SQLException e) {
-            System.err.println("Gagal memuat kebiasaan makan: " + e.getMessage());
+            access.owner();
+            listMakan.clear(); tableMakan.setPlaceholder(new Label("Gagal memuat menu. Pilih tanggal kembali untuk mencoba."));
         }
     }
 
     // --- HANDLER HIDRASI ---
-    @FXML public void handleQuick250() { tambahHidrasiDirect(250, "Air putih 1 gelas"); }
-    @FXML public void handleQuick500() { tambahHidrasiDirect(500, "Air putih botol sedang 500 ml"); }
-    @FXML public void handleQuick600() { tambahHidrasiDirect(600, "Air putih botol 600 ml"); }
+    @FXML public void handleQuick250() {
+        access.owner(); tambahHidrasiDirect(250, "Air putih 1 gelas"); }
+    @FXML public void handleQuick500() {
+        access.owner(); tambahHidrasiDirect(500, "Air putih botol sedang 500 ml"); }
+    @FXML public void handleQuick600() {
+        access.owner(); tambahHidrasiDirect(600, "Air putih botol 600 ml"); }
 
     private void tambahHidrasiDirect(int ml, String catatan) {
         try {
-            service.tambahHidrasi(penggunaAktif.getId(), tanggalDipilih, ml, catatan);
+            writes.submit(kebiasaanRoot, () -> { service.tambahHidrasi(penggunaAktif.getId(), tanggalDipilih, ml, catatan); return null; }, () -> {
+            sounds.play(SoundEffects.Efek.AIR);
             muatHidrasi();
+            });
         } catch (Exception e) {
-            DialogHelper.showError("Error", e.getMessage());
+            access.owner();
+            DialogHelper.showError(kebiasaanRoot, "Error", e.getMessage());
         }
     }
 
     @FXML
     public void handleTambahHidrasiManual() {
+        access.owner();
         try {
             String txt = txtCustomHidrasi.getText();
             if (txt == null || txt.trim().isEmpty()) {
-                DialogHelper.showWarning("Input Kurang", "Masukkan jumlah mililiter air terlebih dahulu.");
+                DialogHelper.showWarning(kebiasaanRoot, "Input Kurang", "Masukkan jumlah mililiter air terlebih dahulu.");
                 return;
             }
             int ml = Integer.parseInt(txt.trim());
             String catatan = txtCatatanHidrasi.getText();
-            service.tambahHidrasi(penggunaAktif.getId(), tanggalDipilih, ml, catatan);
+            writes.submit(kebiasaanRoot, () -> { service.tambahHidrasi(penggunaAktif.getId(), tanggalDipilih, ml, catatan); return null; }, () -> {
+            sounds.play(SoundEffects.Efek.AIR);
             txtCustomHidrasi.clear();
             txtCatatanHidrasi.clear();
             muatHidrasi();
+            });
         } catch (NumberFormatException e) {
-            DialogHelper.showError("Input Tidak Valid", "Jumlah air harus berupa angka bulat (misal 300).");
+            DialogHelper.showError(kebiasaanRoot, "Input Tidak Valid", "Jumlah air harus berupa angka bulat (misal 300).");
         } catch (Exception e) {
-            DialogHelper.showError("Error", e.getMessage());
+            access.owner();
+            DialogHelper.showError(kebiasaanRoot, "Error", e.getMessage());
         }
+    }
+
+    /** Reference selection only; never writes, selects a duration, or marks completion. */
+    public void pilihLatihan(com.sehatharian.catalog.Exercise exercise) {
+        access.owner();
+        comboPresetAktivitas.setValue(java.util.Objects.requireNonNull(exercise).name());
+        if (labelAktivitasStatus != null) labelAktivitasStatus.setText("Nama dari RepDB dipilih. Masukkan durasi aktual lalu simpan jika sudah dilakukan.");
+    }
+
+    @FXML public void handleBukaKatalogLatihan() {
+        access.owner();
+        if (exerciseDialog != null) return;
+        Dialog<Void> dialog = new Dialog<>();
+        exerciseDialog = dialog;
+        dialog.setTitle("Katalog latihan · RepDB");
+        if (kebiasaanRoot.getScene() != null) dialog.initOwner(kebiasaanRoot.getScene().getWindow());
+        var content = new com.sehatharian.util.ExerciseCatalogPane(com.sehatharian.catalog.ExerciseCatalog.local(), exercise -> {
+            pilihLatihan(exercise); dialog.close();
+        });
+        ScrollPane scroll = new ScrollPane(content);scroll.setFitToWidth(true);scroll.setMinWidth(0);scroll.setId("exerciseScroll");
+        scroll.getStyleClass().add("ui2");
+        var pane=dialog.getDialogPane();pane.setContent(scroll);pane.getButtonTypes().add(ButtonType.CLOSE);
+        ((Button)pane.lookupButton(ButtonType.CLOSE)).setText("Tutup katalog");
+        pane.getStyleClass().add("ui2-dialog");pane.getStylesheets().add(getClass().getResource("/css/ui2.css").toExternalForm());
+        double width=dialog.getOwner()==null?1000:dialog.getOwner().getWidth();
+        double height=dialog.getOwner()==null?800:dialog.getOwner().getHeight();
+        pane.setMinWidth(0);pane.setPrefWidth(Math.max(280,Math.min(1050,width-24)));
+        scroll.setPrefViewportHeight(Math.max(200,Math.min(700,height-150)));
+        Runnable detach=session.onIdentityChanged(dialog::close);
+        dialog.setOnHidden(event->{content.close();detach.run();exerciseDialog=null;});
+        dialog.show();
     }
 
     // --- HANDLER AKTIVITAS ---
     @FXML
     public void handleSimpanAktivitas() {
+        access.owner();
         try {
-            String jenis = comboPresetAktivitas.getValue();
+            String jenis = comboPresetAktivitas.isEditable() ? comboPresetAktivitas.getEditor().getText() : comboPresetAktivitas.getValue();
             if (jenis == null || jenis.trim().isEmpty()) {
-                DialogHelper.showWarning("Pilihan Kosong", "Pilih jenis aktivitas terlebih dahulu.");
+                DialogHelper.showWarning(kebiasaanRoot, "Pilihan Kosong", "Pilih jenis aktivitas terlebih dahulu.");
                 return;
             }
             String durasiStr = txtDurasiAktivitas.getText();
             if (durasiStr == null || durasiStr.trim().isEmpty()) {
-                DialogHelper.showWarning("Input Kurang", "Masukkan durasi aktivitas dalam menit.");
+                DialogHelper.showWarning(kebiasaanRoot, "Input Kurang", "Masukkan durasi aktivitas dalam menit.");
                 return;
             }
             int durasi = Integer.parseInt(durasiStr.trim());
             String ket = txtKeteranganAktivitas.getText();
 
-            service.tambahAktivitas(penggunaAktif.getId(), tanggalDipilih, jenis, durasi, ket);
+            writes.submit(kebiasaanRoot, () -> { service.tambahAktivitas(penggunaAktif.getId(), tanggalDipilih, jenis, durasi, ket); return null; }, () -> {
+            sounds.play(SoundEffects.Efek.SUKSES);
             txtDurasiAktivitas.clear();
             txtKeteranganAktivitas.clear();
             muatAktivitas();
-            DialogHelper.showSuccess("Tersimpan", "Catatan aktivitas fisik berhasil disimpan!");
+            DialogHelper.showSuccess(kebiasaanRoot, "Tersimpan", "Catatan aktivitas fisik berhasil disimpan!");
+            });
         } catch (NumberFormatException e) {
-            DialogHelper.showError("Input Tidak Valid", "Durasi aktivitas harus berupa angka menit (misal 20).");
+            DialogHelper.showError(kebiasaanRoot, "Input Tidak Valid", "Durasi aktivitas harus berupa angka menit (misal 20).");
         } catch (Exception e) {
-            DialogHelper.showError("Error", e.getMessage());
+            access.owner();
+            DialogHelper.showError(kebiasaanRoot, "Error", e.getMessage());
         }
     }
 
     // --- HANDLER MAKAN ---
     @FXML
     public void handleSimpanMakan() {
+        access.owner();
         try {
             String waktu = comboWaktuMakan.getValue();
             String dbWaktu = "sarapan";
@@ -336,18 +427,23 @@ public class CatatanKebiasaanController {
             String menu = txtNamaMenu.getText();
             String ket = txtKeteranganMakan.getText();
 
-            service.tambahMakan(penggunaAktif.getId(), tanggalDipilih, dbWaktu, menu, ket);
+            final String waktuPilihan = dbWaktu;
+            writes.submit(kebiasaanRoot, () -> { service.tambahMakan(penggunaAktif.getId(), tanggalDipilih, waktuPilihan, menu, ket); return null; }, () -> {
+            sounds.play(SoundEffects.Efek.SUKSES);
             txtNamaMenu.clear();
             txtKeteranganMakan.clear();
             muatMakan();
-            DialogHelper.showSuccess("Tersimpan", "Catatan pola makan berhasil disimpan!");
+            DialogHelper.showSuccess(kebiasaanRoot, "Tersimpan", "Catatan pola makan berhasil disimpan!");
+            });
         } catch (Exception e) {
-            DialogHelper.showError("Error", e.getMessage());
+            access.owner();
+            DialogHelper.showError(kebiasaanRoot, "Error", e.getMessage());
         }
     }
 
     @FXML
     public void handleUbahTanggal() {
+        access.owner();
         if (datePickerTanggal.getValue() != null) {
             tanggalDipilih = datePickerTanggal.getValue();
             muatSemuaData();
@@ -356,8 +452,12 @@ public class CatatanKebiasaanController {
 
     @FXML
     public void handlePilihHariIni() {
+        access.owner();
         tanggalDipilih = LocalDate.now();
         datePickerTanggal.setValue(tanggalDipilih);
         muatSemuaData();
     }
+    @Override public void close() {
+        if (exerciseDialog != null) exerciseDialog.close();
+        access.close(); sounds.close(); }
 }

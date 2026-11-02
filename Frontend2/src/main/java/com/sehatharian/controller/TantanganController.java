@@ -3,9 +3,9 @@ package com.sehatharian.controller;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.RiwayatTantangan;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.TantanganService;
 import com.sehatharian.util.AnimationHelper;
+import com.sehatharian.util.SoundEffects;
 import com.sehatharian.util.DateHelper;
 import com.sehatharian.util.DialogHelper;
 import javafx.fxml.FXML;
@@ -25,7 +25,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TantanganController {
+public class TantanganController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+    private final com.sehatharian.util.WriteAction writes;
+
+    private final SoundEffects.View sounds;
+
+    public TantanganController(UserSession session, SoundEffects effects) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.writes = new com.sehatharian.util.WriteAction(access);
+        this.tantanganService = new TantanganService(access);
+        this.sounds = java.util.Objects.requireNonNull(effects).forView();
+    }
+
 
     @FXML private VBox tantanganRoot;
     @FXML private DatePicker datePickerTanggal;
@@ -47,8 +61,7 @@ public class TantanganController {
     @FXML private Label labelEmptySubtitle;
     @FXML private Button btnEmptyAction;
 
-    private final TantanganService tantanganService = new TantanganService();
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
+    private final TantanganService tantanganService;
     private Pengguna penggunaAktif;
     private LocalDate tanggalDipilih;
     private String filterKategori = "Semua";
@@ -57,6 +70,7 @@ public class TantanganController {
 
     @FXML
     public void initialize() {
+        access.owner();
         tanggalDipilih = LocalDate.now();
         datePickerTanggal.setValue(tanggalDipilih);
 
@@ -73,28 +87,11 @@ public class TantanganController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-            return;
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-                if (penggunaAktif != null) return;
-            } catch (Exception ignored) {}
-        }
-
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (Exception e) {
-            System.err.println("Gagal memuat pengguna default: " + e.getMessage());
-        }
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia Ayu Candra", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
     }
 
     public void muatTantangan() {
+        access.owner();
         if (penggunaAktif == null) return;
         try {
             if (tanggalDipilih.equals(LocalDate.now())) {
@@ -103,8 +100,16 @@ public class TantanganController {
                 daftarTantanganSemua = tantanganService.getTantanganByTanggal(penggunaAktif.getId(), tanggalDipilih);
             }
             renderTantangan();
+            if (access.automaticChallengesBlocked(tanggalDipilih)) {
+                labelProgressSubtitle.setText("Penugasan sebelumnya belum selesai atau belum pasti. Riwayat ini hanya pembacaan; penugasan tidak diulang.");
+                btnEmptyAction.setDisable(true);
+            }
         } catch (Exception e) {
-            System.err.println("Info muat tantangan: " + e.getMessage());
+            access.owner();
+            cardsContainer.getChildren().clear(); emptyStateBox.setVisible(false);emptyStateBox.setManaged(false);
+            labelProgressPercent.setText("—"); progressBarTantangan.setProgress(0);
+            labelProgressSubtitle.setText(e instanceof com.sehatharian.storage.WriteException receipt
+                ? receipt.result().message() : "Riwayat belum dapat dibaca. Silakan periksa kembali nanti.");
         }
     }
 
@@ -185,13 +190,13 @@ public class TantanganController {
             VBox card = new VBox(12);
             card.getStyleClass().add("wellness-card");
 
-            HBox header = new HBox(12);
+            HBox header = new com.sehatharian.util.AdaptiveRow(12);
             header.setAlignment(Pos.CENTER_LEFT);
 
             VBox info = new VBox(5);
             HBox.setHgrow(info, Priority.ALWAYS);
 
-            HBox badgeRow = new HBox(8);
+            HBox badgeRow = new com.sehatharian.util.AdaptiveRow(8);
             badgeRow.setAlignment(Pos.CENTER_LEFT);
 
             Label badgeKat = new Label(rt.getTantanganKategori() != null ? rt.getTantanganKategori().toUpperCase() : "UMUM");
@@ -224,7 +229,7 @@ public class TantanganController {
             info.getChildren().addAll(badgeRow, lblJudul, lblDesc);
 
             // Area Tombol Aksi yang Logis dan Konsisten
-            HBox actions = new HBox(8);
+            HBox actions = new com.sehatharian.util.AdaptiveRow(8);
             actions.setAlignment(Pos.CENTER_RIGHT);
 
             if (rt.isSelesai()) {
@@ -234,9 +239,11 @@ public class TantanganController {
                 } else {
                     lblWaktu.setText("Telah diselesaikan");
                 }
-                lblWaktu.setStyle("-fx-font-size: 12.5px; -fx-text-fill: #22C55E; -fx-font-weight: 600; -fx-padding: 0 8 0 0;");
+                lblWaktu.setStyle("-fx-font-size: 12.5px; -fx-text-fill: #2E7D5B; -fx-font-weight: 600; -fx-padding: 0 8 0 0;");
 
                 Button btnReset = new Button("Batalkan Selesai");
+                btnReset.getStyleClass().add("write-command");
+                btnReset.setDisable(writes.reviewRequired() || access.automaticChallengesBlocked(tanggalDipilih));
                 btnReset.getStyleClass().add("btn-secondary");
                 btnReset.setOnAction(e -> resetStatus(rt));
 
@@ -244,10 +251,14 @@ public class TantanganController {
 
             } else if (rt.isDilewati()) {
                 Button btnSelesai = new Button("Selesaikan Sekarang");
+                btnSelesai.getStyleClass().add("write-command");
+                btnSelesai.setDisable(writes.reviewRequired() || access.automaticChallengesBlocked(tanggalDipilih));
                 btnSelesai.getStyleClass().add("btn-primary");
                 btnSelesai.setOnAction(e -> selesaikan(rt, btnSelesai, card));
 
                 Button btnReset = new Button("Reset Status");
+                btnReset.getStyleClass().add("write-command");
+                btnReset.setDisable(writes.reviewRequired() || access.automaticChallengesBlocked(tanggalDipilih));
                 btnReset.getStyleClass().add("btn-secondary");
                 btnReset.setOnAction(e -> resetStatus(rt));
 
@@ -256,10 +267,14 @@ public class TantanganController {
             } else {
                 // Status disarankan
                 Button btnSelesai = new Button("Selesaikan");
+                btnSelesai.getStyleClass().add("write-command");
+                btnSelesai.setDisable(writes.reviewRequired() || access.automaticChallengesBlocked(tanggalDipilih));
                 btnSelesai.getStyleClass().add("btn-primary");
                 btnSelesai.setOnAction(e -> selesaikan(rt, btnSelesai, card));
 
                 Button btnLewati = new Button("Lewati");
+                btnLewati.getStyleClass().add("write-command");
+                btnLewati.setDisable(writes.reviewRequired() || access.automaticChallengesBlocked(tanggalDipilih));
                 btnLewati.getStyleClass().add("btn-outline");
                 btnLewati.setOnAction(e -> lewati(rt));
 
@@ -269,40 +284,50 @@ public class TantanganController {
             header.getChildren().addAll(info, actions);
             card.getChildren().add(header);
             cardsContainer.getChildren().add(card);
+            card.setMinWidth(0);
+            card.lookupAll(".label").forEach(n -> { if(n instanceof Label l){l.setWrapText(true);l.setMinWidth(0);} });
         }
     }
 
     private void selesaikan(RiwayatTantangan rt, Button btn, VBox card) {
         try {
-            tantanganService.selesaikanTantangan(rt.getId());
+            writes.submit(tantanganRoot, () -> tantanganService.selesaikanTantangan(rt.getId()), () -> {
+            sounds.play(SoundEffects.Efek.SUKSES);
             AnimationHelper.scaleButtonFeedback(btn);
             AnimationHelper.pulseSuccess(card);
             muatTantangan();
+            });
         } catch (SQLException ex) {
-            DialogHelper.showError("Error", "Gagal memperbarui status tantangan: " + ex.getMessage());
+            access.owner();
+            DialogHelper.showError(tantanganRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
         }
     }
 
     private void lewati(RiwayatTantangan rt) {
         try {
-            tantanganService.lewatiTantangan(rt.getId());
+            writes.submit(tantanganRoot, () -> tantanganService.lewatiTantangan(rt.getId()), () -> {
             muatTantangan();
+            });
         } catch (SQLException ex) {
-            DialogHelper.showError("Error", "Gagal melewati tantangan: " + ex.getMessage());
+            access.owner();
+            DialogHelper.showError(tantanganRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
         }
     }
 
     private void resetStatus(RiwayatTantangan rt) {
         try {
-            tantanganService.resetTantangan(rt.getId());
+            writes.submit(tantanganRoot, () -> tantanganService.resetTantangan(rt.getId()), () -> {
             muatTantangan();
+            });
         } catch (SQLException ex) {
-            DialogHelper.showError("Error", "Gagal mereset status tantangan: " + ex.getMessage());
+            access.owner();
+            DialogHelper.showError(tantanganRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
         }
     }
 
     @FXML
     public void handleUbahTanggal() {
+        access.owner();
         if (datePickerTanggal.getValue() != null) {
             tanggalDipilih = datePickerTanggal.getValue();
             muatTantangan();
@@ -311,6 +336,7 @@ public class TantanganController {
 
     @FXML
     public void handlePilihHariIni() {
+        access.owner();
         tanggalDipilih = LocalDate.now();
         datePickerTanggal.setValue(tanggalDipilih);
         muatTantangan();
@@ -318,15 +344,24 @@ public class TantanganController {
 
     @FXML
     public void handleMuatUlangTantangan() {
+        access.owner();
         try {
-            if (daftarTantanganSemua.isEmpty()) {
-                tantanganService.pastikanTantanganHariIni(penggunaAktif, tanggalDipilih);
+            if (!daftarTantanganSemua.isEmpty()) {
+                filterKategori = "Semua";
+                setActiveFilterButton(btnFilterSemua);
+                muatTantangan();
+                return;
             }
-            filterKategori = "Semua";
-            setActiveFilterButton(btnFilterSemua);
-            muatTantangan();
+            writes.submit(tantanganRoot,
+                () -> tantanganService.pastikanTantanganHariIni(penggunaAktif, tanggalDipilih),
+                () -> {
+                    filterKategori = "Semua";
+                    setActiveFilterButton(btnFilterSemua);
+                    muatTantangan();
+                });
         } catch (SQLException e) {
-            DialogHelper.showError("Error", "Gagal memuat tantangan: " + e.getMessage());
+            access.owner();
+            DialogHelper.showError(tantanganRoot, "Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
         }
     }
 
@@ -344,9 +379,16 @@ public class TantanganController {
         }
     }
 
-    @FXML public void handleFilterSemua() { filterKategori = "Semua"; setActiveFilterButton(btnFilterSemua); renderTantangan(); }
-    @FXML public void handleFilterJalan() { filterKategori = "Jalan Kaki"; setActiveFilterButton(btnFilterJalan); renderTantangan(); }
-    @FXML public void handleFilterWorkout() { filterKategori = "Workout di Rumah"; setActiveFilterButton(btnFilterWorkout); renderTantangan(); }
-    @FXML public void handleFilterPeregangan() { filterKategori = "Peregangan"; setActiveFilterButton(btnFilterPeregangan); renderTantangan(); }
-    @FXML public void handleFilterHidrasi() { filterKategori = "Hidrasi & Nutrisi"; setActiveFilterButton(btnFilterHidrasi); renderTantangan(); }
+    @FXML public void handleFilterSemua() {
+        access.owner(); filterKategori = "Semua"; setActiveFilterButton(btnFilterSemua); renderTantangan(); }
+    @FXML public void handleFilterJalan() {
+        access.owner(); filterKategori = "Jalan Kaki"; setActiveFilterButton(btnFilterJalan); renderTantangan(); }
+    @FXML public void handleFilterWorkout() {
+        access.owner(); filterKategori = "Workout di Rumah"; setActiveFilterButton(btnFilterWorkout); renderTantangan(); }
+    @FXML public void handleFilterPeregangan() {
+        access.owner(); filterKategori = "Peregangan"; setActiveFilterButton(btnFilterPeregangan); renderTantangan(); }
+    @FXML public void handleFilterHidrasi() {
+        access.owner(); filterKategori = "Hidrasi & Nutrisi"; setActiveFilterButton(btnFilterHidrasi); renderTantangan(); }
+    @Override public void close() {
+        access.close(); sounds.close(); }
 }

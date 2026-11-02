@@ -36,4 +36,9 @@ public class RekomendasiService {
     public List<Rekomendasi> getAllRekomendasi() throws SQLException {
         return repo.getAll();
     }
+
+    public com.sehatharian.storage.ReadResult<List<Rekomendasi>> bacaKatalog(String tipe, String kesibukan, String usia) {
+        return com.sehatharian.storage.ReadResult.database(
+            () -> List.copyOf(repo.getFiltered(tipe, kesibukan, usia, 0)));
+    }
 }

@@ -16,8 +16,9 @@ public class ProgresHarianServiceTest {
     private ProgresHarianService service;
 
     @BeforeEach
-    void setUp() {
-        service = new ProgresHarianService();
+    void setUp() throws SQLException {
+        OwnershipFixtures fixture = new OwnershipFixtures();
+        service = fixture.progres();
     }
 
     @Test

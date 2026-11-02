@@ -13,7 +13,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class OnboardingController {
+public class OnboardingController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+    private final com.sehatharian.util.WriteAction writes;
+    private final PenggunaService penggunaService;
+    private final SceneNavigator navigator;
+
+    public OnboardingController(UserSession session, PenggunaService penggunaService, SceneNavigator navigator) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.writes = new com.sehatharian.util.WriteAction(access);
+        this.penggunaService = java.util.Objects.requireNonNull(penggunaService).forView(access);
+        this.navigator = java.util.Objects.requireNonNull(navigator);
+    }
+
 
     // Progress Header
     @FXML private Label step1Badge;
@@ -46,6 +60,7 @@ public class OnboardingController {
 
     // Navigation & Validation
     @FXML private Label validationMessageLabel;
+    @FXML private javafx.scene.Parent onboardingRoot;
     @FXML private Button btnPrev;
     @FXML private Button btnNext;
     @FXML private Button btnFinish;
@@ -59,6 +74,15 @@ public class OnboardingController {
 
     @FXML
     public void initialize() {
+        access.owner();
+        javafx.scene.Node[] choices={cardWaktu0,cardWaktu1,cardWaktu2,cardWaktu3,cardWaktu4,cardOutdoor,cardIndoor,cardRemaja,cardDewasa,cardLansia};
+        Runnable[] actions={this::handlePilihWaktu0,this::handlePilihWaktu1,this::handlePilihWaktu2,this::handlePilihWaktu3,this::handlePilihWaktu4,this::handlePilihOutdoor,this::handlePilihIndoor,this::handlePilihRemaja,this::handlePilihDewasa,this::handlePilihLansia};
+        String[] names={"Kurang dari 1 jam","1 jam","2 jam","3 jam","4 jam","Outdoor","Indoor","Remaja","Dewasa","Lansia"};
+        for(int i=0;i<choices.length;i++) {
+            var choice=choices[i];var action=actions[i];choice.setFocusTraversable(true);
+            choice.setAccessibleRole(javafx.scene.AccessibleRole.BUTTON);choice.setAccessibleText(names[i]);
+            choice.setOnKeyPressed(e->{if(e.getCode()==javafx.scene.input.KeyCode.ENTER || e.getCode()==javafx.scene.input.KeyCode.SPACE){action.run();e.consume();}});
+        }
         muatGambarSlide2();
         updateTampilanSlide();
     }
@@ -75,11 +99,16 @@ public class OnboardingController {
 
     // --- SELECTION HANDLERS: SLIDE 1 (WAKTU LUANG) ---
 
-    @FXML public void handlePilihWaktu0() { setWaktuLuang(0, "Kurang dari 1 jam (30-45 menit)"); }
-    @FXML public void handlePilihWaktu1() { setWaktuLuang(1, "1 jam"); }
-    @FXML public void handlePilihWaktu2() { setWaktuLuang(2, "2 jam"); }
-    @FXML public void handlePilihWaktu3() { setWaktuLuang(3, "3 jam"); }
-    @FXML public void handlePilihWaktu4() { setWaktuLuang(4, "4 jam"); }
+    @FXML public void handlePilihWaktu0() {
+        access.owner(); setWaktuLuang(0, "Kurang dari 1 jam (30-45 menit)"); }
+    @FXML public void handlePilihWaktu1() {
+        access.owner(); setWaktuLuang(1, "1 jam"); }
+    @FXML public void handlePilihWaktu2() {
+        access.owner(); setWaktuLuang(2, "2 jam"); }
+    @FXML public void handlePilihWaktu3() {
+        access.owner(); setWaktuLuang(3, "3 jam"); }
+    @FXML public void handlePilihWaktu4() {
+        access.owner(); setWaktuLuang(4, "4 jam"); }
 
     private void setWaktuLuang(int hours, String label) {
         this.selectedWaktuLuang = hours;
@@ -104,11 +133,13 @@ public class OnboardingController {
 
     @FXML
     public void handlePilihOutdoor() {
+        access.owner();
         setJenisAktivitas("OUTDOOR");
     }
 
     @FXML
     public void handlePilihIndoor() {
+        access.owner();
         setJenisAktivitas("INDOOR");
     }
 
@@ -131,9 +162,12 @@ public class OnboardingController {
 
     // --- SELECTION HANDLERS: SLIDE 3 (KELOMPOK UMUR) ---
 
-    @FXML public void handlePilihRemaja() { setKelompokUmur("REMAJA"); }
-    @FXML public void handlePilihDewasa() { setKelompokUmur("DEWASA"); }
-    @FXML public void handlePilihLansia() { setKelompokUmur("LANSIA"); }
+    @FXML public void handlePilihRemaja() {
+        access.owner(); setKelompokUmur("REMAJA"); }
+    @FXML public void handlePilihDewasa() {
+        access.owner(); setKelompokUmur("DEWASA"); }
+    @FXML public void handlePilihLansia() {
+        access.owner(); setKelompokUmur("LANSIA"); }
 
     private void setKelompokUmur(String umur) {
         this.selectedKelompokUmur = umur;
@@ -160,6 +194,7 @@ public class OnboardingController {
 
     @FXML
     public void handleNext() {
+        access.owner();
         if (currentSlide == 1) {
             if (selectedWaktuLuang == null) {
                 showValidationMessage("Silakan pilih salah satu jawaban waktu luang untuk melanjutkan.");
@@ -179,6 +214,7 @@ public class OnboardingController {
 
     @FXML
     public void handlePrev() {
+        access.owner();
         hideValidationMessage();
         if (currentSlide > 1) {
             currentSlide--;
@@ -188,6 +224,7 @@ public class OnboardingController {
 
     @FXML
     public void handleFinish() {
+        access.owner();
         // Validasi kelengkapan semua 3 slide sebelum menyelesaikan
         if (selectedWaktuLuang == null || selectedJenisAktivitas == null || selectedKelompokUmur == null) {
             showValidationMessage("Silakan pastikan semua pertanyaan telah dijawab sebelum menyelesaikan onboarding.");
@@ -198,32 +235,23 @@ public class OnboardingController {
 
         String waktuLabel = selectedWaktuLuangLabel != null ? selectedWaktuLuangLabel : (selectedWaktuLuang + " jam");
 
-        // Simpan jawaban ke UserSession
-        UserSession session = UserSession.getInstance();
-        session.completeOnboarding(
-                selectedWaktuLuang,
-                waktuLabel,
-                selectedJenisAktivitas,
-                selectedKelompokUmur
-        );
-
+        // Onboarding updates an authenticated account; it never creates a session.
+        if (!session.isLoggedIn()) { navigator.showLogin(); return; }
         // Persist ke database melalui PenggunaService
         try {
-            PenggunaService penggunaService = new PenggunaService();
-            int userId = session.getUserId() > 0 ? session.getUserId() : 1;
-            penggunaService.simpanOnboarding(
-                    userId,
-                    selectedWaktuLuang,
-                    waktuLabel,
-                    selectedJenisAktivitas,
-                    selectedKelompokUmur
-            );
+            int userId = session.getUserId();
+            writes.submit(onboardingRoot, () -> {
+                penggunaService.simpanOnboarding(userId, selectedWaktuLuang, waktuLabel,
+                        selectedJenisAktivitas, selectedKelompokUmur);
+                return null;
+            }, () -> navigator.showMainApp());
         } catch (Exception e) {
-            System.err.println("Gagal menyimpan onboarding ke database: " + e.getMessage());
+            access.owner();
+            showValidationMessage("Preferensi belum dapat disimpan. Silakan coba lagi.");
+            return;
         }
 
-        // Arahkan ke Dashboard
-        SceneNavigator.showMainApp();
+        // Navigation is performed only by the confirmed callback above.
     }
 
     private void updateTampilanSlide() {
@@ -296,4 +324,5 @@ public class OnboardingController {
         validationMessageLabel.setVisible(false);
         validationMessageLabel.setManaged(false);
     }
+    @Override public void close() { access.close(); }
 }

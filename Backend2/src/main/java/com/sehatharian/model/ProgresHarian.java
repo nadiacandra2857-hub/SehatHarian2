@@ -78,4 +78,8 @@ public class ProgresHarian {
 
     public double getSkorKompositHarian() { return skorKompositHarian; }
     public void setSkorKompositHarian(double skorKompositHarian) { this.skorKompositHarian = skorKompositHarian; }
+    /** Zero metrics without any records do not establish a health condition. */
+    public boolean hasRecordedData() {
+        return totalTantangan > 0 || totalHidrasiMl > 0 || totalAktivitasMenit > 0 || durasiTidurJam > 0;
+    }
 }

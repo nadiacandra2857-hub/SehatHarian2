@@ -1,128 +1,176 @@
 package com.sehatharian.service;
 
-import com.sehatharian.util.AudioPlayerHelper;
-import com.sehatharian.util.DateHelper;
-import javafx.application.Platform;
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import com.sehatharian.model.UserSession;
+import com.sehatharian.util.AudioOutput;
+import java.time.*;
+import java.util.*;
 import java.util.function.Consumer;
 
-public class PengingatTidurService {
-    private static PengingatTidurService instance;
-
-    private ScheduledExecutorService scheduler;
-    private LocalTime targetJamTidur;
-    private boolean aktif = true;
-
-    private LocalDate tanggalNotifikasi10MenitTerakhir;
-    private LocalDate tanggalAlarmTerakhir;
-
-    private Consumer<String> notifikasiListener;
-
-    private PengingatTidurService() {
-        startScheduler();
+/** Session reminder: reset is reusable; close is terminal. No JavaFX/toolkit dependency. */
+public final class PengingatTidurService implements AutoCloseable {
+    public static final ZoneId ZONE = ZoneId.of("Asia/Jakarta");
+    private final UserSession session;
+    private final SleepScheduleProvider schedules;
+    private final ReminderScheduler scheduler;
+    private final Clock clock;
+    private final Consumer<Runnable> ui;
+    private final AudioOutput output;
+    private final Runnable detachIdentity;
+    private final List<Subscription> listeners = new ArrayList<>();
+    private Runnable cancelWorker;
+    private LocalTime target;
+    private boolean aktif = true, closed;
+    private long revision, workerEpoch, preferenceRevision;
+    private LocalDateTime notified, alarmed;
+    private String status = "Belum ada jadwal SQL aktif (WIB).";
+    private final class Subscription {
+        final long generation = session.getGeneration();
+        final Consumer<String> listener;
+        boolean live = true;
+        Subscription(Consumer<String> listener) { this.listener = listener; }
     }
 
-    public static synchronized PengingatTidurService getInstance() {
-        if (instance == null) {
-            instance = new PengingatTidurService();
-        }
-        return instance;
-    }
-
-    public void setNotifikasiListener(Consumer<String> listener) {
-        this.notifikasiListener = listener;
-    }
-
-    public void updateJadwal(LocalTime jamTidur, boolean aktif) {
-        this.targetJamTidur = jamTidur;
-        this.aktif = aktif;
-    }
-
-    public void setAktif(boolean aktif) {
-        this.aktif = aktif;
-    }
-
-    public boolean isAktif() {
-        return aktif;
-    }
-
-    public LocalTime getTargetJamTidur() {
-        return targetJamTidur;
-    }
-
-    private void startScheduler() {
-        scheduler = Executors.newSingleThreadScheduledExecutor(r -> {
-            Thread t = new Thread(r, "PengingatTidur-Worker");
-            t.setDaemon(true);
-            return t;
+    public PengingatTidurService(UserSession session, SleepScheduleProvider schedules,
+            ReminderScheduler scheduler, Clock clock, Consumer<Runnable> ui, AudioOutput output) {
+        this.session = Objects.requireNonNull(session);
+        this.schedules = Objects.requireNonNull(schedules);
+        this.scheduler = Objects.requireNonNull(scheduler);
+        this.clock = Objects.requireNonNull(clock).withZone(ZONE);
+        this.ui = Objects.requireNonNull(ui);
+        this.output = Objects.requireNonNull(output);
+        detachIdentity = session.onIdentityChanged(() -> {
+            reset();
+            if (session.isLoggedIn()) reloadSchedule();
         });
-
-        // Periksa setiap 5 detik
-        scheduler.scheduleAtFixedRate(this::periksaWaktu, 5, 5, TimeUnit.SECONDS);
     }
-
-    private void periksaWaktu() {
-        if (!aktif || targetJamTidur == null) return;
-
-        LocalTime now = LocalTime.now();
-        LocalDate today = LocalDate.now();
-
-        // Hitung selisih detik antara sekarang dan jam target tidur
-        long detikKeTidur = Duration.between(now, targetJamTidur).getSeconds();
-
-        // Jika jam tidur melintasi tengah malam
-        if (detikKeTidur < -43200) {
-            detikKeTidur += 86400;
-        } else if (detikKeTidur > 43200) {
-            detikKeTidur -= 86400;
-        }
-
-        // 1. Notifikasi 10 menit sebelum waktu tidur (antara 570 sampai 630 detik = ~10 menit)
-        if (detikKeTidur >= 570 && detikKeTidur <= 630) {
-            if (tanggalNotifikasi10MenitTerakhir == null || !tanggalNotifikasi10MenitTerakhir.equals(today)) {
-                tanggalNotifikasi10MenitTerakhir = today;
-                kirimPemberitahuan("Pengingat Waktu Istirahat: 10 menit lagi waktu tidur Anda tiba (" + 
-                    DateHelper.formatJamMenit(targetJamTidur) + " WIB). Mulai matikan layar dan bersiap istirahat.", false);
-            }
-        }
-
-        // 2. Alarm pada waktu tidur (antara 10 detik sebelum sampai 10 detik setelah jam target)
-        if (detikKeTidur >= -10 && detikKeTidur <= 10) {
-            if (tanggalAlarmTerakhir == null || !tanggalAlarmTerakhir.equals(today)) {
-                tanggalAlarmTerakhir = today;
-                kirimPemberitahuan("Waktu Tidur Tiba: Saatnya mulai beristirahat malam untuk menjaga ritme kesehatan sirkadian minimal 5 jam.", true);
-            }
-        }
+    private boolean valid(long generation, long version) {
+        return !closed && session.isLoggedIn() && generation == session.getGeneration() && version == revision;
     }
-
-    private void kirimPemberitahuan(String pesan, boolean bunyikanAlarm) {
-        if (bunyikanAlarm) {
-            AudioPlayerHelper.mainkanNadaPengingat();
-        }
-
-        if (notifikasiListener != null) {
+    public synchronized Runnable subscribe(Consumer<String> listener) {
+        if (closed) throw new IllegalStateException("Pengingat sudah ditutup.");
+        session.requireActiveUser();
+        var subscription = new Subscription(Objects.requireNonNull(listener));
+        listeners.add(subscription);
+        return () -> { synchronized (this) {
+            if (!subscription.live) return;
+            subscription.live = false;
+            listeners.remove(subscription);
+            if (listeners.isEmpty()) output.stop();
+        }};
+    }
+    public synchronized void reset() {
+        if (!closed) resetState();
+    }
+    private void resetState() {
+        revision++; workerEpoch++;
+        target = null; aktif = true; notified = null; alarmed = null;
+        status = "Belum ada jadwal SQL aktif (WIB).";
+        if (cancelWorker != null) { cancelWorker.run(); cancelWorker = null; }
+        for (var listener : listeners) listener.live = false;
+        listeners.clear();
+        output.stop();
+    }
+    /** Clearing first also prevents an empty/failed refresh retaining an older target. */
+    public synchronized void reloadSchedule() {
+        if (closed) return;
+        target = null; revision++; workerEpoch++;
+        output.stop();
+        if (cancelWorker != null) { cancelWorker.run(); cancelWorker = null; }
+        if (!session.isLoggedIn()) return;
+        long generation = session.getGeneration(), version = workerEpoch, preference = preferenceRevision;
+        int userId = session.getUserId();
+        status = "Memuat jadwal SQL (WIB).";
+        scheduler.execute(() -> {
             try {
-                Platform.runLater(() -> notifikasiListener.accept(pesan));
-            } catch (IllegalStateException e) {
-                // Jika JavaFX Toolkit belum dimulai (misal pada mode CLI test)
-                notifikasiListener.accept(pesan);
+                synchronized (this) { if (!validLoad(generation, version)) return; }
+                var schedule = schedules.latest(userId);
+                synchronized (this) {
+                    if (!validLoad(generation, version)) return;
+                    target = schedule == null ? null : schedule.bedtime();
+                    if (schedule != null && preference == preferenceRevision) aktif = schedule.enabled();
+                    status = schedule == null ? "Belum ada jadwal SQL aktif (WIB)." : "Jadwal SQL " + target + " WIB (Asia/Jakarta)";
+                    if (target != null) {
+                        long epoch = workerEpoch;
+                        cancelWorker = scheduler.everyFiveSeconds(() -> safeCheck(generation, epoch));
+                    }
+                    emit(status, false);
+                }
+            } catch (Exception e) {
+                synchronized (this) {
+                    if (!validLoad(generation, version)) return;
+                    target = null;
+                    status = "Jadwal SQL tidak tersedia; pengingat belum dijalankan (WIB).";
+                    emit(status, false);
+                }
+                System.err.println("Pembacaan jadwal pengingat gagal; tidak menggunakan data demo.");
             }
+        });
+    }
+    private boolean validLoad(long generation, long epoch) {
+        return !closed && session.isLoggedIn() && generation == session.getGeneration() && epoch == workerEpoch;
+    }
+    public synchronized void setAktif(boolean enabled) {
+        if (closed || !session.isLoggedIn()) return;
+        aktif = enabled; preferenceRevision++;
+        revision++; // invalidate UI already queued when toggling
+        output.stop();
+    }
+    public synchronized boolean isAktif() { return aktif; }
+    public synchronized LocalTime getTargetJamTidur() { return target; }
+    public synchronized String getStatus() { return status; }
+    private synchronized void safeCheck(long generation, long epoch) {
+        if (closed || generation != session.getGeneration() || epoch != workerEpoch) return;
+        try { check(); }
+        catch (RuntimeException e) { System.err.println("Pemeriksaan pengingat gagal; pemeriksaan berikutnya tetap aktif."); }
+    }
+    private synchronized void check() {
+        if (closed || !session.isLoggedIn() || !aktif || target == null) return;
+        var now = LocalDateTime.now(clock);
+        var occurrence = now.toLocalDate().atTime(target);
+        long seconds = Duration.between(now, occurrence).getSeconds();
+        if (seconds < -43200) occurrence = occurrence.plusDays(1);
+        else if (seconds > 43200) occurrence = occurrence.minusDays(1);
+        seconds = Duration.between(now, occurrence).getSeconds();
+        if (seconds >= 570 && seconds <= 630 && !occurrence.equals(notified)) {
+            notified = occurrence;
+            emit("Pengingat: sekitar 10 menit lagi waktu tidur " + target + " WIB (Asia/Jakarta).", false);
+        }
+        if (seconds >= -10 && seconds <= 10 && !occurrence.equals(alarmed)) {
+            alarmed = occurrence;
+            emit("Waktu tidur tiba (WIB). Saatnya beristirahat; ambang proyek minimal 5 jam.", true);
         }
     }
-
-    public void ujiCobaPengingat() {
-        kirimPemberitahuan("Uji Coba Pengingat: Suara alarm tidur SehatHarian aktif dengan sukses.", true);
-    }
-
-    public void stop() {
-        if (scheduler != null && !scheduler.isShutdown()) {
-            scheduler.shutdownNow();
+    private synchronized void emit(String message, boolean alarm) {
+        long generation = session.getGeneration(), version = revision;
+        if (!valid(generation, version)) return;
+        var recipients = listeners.stream().filter(s -> s.live && s.generation == generation).toList();
+        if (recipients.isEmpty()) return;
+        try { ui.accept(() -> { synchronized (this) {
+            if (!valid(generation, version)) return;
+            var live = recipients.stream().filter(s -> s.live && s.generation == generation).toList();
+            if (live.isEmpty()) return;
+            if (alarm) {
+                try { output.play("/sounds/bell_reminder.wav", 1.0); }
+                catch (RuntimeException | LinkageError e) { System.err.println("Audio pengingat tidak tersedia; banner tetap ditampilkan."); }
+            }
+            for (var recipient : live) {
+                if (!valid(generation, version)) break;
+                if (!recipient.live) continue;
+                try { recipient.listener.accept(message); }
+                catch (RuntimeException e) { System.err.println("Tampilan pengingat tidak tersedia."); }
+            }
+        }}); } catch (RuntimeException e) {
+            System.err.println("Antrean UI pengingat tidak tersedia; tidak menjalankan UI pada worker.");
         }
+    }
+    public synchronized void ujiCobaPengingat() {
+        if (!closed) emit("Uji pengingat visual (WIB). Suara hanya tersedia pada backend audio yang didukung.", true);
+    }
+    @Override public synchronized void close() {
+        if (closed) return;
+        closed = true;
+        resetState();
+        detachIdentity.run();
+        scheduler.close();
     }
 }

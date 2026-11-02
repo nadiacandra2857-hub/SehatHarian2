@@ -2,6 +2,8 @@ package com.sehatharian;
 
 import com.sehatharian.model.UserSession;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import java.sql.SQLException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +16,16 @@ class UserSessionTest {
 
     @BeforeEach
     void setUp() {
-        session = UserSession.getInstance();
+        session = new UserSession();
         session.logout();
     }
 
+    @AfterEach void tearDown() { session.logout(); }
+
     @Test
     @DisplayName("Pendaftaran akun baru harus menyetel onboardingSelesai = false")
-    void testRegisterNewAccountRequiresOnboarding() {
-        session.registerNewAccount("Nadia Candra", "nadia@sehatharian.id");
+    void testRegisterNewAccountRequiresOnboarding() throws SQLException {
+        FrontendAuthFixture.register(session, "Nadia Candra", "nadia@sehatharian.id");
 
         assertTrue(session.isLoggedIn(), "Pengguna harus berstatus login setelah register");
         assertEquals("Nadia Candra", session.getUserName());
@@ -31,8 +35,8 @@ class UserSessionTest {
 
     @Test
     @DisplayName("Menyelesaikan 3 slide onboarding harus menyetel onboardingSelesai = true")
-    void testCompleteOnboarding() {
-        session.registerNewAccount("Adhitya Ramadhan", "adhitya@sehatharian.id");
+    void testCompleteOnboarding() throws SQLException {
+        FrontendAuthFixture.register(session, "Adhitya Ramadhan", "adhitya@sehatharian.id");
         assertFalse(session.isOnboardingSelesai());
 
         // Pengguna menyelesaikan 3 slide: 2 jam, OUTDOOR, DEWASA
@@ -47,7 +51,8 @@ class UserSessionTest {
 
     @Test
     @DisplayName("Waktu luang tidak boleh melebihi batas maksimal 4 jam")
-    void testWaktuLuangMaximumFourHours() {
+    void testWaktuLuangMaximumFourHours() throws SQLException {
+        FrontendAuthFixture.register(session, "Fixture User", "fixture@example.test");
         // Jika dicoba mengisi nilai > 4 jam, harus di-clamp maksimal 4
         session.completeOnboarding(5, "5 jam", "INDOOR", "LANSIA");
         assertEquals(4, session.getWaktuLuangHours(), "Waktu luang maksimal harus 4 jam sesuai PRD");
@@ -59,7 +64,8 @@ class UserSessionTest {
 
     @Test
     @DisplayName("Kelompok umur dan aktivitas harus ternormalisasi dengan benar")
-    void testPreferenceNormalization() {
+    void testPreferenceNormalization() throws SQLException {
+        FrontendAuthFixture.register(session, "Fixture User", "fixture@example.test");
         session.completeOnboarding(1, "1 jam", "indoor", "lansia");
         assertEquals("INDOOR", session.getJenisAktivitas());
         assertEquals("LANSIA", session.getKelompokUmur());
@@ -71,8 +77,8 @@ class UserSessionTest {
 
     @Test
     @DisplayName("Login pengguna yang sudah ada tidak memunculkan onboarding ulang")
-    void testLoginExistingUserDoesNotRequireOnboarding() {
-        session.login("nadia@sehatharian.id", "Nadia Ayu");
+    void testLoginExistingUserDoesNotRequireOnboarding() throws SQLException {
+        FrontendAuthFixture.login(session, "Nadia Ayu", "nadia@sehatharian.id");
         session.setOnboardingSelesai(true);
 
         assertTrue(session.isLoggedIn());
@@ -81,8 +87,8 @@ class UserSessionTest {
 
     @Test
     @DisplayName("Logout membersihkan sesi pengguna dengan aman")
-    void testLogoutClearsSession() {
-        session.registerNewAccount("User Test", "test@example.com");
+    void testLogoutClearsSession() throws SQLException {
+        FrontendAuthFixture.register(session, "User Test", "test@example.com");
         session.completeOnboarding(1, "1 jam", "OUTDOOR", "DEWASA");
         assertTrue(session.isLoggedIn());
 

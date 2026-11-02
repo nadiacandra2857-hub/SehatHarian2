@@ -3,7 +3,6 @@ package com.sehatharian.controller;
 import com.sehatharian.config.DatabaseConfig;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.DialogHelper;
 import javafx.collections.FXCollections;
@@ -17,7 +16,18 @@ import javafx.scene.layout.VBox;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class ProfilPengaturanController {
+public class ProfilPengaturanController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+    private final com.sehatharian.util.WriteAction writes;
+
+    public ProfilPengaturanController(UserSession session, com.sehatharian.service.PenggunaService profiles) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.writes = new com.sehatharian.util.WriteAction(access);
+        this.profiles = java.util.Objects.requireNonNull(profiles).forView(access);
+    }
+
 
     @FXML private VBox profilRoot;
     @FXML private TextField txtNama;
@@ -29,24 +39,26 @@ public class ProfilPengaturanController {
     @FXML private Label labelJdbcUrl;
     @FXML private Label labelDbStatus;
 
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
+    private final com.sehatharian.service.PenggunaService profiles;
     private Pengguna penggunaAktif;
     private MainLayoutController mainController;
 
     public void setMainController(MainLayoutController mainController) {
+        access.owner();
         this.mainController = mainController;
     }
 
     @FXML
     public void initialize() {
+        access.owner();
         comboGolonganUsia.setItems(FXCollections.observableArrayList(
             "Dewasa (18 - 59 Tahun)",
             "Lansia (≥ 60 Tahun)"
         ));
 
         comboGolonganKesibukan.setItems(FXCollections.observableArrayList(
-            "Pekerja di Luar Rumah (Mobilitas/Kantor)",
-            "Pekerja di Dalam Rumah (WFH / Domestik)"
+            "Di Luar Rumah",
+            "Di Dalam Rumah"
         ));
 
         labelJdbcUrl.setText(DatabaseConfig.getJdbcUrl());
@@ -57,25 +69,7 @@ public class ProfilPengaturanController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-            } catch (Exception ignored) {}
-        }
-
-        if (penggunaAktif == null) {
-            try {
-                penggunaAktif = penggunaRepo.getDefaultPengguna();
-            } catch (SQLException e) {
-                System.err.println("Gagal memuat profil pengguna dari DB: " + e.getMessage());
-            }
-        }
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia Ayu Candra", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
 
         txtNama.setText(penggunaAktif.getNama());
         if (penggunaAktif.getTanggalLahir() != null) {
@@ -90,18 +84,19 @@ public class ProfilPengaturanController {
         }
 
         if ("dalam_rumah".equalsIgnoreCase(penggunaAktif.getGolonganKesibukan())) {
-            comboGolonganKesibukan.setValue("Pekerja di Dalam Rumah (WFH / Domestik)");
+            comboGolonganKesibukan.setValue("Di Dalam Rumah");
         } else {
-            comboGolonganKesibukan.setValue("Pekerja di Luar Rumah (Mobilitas/Kantor)");
+            comboGolonganKesibukan.setValue("Di Luar Rumah");
         }
     }
 
     @FXML
     public void handleSimpanProfil() {
+        access.owner();
         try {
             String nama = txtNama.getText();
             if (nama == null || nama.trim().isEmpty()) {
-                DialogHelper.showWarning("Input Kurang", "Nama lengkap wajib diisi.");
+                DialogHelper.showWarning(profilRoot, "Input Kurang", "Nama lengkap wajib diisi.");
                 return;
             }
 
@@ -111,11 +106,11 @@ public class ProfilPengaturanController {
                 try {
                     waktuLuang = Integer.parseInt(waktuLuangStr.trim());
                     if (waktuLuang <= 0 || waktuLuang > 480) {
-                        DialogHelper.showWarning("Input Tidak Valid", "Waktu luang harus antara 1 sampai 480 menit.");
+                        DialogHelper.showWarning(profilRoot, "Input Tidak Valid", "Waktu luang harus antara 1 sampai 480 menit.");
                         return;
                     }
                 } catch (NumberFormatException e) {
-                    DialogHelper.showError("Format Salah", "Waktu luang harus berupa angka menit.");
+                    DialogHelper.showError(profilRoot, "Format Salah", "Waktu luang harus berupa angka menit.");
                     return;
                 }
             }
@@ -129,26 +124,45 @@ public class ProfilPengaturanController {
             penggunaAktif.setGolonganUsia(usia);
             penggunaAktif.setGolonganKesibukan(kesibukan);
 
-            penggunaRepo.updatePengguna(penggunaAktif);
-            UserSession.getInstance().setCurrentUser(penggunaAktif);
+            final int waktuPilihan = waktuLuang;
+            writes.submit(profilRoot,
+                () -> profiles.updateProfil(penggunaAktif.getId(), nama, datePickerTanggalLahir.getValue(), waktuPilihan, usia, kesibukan),
+                () -> {
+            access.owner();
+            penggunaAktif = access.profile();
 
             if (mainController != null) {
                 mainController.updateUserInfoSidebar(penggunaAktif);
             }
 
-            DialogHelper.showSuccess("Sukses", "Profil pengguna berhasil diperbarui!");
+            DialogHelper.showSuccess(profilRoot, "Sukses", "Profil pengguna berhasil diperbarui!");
+                });
         } catch (SQLException e) {
-            DialogHelper.showError("Database Error", "Gagal menyimpan perubahan profil: " + e.getMessage());
+            access.owner();
+            DialogHelper.showError(profilRoot, "Database Error", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
+        }
+    }
+
+    @FXML public void handleLogout() { access.owner(); if(mainController!=null) mainController.handleLogout(); }
+
+    @FXML
+    public void handleMuatUlang() {
+        access.owner();
+        try {
+            if (profiles.muatProfilTersimpan() == null) {
+                DialogHelper.showWarning(profilRoot, "Profil Belum Tersedia", "Profil tersimpan belum dapat ditemukan.");
+                return;
+            }
+            muatDataPengguna();
+        } catch (SQLException e) {
+            access.owner();
+            DialogHelper.showWarning(profilRoot, "Belum Dapat Memuat", "Profil belum dapat dibaca. Jangan langsung mengulang penyimpanan yang belum pasti.");
         }
     }
 
     @FXML
-    public void handleMuatUlang() {
-        muatDataPengguna();
-    }
-
-    @FXML
     public void handleTestConnection() {
+        access.owner();
         boolean ok = DatabaseConfig.testConnection();
         if (ok) {
             labelDbStatus.setText("✓ Terhubung (MySQL 8.0)");
@@ -158,4 +172,5 @@ public class ProfilPengaturanController {
             labelDbStatus.getStyleClass().setAll("badge-warning");
         }
     }
+    @Override public void close() { access.close(); }
 }

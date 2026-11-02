@@ -36,7 +36,7 @@ class LandingPageLayoutTest {
 
         Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LandingPageView.fxml"));
+                FXMLLoader loader = FrontendAuthFixture.context().navigator().newLoader("/fxml/LandingPageView.fxml");
                 Parent root = loader.load();
                 assertNotNull(root, "Root LandingPageView tidak boleh null");
                 assertNotNull(loader.getController(), "Controller LandingPageController tidak boleh null");

@@ -1,25 +1,25 @@
 package com.sehatharian;
 
-import com.sehatharian.config.DatabaseConfig;
-import com.sehatharian.service.PengingatTidurService;
-import com.sehatharian.util.SceneNavigator;
+import com.sehatharian.config.DatabaseBootstrap;
+import com.sehatharian.config.LocalDatabase;
+import com.sehatharian.context.ApplicationContext;
+import com.sehatharian.repository.PenggunaRepository;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
+    private ApplicationContext context;
+    private com.jpro.webapi.WebAPI browserApi;
+    private com.jpro.webapi.InstanceCloseListener browserCloseListener;
 
     @Override
     public void start(Stage primaryStage) {
         try {
             // Inisialisasi koordinator navigasi desktop
-            SceneNavigator.init(primaryStage);
-
-            // Verifikasi koneksi MySQL saat aplikasi dibuka (non-blocking)
-            boolean dbConnected = DatabaseConfig.testConnection();
-            if (!dbConnected) {
-                System.out.println("Mode Demo Frontend Aktif: Tidak dapat terhubung ke MySQL Server lokal. State in-memory aktif.");
-            }
+            PenggunaRepository accounts = new PenggunaRepository();
+            context = new ApplicationContext(accounts, accounts);
+            context.navigator().attachStage(primaryStage);
 
             try {
                 var iconUrl = getClass().getResource("/images/logo.png");
@@ -33,21 +33,39 @@ public class MainApp extends Application {
 
             // Bersihkan thread background saat aplikasi ditutup
             primaryStage.setOnCloseRequest(event -> {
-                PengingatTidurService.getInstance().stop();
-                System.out.println("Aplikasi SehatHarian ditutup dengan aman.");
+                closeContext();
+                System.out.println("Instance SehatHarian ditutup.");
             });
 
             // Mulai di Halaman Landing Page (Sesuai Alur Spesifikasi Tahap 4 & 6)
-            SceneNavigator.showLandingPage();
+            context.navigator().showLandingPage();
             primaryStage.show();
+            if (com.jpro.webapi.WebAPI.isBrowser()) {
+                browserApi = com.jpro.webapi.WebAPI.getWebAPI(primaryStage);
+                browserCloseListener = this::closeContext;
+                // Exact SDK hook: terminal instance closure, not transient websocket disconnect.
+                browserApi.addInstanceCloseListener(browserCloseListener);
+            }
 
         } catch (Exception e) {
+            closeContext();
             e.printStackTrace();
             System.err.println("Gagal memulai antarmuka JavaFX: " + e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
+    private void closeContext() {
+        if (browserApi != null && browserCloseListener != null) {
+            browserApi.removeInstanceCloseListener(browserCloseListener);
+            browserCloseListener = null;
+        }
+        if (context != null) context.close();
+    }
+    @Override public void stop() { closeContext(); }
+
+    public static void main(String[] args) throws Exception {
+        LocalDatabase.startIfNeeded();
+        DatabaseBootstrap.initialize();
         launch(args);
     }
 }

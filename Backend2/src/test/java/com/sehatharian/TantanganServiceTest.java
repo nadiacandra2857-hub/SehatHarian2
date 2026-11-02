@@ -19,8 +19,9 @@ public class TantanganServiceTest {
     private Pengguna dummyPengguna;
 
     @BeforeEach
-    void setUp() {
-        tantanganService = new TantanganService();
+    void setUp() throws SQLException {
+        OwnershipFixtures fixture = new OwnershipFixtures();
+        tantanganService = fixture.tantangan();
         dummyPengguna = new Pengguna(1, "Nadia Ayu Candra", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 45);
     }
 
@@ -73,7 +74,7 @@ public class TantanganServiceTest {
     @DisplayName("Pencegahan duplikasi penambahan tantangan pada tanggal yang sama")
     void testPreventDuplicateChallenge() throws SQLException {
         LocalDate futureDate = LocalDate.now().plusDays(20);
-        int tantanganId = 1;
+        int tantanganId = 10; // synthetic catalog ID; no application seed dependency
 
         // Bersihkan data jika ada sisa eksekusi sebelumnya
         tantanganService.hapusTantanganPadaTanggal(dummyPengguna.getId(), futureDate);

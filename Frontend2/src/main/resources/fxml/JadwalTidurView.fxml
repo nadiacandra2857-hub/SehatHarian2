@@ -1,160 +1,209 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sehatharian.util.Illustrations?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
+<?import com.sehatharian.util.EditorialImage?>
 <?import javafx.scene.layout.HBox?>
+<?import com.sehatharian.util.AdaptiveRow?>
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" styleClass="main-content-scroll" stylesheets="@../css/styles.css"
+<ScrollPane fitToWidth="true" styleClass="main-content-scroll, ui2" stylesheets="@../css/styles.css, @../css/sehat-theme.css, @../css/ui2.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sehatharian.controller.JadwalTidurController">
+            fx:controller="com.sehatharian.controller.JadwalTidurController" minWidth="0">
 
-    <VBox fx:id="tidurRoot" spacing="20" styleClass="content-pane">
+    <VBox fx:id="tidurRoot" spacing="18" styleClass="content-pane">
 
-        <!-- 1. HEADER SECTION SESUAI GAMBAR MOCKUP -->
-        <HBox styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 22px 24px;">
+        <!-- 1. HEADER SECTION -->
+        <AdaptiveRow styleClass="wellness-card" alignment="CENTER_LEFT" spacing="20">
+            <EditorialImage fx:id="sleepHeaderImageView" quadrant="2"/>
             <VBox spacing="4" HBox.hgrow="ALWAYS">
-                <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="🌙 TIDUR &amp; PENGINGAT" styleClass="sleep-header-badge"/>
-                    <Label text="• Pemulihan Ritme Sirkadian" styleClass="card-subtitle" style="-fx-font-size: 11px;"/>
-                </HBox>
-                <Label text="Tidur &amp; Pengingat" styleClass="page-title" style="-fx-font-size: 22px;"/>
-                <Label text="Standar kesehatan menganjurkan durasi tidur minimal 5 jam setiap malam untuk regenerasi sel tubuh dan kestabilan metabolisme."
+                <AdaptiveRow alignment="CENTER_LEFT" spacing="8">
+                    <Label text="RENCANA ISTIRAHAT" styleClass="sleep-header-badge" wrapText="true"/>
+                </AdaptiveRow>
+                <Label text="Tidur &amp; pengingat" styleClass="page-title" wrapText="true"/>
+                <Label text="Simpan rencana tidur dan bangun. Jadwal ini bukan pengukuran tidur aktual."
                        styleClass="page-subtitle" wrapText="true"/>
             </VBox>
-            <ImageView fx:id="sleepHeaderImageView" fitHeight="80" fitWidth="110" pickOnBounds="true" preserveRatio="true"/>
-        </HBox>
+        </AdaptiveRow>
 
-        <!-- 2. KARTU JADWAL TIDUR ANDA (CARD GELAP MEWAH SESUAI GAMBAR MOCKUP) -->
-        <VBox styleClass="sleep-dark-card" spacing="16">
-            <HBox alignment="CENTER_LEFT">
-                <HBox spacing="8" alignment="CENTER_LEFT">
-                    <Label text="🌙" style="-fx-font-size: 18px;"/>
-                    <Label text="Jadwal Tidur Anda" styleClass="sleep-dark-title"/>
-                </HBox>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label fx:id="labelJadwalAktifInfo" text="Pukul 22:30 WIB" style="-fx-font-size: 13px; -fx-text-fill: #9CA3AF; -fx-font-weight: 600;"/>
-            </HBox>
+        <!-- 1b. KARTU MALAM: JADWAL TIDUR TERBARU (data riil dari catatan tidur) -->
+        <AdaptiveRow fx:id="nightCard" styleClass="night-card" alignment="CENTER_LEFT" spacing="24">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Jadwal Tidur Anda" styleClass="night-title" wrapText="true"/>
+                <AdaptiveRow spacing="34" alignment="CENTER_LEFT">
+                    <VBox spacing="2">
+                        <Label text="Tidur" styleClass="night-label" wrapText="true"/>
+                        <Label fx:id="nightTidurLabel" text="--:--" styleClass="night-time" wrapText="true"/>
+                    </VBox>
+                    <VBox spacing="2">
+                        <Label text="Bangun" styleClass="night-label" wrapText="true"/>
+                        <Label fx:id="nightBangunLabel" text="--:--" styleClass="night-time" wrapText="true"/>
+                    </VBox>
+                    <VBox spacing="2">
+                        <Label text="Durasi" styleClass="night-label" wrapText="true"/>
+                        <Label fx:id="nightDurasiLabel" text="-" styleClass="night-time" wrapText="true"/>
+                    </VBox>
+                </AdaptiveRow>
+                <Label fx:id="nightStatusLabel" text="Belum ada jadwal tersimpan." styleClass="night-label" wrapText="true"/>
+            </VBox>
 
-            <!-- Tampilan Jam Tidur & Bangun 2 Kolom Sesuai Gambar -->
-            <HBox alignment="CENTER" spacing="48" style="-fx-padding: 12 0;">
-                <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
-                    <Label text="22.30" styleClass="sleep-dark-time"/>
-                    <Label text="Waktu Tidur" styleClass="sleep-dark-subtitle"/>
+        </AdaptiveRow>
+
+        <!-- 2. GRID UTAMA: INPUT RECORDING (F-07) & DAEMON CONTROL CENTER (F-08) -->
+        <AdaptiveRow spacing="18" alignment="TOP_LEFT">
+
+            <!-- PANEL KIRI: FORM CATAT JAM TIDUR (F-07) -->
+            <VBox spacing="14" styleClass="wellness-card" HBox.hgrow="ALWAYS" minWidth="0">
+                <VBox spacing="2">
+                    <Label text="Atur jadwal tidur" styleClass="card-title" wrapText="true"/>
+                    <Label text="Sistem secara otomatis menghitung durasi akurat, termasuk jadwal istirahat lintas tengah malam."
+                           styleClass="card-subtitle" wrapText="true"/>
                 </VBox>
 
-                <Label text="──────" style="-fx-text-fill: #4B5563; -fx-font-size: 16px;"/>
+                <!-- Input Tanggal & Jam -->
+                <AdaptiveRow spacing="12" alignment="TOP_LEFT">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="Tanggal Istirahat:" styleClass="form-label" wrapText="true"/>
+                        <DatePicker fx:id="datePickerTanggal" prefWidth="160" maxWidth="Infinity"/>
+                        <Label text="Tanggal mulai tidur" styleClass="form-hint" wrapText="true"/>
+                    </VBox>
 
-                <VBox alignment="CENTER" spacing="4" HBox.hgrow="ALWAYS">
-                    <Label text="06.00" styleClass="sleep-dark-time"/>
-                    <Label text="Waktu Bangun" styleClass="sleep-dark-subtitle"/>
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="Waktu Masuk Tidur:" styleClass="form-label" wrapText="true"/>
+                        <AdaptiveRow spacing="4" alignment="CENTER_LEFT">
+                            <ComboBox fx:id="comboJamTidur" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
+                            <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                            <ComboBox fx:id="comboMenitTidur" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
+                        </AdaptiveRow>
+                        <Label text="Format 24 jam" styleClass="form-hint" wrapText="true"/>
+                    </VBox>
+
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="Waktu Bangun Pagi:" styleClass="form-label" wrapText="true"/>
+                        <AdaptiveRow spacing="4" alignment="CENTER_LEFT">
+                            <ComboBox fx:id="comboJamBangun" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
+                            <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                            <ComboBox fx:id="comboMenitBangun" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
+                        </AdaptiveRow>
+                        <Label text="Waktu bangun" styleClass="form-hint" wrapText="true"/>
+                    </VBox>
+                </AdaptiveRow>
+
+                <!-- Status Lintas Tengah Malam -->
+                <AdaptiveRow alignment="CENTER_LEFT" spacing="8" styleClass="form-panel">
+                    <Label fx:id="labelLintasTengahMalam"
+                           text="Jadwal melintasi tengah malam: mulai istirahat malam ini, bangun keesokan harinya."
+                           styleClass="sleep-hint-text" wrapText="true"/>
+                </AdaptiveRow>
+
+                <!-- Box Preview Hasil Perhitungan & Standar PRD -->
+                <VBox fx:id="boxPreviewDurasi" spacing="8" styleClass="sleep-metric-box">
+                    <AdaptiveRow alignment="CENTER_LEFT">
+                        <VBox spacing="1">
+                            <Label text="Durasi rencana" styleClass="card-subtitle" wrapText="true"/>
+                            <Label text="Dihitung secara presisi dalam satuan jam" styleClass="form-hint" wrapText="true"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="labelPreviewDurasi" text="7.5 Jam" styleClass="sleep-metric-value" wrapText="true"/>
+                    </AdaptiveRow>
+
+                    <AdaptiveRow alignment="CENTER_LEFT">
+                        <Label text="Aturan aplikasi (5 jam):" styleClass="card-subtitle" wrapText="true"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="badgePreviewStandar" text="Memenuhi Standar Minimal" styleClass="badge-selesai" wrapText="true"/>
+                    </AdaptiveRow>
+
+                    <!-- Peringatan evaluasi otomatis jika < 5 jam -->
+                    <Label fx:id="labelWarningKurangTidur"
+                           text="Perhatian: Durasi tidur di bawah 5 jam memicu evaluasi mingguan otomatis dan menghasilkan rekomendasi pemulihan pada menu Evaluasi."
+                           style="-fx-text-fill: #202121; -fx-font-size: 11.5px; -fx-font-weight: 600;"
+                           visible="false" managed="false" wrapText="true"/>
                 </VBox>
-            </HBox>
 
-            <!-- Target Tidur Bar -->
-            <VBox spacing="6">
-                <HBox alignment="CENTER_LEFT">
-                    <Label text="Target Tidur" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;"/>
+                <!-- Checkbox & Tombol Simpan -->
+                <AdaptiveRow spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 4 0 0 0;">
+                    <CheckBox fx:id="chkAktifkanPengingat" text="Jadikan jadwal ini sebagai acuan alarm desktop" selected="true"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="labelPreviewDurasi" text="7.5 Jam" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #06B6D4;"/>
-                </HBox>
-                <ProgressBar progress="0.94" maxWidth="Infinity" style="-fx-accent: #06B6D4;"/>
+                    <Button text="Simpan jadwal" styleClass="btn-primary, write-command" onAction="#handleSimpanTidur" style="-fx-padding: 8 18;"/>
+                </AdaptiveRow>
             </VBox>
 
-            <!-- Pengingat Aktif Switch / Card Sesuai Gambar -->
-            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 12; -fx-padding: 12 16;">
-                <Label text="🔔" style="-fx-font-size: 18px;"/>
-                <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="Pengingat Aktif" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
-                    <Label text="Notifikasi akan berbunyi pada waktu yang ditentukan." style="-fx-font-size: 11px; -fx-text-fill: #9CA3AF;"/>
+            <!-- PANEL KANAN: PUSAT KENDALI PENGINGAT & ALARM DESKTOP (F-08) -->
+            <VBox spacing="14" styleClass="wellness-card" prefWidth="350" minWidth="0">
+                <VBox spacing="2">
+                    <Label text="Pengingat istirahat" styleClass="card-title" wrapText="true"/>
+                    <Label text="Pengingat bekerja selama sesi aplikasi aktif. Pilihan aktif/nonaktif berlaku untuk sesi ini."
+                           styleClass="card-subtitle" wrapText="true"/>
                 </VBox>
-                <Button fx:id="btnTogglePengingat" text="Pengingat: Aktif" styleClass="btn-success" onAction="#handleTogglePengingat"/>
-                <Button text="🔔 Uji Suara" styleClass="btn-secondary" onAction="#handleUjiAlarm" style="-fx-padding: 7 12; -fx-font-size: 11.5px;"/>
-            </HBox>
-        </VBox>
 
-        <!-- 3. FORM PENCATATAN WAKTU ISTIRAHAT -->
-        <VBox spacing="14" styleClass="wellness-card">
-            <VBox spacing="2">
-                <Label text="Catat Waktu Tidur &amp; Bangun Harian" styleClass="card-title"/>
-                <Label text="Sistem secara otomatis menghitung durasi akurat, termasuk jadwal istirahat lintas tengah malam."
-                       styleClass="card-subtitle" wrapText="true"/>
+                <!-- Panel Informasi Jadwal Aktif -->
+                <VBox spacing="8" styleClass="sleep-control-panel">
+                    <Label text="Jadwal Alarm Aktif:" styleClass="form-label" wrapText="true"/>
+                    <Label fx:id="labelJadwalAktifInfo" text="Pukul 22:30 WIB" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                    <Label text="Waktu mulai istirahat malam yang dipantau oleh pengingat." styleClass="form-hint" wrapText="true"/>
+                </VBox>
+
+                <!-- Stepped Timeline Pengingat -->
+                <VBox spacing="8">
+                    <Label text="Alur Kerja Pengingat:" styleClass="form-label" wrapText="true"/>
+
+                    <VBox spacing="4" styleClass="sleep-timeline-item">
+                        <AdaptiveRow alignment="CENTER_LEFT" spacing="6">
+                            <Label text="Tahap 1" styleClass="sleep-timeline-step-label" wrapText="true"/>
+                            <Label text="T-10 Menit Sebelum Tidur" style="-fx-font-weight: 600; -fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                        </AdaptiveRow>
+                        <Label text="Notifikasi visual desktop muncul di layar sebagai panduan persiapan istirahat."
+                               styleClass="sleep-hint-text" wrapText="true"/>
+                    </VBox>
+
+                    <VBox spacing="4" styleClass="sleep-timeline-item">
+                        <AdaptiveRow alignment="CENTER_LEFT" spacing="6">
+                            <Label text="Tahap 2" styleClass="sleep-timeline-step-label" wrapText="true"/>
+                            <Label text="Waktu Tidur Tiba (Jendela 10 Detik)" style="-fx-font-weight: 600; -fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                        </AdaptiveRow>
+                        <Label text="Pengingat visual muncul saat waktunya tiba. Suara hanya tersedia pada desktop yang mendukungnya."
+                               styleClass="sleep-hint-text" wrapText="true"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Kontrol Toggle & Tombol Uji -->
+                <AdaptiveRow spacing="8" alignment="CENTER_LEFT">
+                    <Button fx:id="btnTogglePengingat" text="Pengingat: Aktif" styleClass="btn-success" onAction="#handleTogglePengingat"
+                            maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    <Button text="Uji Suara" styleClass="btn-secondary" onAction="#handleUjiAlarm"/>
+                </AdaptiveRow>
+
+                <Label text="Catatan: Pengingat terus berjalan saat aplikasi diminimalkan dan berhenti bersih saat ditutup."
+                       styleClass="form-hint" wrapText="true"/>
             </VBox>
 
-            <!-- Input Tanggal & Jam -->
-            <HBox spacing="14" alignment="TOP_LEFT">
-                <VBox spacing="4" HBox.hgrow="ALWAYS">
-                    <Label text="Tanggal Istirahat:" styleClass="form-label"/>
-                    <DatePicker fx:id="datePickerTanggal" maxWidth="Infinity"/>
-                </VBox>
+        </AdaptiveRow>
 
-                <VBox spacing="4" HBox.hgrow="ALWAYS">
-                    <Label text="Waktu Masuk Tidur:" styleClass="form-label"/>
-                    <HBox spacing="4" alignment="CENTER_LEFT">
-                        <ComboBox fx:id="comboJamTidur" prefWidth="75" onAction="#handleHitungDurasiPreview"/>
-                        <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #E5E7EB;"/>
-                        <ComboBox fx:id="comboMenitTidur" prefWidth="75" onAction="#handleHitungDurasiPreview"/>
-                    </HBox>
-                </VBox>
-
-                <VBox spacing="4" HBox.hgrow="ALWAYS">
-                    <Label text="Waktu Bangun Pagi:" styleClass="form-label"/>
-                    <HBox spacing="4" alignment="CENTER_LEFT">
-                        <ComboBox fx:id="comboJamBangun" prefWidth="75" onAction="#handleHitungDurasiPreview"/>
-                        <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #E5E7EB;"/>
-                        <ComboBox fx:id="comboMenitBangun" prefWidth="75" onAction="#handleHitungDurasiPreview"/>
-                    </HBox>
-                </VBox>
-            </HBox>
-
-            <!-- Status Lintas Tengah Malam -->
-            <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: #111827; -fx-padding: 8 14; -fx-background-radius: 8; -fx-border-color: #374151; -fx-border-radius: 8;">
-                <Label fx:id="labelLintasTengahMalam"
-                       text="Jadwal melintasi tengah malam: mulai istirahat malam ini, bangun keesokan harinya."
-                       styleClass="sleep-hint-text" wrapText="true"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Label fx:id="badgePreviewStandar" text="Memenuhi Standar Minimal" styleClass="badge-selesai"/>
-            </HBox>
-
-            <Label fx:id="labelWarningKurangTidur"
-                   text="Perhatian: Durasi tidur di bawah 5 jam memicu evaluasi mingguan otomatis dan menghasilkan rekomendasi pemulihan pada menu Evaluasi."
-                   style="-fx-text-fill: #DC2626; -fx-font-size: 11.5px; -fx-font-weight: 600;"
-                   visible="false" managed="false" wrapText="true"/>
-
-            <!-- Checkbox & Tombol Simpan -->
-            <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 4 0 0 0;">
-                <CheckBox fx:id="chkAktifkanPengingat" text="Jadikan jadwal ini sebagai acuan alarm desktop" selected="true" style="-fx-font-size: 12px;"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Button text="💾 Simpan Catatan Istirahat" styleClass="btn-primary" onAction="#handleSimpanTidur" style="-fx-padding: 8 20;"/>
-            </HBox>
-        </VBox>
-
-        <!-- 4. RIWAYAT CATATAN ISTIRAHAT TERSIMPAN DI MYSQL -->
+        <!-- 3. RIWAYAT CATATAN ISTIRAHAT TERSIMPAN DI MYSQL -->
         <VBox styleClass="wellness-card" spacing="12">
-            <HBox alignment="CENTER_LEFT">
+            <AdaptiveRow alignment="CENTER_LEFT">
                 <VBox spacing="1">
-                    <HBox alignment="CENTER_LEFT" spacing="8">
-                        <Label text="Riwayat Catatan Istirahat" styleClass="card-title"/>
-                        <Label fx:id="labelJumlahRiwayat" text="0 Catatan Tersimpan" styleClass="sleep-table-count"/>
-                    </HBox>
-                    <Label text="Data riil durasi istirahat yang menjadi basis grafik konsistensi mingguan"
-                           styleClass="card-subtitle"/>
+                    <AdaptiveRow alignment="CENTER_LEFT" spacing="8">
+                        <Label text="Riwayat jadwal tidur" styleClass="card-title" wrapText="true"/>
+                        <Label fx:id="labelJumlahRiwayat" text="0 Catatan Tersimpan" styleClass="sleep-table-count" wrapText="true"/>
+                    </AdaptiveRow>
+                    <Label text="Riwayat rencana tersimpan. Durasi aktual belum dicatat oleh model saat ini."
+                           styleClass="card-subtitle" wrapText="true"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Button text="Perbarui Riwayat" styleClass="btn-outline" onAction="#handleMuatRiwayat"/>
-            </HBox>
+            </AdaptiveRow>
 
             <TableView fx:id="tableRiwayatTidur" prefHeight="220" styleClass="table-view">
                 <columns>
@@ -162,7 +211,7 @@
                     <TableColumn fx:id="colJamTidur" text="Waktu Tidur" prefWidth="100"/>
                     <TableColumn fx:id="colJamBangun" text="Waktu Bangun" prefWidth="100"/>
                     <TableColumn fx:id="colDurasi" text="Durasi (Jam)" prefWidth="110"/>
-                    <TableColumn fx:id="colStandar" text="Standar Minimal (≥ 5 Jam)" prefWidth="190"/>
+                    <TableColumn fx:id="colStandar" text="Aturan rencana (5 jam)" prefWidth="190"/>
                     <TableColumn fx:id="colPengingat" text="Status Alarm" prefWidth="100"/>
                     <TableColumn fx:id="colAksi" text="Tindakan" prefWidth="100"/>
                 </columns>

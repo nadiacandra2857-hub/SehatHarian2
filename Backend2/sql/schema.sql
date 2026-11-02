@@ -13,6 +13,7 @@ USE sehatharian_db;
 -- 1. Tabel pengguna (Mendukung Akun, Auth BCrypt, dan Onboarding)
 CREATE TABLE IF NOT EXISTS pengguna (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
     nama VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,

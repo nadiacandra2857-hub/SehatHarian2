@@ -89,3 +89,11 @@ $RECYCLE.BIN/
 *.env
 *.env.*
 !.env.example
+
+# Local persistent database and server logs
+.runtime/
+
+# Python preparation/test caches and JPro process markers
+__pycache__/
+*.py[cod]
+**/RUNNING_PID

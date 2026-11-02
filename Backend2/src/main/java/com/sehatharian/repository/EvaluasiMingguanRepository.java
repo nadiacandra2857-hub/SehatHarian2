@@ -1,87 +1,83 @@
 package com.sehatharian.repository;
 
-import com.sehatharian.config.DatabaseConfig;
+import com.sehatharian.storage.WriteTransaction;
+import com.sehatharian.model.SessionAccess;
 import com.sehatharian.model.EvaluasiMingguan;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EvaluasiMingguanRepository {
+public class EvaluasiMingguanRepository extends OwnedRepository {
+    public EvaluasiMingguanRepository(SessionAccess access) { super(access); }
+    public EvaluasiMingguanRepository(SessionAccess access, PenggunaRepository.ConnectionFactory connections) {
+        super(access, connections);
+    }
 
     public List<EvaluasiMingguan> getAllByPengguna(int penggunaId) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getAllEvaluasi(penggunaId);
-        }
+        access.owner(penggunaId);
 
         List<EvaluasiMingguan> list = new ArrayList<>();
         String sql = "SELECT id, pengguna_id, minggu_mulai, skor_konsistensi, durasi_tidur_rata_rata, " +
                      "memenuhi_standar_tidur, ringkasan, rekomendasi, dibuat_pada " +
                      "FROM evaluasi_mingguan WHERE pengguna_id = ? ORDER BY minggu_mulai DESC, id DESC";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 while (rs.next()) {
                     list.add(mapResultSetToEvaluasi(rs));
                 }
             }
-            return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getAllByPengguna evaluasi_mingguan: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getAllEvaluasi(penggunaId);
+            return access.result(list);
         }
     }
 
     public EvaluasiMingguan getTerbaruByPengguna(int penggunaId) throws SQLException {
+        access.owner(penggunaId);
         List<EvaluasiMingguan> list = getAllByPengguna(penggunaId);
-        return list.isEmpty() ? null : list.get(0);
+        return access.result(list.isEmpty() ? null : list.get(0));
     }
 
     public int simpan(EvaluasiMingguan em) throws SQLException {
-        int inMemoryId = InMemoryDataStore.getInstance().simpanEvaluasi(em);
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return inMemoryId;
-        }
+        int owner = access.owner(em.getPenggunaId());
 
-        String sql = "INSERT INTO evaluasi_mingguan (pengguna_id, minggu_mulai, skor_konsistensi, " +
-                     "durasi_tidur_rata_rata, memenuhi_standar_tidur, ringkasan, rekomendasi) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?) " +
-                     "ON DUPLICATE KEY UPDATE skor_konsistensi = VALUES(skor_konsistensi), " +
-                     "durasi_tidur_rata_rata = VALUES(durasi_tidur_rata_rata), " +
-                     "memenuhi_standar_tidur = VALUES(memenuhi_standar_tidur), " +
-                     "ringkasan = VALUES(ringkasan), rekomendasi = VALUES(rekomendasi)";
+        WriteTransaction tx = new WriteTransaction(access, connections);
+        try {
+            Connection conn = tx.open();
 
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, em.getPenggunaId());
-            ps.setDate(2, Date.valueOf(em.getMingguMulai()));
-            ps.setDouble(3, em.getSkorKonsistensi());
-
-            if (em.getDurasiTidurRataRata() != null) {
-                ps.setDouble(4, em.getDurasiTidurRataRata());
-            } else {
-                ps.setNull(4, Types.DECIMAL);
-            }
-
-            ps.setBoolean(5, em.isMemenuhiStandarTidur());
-            ps.setString(6, em.getRingkasan());
-            ps.setString(7, em.getRekomendasi());
-
-            ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
-                if (rs.next()) {
-                    int genId = rs.getInt(1);
-                    em.setId(genId);
-                    return genId;
+            int existing = em.getId();
+            if (existing <= 0) {
+                try (PreparedStatement find = conn.prepareStatement("SELECT id FROM evaluasi_mingguan WHERE pengguna_id = ? AND minggu_mulai = ? ORDER BY id DESC LIMIT 1")) {
+                    find.setInt(1, owner); find.setDate(2, Date.valueOf(em.getMingguMulai()));
+                    try (ResultSet rows = access.call(find::executeQuery)) { if (rows.next()) existing = rows.getInt("id"); }
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada simpan evaluasi_mingguan: " + e.getMessage());
-        }
-        return inMemoryId;
+            if (existing > 0) {
+                try (PreparedStatement ps = conn.prepareStatement("UPDATE evaluasi_mingguan SET minggu_mulai = ?, skor_konsistensi = ?, durasi_tidur_rata_rata = ?, memenuhi_standar_tidur = ?, ringkasan = ?, rekomendasi = ? WHERE id = ? AND pengguna_id = ?")) {
+                ps.setDate(1, Date.valueOf(em.getMingguMulai())); ps.setDouble(2, em.getSkorKonsistensi());
+                if (em.getDurasiTidurRataRata() == null) ps.setNull(3, Types.DECIMAL); else ps.setDouble(3, em.getDurasiTidurRataRata());
+                ps.setBoolean(4, em.isMemenuhiStandarTidur()); ps.setString(5, em.getRingkasan()); ps.setString(6, em.getRekomendasi());
+                    ps.setInt(7, existing); ps.setInt(8, owner);
+                    if (tx.execute(ps) <= 0) throw new SQLException("Data tidak tersedia atau tidak berubah.");
+                    return tx.confirm(existing);
+                }
+            }
+            try (PreparedStatement ps = conn.prepareStatement("INSERT INTO evaluasi_mingguan (pengguna_id, minggu_mulai, skor_konsistensi, durasi_tidur_rata_rata, memenuhi_standar_tidur, ringkasan, rekomendasi) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, owner); ps.setDate(2, Date.valueOf(em.getMingguMulai())); ps.setDouble(3, em.getSkorKonsistensi());
+                if (em.getDurasiTidurRataRata() == null) ps.setNull(4, Types.DECIMAL); else ps.setDouble(4, em.getDurasiTidurRataRata());
+                ps.setBoolean(5, em.isMemenuhiStandarTidur()); ps.setString(6, em.getRingkasan()); ps.setString(7, em.getRekomendasi());
+                if (tx.execute(ps) != 1) throw new SQLException("Penyimpanan belum dikonfirmasi.");
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    if (keys.next() && keys.getInt(1) > 0) return tx.confirm(keys.getInt(1));
+                }
+                throw new SQLException("ID penyimpanan belum dikonfirmasi.");
+            }
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
     private EvaluasiMingguan mapResultSetToEvaluasi(ResultSet rs) throws SQLException {

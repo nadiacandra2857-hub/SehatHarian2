@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=SehatHarian
+Comment=Buka SehatHarian beserta database lokal
+Exec=bash -c 'cd /home/adhitya/Documents/projekpbo/BARU/SehatHarian2 && bash jalankan-linux-macos.sh'
+Path=/home/adhitya/Documents/projekpbo/BARU/SehatHarian2
+Icon=/home/adhitya/Documents/projekpbo/BARU/SehatHarian2/Frontend2/src/main/resources/images/logo.png
+Terminal=true
+Categories=Utility;

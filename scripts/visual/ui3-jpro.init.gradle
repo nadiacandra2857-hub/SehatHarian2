@@ -1,0 +1,9 @@
+// TEST ONLY. Use DB_HOST=127.0.0.1 DB_PORT=1; never calls production MainApp.main.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject.project(':Frontend2')
+    p.application.mainClass = 'com.sehatharian.Ui3Browser'
+    p.dependencies.add('runtimeOnly', p.files('/tmp/ui3-harness.jar'))
+    p.jpro.useMainMethod = false
+    p.jpro.openURLOnStartup = false
+    p.jpro.port = 8087
+}

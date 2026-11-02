@@ -3,6 +3,9 @@ package com.sehatharian;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
 import com.sehatharian.service.PenggunaService;
+import com.sehatharian.service.AuthService;
+import com.sehatharian.repository.PenggunaRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,11 +18,29 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PenggunaServiceTest {
 
     private PenggunaService penggunaService;
+    private final UserSession session = new UserSession();
 
     @BeforeEach
-    void setUp() {
-        penggunaService = new PenggunaService();
-        UserSession.getInstance().logout();
+    void setUp() throws SQLException {
+        session.logout();
+        new AuthService(new AuthFixtures.Accounts(), session).login(AuthFixtures.EMAIL, AuthFixtures.SECRET);
+        penggunaService = new PenggunaService(new PenggunaRepository(() -> {
+            throw new AssertionError("Tests must not open a database connection");
+        }) {
+            @Override public Pengguna getById(int id, com.sehatharian.model.SessionAccess access) { throw new AssertionError("Active identity comes from verified session"); }
+            @Override public boolean updatePengguna(Pengguna p, com.sehatharian.model.SessionAccess access) { return true; }
+            @Override public boolean updateOnboarding(int id, int minutes, String context, String age, boolean done, com.sehatharian.model.SessionAccess access) { return true; }
+        }, session);
+    }
+
+    @AfterEach void tearDown() { session.logout(); }
+
+    @Test void noSessionCannotBeRecoveredByProfileUpdateOrOnboarding() throws SQLException {
+        session.logout();
+        assertNull(penggunaService.getPenggunaAktif());
+        assertThrows(SecurityException.class, () -> penggunaService.updateProfil(37, "Valid User", null, 30, "dewasa", "luar_rumah"));
+        assertThrows(SecurityException.class, () -> penggunaService.simpanOnboarding(37, 1, "1 jam", "INDOOR", "DEWASA"));
+        assertFalse(session.isLoggedIn());
     }
 
     @Test
@@ -30,7 +51,6 @@ public class PenggunaServiceTest {
 
         penggunaService.simpanOnboarding(user.getId(), 2, "2 jam", "INDOOR", "LANSIA");
 
-        UserSession session = UserSession.getInstance();
         assertTrue(session.isOnboardingSelesai());
         assertEquals(2, session.getWaktuLuangHours());
         assertEquals("INDOOR", session.getJenisAktivitas());
@@ -50,7 +70,6 @@ public class PenggunaServiceTest {
         Pengguna user = penggunaService.getPenggunaAktif();
         penggunaService.simpanOnboarding(user.getId(), 6, "6 jam", "OUTDOOR", "DEWASA");
 
-        UserSession session = UserSession.getInstance();
         assertEquals(4, session.getWaktuLuangHours(), "Waktu luang maksimum yang diizinkan adalah 4 jam");
         assertEquals("OUTDOOR", session.getJenisAktivitas());
     }
@@ -78,13 +97,13 @@ public class PenggunaServiceTest {
     @DisplayName("Pembaruan profil gagal saat nama kosong atau waktu luang di luar batas")
     void testUpdateProfilValidation() {
         assertThrows(IllegalArgumentException.class, () ->
-            penggunaService.updateProfil(1, "", LocalDate.now(), 30, "dewasa", "luar_rumah")
+            penggunaService.updateProfil(session.getUserId(), "", LocalDate.now(), 30, "dewasa", "luar_rumah")
         );
         assertThrows(IllegalArgumentException.class, () ->
-            penggunaService.updateProfil(1, "Nama Valid", LocalDate.now(), 0, "dewasa", "luar_rumah")
+            penggunaService.updateProfil(session.getUserId(), "Nama Valid", LocalDate.now(), 0, "dewasa", "luar_rumah")
         );
         assertThrows(IllegalArgumentException.class, () ->
-            penggunaService.updateProfil(1, "Nama Valid", LocalDate.now(), 1000, "dewasa", "luar_rumah")
+            penggunaService.updateProfil(session.getUserId(), "Nama Valid", LocalDate.now(), 1000, "dewasa", "luar_rumah")
         );
     }
 }

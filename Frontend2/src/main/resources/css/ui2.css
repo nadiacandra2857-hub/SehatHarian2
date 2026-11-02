@@ -1,0 +1,117 @@
+/* UI-1 tokens, scoped to UI-2 pages. Home is intentionally unaffected. */
+.ui2, .ui2-dialog {
+    -ui-canvas: #eeeeee; -ui-card: white; -ui-ink: #202121;
+    -ui-muted: #626464; -ui-lime: #dcf63c; -ui-line: #e3e5e1;
+    -fx-font-family: "SansSerif"; -fx-font-size: 14;
+    -fx-background-color: -ui-canvas; -fx-text-fill: -ui-ink;
+    -fx-accent: -ui-lime; -fx-focus-color: #41463a; -fx-faint-focus-color: transparent;
+}
+.ui2 > .viewport, .ui2 .content-pane { -fx-background-color: -ui-canvas; }
+.ui2 .content-pane { -fx-padding: 0 12 24 12; -fx-spacing: 14; }
+.ui2 .label, .ui2-dialog .label { -fx-text-fill: -ui-ink; }
+.ui2 .page-title, .ui2 .auth-header-title { -fx-font-size: 23; -fx-font-weight: bold; }
+.ui2 .card-title, .ui2 .onboarding-option-title { -fx-font-size: 16; -fx-font-weight: bold; }
+.ui2 .page-subtitle, .ui2 .card-subtitle, .ui2 .form-hint, .ui2 .onboarding-option-desc,
+.ui2 .auth-header-subtitle { -fx-text-fill: -ui-muted; -fx-font-size: 13; }
+.ui2 .wellness-card, .ui2 .auth-card, .ui2 .onboarding-card,
+.ui2 .challenge-card, .ui2 .empty-state-box, .ui2 .night-card, .ui2 .history-card {
+    -fx-background-color: -ui-card; -fx-background-radius: 17;
+    -fx-padding: 18; -fx-border-width: 0; -fx-effect: null;
+}
+.ui2 .night-time { -fx-text-fill: -ui-ink; -fx-font-size: 25; }
+.ui2 .night-label, .ui2 .night-title { -fx-text-fill: -ui-ink; }
+.ui2 .form-panel, .ui2 .sleep-control-panel, .ui2 .sleep-metric-box {
+    -fx-background-color: #f4f4f3; -fx-background-radius: 12; -fx-padding: 14; -fx-border-width: 0;
+}
+.ui2 .button, .ui2 .menu-button, .ui2-dialog .button {
+    -fx-min-height: 44; -fx-min-width: 44; -fx-padding: 10 14;
+    -fx-background-color: #f4f4f3; -fx-background-radius: 9;
+    -fx-border-width: 0; -fx-text-fill: -ui-ink; -fx-font-size: 13; -fx-effect: null; -fx-cursor: hand;
+}
+.ui2 .btn-primary, .ui2 .btn-success, .ui2 .auth-btn-primary,
+.ui2 .onboarding-btn-next, .ui2 .onboarding-btn-finish { -fx-background-color: -ui-lime; -fx-font-weight: bold; }
+.ui2 .btn-danger { -fx-background-color: #fbe9e7; -fx-text-fill: #912a26; }
+.ui2 .button:hover, .ui2 .menu-button:hover { -fx-background-color: #e6e9dc; }
+.ui2 .button:focused, .ui2 .text-input:focused, .ui2 .combo-box:focused,
+.ui2 .date-picker:focused, .ui2 .check-box:focused, .ui2 .onboarding-option-card:focused,
+.ui2-dialog .button:focused { -fx-border-color: #33372b; -fx-border-width: 2; -fx-border-radius: 9; }
+.ui2 .text-field, .ui2 .combo-box, .ui2 .date-picker {
+    -fx-min-height: 44; -fx-background-color: white; -fx-background-radius: 9;
+    -fx-border-color: #d8dcd4; -fx-border-radius: 9; -fx-font-size: 14; -fx-text-fill: -ui-ink;
+}
+.ui2 .check-box { -fx-min-height: 44; -fx-padding: 5 0; }
+.ui2 .form-label, .ui2 .auth-input-label { -fx-text-fill: -ui-ink; -fx-font-size: 13; -fx-font-weight: bold; }
+.ui2 .auth-inline-error, .ui2 .auth-error-text { -fx-text-fill: #9a2925; }
+.ui2 .auth-error-banner { -fx-background-color: #fbe9e7; -fx-border-width: 0; -fx-background-radius: 9; -fx-padding: 12; }
+.ui2 .badge-category, .ui2 .preference-badge-blue, .ui2 .preference-badge-green,
+.ui2 .sleep-header-badge, .ui2 .sleep-table-count { -fx-background-color: #f0f1ed; -fx-text-fill: -ui-ink; -fx-padding: 5 8; -fx-background-radius: 7; }
+.ui2 .badge-selesai { -fx-background-color: #e9f2c7; -fx-text-fill: #35440b; }
+.ui2 .badge-warning { -fx-background-color: #fff0cf; -fx-text-fill: #75500b; }
+.ui2 .badge-dilewati { -fx-background-color: #eeeeee; -fx-text-fill: #555555; }
+.ui2 .progress-bar > .bar { -fx-background-color: -ui-lime; -fx-background-radius: 6; -fx-background-insets: 0; }
+.ui2 .progress-bar > .track { -fx-background-color: #e6e8e1; -fx-background-radius: 6; }
+.ui2 .table-view { -fx-background-color: white; -fx-border-color: -ui-line; -fx-border-radius: 9; -fx-padding: 0; }
+.ui2 .table-view .column-header, .ui2 .table-view .filler { -fx-background-color: #f4f4f3; -fx-size: 44; }
+.ui2 .table-row-cell { -fx-cell-size: 56; -fx-background-color: white; -fx-border-color: transparent transparent -ui-line transparent; }
+.ui2 .table-row-cell:selected { -fx-background-color: #eff6d7; -fx-text-background-color: -ui-ink; }
+.ui2 .table-cell { -fx-text-fill: -ui-ink; -fx-alignment: CENTER_LEFT; -fx-padding: 8; }
+.ui2 .tab-pane > .tab-header-area > .tab-header-background { -fx-background-color: transparent; }
+.ui2 .tab { -fx-background-color: white; -fx-background-radius: 9; -fx-padding: 12 10; }
+.ui2 .tab:selected { -fx-background-color: -ui-lime; }
+.ui2 .tab-label { -fx-text-fill: -ui-ink; -fx-font-size: 13; }
+.ui2 .chart { -fx-padding: 0; }
+.ui2 .chart-plot-background { -fx-background-color: white; }
+.ui2 .chart-horizontal-grid-lines, .ui2 .chart-vertical-grid-lines { -fx-stroke: #eceee9; }
+.ui2 .default-color0.chart-bar { -fx-bar-fill: #c4df38; }
+.ui2 .default-color0.chart-series-line { -fx-stroke: #30342a; -fx-stroke-width: 2; }
+.ui2 .default-color1.chart-series-line { -fx-stroke: #94998a; -fx-stroke-dash-array: 4 5; }
+.ui2 .chart-line-symbol { -fx-background-color: #30342a,white; -fx-padding: 3; }
+.ui2 .axis { -fx-tick-label-fill: -ui-muted; -fx-tick-label-font-size: 11; }
+.ui2 .auth-split-root { -fx-background-color: -ui-canvas; }
+.ui2 .auth-hero-pane { -fx-background-color: -ui-canvas; -fx-padding: 48; -fx-spacing: 24; }
+.ui2 .auth-hero-title { -fx-text-fill: -ui-ink; -fx-font-size: 32; }
+.ui2 .auth-hero-sub { -fx-text-fill: -ui-muted; }
+.ui2 .auth-form-pane { -fx-padding: 24 12; -fx-background-color: -ui-canvas; }
+.ui2 .auth-card { -fx-padding: 22; }
+.ui2 .onboarding-option-card { -fx-background-color: #f4f4f3; -fx-border-color: transparent; -fx-border-radius: 12; -fx-background-radius: 12; -fx-padding: 14; -fx-effect: null; }
+.ui2 .onboarding-option-card.selected { -fx-background-color: #eff6d7; -fx-border-color: #82951e; }
+.ui2 .onboarding-step-indicator.active, .ui2 .onboarding-progress-fill { -fx-background-color: -ui-lime; -fx-text-fill: -ui-ink; }
+.ui2 .onboarding-question-title { -fx-font-size: 21; -fx-text-fill: -ui-ink; }
+.ui2 .onboarding-option-radio { -fx-min-width: 18; -fx-pref-width: 18; -fx-max-width: 18; -fx-background-color: #c9cebd; }
+.ui2 .onboarding-option-card.selected .onboarding-option-radio { -fx-background-color: #5d691f; }
+.ui2 .svg-icon, .ui2 .svg-icon-blue, .ui2 .svg-icon-orange { -fx-fill: #30342a; }
+.ui2:compact .content-pane { -fx-padding: 12 10 24 10; }
+.ui2:compact .wellness-card, .ui2:compact .onboarding-card { -fx-padding: 14; }
+.ui2:compact .auth-card { -fx-padding: 18; }
+.ui2:compact .auth-form-pane { -fx-padding: 12 8; }
+.ui2-dialog { -fx-padding: 18; -fx-background-color: white; }
+.ui2-dialog .header-panel { -fx-background-color: #f1f3eb; }
+/* Shell additions are scoped separately from the preserved dashboard shell. */
+.ui2-shell .header-bar { -fx-background-color: #eeeeee; -fx-padding: 8 16; }
+.ui2-shell .banner-notification { -fx-background-color: #eff6d7; -fx-background-radius: 12; }
+.ui2-shell .button:focused { -fx-border-color: #30342a; -fx-border-width: 2; -fx-border-radius: 9; }
+.ui2-shell .nav-button { -fx-min-height: 44; }
+.ui2-shell .mobile-nav .button, .ui2-shell .mobile-nav .menu-button { -fx-background-color: #f4f4f3; -fx-text-fill: #202121; -fx-background-radius: 9; -fx-min-width: 44; }
+.ui2-shell .mobile-nav .active { -fx-background-color: #dcf63c; }
+.ui2 .landing-page-root, .ui2 .landing-hero-stack, .ui2 .landing-section-white,
+.ui2 .landing-section-features, .ui2 .landing-footer-wrapper { -fx-background-color: #eeeeee; }
+.ui2 .landing-navbar-bar, .ui2 .hero-brand-badge, .ui2 .hero-nav-capsule,
+.ui2 .interactive-card, .ui2 .feature-card-clean, .ui2 .faq-item-card,
+.ui2 .description-shape-card, .ui2 .landing-cta-banner, .ui2 .penilaian-strip {
+    -fx-background-color: white; -fx-background-radius: 17; -fx-border-width: 0; -fx-effect: null;
+}
+.ui2 .hero-title-main, .ui2 .hero-title-highlight, .ui2 .section-h1-title,
+.ui2 .cta-title, .ui2 .hero-brand-title, .ui2 .footer-brand-title { -fx-text-fill: #202121; }
+.ui2 .hero-desc-text, .ui2 .hero-brand-subtitle, .ui2 .cta-subtitle,
+.ui2 .footer-brand-desc, .ui2 .footer-col-title, .ui2 .footer-hours-text,
+.ui2 .footer-copyright-text, .ui2 .hero-trust-tag { -fx-text-fill: #626464; }
+.ui2 .btn-nav-create, .ui2 .btn-hero-create, .ui2 .btn-cta-primary,
+.ui2 .hero-nav-btn-active, .ui2 .btn-filter-pill-active { -fx-background-color: #dcf63c; -fx-text-fill: #202121; }
+.ui2:compact .hero-title-main { -fx-font-size: 30; }
+
+.ui2 .tab-pane .tab-header-area .tab { -fx-background-color: #f4f4f3; }
+.ui2 .tab-pane .tab-header-area .tab:selected { -fx-background-color: #dcf63c; }
+.ui2 .tab-pane .tab-header-area .tab .tab-label { -fx-text-fill: #202121; }
+.ui2 .date-picker > .arrow-button { -fx-background-color: #f4f4f3; }
+.ui2 .badge-disarankan, .ui2 .onboarding-top-badge { -fx-background-color: #eff6d7; -fx-text-fill: #30342a; }
+.ui2:compact .tab-pane .tab-header-area .tab { -fx-padding: 12 8; }

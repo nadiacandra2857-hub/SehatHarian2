@@ -15,7 +15,7 @@ Tahun/Versi
 2026 / 1.1 — revisi tech stack
 1. Ringkasan Produk
 SehatHarian adalah aplikasi desktop untuk membantu individu membangun kebiasaan hidup sehat melalui tantangan harian yang realistis. Fitur meliputi rekomendasi aktivitas, pelacakan tidur, aktivitas, hidrasi dan kebiasaan makan, pengingat tidur, grafik konsistensi mingguan, serta evaluasi berdasarkan data pengguna.
-PRD ini menjadi acuan desain, implementasi, integrasi database, dan pengujian. Stack final: Java 26, JavaFX, FXML, JavaFX CSS, Gradle, MySQL, JDBC, MySQL Connector/J, JavaFX Charts, dan JUnit.
+PRD ini menjadi acuan desain, implementasi, integrasi database, dan pengujian. Stack final: Java 27, JavaFX, FXML, JavaFX CSS, Gradle, MySQL, JDBC, MySQL Connector/J, JavaFX Charts, dan JUnit.
 2. Latar Belakang
 Proposal menjelaskan bahwa pengetahuan hidup sehat belum selalu menjadi kebiasaan konsisten. Keterbatasan waktu, motivasi, dan rutinitas dapat menghambat aktivitas fisik serta pola makan sehat. SehatHarian membantu pengguna memulai dari langkah kecil, mencatat kebiasaan, dan melihat perkembangan dari waktu ke waktu.
 3. Tujuan Produk
@@ -136,7 +136,7 @@ Pembagian berikut berdasarkan tanggung jawab aplikasi desktop. Tidak ada server 
 10.1 Frontend — UI Desktop
 Teknologi
 Peran
-Java 26
+Java 27
 Bahasa untuk controller dan interaksi UI.
 JavaFX
 Framework antarmuka desktop, komponen, scene, dan navigasi.
@@ -149,7 +149,7 @@ Grafik konsistensi mingguan yang menerima data dari service.
 10.2 Backend Internal — Logika dan Akses Data
 Teknologi
 Peran
-Java 26
+Java 27
 Model, validasi, service, aturan bisnis, dan repository.
 JDBC
 API Java untuk menjalankan query dan transaksi database.
@@ -235,7 +235,7 @@ F-03/F-04/F-05: pelacak, grafik, evaluasi; aktivitas, hidrasi, kebiasaan_makan, 
 Seluruh anggota bekerja bersama dalam desain UI, integrasi, pengujian, dan dokumentasi.
 16. Keputusan Teknis yang Ditetapkan
 Platform: aplikasi desktop JavaFX.
-Bahasa: Java 26.
+Bahasa: Java 27.
 UI: JavaFX, FXML, JavaFX CSS.
 Build: Gradle.
 Database: MySQL melalui JDBC dan MySQL Connector/J.

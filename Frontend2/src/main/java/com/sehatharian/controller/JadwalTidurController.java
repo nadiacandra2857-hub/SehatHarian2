@@ -3,7 +3,6 @@ package com.sehatharian.controller;
 import com.sehatharian.model.JadwalTidur;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.EvaluasiService;
 import com.sehatharian.service.PengingatTidurService;
 import com.sehatharian.service.TidurService;
@@ -25,7 +24,24 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class JadwalTidurController {
+public class JadwalTidurController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+    private final com.sehatharian.util.WriteAction writes;
+    private final long viewGeneration;
+    private boolean released;
+    private Runnable detachReminder = () -> {};
+
+    public JadwalTidurController(UserSession session, PengingatTidurService reminders) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.writes = new com.sehatharian.util.WriteAction(access);
+        this.evaluasiService = new EvaluasiService(access);
+        this.tidurService = new TidurService(access);
+        this.pengingatService = java.util.Objects.requireNonNull(reminders);
+        this.viewGeneration = session.getGeneration();
+    }
+
 
     @FXML private VBox tidurRoot;
     @FXML private ImageView sleepHeaderImageView;
@@ -43,6 +59,10 @@ public class JadwalTidurController {
     @FXML private CheckBox chkAktifkanPengingat;
 
     @FXML private Label labelJadwalAktifInfo;
+    @FXML private Label nightTidurLabel;
+    @FXML private Label nightBangunLabel;
+    @FXML private Label nightDurasiLabel;
+    @FXML private Label nightStatusLabel;
     @FXML private Button btnTogglePengingat;
 
     @FXML private Label labelJumlahRiwayat;
@@ -55,22 +75,22 @@ public class JadwalTidurController {
     @FXML private TableColumn<JadwalTidur, Void> colPengingat;
     @FXML private TableColumn<JadwalTidur, Void> colAksi;
 
-    private final TidurService tidurService = new TidurService();
-    private final EvaluasiService evaluasiService = new EvaluasiService();
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
-    private final PengingatTidurService pengingatService = PengingatTidurService.getInstance();
+    private final TidurService tidurService;
+    private final EvaluasiService evaluasiService;
+    private final PengingatTidurService pengingatService;
 
     private Pengguna penggunaAktif;
     private final ObservableList<JadwalTidur> listRiwayatTidur = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        access.owner();
         datePickerTanggal.setValue(LocalDate.now());
 
         try {
             var imgUrl = getClass().getResource("/images/illustration_sleep.png");
             if (imgUrl != null) {
-                sleepHeaderImageView.setImage(new Image(imgUrl.toExternalForm()));
+                // EditorialImage retains the UI-1 atlas crop.
             }
         } catch (Exception ignored) {}
 
@@ -78,6 +98,11 @@ public class JadwalTidurController {
         setupTableColumns();
         setupEmptyPlaceholder();
         muatDataPengguna();
+        detachReminder = pengingatService.subscribe(message -> {
+            if (released || viewGeneration != session.getGeneration()) return;
+            labelJadwalAktifInfo.setText(pengingatService.getStatus());
+            updateStatusPengingatUI();
+        });
         muatRiwayatTidur();
         updateStatusPengingatUI();
         handleHitungDurasiPreview();
@@ -124,7 +149,7 @@ public class JadwalTidurController {
                 } else {
                     JadwalTidur jt = getTableView().getItems().get(getIndex());
                     boolean ok = jt.isMemenuhiStandar();
-                    Label badge = new Label(ok ? "Memenuhi Standar (≥ 5h)" : "Kurang Istirahat (< 5h)");
+                    Label badge = new Label(ok ? "Rencana ≥ 5 jam" : "Rencana < 5 jam");
                     badge.getStyleClass().setAll(ok ? "badge-selesai" : "badge-warning");
                     setGraphic(badge);
                 }
@@ -151,16 +176,20 @@ public class JadwalTidurController {
         // Tombol Aksi Hapus dengan konfirmasi
         colAksi.setCellFactory(param -> new TableCell<>() {
             private final Button btnHapus = new Button("Hapus");
+            { btnHapus.getStyleClass().add("write-command"); }
             {
                 btnHapus.getStyleClass().add("btn-danger");
                 btnHapus.setOnAction(event -> {
+                    access.owner();
                     JadwalTidur j = getTableView().getItems().get(getIndex());
-                    if (DialogHelper.showConfirmation("Konfirmasi Hapus", "Hapus catatan tidur tanggal " + DateHelper.formatTanggalPendek(j.getTanggal()) + "?")) {
+                    if (DialogHelper.showConfirmation(tidurRoot, "Konfirmasi Hapus", "Hapus catatan tidur tanggal " + DateHelper.formatTanggalPendek(j.getTanggal()) + "?")) {
                         try {
-                            tidurService.hapusCatatan(j.getId());
+                            writes.submit(tidurRoot, () -> tidurService.hapusCatatan(j.getId()), () -> {
                             muatRiwayatTidur();
+            });
                         } catch (SQLException e) {
-                            DialogHelper.showError("Kendala Database", "Gagal menghapus catatan: " + e.getMessage());
+            access.owner();
+                            DialogHelper.showError(tidurRoot, "Kendala Database", "Layanan penyimpanan belum tersedia. Data belum dikonfirmasi; silakan coba lagi.");
                         }
                     }
                 });
@@ -170,7 +199,7 @@ public class JadwalTidurController {
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty) setGraphic(null);
-                else setGraphic(btnHapus);
+                else { btnHapus.setDisable(writes.reviewRequired()); setGraphic(btnHapus); }
             }
         });
 
@@ -190,45 +219,48 @@ public class JadwalTidurController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-            return;
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-                if (penggunaAktif != null) return;
-            } catch (Exception ignored) {}
-        }
-
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (SQLException ignored) {}
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
     }
 
     public void muatRiwayatTidur() {
-        if (penggunaAktif == null) return;
+        access.owner();
+        if (released || viewGeneration != session.getGeneration() || penggunaAktif == null || !session.isLoggedIn() || session.getUserId() != penggunaAktif.getId()) return;
+        pengingatService.reloadSchedule();
+        labelJadwalAktifInfo.setText(pengingatService.getStatus());
+        updateStatusPengingatUI();
         try {
             List<JadwalTidur> list = tidurService.getRiwayatTidur(penggunaAktif.getId(), 30);
             listRiwayatTidur.setAll(list);
             labelJumlahRiwayat.setText(list.size() + " Catatan Tersimpan");
 
+            tableRiwayatTidur.setPlaceholder(new Label("Belum ada jadwal tersimpan."));
+            nightTidurLabel.setText("—"); nightBangunLabel.setText("—"); nightDurasiLabel.setText("—");
+            nightStatusLabel.setText("Belum ada jadwal tersimpan; tidur aktual belum dicatat.");
             JadwalTidur terbaru = tidurService.getJadwalTerbaru(penggunaAktif.getId());
             if (terbaru != null) {
-                labelJadwalAktifInfo.setText("Pukul " + DateHelper.formatJamMenit(terbaru.getJamTidur()) + " WIB");
-                pengingatService.updateJadwal(terbaru.getJamTidur(), terbaru.isPengingatAktif());
+                labelJadwalAktifInfo.setText(pengingatService.getStatus());
+                nightTidurLabel.setText(DateHelper.formatJamMenit(terbaru.getJamTidur()));
+                nightBangunLabel.setText(DateHelper.formatJamMenit(terbaru.getJamBangun()));
+                nightDurasiLabel.setText(String.format("%.1f jam", terbaru.getDurasiJam()));
+                nightStatusLabel.setText(terbaru.isMemenuhiStandar()
+                    ? "Rencana ≥ 5 jam · bukan tidur aktual · " + terbaru.getTanggal()
+                    : "Rencana < 5 jam · bukan tidur aktual · " + terbaru.getTanggal());
+                // Reminder target comes exclusively from the strict SQL projection, never this legacy history.
                 updateStatusPengingatUI();
             }
         } catch (Exception e) {
-            System.err.println("Info muat riwayat tidur: " + e.getMessage());
+            access.owner();
+            listRiwayatTidur.clear(); labelJumlahRiwayat.setText("Gagal dimuat");
+            nightTidurLabel.setText("—"); nightBangunLabel.setText("—"); nightDurasiLabel.setText("—");
+            nightStatusLabel.setText("Jadwal gagal dimuat. Gunakan Perbarui Riwayat untuk mencoba kembali.");
+            tableRiwayatTidur.setPlaceholder(new Label("Riwayat jadwal gagal dimuat."));
         }
     }
 
     @FXML
     public void handleHitungDurasiPreview() {
+        access.owner();
+        if (released || viewGeneration != session.getGeneration() || !session.isLoggedIn()) return;
         try {
             int hTidur = Integer.parseInt(comboJamTidur.getValue());
             int mTidur = Integer.parseInt(comboMenitTidur.getValue());
@@ -250,12 +282,12 @@ public class JadwalTidurController {
 
             boolean standar = tidurService.apakahMemenuhiStandar(durasi);
             if (standar) {
-                badgePreviewStandar.setText("Memenuhi Standar Minimal (≥ 5 Jam)");
+                badgePreviewStandar.setText("Rencana ≥ 5 jam");
                 badgePreviewStandar.getStyleClass().setAll("badge-selesai");
                 labelWarningKurangTidur.setVisible(false);
                 labelWarningKurangTidur.setManaged(false);
             } else {
-                badgePreviewStandar.setText("Di Bawah Standar Minimal (< 5 Jam)");
+                badgePreviewStandar.setText("Rencana < 5 jam");
                 badgePreviewStandar.getStyleClass().setAll("badge-warning");
                 labelWarningKurangTidur.setVisible(true);
                 labelWarningKurangTidur.setManaged(true);
@@ -265,10 +297,12 @@ public class JadwalTidurController {
 
     @FXML
     public void handleSimpanTidur() {
+        access.owner();
+        if (released || viewGeneration != session.getGeneration() || !session.isLoggedIn()) return;
         try {
             LocalDate tgl = datePickerTanggal.getValue();
             if (tgl == null) {
-                DialogHelper.showWarning("Input Kurang Lengkap", "Pilih tanggal catatan istirahat.");
+                DialogHelper.showWarning(tidurRoot, "Input Kurang Lengkap", "Pilih tanggal catatan istirahat.");
                 return;
             }
 
@@ -281,54 +315,68 @@ public class JadwalTidurController {
             LocalTime tBangun = LocalTime.of(hBangun, mBangun);
             boolean aktifkanPengingat = chkAktifkanPengingat.isSelected();
 
-            JadwalTidur jt = tidurService.catatJamTidur(penggunaAktif.getId(), tgl, tTidur, tBangun, aktifkanPengingat);
-
-            // Update pengingat di background scheduler jika diaktifkan
-            if (aktifkanPengingat) {
-                pengingatService.updateJadwal(tTidur, true);
-            }
-
-            // Jika durasi < 5 jam, jalankan evaluasi mingguan otomatis sesuai PRD (F-07 & F-05)
-            if (!jt.isMemenuhiStandar()) {
-                evaluasiService.buatEvaluasiMingguan(penggunaAktif.getId(), tgl);
-                DialogHelper.showWarning("Evaluasi Khusus Dijalankan", 
-                    "Durasi istirahat Anda tercatat " + String.format("%.1f", jt.getDurasiJam()) + " jam (< 5 jam).\n" +
-                    "Sistem telah menjalankan analisis evaluasi mingguan dan menyiapkan rekomendasi pemulihan istirahat.");
-            } else {
-                DialogHelper.showSuccess("Berhasil Disimpan", "Catatan tidur berhasil disimpan ke database MySQL.");
-            }
-
-            muatRiwayatTidur();
+            writes.submitResult(tidurRoot,
+                () -> tidurService.catatDenganEvaluasi(penggunaAktif.getId(), tgl, tTidur, tBangun, aktifkanPengingat, evaluasiService),
+                result -> {
+                    if (result.confirmed()) {
+                        DialogHelper.showSuccess(tidurRoot, "Tersimpan", result.steps().isEmpty()
+                            ? "Catatan tidur berhasil disimpan." : "Catatan tidur dan evaluasi berhasil disimpan.");
+                        muatRiwayatTidur();
+                    } else if (result.status() == com.sehatharian.storage.WriteResult.Status.PARSIAL) {
+                        DialogHelper.showWarning(tidurRoot, "Tersimpan Sebagian", "Catatan tidur sudah tersimpan. "
+                            + (result.needsReview() ? "Hasil evaluasi belum pasti; periksa riwayat evaluasi." : "Evaluasi belum selesai; buka halaman Evaluasi untuk tindak lanjut.")
+                            + " Jangan simpan ulang catatan tidur ini.");
+                        muatRiwayatTidur();
+                    } else DialogHelper.showWarning(tidurRoot, "Hasil Penyimpanan", result.message());
+                });
         } catch (Exception e) {
-            DialogHelper.showError("Gagal Menyimpan", e.getMessage());
+            access.owner();
+            DialogHelper.showError(tidurRoot, "Gagal Menyimpan", e.getMessage());
         }
     }
 
     @FXML
     public void handleTogglePengingat() {
+        access.owner();
+        if (released || viewGeneration != session.getGeneration() || !session.isLoggedIn()) return;
         boolean sekarang = pengingatService.isAktif();
         pengingatService.setAktif(!sekarang);
         updateStatusPengingatUI();
     }
 
     private void updateStatusPengingatUI() {
+        if (pengingatService.getTargetJamTidur() == null) {
+            btnTogglePengingat.setText("Jadwal pengingat belum tersedia (WIB)");
+            btnTogglePengingat.getStyleClass().setAll("btn-outline");
+            return;
+        }
         boolean aktif = pengingatService.isAktif();
         if (aktif) {
-            btnTogglePengingat.setText("Status Alarm: Aktif (Klik untuk Nonaktifkan)");
+            btnTogglePengingat.setText("Pengingat aktif · Nonaktifkan");
             btnTogglePengingat.getStyleClass().setAll("btn-success");
         } else {
-            btnTogglePengingat.setText("Status Alarm: Nonaktif (Klik untuk Aktifkan)");
+            btnTogglePengingat.setText("Pengingat nonaktif · Aktifkan");
             btnTogglePengingat.getStyleClass().setAll("btn-outline");
         }
     }
 
     @FXML
     public void handleUjiAlarm() {
+        access.owner();
+        if (released || viewGeneration != session.getGeneration() || !session.isLoggedIn()) return;
         pengingatService.ujiCobaPengingat();
     }
 
     @FXML
     public void handleMuatRiwayat() {
+        access.owner();
+        if (released || viewGeneration != session.getGeneration() || !session.isLoggedIn()) return;
         muatRiwayatTidur();
+    }
+    @Override public void close() {
+        access.close();
+        if (released) return;
+        released = true;
+        detachReminder.run();
     }
 }

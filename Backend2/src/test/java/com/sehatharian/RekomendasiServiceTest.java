@@ -16,8 +16,9 @@ public class RekomendasiServiceTest {
     private RekomendasiService service;
 
     @BeforeEach
-    void setUp() {
-        service = new RekomendasiService();
+    void setUp() throws SQLException {
+        OwnershipFixtures fixture = new OwnershipFixtures();
+        service = fixture.rekomendasi();
     }
 
     @Test

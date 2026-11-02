@@ -19,8 +19,9 @@ public class KebiasaanServiceTest {
     private KebiasaanService service;
 
     @BeforeEach
-    void setUp() {
-        service = new KebiasaanService();
+    void setUp() throws SQLException {
+        OwnershipFixtures fixture = new OwnershipFixtures();
+        service = fixture.kebiasaan();
     }
 
     @Test

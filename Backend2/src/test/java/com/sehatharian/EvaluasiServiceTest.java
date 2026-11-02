@@ -18,8 +18,10 @@ public class EvaluasiServiceTest {
     private EvaluasiService evaluasiService;
 
     @BeforeEach
-    void setUp() {
-        evaluasiService = new EvaluasiService();
+    void setUp() throws SQLException {
+        OwnershipFixtures fixture = new OwnershipFixtures();
+        fixture.seedEvidence();
+        evaluasiService = fixture.evaluasi();
     }
 
     @Test

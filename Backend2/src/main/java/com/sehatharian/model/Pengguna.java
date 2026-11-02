@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Pengguna {
+    private String role = "user";
     private int id;
     private String nama;
     private String email;
@@ -44,6 +45,10 @@ public class Pengguna {
         this.waktuLuangMenit = waktuLuangMenit;
         this.onboardingSelesai = onboardingSelesai;
     }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = "admin".equals(role) ? "admin" : "user"; }
+    public boolean isAdmin() { return "admin".equals(role); }
 
     // Getters and Setters
     public int getId() { return id; }

@@ -1,6 +1,7 @@
 package com.sehatharian.repository;
 
-import com.sehatharian.config.DatabaseConfig;
+import com.sehatharian.storage.WriteTransaction;
+import com.sehatharian.model.SessionAccess;
 import com.sehatharian.model.Aktivitas;
 
 import java.sql.*;
@@ -8,127 +9,119 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AktivitasRepository {
+public class AktivitasRepository extends OwnedRepository {
+    public AktivitasRepository(SessionAccess access) { super(access); }
+    public AktivitasRepository(SessionAccess access, PenggunaRepository.ConnectionFactory connections) {
+        super(access, connections);
+    }
 
     public List<Aktivitas> getByTanggal(int penggunaId, LocalDate tanggal) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getAktivitasByTanggal(penggunaId, tanggal);
-        }
+        access.owner(penggunaId);
 
         List<Aktivitas> list = new ArrayList<>();
         String sql = "SELECT id, pengguna_id, tanggal, jenis_aktivitas, durasi_menit, keterangan, created_at " +
                      "FROM aktivitas WHERE pengguna_id = ? AND tanggal = ? ORDER BY id DESC";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
             ps.setDate(2, Date.valueOf(tanggal));
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 while (rs.next()) {
                     list.add(mapResultSetToAktivitas(rs));
                 }
             }
-            return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getByTanggal aktivitas: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getAktivitasByTanggal(penggunaId, tanggal);
+            return access.result(list);
         }
     }
 
     public List<Aktivitas> getByRange(int penggunaId, LocalDate start, LocalDate end) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getAktivitasByRange(penggunaId, start, end);
-        }
+        access.owner(penggunaId);
 
         List<Aktivitas> list = new ArrayList<>();
         String sql = "SELECT id, pengguna_id, tanggal, jenis_aktivitas, durasi_menit, keterangan, created_at " +
                      "FROM aktivitas WHERE pengguna_id = ? AND tanggal BETWEEN ? AND ? ORDER BY tanggal ASC, id ASC";
 
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
             ps.setDate(2, Date.valueOf(start));
             ps.setDate(3, Date.valueOf(end));
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 while (rs.next()) {
                     list.add(mapResultSetToAktivitas(rs));
                 }
             }
-            return list;
-        } catch (SQLException e) {
-            System.err.println("Database error pada getByRange aktivitas: " + e.getMessage());
-            return InMemoryDataStore.getInstance().getAktivitasByRange(penggunaId, start, end);
+            return access.result(list);
         }
     }
 
     public int simpan(Aktivitas a) throws SQLException {
-        int inMemoryId = InMemoryDataStore.getInstance().tambahAktivitas(a);
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return inMemoryId;
-        }
+        access.owner(a.getPenggunaId());
 
-        String sql = "INSERT INTO aktivitas (pengguna_id, tanggal, jenis_aktivitas, durasi_menit, keterangan) " +
-                     "VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, a.getPenggunaId());
-            ps.setDate(2, Date.valueOf(a.getTanggal()));
-            ps.setString(3, a.getJenisAktivitas());
-            ps.setInt(4, a.getDurasiMenit());
-            ps.setString(5, a.getKeterangan());
+        WriteTransaction tx = new WriteTransaction(access, connections);
+        try {
 
-            ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
-                if (rs.next()) {
-                    int genId = rs.getInt(1);
-                    a.setId(genId);
-                    return genId;
+            String sql = "INSERT INTO aktivitas (pengguna_id, tanggal, jenis_aktivitas, durasi_menit, keterangan) " +
+                         "VALUES (?, ?, ?, ?, ?)";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, access.owner());
+                ps.setDate(2, Date.valueOf(a.getTanggal()));
+                ps.setString(3, a.getJenisAktivitas());
+                ps.setInt(4, a.getDurasiMenit());
+                ps.setString(5, a.getKeterangan());
+
+                if (tx.execute(ps) <= 0) throw new SQLException("Penyimpanan belum dikonfirmasi.");
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int genId = rs.getInt(1);
+                        if (genId <= 0) throw new SQLException("ID penyimpanan belum dikonfirmasi.");
+                        return tx.confirm(genId);
+                    }
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada simpan aktivitas: " + e.getMessage());
-        }
-        return inMemoryId;
+            throw new SQLException("Penyimpanan belum dikonfirmasi.");
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
-    public boolean hapus(int id) throws SQLException {
-        InMemoryDataStore.getInstance().hapusAktivitas(id);
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return true;
-        }
+    public boolean hapus(int id, int penggunaId) throws SQLException {
+        access.owner(penggunaId);
 
-        String sql = "DELETE FROM aktivitas WHERE id = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Database error pada hapus aktivitas: " + e.getMessage());
-            return true;
-        }
+        WriteTransaction tx = new WriteTransaction(access, connections);
+        try {
+
+            String sql = "DELETE FROM aktivitas WHERE id = ? AND pengguna_id = ?";
+            Connection conn = tx.open();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ps.setInt(2, access.owner(penggunaId));
+                return tx.affected(tx.execute(ps));
+            }
+        } catch (SQLException e) { return tx.recover(e); }
+        catch (RuntimeException e) { tx.abort(); throw e; }
+        finally { tx.close(); }
     }
 
     public int getTotalDurasiHariIni(int penggunaId, LocalDate tanggal) throws SQLException {
-        if (!DatabaseConfig.isDatabaseAvailable()) {
-            return InMemoryDataStore.getInstance().getTotalAktivitasHariIni(penggunaId, tanggal);
-        }
+        access.owner(penggunaId);
 
         String sql = "SELECT COALESCE(SUM(durasi_menit), 0) FROM aktivitas WHERE pengguna_id = ? AND tanggal = ?";
-        try (Connection conn = DatabaseConfig.getConnection();
+        try (Connection conn = open();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, penggunaId);
             ps.setDate(2, Date.valueOf(tanggal));
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = access.call(ps::executeQuery)) {
                 if (rs.next()) {
-                    return rs.getInt(1);
+                    return access.result(rs.getInt(1));
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Database error pada getTotalDurasiHariIni aktivitas: " + e.getMessage());
         }
-        return InMemoryDataStore.getInstance().getTotalAktivitasHariIni(penggunaId, tanggal);
+        throw new SQLException("Pembacaan belum dikonfirmasi.");
     }
 
     private Aktivitas mapResultSetToAktivitas(ResultSet rs) throws SQLException {

@@ -1,5 +1,6 @@
 package com.sehatharian.service;
 
+import com.sehatharian.model.SessionAccess;
 import com.sehatharian.model.ProgresHarian;
 import com.sehatharian.repository.ProgresHarianRepository;
 
@@ -7,19 +8,23 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class ProgresHarianService {
+    private final SessionAccess access;
 
     private final ProgresHarianRepository repo;
 
-    public ProgresHarianService() {
-        this.repo = new ProgresHarianRepository();
+    public ProgresHarianService(SessionAccess access) {
+        this.access = java.util.Objects.requireNonNull(access);
+        this.repo = new ProgresHarianRepository(access);
     }
 
-    public ProgresHarianService(ProgresHarianRepository repo) {
+    public ProgresHarianService(SessionAccess access, ProgresHarianRepository repo) {
+        this.access = java.util.Objects.requireNonNull(access);
         this.repo = repo;
     }
 
     public ProgresHarian getProgresHari(int penggunaId, LocalDate tanggal) throws SQLException {
-        return repo.getProgresHari(penggunaId, tanggal);
+        access.owner(penggunaId);
+        return access.row(access.call(() -> repo.getProgresHari(penggunaId, tanggal)), ProgresHarian::getPenggunaId);
     }
 
     /**

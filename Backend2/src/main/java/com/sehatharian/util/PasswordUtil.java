@@ -1,6 +1,7 @@
 package com.sehatharian.util;
 
 import org.mindrot.jbcrypt.BCrypt;
+import java.util.regex.Pattern;
 
 /**
  * PasswordUtil menangani hashing dan verifikasi kata sandi secara aman
@@ -11,6 +12,9 @@ import org.mindrot.jbcrypt.BCrypt;
 public class PasswordUtil {
 
     private static final int BCRYPT_WORK_FACTOR = 12;
+    // jbcrypt 0.4 implements $2$ and $2a$, not $2b$ or $2y$.
+    private static final Pattern SUPPORTED_HASH = Pattern.compile(
+            "\\$2a?\\$(0[4-9]|[12][0-9]|30)\\$[./A-Za-z0-9]{53}");
 
     /**
      * Menghasilkan hash BCrypt aman dari kata sandi teks biasa.
@@ -37,12 +41,12 @@ public class PasswordUtil {
         if (plainPassword == null || hashedPassword == null) {
             return false;
         }
-        if (!hashedPassword.startsWith("$2a$") && !hashedPassword.startsWith("$2b$") && !hashedPassword.startsWith("$2y$")) {
+        if (!SUPPORTED_HASH.matcher(hashedPassword).matches()) {
             return false;
         }
         try {
             return BCrypt.checkpw(plainPassword, hashedPassword);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
             return false;
         }
     }

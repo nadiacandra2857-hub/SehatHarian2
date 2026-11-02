@@ -3,7 +3,6 @@ package com.sehatharian.controller;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.Rekomendasi;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.RekomendasiService;
 import com.sehatharian.util.AnimationHelper;
 import javafx.collections.FXCollections;
@@ -23,10 +22,25 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class RekomendasiController {
+public class RekomendasiController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+
+    public RekomendasiController(UserSession session) {
+        this(session, new RekomendasiService());
+    }
+
+    public RekomendasiController(UserSession session, RekomendasiService service) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.service = java.util.Objects.requireNonNull(service);
+    }
+
 
     @FXML private VBox rekomendasiRoot;
     @FXML private Label labelJumlahRekomendasi;
+    @FXML private Label labelSumberData;
+    private boolean demoPreview;
 
     @FXML private ComboBox<String> comboWaktuLuang;
     @FXML private Label labelWaktuLuangInfo;
@@ -42,14 +56,14 @@ public class RekomendasiController {
     @FXML private VBox emptyStateBox;
     @FXML private ImageView emptyStateImageView;
 
-    private final RekomendasiService service = new RekomendasiService();
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
+    private final RekomendasiService service;
     private Pengguna penggunaAktif;
 
     private String tipeDipilih = "semua";
 
     @FXML
     public void initialize() {
+        access.owner();
         inisialisasiPilihanFilter();
         muatDataPengguna();
         muatRekomendasi();
@@ -100,24 +114,7 @@ public class RekomendasiController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-            } catch (Exception ignored) {}
-        }
-
-        if (penggunaAktif == null) {
-            try {
-                penggunaAktif = penggunaRepo.getDefaultPengguna();
-            } catch (SQLException ignored) {}
-        }
-
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
 
         // Set default filter sesuai profil pengguna
         if (comboKesibukan != null) {
@@ -164,11 +161,13 @@ public class RekomendasiController {
 
     @FXML
     public void handleFilterChanged() {
+        access.owner();
         muatRekomendasi();
     }
 
     @FXML
     public void handleResetFilter() {
+        access.owner();
         if (comboWaktuLuang != null) comboWaktuLuang.setValue("Semua Durasi");
         if (comboKesibukan != null) comboKesibukan.setValue("Semua Kesibukan");
         if (comboUsia != null) comboUsia.setValue("Semua Usia");
@@ -178,7 +177,18 @@ public class RekomendasiController {
     }
 
     public void muatRekomendasi() {
+        access.owner();
         try {
+            var profile=session.requireActiveUser();
+            if(!demoPreview && (profile.getWaktuLuangMenit()<=0 ||
+                !java.util.Set.of("dewasa","lansia").contains(String.valueOf(profile.getGolonganUsia())) ||
+                !java.util.Set.of("dalam_rumah","luar_rumah","semua").contains(String.valueOf(profile.getGolonganKesibukan())))) {
+                if(cardsContainer!=null)cardsContainer.getChildren().clear();
+                if(emptyStateBox!=null){emptyStateBox.setVisible(false);emptyStateBox.setManaged(false);}
+                if(labelSumberData!=null)labelSumberData.setText("Belum cukup data. Lengkapi waktu luang, kelompok usia dan rutinitas di Profil untuk rekomendasi database. Pratinjau contoh tetap tersedia secara eksplisit.");
+                if(labelJumlahRekomendasi!=null)labelJumlahRekomendasi.setText("Profil belum lengkap");
+                return;
+            }
             int maxDurasi = parseWaktuLuang(comboWaktuLuang != null ? comboWaktuLuang.getValue() : null);
             if (labelWaktuLuangInfo != null) {
                 if (maxDurasi > 0) {
@@ -191,7 +201,21 @@ public class RekomendasiController {
             String kesibukan = parseKesibukan(comboKesibukan != null ? comboKesibukan.getValue() : null);
             String usia = parseUsia(comboUsia != null ? comboUsia.getValue() : null);
 
-            List<Rekomendasi> list = service.getRekomendasiMenuDanWorkout(tipeDipilih, kesibukan, usia);
+            var result = demoPreview
+                ? com.sehatharian.service.DemoCatalog.recommendations(tipeDipilih, kesibukan, usia)
+                : service.bacaKatalog(tipeDipilih, kesibukan, usia);
+            access.owner();
+            if (labelSumberData != null) labelSumberData.setText(result.message());
+            if (result.source() == com.sehatharian.storage.ReadResult.Source.UNAVAILABLE) {
+                if (cardsContainer != null) cardsContainer.getChildren().clear();
+                if (emptyStateBox != null) {
+                    emptyStateBox.setVisible(false);
+                    emptyStateBox.setManaged(false);
+                }
+                if (labelJumlahRekomendasi != null) labelJumlahRekomendasi.setText("Belum dapat dimuat");
+                return;
+            }
+            List<Rekomendasi> list = result.value().orElseThrow();
 
             // Saring durasi jika tipe aktivitas atau workout dan ada batasan waktu luang (F-02)
             if (maxDurasi > 0 && list != null) {
@@ -206,8 +230,27 @@ public class RekomendasiController {
 
             renderCards(list);
         } catch (Exception e) {
-            System.err.println("Info muat rekomendasi: " + e.getMessage());
+            access.owner();
+            if (cardsContainer != null) cardsContainer.getChildren().clear();
+            if (emptyStateBox != null) {
+                emptyStateBox.setVisible(false);
+                emptyStateBox.setManaged(false);
+            }
+            if (labelJumlahRekomendasi != null) labelJumlahRekomendasi.setText("Belum dapat dimuat");
+            if (labelSumberData != null) labelSumberData.setText("Katalog gagal dimuat. Silakan coba muat kembali.");
         }
+    }
+
+    @FXML public void handlePreviewDemo() {
+        access.owner();
+        demoPreview = true;
+        muatRekomendasi();
+    }
+
+    @FXML public void handleLoadDatabase() {
+        access.owner();
+        demoPreview = false;
+        muatRekomendasi();
     }
 
     private void renderCards(List<Rekomendasi> list) {
@@ -231,7 +274,7 @@ public class RekomendasiController {
             VBox card = new VBox(12);
             card.getStyleClass().add("wellness-card");
 
-            HBox topRow = new HBox(10);
+            HBox topRow = new com.sehatharian.util.AdaptiveRow(10);
             topRow.setAlignment(Pos.CENTER_LEFT);
 
             // Badge Tipe
@@ -257,7 +300,7 @@ public class RekomendasiController {
             Region spacer = new Region();
             HBox.setHgrow(spacer, Priority.ALWAYS);
 
-            Label badgeKesesuaian = new Label("Sesuai Waktu Luang");
+            Label badgeKesesuaian = new Label(demoPreview ? "Pratinjau contoh" : "Katalog database");
             badgeKesesuaian.setStyle("-fx-font-size: 11px; -fx-text-fill: #2D6B50; -fx-font-weight: 600;");
 
             topRow.getChildren().addAll(badgeTipe, badgeDurasi, badgeSasaran, spacer, badgeKesesuaian);
@@ -272,26 +315,28 @@ public class RekomendasiController {
             lblDesc.setWrapText(true);
 
             // Bottom Contextual guidance
-            HBox bottomRow = new HBox(8);
+            HBox bottomRow = new com.sehatharian.util.AdaptiveRow(8);
             bottomRow.setAlignment(Pos.CENTER_LEFT);
             bottomRow.setStyle("-fx-padding: 6 0 0 0;");
 
             String guidanceText;
-            if ("menu".equalsIgnoreCase(r.getTipe())) {
-                guidanceText = "Gizi Seimbang: Mendukung pemenuhan serat, vitamin alami, dan hidrasi harian.";
-            } else if ("workout".equalsIgnoreCase(r.getTipe())) {
-                guidanceText = "Latihan Terarah: Ramah persendian, tanpa membutuhkan peralatan rumit.";
-            } else {
-                guidanceText = "Aktivitas Harian: Membantu menjaga metabolisme tubuh tetap aktif di sela kesibukan.";
-            }
+            guidanceText = "Alasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih" +
+                (parseWaktuLuang(comboWaktuLuang.getValue())>0 && !"menu".equalsIgnoreCase(r.getTipe()) ? "; durasi dalam batas waktu pilihan." : ".") +
+                ("menu".equalsIgnoreCase(r.getTipe()) ? " Preferensi bahan, porsi dan pantangan belum dimodelkan." : " Foto adalah ilustrasi suasana, bukan panduan teknik.");
 
             Label lblGuidance = new Label(guidanceText);
             lblGuidance.setStyle("-fx-font-size: 11.5px; -fx-text-fill: #5A6D63;");
 
+            lblGuidance.setWrapText(true); lblJudul.setWrapText(true);
             bottomRow.getChildren().add(lblGuidance);
 
-            card.getChildren().addAll(topRow, lblJudul, lblDesc, bottomRow);
+            VBox content=new VBox(10,topRow,lblJudul,lblDesc,bottomRow);content.setMinWidth(0);HBox.setHgrow(content,Priority.ALWAYS);
+            var composition=new com.sehatharian.util.AdaptiveRow(16);
+            composition.getChildren().addAll(new com.sehatharian.util.EditorialImage("menu".equalsIgnoreCase(r.getTipe())?1:3,180,120),content);
+            card.getChildren().add(composition);
             cardsContainer.getChildren().add(card);
+            card.setMinWidth(0);
+            card.lookupAll(".label").forEach(n -> { if(n instanceof Label l){l.setWrapText(true);l.setMinWidth(0);} });
         }
     }
 
@@ -300,6 +345,7 @@ public class RekomendasiController {
         try {
             return Integer.parseInt(val.replaceAll("[^0-9]", ""));
         } catch (Exception e) {
+            access.owner();
             return 0;
         }
     }
@@ -328,8 +374,13 @@ public class RekomendasiController {
         else if ("workout".equals(tipeDipilih) && btnTipeWorkout != null) btnTipeWorkout.getStyleClass().setAll("btn-primary");
     }
 
-    @FXML public void handleFilterTipeSemua() { tipeDipilih = "semua"; updateTipeButtonStyles(); muatRekomendasi(); }
-    @FXML public void handleFilterTipeAktivitas() { tipeDipilih = "aktivitas"; updateTipeButtonStyles(); muatRekomendasi(); }
-    @FXML public void handleFilterTipeMenu() { tipeDipilih = "menu"; updateTipeButtonStyles(); muatRekomendasi(); }
-    @FXML public void handleFilterTipeWorkout() { tipeDipilih = "workout"; updateTipeButtonStyles(); muatRekomendasi(); }
+    @FXML public void handleFilterTipeSemua() {
+        access.owner(); tipeDipilih = "semua"; updateTipeButtonStyles(); muatRekomendasi(); }
+    @FXML public void handleFilterTipeAktivitas() {
+        access.owner(); tipeDipilih = "aktivitas"; updateTipeButtonStyles(); muatRekomendasi(); }
+    @FXML public void handleFilterTipeMenu() {
+        access.owner(); tipeDipilih = "menu"; updateTipeButtonStyles(); muatRekomendasi(); }
+    @FXML public void handleFilterTipeWorkout() {
+        access.owner(); tipeDipilih = "workout"; updateTipeButtonStyles(); muatRekomendasi(); }
+    @Override public void close() { access.close(); }
 }

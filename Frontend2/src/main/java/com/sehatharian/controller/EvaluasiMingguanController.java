@@ -3,7 +3,6 @@ package com.sehatharian.controller;
 import com.sehatharian.model.EvaluasiMingguan;
 import com.sehatharian.model.Pengguna;
 import com.sehatharian.model.UserSession;
-import com.sehatharian.repository.PenggunaRepository;
 import com.sehatharian.service.EvaluasiService;
 import com.sehatharian.util.AnimationHelper;
 import com.sehatharian.util.DateHelper;
@@ -19,7 +18,18 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class EvaluasiMingguanController {
+public class EvaluasiMingguanController implements AutoCloseable {
+    private final UserSession session;
+    private final com.sehatharian.model.SessionAccess access;
+    private final com.sehatharian.util.WriteAction writes;
+
+    public EvaluasiMingguanController(UserSession session) {
+        this.session = java.util.Objects.requireNonNull(session);
+        this.access = new com.sehatharian.model.SessionAccess(session);
+        this.writes = new com.sehatharian.util.WriteAction(access);
+        this.service = new EvaluasiService(access);
+    }
+
 
     @FXML private VBox evaluasiRoot;
     @FXML private Label labelPeriodeEvaluasi;
@@ -37,14 +47,14 @@ public class EvaluasiMingguanController {
     @FXML private TableColumn<EvaluasiMingguan, String> colStandarTidur;
     @FXML private TableColumn<EvaluasiMingguan, String> colTanggalDibuat;
 
-    private final EvaluasiService service = new EvaluasiService();
-    private final PenggunaRepository penggunaRepo = new PenggunaRepository();
+    private final EvaluasiService service;
     private Pengguna penggunaAktif;
 
     private final ObservableList<EvaluasiMingguan> listArsip = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        access.owner();
         setupTableColumns();
         muatDataPengguna();
         muatEvaluasi();
@@ -57,9 +67,9 @@ public class EvaluasiMingguanController {
         colSkor.setCellValueFactory(data -> 
             new SimpleStringProperty(String.format("%.1f%%", data.getValue().getSkorKonsistensi())));
         colRataTidur.setCellValueFactory(data -> 
-            new SimpleStringProperty(String.format("%.1f Jam", data.getValue().getDurasiTidurRataRata())));
+            new SimpleStringProperty(data.getValue().getDurasiTidurRataRata() == null ? "Belum tercatat" : String.format("%.1f Jam", data.getValue().getDurasiTidurRataRata())));
         colStandarTidur.setCellValueFactory(data -> 
-            new SimpleStringProperty(data.getValue().isMemenuhiStandarTidur() ? "Memenuhi" : "Kurang"));
+            new SimpleStringProperty(data.getValue().getDurasiTidurRataRata() == null ? "Belum tercatat" : data.getValue().isMemenuhiStandarTidur() ? "Memenuhi" : "Kurang"));
         colStandarTidur.setCellFactory(param -> new TableCell<EvaluasiMingguan, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -69,7 +79,7 @@ public class EvaluasiMingguanController {
                     setText(null);
                 } else {
                     boolean ok = "Memenuhi".equals(item);
-                    Label badge = new Label(ok ? "Memenuhi (≥ 5h)" : "Kurang (< 5h)");
+                    Label badge = new Label("Belum tercatat".equals(item) ? item : ok ? "Memenuhi (≥ 5h)" : "Kurang (< 5h)");
                     badge.getStyleClass().setAll(ok ? "badge-selesai" : "badge-warning");
                     setGraphic(badge);
                     setText(null);
@@ -104,26 +114,11 @@ public class EvaluasiMingguanController {
     }
 
     private void muatDataPengguna() {
-        UserSession session = UserSession.getInstance();
-        if (session.isLoggedIn() && session.getActiveUser() != null) {
-            penggunaAktif = session.getActiveUser();
-            return;
-        } else if (session.isLoggedIn() && session.getUserId() > 0) {
-            try {
-                penggunaAktif = penggunaRepo.getById(session.getUserId());
-                if (penggunaAktif != null) return;
-            } catch (Exception ignored) {}
-        }
-
-        try {
-            penggunaAktif = penggunaRepo.getDefaultPengguna();
-        } catch (SQLException ignored) {}
-        if (penggunaAktif == null) {
-            penggunaAktif = new Pengguna(1, "Nadia", LocalDate.of(2001, 5, 15), "dewasa", "luar_rumah", 30);
-        }
+        penggunaAktif = session.requireActiveUser();
     }
 
     public void muatEvaluasi() {
+        access.owner();
         if (penggunaAktif == null) return;
         try {
             // Ambil daftar arsip
@@ -144,16 +139,26 @@ public class EvaluasiMingguanController {
                 labelRekomendasiTeks.setText("• Rekomendasi otomatis akan ditampilkan setelah evaluasi dijalankan.");
             }
         } catch (Exception e) {
-            System.err.println("Info muat evaluasi: " + e.getMessage());
+            access.owner();
+            listArsip.clear();
+            labelPeriodeEvaluasi.setText("Evaluasi tidak tersedia; gagal membaca penyimpanan.");
+            labelSkorEvaluasi.setText("-"); labelRataTidur.setText("-");
+            labelGradeEvaluasi.setText("Belum dapat dinilai"); labelStatusTidur.setText("Belum dapat dinilai");
+            labelRingkasanTeks.setText("Pembacaan gagal. Silakan coba lagi.");
+            labelRekomendasiTeks.setText("Rekomendasi belum tersedia.");
         }
     }
 
     private void tampilkanDetailEvaluasi(EvaluasiMingguan em) {
+        access.owner(em.getPenggunaId());
         labelPeriodeEvaluasi.setText("Periode: 7 hari s.d. " + DateHelper.formatTanggalPendek(em.getMingguMulai().plusDays(6)));
         labelSkorEvaluasi.setText(String.format("%.0f%%", em.getSkorKonsistensi()));
         labelGradeEvaluasi.setText(em.getGradeKonsistensi());
 
-        if (em.isMemenuhiStandarTidur()) {
+        if (em.getDurasiTidurRataRata() == null) {
+            labelStatusTidur.setText("Belum Ada Catatan Tidur");
+            labelStatusTidur.getStyleClass().setAll("badge-dilewati");
+        } else if (em.isMemenuhiStandarTidur()) {
             labelStatusTidur.setText("Memenuhi Standar Minimal (≥ 5 Jam)");
             labelStatusTidur.getStyleClass().setAll("badge-selesai");
         } else {
@@ -161,22 +166,26 @@ public class EvaluasiMingguanController {
             labelStatusTidur.getStyleClass().setAll("badge-warning");
         }
 
-        labelRataTidur.setText(String.format("Rata-rata: %.1f jam / malam", em.getDurasiTidurRataRata()));
+        labelRataTidur.setText(em.getDurasiTidurRataRata() == null ? "Belum dapat dinilai" : String.format("Rata-rata: %.1f jam / malam", em.getDurasiTidurRataRata()));
         labelRingkasanTeks.setText(em.getRingkasan());
         labelRekomendasiTeks.setText(em.getRekomendasi());
     }
 
     @FXML
     public void handleJalankanEvaluasi() {
+        access.owner();
         if (penggunaAktif == null) return;
         try {
-            EvaluasiMingguan em = service.buatEvaluasiMingguan(penggunaAktif.getId(), LocalDate.now());
-            muatEvaluasi();
-            DialogHelper.showSuccess("Evaluasi Berhasil Dijalankan", 
-                "Analisis 7 hari terakhir berhasil dijalankan dan disimpan ke MySQL!\n" +
-                "Skor konsistensi Anda: " + String.format("%.1f%%", em.getSkorKonsistensi()));
+            writes.submit(evaluasiRoot, () -> service.buatEvaluasiMingguan(penggunaAktif.getId(), LocalDate.now()), () -> {
+                DialogHelper.showSuccess(evaluasiRoot, "Evaluasi Tersimpan", "Evaluasi berhasil disimpan. Riwayat akan dimuat ulang.");
+                muatEvaluasi();
+            });
+        } catch (IllegalStateException e) {
+            DialogHelper.showInfo(evaluasiRoot, "Data Belum Cukup", e.getMessage());
         } catch (SQLException e) {
-            DialogHelper.showError("Error", "Gagal menjalankan evaluasi: " + e.getMessage());
+            access.owner();
+            DialogHelper.showError(evaluasiRoot, "Error", "Evaluasi belum dapat disimpan. Silakan coba lagi.");
         }
     }
+    @Override public void close() { access.close(); }
 }

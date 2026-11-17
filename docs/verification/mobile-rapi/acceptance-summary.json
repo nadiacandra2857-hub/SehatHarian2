@@ -1,0 +1,48 @@
+{
+  "hydration": {
+    "before": 2875,
+    "afterQuick": 3375,
+    "afterCustom": 3500,
+    "target": 1500,
+    "dateKeyboardFallback": true,
+    "zeroState": true,
+    "emptyState": true
+  },
+  "nutrition": {
+    "before": 1,
+    "heightResizeWorkaround": true,
+    "estimate": true,
+    "after": 2,
+    "snapshot": "150.00\tcalories=129.0;protein=3.3;carbs=27.6;fat=0.3;fiber=2.7;sugar=0.0\t4c764d32b31e9d96898ee8f8fc6e12f30f6b27cd4214c827f7ecdff05cf365a9",
+    "afterInvalid": 2
+  },
+  "training": {
+    "before": 3,
+    "resumedMedia": [
+      {
+        "paused": false,
+        "ready": 4,
+        "loop": true,
+        "time": 1.86087
+      }
+    ],
+    "summary": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 \u00b7 \ndilewati: 0 \u00b7 belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki \u00b7 Selesai\nSimpan aktivitas\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya",
+    "beforeSave": 3,
+    "after": 4,
+    "row": "2\t1\tAktif 60 detik; selesai 1, dilewati 0; selesai. Program Uji v1; rincian sesi sementara."
+  },
+  "unit_tests": {
+    "backend": 176,
+    "frontend": 90,
+    "failures": 0,
+    "source": "build test XML; some tasks UP-TO-DATE"
+  },
+  "jdbc_continuation": 30,
+  "parser_continuation": 8,
+  "dark_captures": 4,
+  "limits": [
+    "Physical keyboard/device not tested",
+    "Date clicks needed keyboard fallback",
+    "Current ZIP launch not repeated"
+  ]
+}

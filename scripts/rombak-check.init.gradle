@@ -1,0 +1,5 @@
+// Safe complete unit suite for both modules. Real JDBC is run separately on a guarded disposable schema.
+gradle.projectsEvaluated {
+    def allowed = '''AccountRepositoryTest AuthServiceTest PasswordUtilTest PenggunaServiceTest KebiasaanServiceTest TidurServiceTest TantanganServiceTest EvaluasiServiceTest ProgresHarianServiceTest RekomendasiServiceTest OwnershipServiceTest WriteConfirmationTest CatalogReadTest UserSessionTest FrontendFlowValidationTest FrontendFeatureFlowIntegrationTest InstanceContextTest ReminderLifecycleTest MainLayoutContractTest FrontendOwnershipTest WriteActionTest WriteViewContractTest CatalogPreviewTest ExerciseCatalogTest TrainingSessionTest TrainingWriteTest RombakDomainTest MenuPolicyTest'''.split(' ')
+    allprojects { p -> p.tasks.withType(Test).configureEach { t -> allowed.each { name -> t.include("**/${name}.class") } } }
+}

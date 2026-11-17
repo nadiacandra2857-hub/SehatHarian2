@@ -1,0 +1,27 @@
+{
+  "phase": "after",
+  "mode": "support",
+  "screens": [
+    {
+      "name": "tidur-form-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur aktual\nAktual · bangun hari ini\n4,0 jam\nCatat tidur\nCatatan tidur aktual\nTanggal mulai tidur\n11/9/2026\nJam tidur (HH:mm)\n22:00\nTanggal bangun\n11/10/2026\nJam bangun (HH:mm)\n06:00\nTidur melewati tengah malam\nSimpan tidur aktual\nForm catatan tidur\nRiwayat aktual · 30 hari\nJadwal tidur & pengingat (rencana)\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "jadwal-tidur-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur aktual\nAktual · bangun hari ini\n4,0 jam\nCatat tidur\nCatatan tidur aktual\nTanggal mulai tidur\n11/9/2026\nJam tidur (HH:mm)\n22:00\nTanggal bangun\n11/10/2026\nJam bangun (HH:mm)\n06:00\nTidur melewati tengah malam\nSimpan tidur aktual\nForm catatan tidur\nRiwayat aktual · 30 hari\nRencana tidur dan pengingat terpisah dari durasi \naktual.\nJadwal tidur\nJadwal Tidur Anda\nTidur\n—\nBangun\n—\nDurasi\n—\nBelum ada jadwal tersimpan; tidur aktual \nbelum dicatat.\nAtur jadwal tidur\nSistem secara otomatis menghitung durasi \nakurat, termasuk jadwal istirahat lintas \ntengah malam.\nTanggal Istirahat:\n11/10/2026\nTanggal mulai tidur\nWaktu Masuk Tidur:\n22\n:\n30\nFormat 24 jam\nWaktu Bangun Pagi:\n06\n:\n00\nWaktu bangun\nJadwal melintasi tengah malam: mulai \nistirahat malam ini, bangun esok hari \n(+1 hari).\nDurasi rencana\nDihitung secara presisi dalam satuan \njam\n7.5 Jam\nAturan aplikasi (5 jam):\nRencana ≥ 5 jam\nJadikan jadwal ini sebagai acuan \nalarm desktop\nSimpan jadwal\nPengingat istirahat\nPengingat bekerja selama sesi aplikasi \naktif. Pilihan aktif/nonaktif berlaku untuk \nsesi ini.\nJadwal Alarm Aktif:\nPengingat tidur belum \ndiatur\nWaktu mulai istirahat malam yang \ndipantau oleh pengingat.\nAlur Kerja Pengingat:\nTahap 1\nT-10 Menit Sebelum Tidur\nNotifikasi visual desktop muncul di \nlayar sebagai panduan persiapan \nistirahat.\nTahap 2\nWaktu Tidur Tiba (Jendela 10 Detik)\nPengingat visual muncul saat \nwaktunya tiba. Suara hanya tersedia \npada desktop yang mendukungnya.\nJadwal pengingat belum tersedia \n(WIB)\nUji Suara\nCatatan: Pengingat terus berjalan saat \naplikasi diminimalkan dan berhenti bersih \nsaat ditutup.\nRiwayat jadwal tidur\n0 Catatan Tersimpan\nRiwayat rencana tersimpan. Durasi aktual \nbelum dicatat oleh model saat ini.\nPerbarui Riwayat\nBelum ada jadwal tersimpan.\nPengingat web memerlukan sesi/tab tersambung. \nAlarm setelah aplikasi ditutup belum tersedia.\nJadwal tidur & pengingat (rencana)\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "nutrisi-form-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nCatat makanan\n‹\n11/10/2026\n›\nWaktu makan\nSarapan\nCari makanan\nCari nama makanan dalam katalog\nCari katalog\nPilih makanan dari katalog.\nPorsi (gram)\n100\nKembali\nCari makanan\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ]
+}

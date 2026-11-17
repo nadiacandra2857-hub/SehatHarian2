@@ -1,8 +1,31 @@
-// Explicit presentation launcher: real login/services, dedicated synthetic database.
+// Same real login/services. Provisioning is explicit, before JPro, rather than per browser.
+def preserveExistingJPro = new java.util.concurrent.atomic.AtomicBoolean(false)
 gradle.projectsEvaluated {
     def p = gradle.rootProject.project(':Frontend2')
+    def running = {
+        def pidFile = new File(p.projectDir, 'RUNNING_PID')
+        if (!pidFile.isFile()) return false
+        def value = pidFile.text.trim()
+        return (value ==~ /[0-9]+/) && ProcessHandle.of(Long.parseLong(value)).map { it.isAlive() }.orElse(false)
+    }
+    def refuse = 'JPro masih berjalan di direktori ini. Gunakan salinan folder terpisah untuk instance paralel; mengganti port saja tidak cukup. Proses lama tidak dihentikan.'
+    // Refuse during configuration, before JPro's finalizedBy(jproStop) can run on a failed task.
+    if (gradle.startParameter.taskNames.any { it == 'jproRun' || it.endsWith(':jproRun') } && running()) {
+        preserveExistingJPro.set(true)
+        throw new GradleException(refuse)
+    }
     p.application.mainClass = 'com.sehatharian.MainApp'
-    p.jpro.useMainMethod = false // Do not invoke production database bootstrap.
+    p.jpro.useMainMethod = false
     p.jpro.openURLOnStartup = false
-    p.jpro.port = 8088
+    p.jpro.port = Integer.parseInt(System.getenv('JPRO_PORT') ?: '8088')
+    p.tasks.named('jproRun').configure {
+        doFirst {
+            if (running()) {
+                preserveExistingJPro.set(true)
+                throw new GradleException(refuse)
+            }
+        }
+    }
+    // Covers a race after configuration; the finalizer must not terminate a pre-existing PID.
+    p.tasks.named('jproStop').configure { onlyIf { !preserveExistingJPro.get() } }
 }

@@ -1,0 +1,520 @@
+{
+  "phase": "before",
+  "started": "2026-11-10T11:09:16.544Z",
+  "screens": [
+    {
+      "name": "beranda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari yang \nkecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari \nini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -12.076923370361328,
+            "y": 1108,
+            "width": 482.296875,
+            "height": 264.921875,
+            "top": 1108,
+            "right": 470.2199516296387,
+            "bottom": 1372.921875,
+            "left": -12.076923370361328
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -88.23077392578125,
+            "y": 1108,
+            "width": 482.296875,
+            "height": 264.921875,
+            "top": 1108,
+            "right": 394.06610107421875,
+            "bottom": 1372.921875,
+            "left": -88.23077392578125
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 8.674898147583008,
+            "y": 1186.641357421875,
+            "width": 399.9375,
+            "height": 219.34375,
+            "top": 1186.641357421875,
+            "right": 408.612398147583,
+            "bottom": 1405.985107421875,
+            "left": 8.674898147583008
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -26.294235229492188,
+            "y": 1186.641357421875,
+            "width": 399.9375,
+            "height": 219.34375,
+            "top": 1186.641357421875,
+            "right": 373.6432647705078,
+            "bottom": 1405.985107421875,
+            "left": -26.294235229492188
+          }
+        }
+      ]
+    },
+    {
+      "name": "beranda-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari \nyang kecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun \nhari ini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -7.9081878662109375,
+            "y": 1114,
+            "width": 435.625,
+            "height": 264.921875,
+            "top": 1114,
+            "right": 427.71681213378906,
+            "bottom": 1378.921875,
+            "left": -7.9081878662109375
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -75.72457885742188,
+            "y": 1114,
+            "width": 435.625,
+            "height": 264.921875,
+            "top": 1114,
+            "right": 359.9004211425781,
+            "bottom": 1378.921875,
+            "left": -75.72457885742188
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 10.835390090942383,
+            "y": 1192.641357421875,
+            "width": 361.234375,
+            "height": 219.34375,
+            "top": 1192.641357421875,
+            "right": 372.0697650909424,
+            "bottom": 1411.985107421875,
+            "left": 10.835390090942383
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -19.781890869140625,
+            "y": 1192.641357421875,
+            "width": 361.234375,
+            "height": 219.34375,
+            "top": 1192.641357421875,
+            "right": 341.4524841308594,
+            "bottom": 1411.985107421875,
+            "left": -19.781890869140625
+          }
+        }
+      ]
+    },
+    {
+      "name": "beranda-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nBeranda\nCatatan\nProgres\nSehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari yang \nkecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari ini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/logo.png",
+          "complete": true,
+          "w": 240,
+          "rect": {
+            "x": 40,
+            "y": 53,
+            "width": 36,
+            "height": 36,
+            "top": 53,
+            "right": 76,
+            "bottom": 89,
+            "left": 40
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 235.81390380859375,
+            "y": 769,
+            "width": 438.734375,
+            "height": 264.921875,
+            "top": 769,
+            "right": 674.5482788085938,
+            "bottom": 1033.921875,
+            "left": 235.81390380859375
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 167.44168090820312,
+            "y": 769,
+            "width": 438.7343444824219,
+            "height": 264.921875,
+            "top": 769,
+            "right": 606.176025390625,
+            "bottom": 1033.921875,
+            "left": 167.44168090820312
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 556.8353881835938,
+            "y": 669.6414184570312,
+            "width": 361.234375,
+            "height": 219.34375,
+            "top": 669.6414184570312,
+            "right": 918.0697631835938,
+            "bottom": 888.9851684570312,
+            "left": 556.8353881835938
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 524.783935546875,
+            "y": 669.6414184570312,
+            "width": 363.8125,
+            "height": 219.34375,
+            "top": 669.6414184570312,
+            "right": 888.596435546875,
+            "bottom": 888.9851684570312,
+            "left": 524.783935546875
+          }
+        }
+      ]
+    },
+    {
+      "name": "beranda-scroll-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari yang \nkecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari \nini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -12.076923370361328,
+            "y": 628,
+            "width": 482.296875,
+            "height": 264.921875,
+            "top": 628,
+            "right": 470.2199516296387,
+            "bottom": 892.921875,
+            "left": -12.076923370361328
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -88.23077392578125,
+            "y": 628,
+            "width": 482.296875,
+            "height": 264.921875,
+            "top": 628,
+            "right": 394.06610107421875,
+            "bottom": 892.921875,
+            "left": -88.23077392578125
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 8.674898147583008,
+            "y": 706.6414184570312,
+            "width": 399.9375,
+            "height": 219.34375,
+            "top": 706.6414184570312,
+            "right": 408.612398147583,
+            "bottom": 925.9851684570312,
+            "left": 8.674898147583008
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -26.294235229492188,
+            "y": 706.6414184570312,
+            "width": 399.9375,
+            "height": 219.34375,
+            "top": 706.6414184570312,
+            "right": 373.6432647705078,
+            "bottom": 925.9851684570312,
+            "left": -26.294235229492188
+          }
+        }
+      ]
+    },
+    {
+      "name": "beranda-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari yang \nkecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari ini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -12.076923370361328,
+            "y": 1090,
+            "width": 482.296875,
+            "height": 264.921875,
+            "top": 1090,
+            "right": 470.2199516296387,
+            "bottom": 1354.921875,
+            "left": -12.076923370361328
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -88.23077392578125,
+            "y": 1090,
+            "width": 482.296875,
+            "height": 264.921875,
+            "top": 1090,
+            "right": 394.06610107421875,
+            "bottom": 1354.921875,
+            "left": -88.23077392578125
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 8.674898147583008,
+            "y": 1168.641357421875,
+            "width": 399.9375,
+            "height": 219.34375,
+            "top": 1168.641357421875,
+            "right": 408.612398147583,
+            "bottom": 1387.985107421875,
+            "left": 8.674898147583008
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -26.294235229492188,
+            "y": 1168.641357421875,
+            "width": 399.9375,
+            "height": 219.34375,
+            "top": 1168.641357421875,
+            "right": 373.6432647705078,
+            "bottom": 1387.985107421875,
+            "left": -26.294235229492188
+          }
+        }
+      ]
+    },
+    {
+      "name": "beranda-gelap-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari \nyang kecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari ini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -7.9081878662109375,
+            "y": 1090,
+            "width": 435.625,
+            "height": 264.921875,
+            "top": 1090,
+            "right": 427.71681213378906,
+            "bottom": 1354.921875,
+            "left": -7.9081878662109375
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -75.72457885742188,
+            "y": 1090,
+            "width": 435.625,
+            "height": 264.921875,
+            "top": 1090,
+            "right": 359.9004211425781,
+            "bottom": 1354.921875,
+            "left": -75.72457885742188
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 10.835390090942383,
+            "y": 1168.641357421875,
+            "width": 361.234375,
+            "height": 219.34375,
+            "top": 1168.641357421875,
+            "right": 372.0697650909424,
+            "bottom": 1387.985107421875,
+            "left": 10.835390090942383
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": -19.781890869140625,
+            "y": 1168.641357421875,
+            "width": 361.234375,
+            "height": 219.34375,
+            "top": 1168.641357421875,
+            "right": 341.4524841308594,
+            "bottom": 1387.985107421875,
+            "left": -19.781890869140625
+          }
+        }
+      ]
+    },
+    {
+      "name": "beranda-gelap-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nBeranda\nCatatan\nProgres\nSehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari yang \nkecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari ini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/logo.png",
+          "complete": true,
+          "w": 240,
+          "rect": {
+            "x": 40,
+            "y": 53,
+            "width": 36,
+            "height": 36,
+            "top": 53,
+            "right": 76,
+            "bottom": 89,
+            "left": 40
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 235.81390380859375,
+            "y": 767,
+            "width": 438.734375,
+            "height": 264.921875,
+            "top": 767,
+            "right": 674.5482788085938,
+            "bottom": 1031.921875,
+            "left": 235.81390380859375
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 167.44168090820312,
+            "y": 767,
+            "width": 438.7343444824219,
+            "height": 264.921875,
+            "top": 767,
+            "right": 606.176025390625,
+            "bottom": 1031.921875,
+            "left": 167.44168090820312
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 556.8353881835938,
+            "y": 667.6414184570312,
+            "width": 361.234375,
+            "height": 219.34375,
+            "top": 667.6414184570312,
+            "right": 918.0697631835938,
+            "bottom": 886.9851684570312,
+            "left": 556.8353881835938
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/dashboard/habits-editorial.png",
+          "complete": true,
+          "w": 1254,
+          "rect": {
+            "x": 524.783935546875,
+            "y": 667.6414184570312,
+            "width": 363.8125,
+            "height": 219.34375,
+            "top": 667.6414184570312,
+            "right": 888.596435546875,
+            "bottom": 886.9851684570312,
+            "left": 524.783935546875
+          }
+        }
+      ]
+    }
+  ],
+  "routes": []
+}

@@ -1,0 +1,138 @@
+{
+  "mode": "controls",
+  "db": "sehatharian_test_sleep_browser_20261116",
+  "appPort": "8096",
+  "started": "2026-11-16T02:28:59.626Z",
+  "screens": [],
+  "body": "Riwayat t...\nStatistik l...\nHidrasi\nNutrisi\nUS\nProfil\nTema ...\nKeluar\nBerikutnya · 2026-11-16T22:00 WIB (Asia/Jakarta)\nTutup\nTidur\nJadwal tersimpan. Rencana terpisah dari tidur aktual.\nJadwal berikutnya\nPengingat aktif · 2026-11-16T22:00 → 2026-11-17T06:00 WIB (Asia/Jakarta)\nBerikutnya · 2026-11-16T22:00 WIB (Asia/Jakarta)\nAtur jadwal\nBerlaku mulai (WIB)\n11/16/2026\nJam tidur · HH:mm\n22:00\nJam bangun · HH:mm\n06:00\nPengingat aktif\nSimpan jadwal\nUbah jadwal\nSuara pengingat\nSuara pengingat\nVolume pilihan\nSimpan pilihan suara\nPilihan suara tersimpan: mati.\nAudio belum siap atau dibatasi. Aktifkan kembali; banner tetap tersedia.\nAktifkan suaraCoba suaraHentikan alarm\nBunyi maksimal 6 detik. Coba suara memutar sampel meskipun pilihan otomatis mati. Aktifkan lewat \ntombol pada tab ini. Tab harus tersambung dan berada di depan; aplikasi tertutup, suspend, dan \npembatasan browser dapat melewatkan pengingat. Banner tetap tersedia.\nAktual · bangun hari ini\nBelum tercatat\nCatat tidur\nCatat atau revisi tidur\nEvaluasi tidur\nTotal episode per tanggal bangun; kurang dari 5 jam adalah ambang internal proyek. Hari tanpa \ncatatan belum diketahui.\nTanggal bangun yang dinilai\n11/16/2026\nPeriksa / coba lagi evaluasi\nBelum diperiksa.\nHasil terdahulu\nRiwayat tidur aktual",
+  "inputs": [
+    {
+      "i": 0,
+      "value": "",
+      "placeholder": "",
+      "type": "text",
+      "rect": {
+        "x": 195,
+        "y": -59,
+        "width": 443,
+        "height": 40,
+        "top": -59,
+        "right": 638,
+        "bottom": -19,
+        "left": 195
+      }
+    },
+    {
+      "i": 1,
+      "value": "",
+      "placeholder": "",
+      "type": "text",
+      "rect": {
+        "x": 192,
+        "y": 20,
+        "width": 480,
+        "height": 44,
+        "top": 20,
+        "right": 672,
+        "bottom": 64,
+        "left": 192
+      }
+    },
+    {
+      "i": 2,
+      "value": "",
+      "placeholder": "",
+      "type": "text",
+      "rect": {
+        "x": 192,
+        "y": 100,
+        "width": 480,
+        "height": 44,
+        "top": 100,
+        "right": 672,
+        "bottom": 144,
+        "left": 192
+      }
+    },
+    {
+      "i": 3,
+      "value": "",
+      "placeholder": "",
+      "type": "text",
+      "rect": {
+        "x": 165,
+        "y": 1197,
+        "width": 503,
+        "height": 40,
+        "top": 1197,
+        "right": 668,
+        "bottom": 1237,
+        "left": 165
+      }
+    },
+    {
+      "i": 4,
+      "value": "",
+      "placeholder": "",
+      "type": "text",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 730,
+        "height": 74,
+        "top": 0,
+        "right": 730,
+        "bottom": 74,
+        "left": 0
+      }
+    }
+  ],
+  "buttons": [
+    {
+      "text": "Aktifkan suara",
+      "rect": {
+        "x": 165,
+        "y": 597,
+        "width": 126.734375,
+        "height": 43,
+        "top": 597,
+        "right": 291.734375,
+        "bottom": 640,
+        "left": 165
+      }
+    },
+    {
+      "text": "Coba suara",
+      "rect": {
+        "x": 297.734375,
+        "y": 597,
+        "width": 101.5,
+        "height": 43,
+        "top": 597,
+        "right": 399.234375,
+        "bottom": 640,
+        "left": 297.734375
+      }
+    },
+    {
+      "text": "Hentikan alarm",
+      "rect": {
+        "x": 405.234375,
+        "y": 597,
+        "width": 133.09375,
+        "height": 43,
+        "top": 597,
+        "right": 538.328125,
+        "bottom": 640,
+        "left": 405.234375
+      }
+    }
+  ],
+  "audio": [
+    {
+      "key": "sleepAudiodc3a374a8cf24f6f8773b842c2cbb55c",
+      "ready": true
+    }
+  ],
+  "finished": "2026-11-16T02:28:59.634Z"
+}

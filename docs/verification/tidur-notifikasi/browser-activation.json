@@ -1,0 +1,21 @@
+{
+  "mode": "activation",
+  "db": "sehatharian_test_sleep_browser_20261116",
+  "appPort": "8096",
+  "started": "2026-11-16T02:26:32.581Z",
+  "screens": [],
+  "activation": [],
+  "failures": [],
+  "logs": [],
+  "clicks": [
+    {
+      "target": "<button style=\"border:0;border-radius:12px;background:#d8efe6;color:#123d32;padding:12px;margin:3px;font:600 14px sans-serif;cursor:pointer\" onclick=\"window.sleepAudio588b0bf68ef04d028e15fd04a35da388?.activate()\">Aktifkan suara</button>",
+      "trust": true
+    },
+    {
+      "target": "<button style=\"border:0;border-radius:12px;background:#d8efe6;color:#123d32;padding:12px;margin:3px;font:600 14px sans-serif;cursor:pointer\" onclick=\"window.sleepAudio588b0bf68ef04d028e15fd04a35da388?.activate()\">Aktifkan suara</button>",
+      "trust": true
+    }
+  ],
+  "finished": "2026-11-16T02:26:35.998Z"
+}

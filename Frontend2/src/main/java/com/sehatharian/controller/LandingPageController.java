@@ -33,6 +33,7 @@ public class LandingPageController {
     @FXML private VBox heroPreviewCard;
     @FXML private ImageView navbarLogoView;
     @FXML private ImageView aboutImageView;
+    @FXML private ImageView campusImageView;
     @FXML private ImageView footerLogoView;
 
     @FXML private ImageView featureImg1;
@@ -112,6 +113,9 @@ public class LandingPageController {
     public void initialize() {
         muatGambar();
         setupHeroBackgroundSizing();
+        if(campusImageView!=null) {
+            mainScrollPane.widthProperty().addListener((o,a,b)->campusImageView.setFitWidth(Math.min(460,Math.max(120,b.doubleValue()-100))));
+        }
         if(aboutImageView!=null) {
             mainScrollPane.widthProperty().addListener((o,a,b)->aboutImageView.setFitWidth(Math.min(460,Math.max(120,b.doubleValue()-100))));
         }
@@ -148,7 +152,7 @@ public class LandingPageController {
                 if (footerLogoView != null) footerLogoView.setImage(new Image(logoUrl.toExternalForm()));
             }
 
-            var aboutUrl = getClass().getResource("/images/hospital_card_framed.png");
+            var aboutUrl = getClass().getResource("/images/home/routine.jpg");
             if (aboutUrl == null) {
                 aboutUrl = getClass().getResource("/images/hero_wellness.png");
             }
@@ -157,11 +161,11 @@ public class LandingPageController {
             }
 
             // Fitur images
-            setSafeImage(featureImg1, "/images/illustration_walk.png");
-            setSafeImage(featureImg2, "/images/illustration_water.png");
-            setSafeImage(featureImg3, "/images/illustration_stretch.png");
-            setSafeImage(featureImg4, "/images/illustration_sleep.png");
-            setSafeImage(featureImg5, "/images/illustration_food.png");
+            setSafeImage(featureImg1, "/images/team/Jogging.jpg");
+            setSafeImage(featureImg2, "/images/home/water.jpg");
+            setSafeImage(featureImg3, "/images/team/Push_Up.jpg");
+            setSafeImage(featureImg4, "/images/home/sleep.jpg");
+            setSafeImage(featureImg5, "/images/home/nutrition.jpg");
 
         } catch (Exception e) {
             System.err.println("Info muat gambar landing page: " + e.getMessage());

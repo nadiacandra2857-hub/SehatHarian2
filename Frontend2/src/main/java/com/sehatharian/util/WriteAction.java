@@ -20,6 +20,33 @@ public final class WriteAction {
     }
     public boolean isRunning() { return running.get(); }
     public boolean reviewRequired() { return reviewRequired; }
+    /** Async variant: busy/delivery stay on the originating UI dispatcher; JDBC runs on executor. */
+    public <T> boolean executeAsync(java.util.concurrent.Executor executor,
+            SessionAccess.Operation<WriteResult<T>> command,Consumer<WriteResult<T>> deliver,Consumer<Boolean> busy) {
+        access.owner();
+        if(reviewRequired||!running.compareAndSet(false,true))return false;
+        busy.accept(true);
+        try{executor.execute(()->{
+            WriteResult<T> result;
+            try{result=command.run();}
+            catch(SecurityException stale){running.set(false);return;}
+            catch(SQLException failure){result=WriteResult.uncertain();}
+            catch(RuntimeException failure){result=WriteResult.failed();}
+            final WriteResult<T> completed=result;
+            try{defer.accept(()->{
+                try{access.owner();reviewRequired=completed.needsReview()||completed.status()==WriteResult.Status.PARSIAL;deliver.accept(completed);}
+                catch(SecurityException stale){/* Old identity must not receive a late result. */}
+                finally{running.set(false);try{access.owner();busy.accept(false);}catch(SecurityException stale){/* released */}}
+            });}catch(RuntimeException closed){running.set(false);}
+        });}catch(RuntimeException rejected){running.set(false);busy.accept(false);throw rejected;}
+        return true;
+    }
+    /** Only call after an operation-specific durable status probe has completed successfully. */
+    public void operationReviewed() {
+        access.owner();
+        if(running.get())throw new IllegalStateException("Penyimpanan masih berjalan.");
+        reviewRequired=false;
+    }
     /** Headless core used by real FXML submissions and controlled-queue tests. */
     public <T> boolean execute(SessionAccess.Operation<WriteResult<T>> command,
             Consumer<WriteResult<T>> deliver, Consumer<Boolean> busy) throws SQLException {

@@ -1,0 +1,10 @@
+(SELECT COUNT(*) FROM pengguna)	(SELECT COUNT(*) FROM food_catalog)	(SELECT COUNT(*) FROM curated_menu_import)	(SELECT COUNT(*) FROM menu_presentation)	(SELECT COUNT(*) FROM content_version WHERE kind='MENU' AND state='PUBLISHED')
+2	7795	5	5	5
+active_nanos	(SELECT SUM(s.active_nanos) FROM training_step s WHERE s.session_id=t.id)	durasi_menit
+60000000000	60000000000	1
+item_key	source_version	menu_id	payload_hash
+curated:awal-2026:pisang-beku	2026-11-11.1	1	0be908a4f02aced068a82e21a7b0b2db855e2e2998800e42795b4ad9fd46b28d
+curated:awal-2026:omelet-spinach	2026-11-11.1	2	fc8c91d89cc551c5e2b67b6248882be93a4c817ea3a9c3698b0a498a8e60be1a
+curated:awal-2026:salad-tomat	2026-11-11.1	3	4a15db51c5faf01f5ca24aab268182f59bfa1f0ee2865ecf59291bff7f50d1ce
+curated:awal-2026:oat-semalam	2026-11-11.1	4	fb738a5dfb2c477402196c3d2a9c85513239062b482372a0ec44585dddecc472
+curated:awal-2026:nasi-goreng	2026-11-11.1	5	5f57f17c8e5e6073e76e17431364ab6b0c358fdbbe4e2124eea6477c6d951b21

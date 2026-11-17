@@ -50,6 +50,7 @@ public class JadwalTidurRepository extends OwnedRepository {
 
     public JadwalTidur getTerbaruByPengguna(int penggunaId) throws SQLException {
         access.owner(penggunaId);
+        try(var c=open();var p=c.prepareStatement("SELECT schedule_id FROM sleep_active_plan WHERE pengguna_id=?")){p.setInt(1,access.owner());try(var r=p.executeQuery()){if(r.next()){if(r.getObject(1)==null)return access.result(null);try(var q=c.prepareStatement("SELECT * FROM jadwal_tidur WHERE id=? AND pengguna_id=?")){q.setInt(1,r.getInt(1));q.setInt(2,access.owner());try(var rows=q.executeQuery()){return access.result(rows.next()?mapResultSetToJadwalTidur(rows):null);}}}}}
         List<JadwalTidur> list = getRiwayatByPengguna(penggunaId, 1);
         return access.result(list.isEmpty() ? null : list.get(0));
     }
@@ -81,6 +82,7 @@ public class JadwalTidurRepository extends OwnedRepository {
         WriteTransaction tx = new WriteTransaction(access, connections);
         try {
             Connection conn = tx.open();
+            com.sehatharian.service.SleepEvaluationQueue.lock(conn,access);
 
             int existing = jt.getId();
             if (existing <= 0) {
@@ -96,7 +98,7 @@ public class JadwalTidurRepository extends OwnedRepository {
                 ps.setDouble(4, jt.getDurasiJam()); ps.setBoolean(5, jt.isMemenuhiStandar()); ps.setBoolean(6, jt.isPengingatAktif());
                     ps.setInt(7, existing); ps.setInt(8, owner);
                     if (tx.execute(ps) <= 0) throw new SQLException("Data tidak tersedia atau tidak berubah.");
-                    return tx.confirm(existing);
+                    selectActive(conn,tx,existing); return tx.confirm(existing);
                 }
             }
             try (PreparedStatement ps = conn.prepareStatement("INSERT INTO jadwal_tidur (pengguna_id, tanggal, jam_tidur, jam_bangun, durasi_jam, memenuhi_standar, pengingat_aktif) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
@@ -105,7 +107,7 @@ public class JadwalTidurRepository extends OwnedRepository {
                 ps.setDouble(5, jt.getDurasiJam()); ps.setBoolean(6, jt.isMemenuhiStandar()); ps.setBoolean(7, jt.isPengingatAktif());
                 if (tx.execute(ps) != 1) throw new SQLException("Penyimpanan belum dikonfirmasi.");
                 try (ResultSet keys = ps.getGeneratedKeys()) {
-                    if (keys.next() && keys.getInt(1) > 0) return tx.confirm(keys.getInt(1));
+                    if (keys.next() && keys.getInt(1) > 0) {int id=keys.getInt(1);selectActive(conn,tx,id);return tx.confirm(id);}
                 }
                 throw new SQLException("ID penyimpanan belum dikonfirmasi.");
             }
@@ -122,11 +124,14 @@ public class JadwalTidurRepository extends OwnedRepository {
 
             String sql = "UPDATE jadwal_tidur SET pengingat_aktif = ? WHERE id = ? AND pengguna_id = ?";
             Connection conn = tx.open();
+            com.sehatharian.service.SleepEvaluationQueue.lock(conn,access);
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setBoolean(1, aktif);
                 ps.setInt(2, id);
                 ps.setInt(3, access.owner(penggunaId));
-                return tx.affected(tx.execute(ps));
+                int changed=tx.execute(ps);
+                try(var bump=conn.prepareStatement("UPDATE sleep_active_plan SET generation=generation+1 WHERE pengguna_id=? AND schedule_id=?")){bump.setInt(1,access.owner());bump.setInt(2,id);tx.execute(bump);}
+                return tx.affected(changed);
             }
         } catch (SQLException e) { return tx.recover(e); }
         catch (RuntimeException e) { tx.abort(); throw e; }
@@ -141,16 +146,22 @@ public class JadwalTidurRepository extends OwnedRepository {
 
             String sql = "DELETE FROM jadwal_tidur WHERE id = ? AND pengguna_id = ?";
             Connection conn = tx.open();
+            com.sehatharian.service.SleepEvaluationQueue.lock(conn,access);
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, id);
                 ps.setInt(2, access.owner(penggunaId));
-                return tx.affected(tx.execute(ps));
+                int changed=tx.execute(ps);
+                try(var bump=conn.prepareStatement("UPDATE sleep_active_plan SET generation=generation+1 WHERE pengguna_id=? AND schedule_id=?")){bump.setInt(1,access.owner());bump.setInt(2,id);tx.execute(bump);}
+                return tx.affected(changed);
             }
         } catch (SQLException e) { return tx.recover(e); }
         catch (RuntimeException e) { tx.abort(); throw e; }
         finally { tx.close(); }
     }
 
+    private void selectActive(Connection c,WriteTransaction tx,int id)throws SQLException {
+        try(var p=c.prepareStatement("INSERT INTO sleep_active_plan(pengguna_id,schedule_id,generation) VALUES(?,?,1) ON DUPLICATE KEY UPDATE schedule_id=VALUES(schedule_id),generation=generation+1")){p.setInt(1,access.owner());p.setInt(2,id);tx.execute(p);}
+    }
     private JadwalTidur mapResultSetToJadwalTidur(ResultSet rs) throws SQLException {
         JadwalTidur jt = new JadwalTidur();
         jt.setId(rs.getInt("id"));

@@ -1,0 +1,714 @@
+{
+  "matched": 177,
+  "all_equal": true,
+  "files": [
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/config/CreateAdmin.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/config/DatabaseBootstrap.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/config/DatabaseConfig.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/config/LocalDatabase.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/config/SetupDatabase.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/Aktivitas.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/EvaluasiMingguan.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/Hidrasi.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/JadwalTidur.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/KebiasaanMakan.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/Rekomendasi.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/RiwayatTantangan.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/Tantangan.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/Pengguna.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/ProgresHarian.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/RingkasanKonsistensi.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/SessionAccess.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/model/UserSession.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/AccountRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/AktivitasRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/EvaluasiMingguanRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/HidrasiRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/InMemoryDataStore.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/JadwalTidurRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/KebiasaanMakanRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/OwnedRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/PenggunaRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/ProgresHarianRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/RekomendasiRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/RiwayatTantanganRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/SqlSleepScheduleProvider.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/TantanganRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/repository/ActualSleepRepository.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/AuthService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/DemoCatalog.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/EvaluasiService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/KebiasaanService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/PenggunaService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/PengingatTidurService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/ProgresHarianService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/RekomendasiService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/ReminderScheduler.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/SleepScheduleProvider.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/TantanganService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/TidurService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/HabitPreferences.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/HabitInsights.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/service/HabitChallengeService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/util/DateHelper.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/util/ValidationUtil.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/util/AudioOutput.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/util/AudioPlayerHelper.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/util/PasswordUtil.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/catalog/Exercise.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/catalog/ExerciseCatalog.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/catalog/TeamExercises.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/storage/ReadResult.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/storage/WriteException.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/storage/WriteResult.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/storage/WriteTransaction.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/training/TrainingSession.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/nutrition/Nutrients.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/nutrition/FoodImport.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/nutrition/NutritionService.java",
+      "equal": true
+    },
+    {
+      "file": "Backend2/src/main/java/com/sehatharian/content/ContentService.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/AppLauncher.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/MainApp.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/CatatanKebiasaanController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/CreateAccountController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/DashboardController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/EvaluasiMingguanController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/JadwalTidurController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/LandingPageController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/LoginController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/MainLayoutController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/OnboardingController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/ProfilPengaturanController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/RekomendasiController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/StatistikMingguanController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/TantanganController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/LatihanController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/NutrisiController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/HidrasiController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/TidurAktualController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/ProgresController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/AdminController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/controller/KontenController.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/AssetGenerator.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/GenerateAssets.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/AdaptiveRow.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/AnimationHelper.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/AuthLayoutHelper.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/DialogHelper.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/EditorialImage.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/ExerciseCatalogPane.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/ExerciseLabels.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/IconFactory.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/Illustrations.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/InstanceControllerFactory.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/LayoutGuard.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/PageDesign.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/PrivatePageCache.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/ResponsiveTable.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/ResponsiveTabs.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/SceneNavigator.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/SoundEffects.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/WriteAction.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/TrainingDialog.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/HabitUI.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/util/TrainingVideo.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/java/com/sehatharian/context/ApplicationContext.java",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/css/dashboard.css",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/css/sehat-theme.css",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/css/styles.css",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/css/ui2.css",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/css/light.css",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/CatatanKebiasaanView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/CreateAccountView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/DashboardView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/EvaluasiMingguanView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/JadwalTidurView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/LandingPageView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/LoginView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/MainLayout.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/OnboardingView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/ProfilPengaturanView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/RekomendasiView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/StatistikMingguanView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/TantanganView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/LatihanView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/NutrisiView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/HidrasiView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/TidurAktualView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/ProgresView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/AdminView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/fxml/KontenView.fxml",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/doctor_female_labcoat.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/doctor_hero.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/doctor_hero_clinic.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/doctor_hero_framed.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/foto1_showcase.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/foto2_tantangan.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/foto3_hidrasi.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/foto4_isipiringku.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/foto5_tidur.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/gambar1.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/hero_wellness.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/hospital_card_framed.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/hospital_modern.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/illustration_food.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/illustration_sleep.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/illustration_stretch.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/illustration_walk.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/illustration_water.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/logo.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/organ_brain.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/organ_kidney.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/organ_liver.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/organ_lungs.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/campus-generic.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/sounds/bell_reminder.wav",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/sounds/soft_click.wav",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/sounds/success_chime.wav",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/sounds/water_drop.wav",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/dashboard/habits-editorial.png",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Bycycle_Kick.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Flutter_kicks.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Jalan_Kaki.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Jogging.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Mountain_Climbers.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Push_Up.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Sit_Up.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Sumo_Squad.jpg",
+      "equal": true
+    },
+    {
+      "file": "Frontend2/src/main/resources/images/team/Tricep_Dip.jpg",
+      "equal": true
+    },
+    {
+      "file": "Backend2/sql/seed.sql",
+      "equal": true
+    },
+    {
+      "file": "Backend2/sql/schema.sql",
+      "equal": true
+    },
+    {
+      "file": "Backend2/sql/rombak.sql",
+      "equal": true
+    }
+  ]
+}

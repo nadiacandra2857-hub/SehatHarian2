@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
-<ScrollPane fx:id="dashboardScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="ui1-scroll" stylesheets="@../css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sehatharian.controller.DashboardController"><VBox fx:id="dashboardRoot" styleClass="ui1" minWidth="0"/></ScrollPane>
+<?import javafx.scene.layout.StackPane?>
+<ScrollPane fx:id="dashboardScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="ui1-scroll" stylesheets="@../css/dashboard.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sehatharian.controller.DashboardController"><StackPane alignment="TOP_CENTER"><VBox fx:id="dashboardRoot" styleClass="ui1" minWidth="0"/></StackPane></ScrollPane>

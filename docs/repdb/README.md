@@ -37,3 +37,9 @@ Catatan → Aktivitas → **Jelajahi katalog latihan RepDB**. Filter memakai kes
 Nama, instruksi, tips dan istilah otot ditampilkan dalam bahasa sumber Inggris dengan label jelas. Tidak ada terjemahan instruksi Indonesia yang diklaim telah ditinjau. Mapping label UI Indonesia terpusat di `ExerciseLabels`. Metadata tidak dipakai untuk menebak usia, kontraindikasi, durasi atau repetisi. Tag keselamatan dan MET tidak dipakai untuk membuat klaim keselamatan atau kalori pasti. Katalog bersifat global dan tidak menilai kecocokan personal.
 
 Exercise data by [RepDB](https://repdb.co).
+
+## LATIHAN-1
+
+Kartu **Aktivitas → Latihan** pada beranda dan **Catatan → Aktivitas → Latihan berpemandu** membuka penyusun sesi sementara. Pilih mode/target, tambahkan gerakan dari detail katalog, tinjau urutan, lalu mulai. Preset adalah pengaturan aplikasi, bukan metadata/rekomendasi RepDB. Timer berakhir dengan konfirmasi; repetisi diselesaikan manual. Menutup sesi aktif menawarkan ringkasan atau tetap dijeda.
+
+`presentasi-web.sh` sekarang menyiapkan katalog lokal bila belum tersedia dan memeriksa database demo yang telah disiapkan, tanpa membuat database kosong. Untuk server demo yang sudah aktif pada host/port yang ditentukan, gunakan `SEHATHARIAN_DEMO_EXTERNAL=1 bash presentasi-web.sh`. Jangan menjalankan generator data 90 hari lagi. Lokasi deployment lain sebaiknya menggunakan `SEHATHARIAN_REPDB_DIR` absolut. Rincian bukti dan batas tersedia di [LAPORAN_LATIHAN_1.md](../LAPORAN_LATIHAN_1.md).

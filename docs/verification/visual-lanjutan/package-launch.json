@@ -1,0 +1,18 @@
+{
+  "launcher": "bash jalankan-web.sh",
+  "cwd": "/tmp/sehatharian-visual-final-eei135tk/SehatHarian",
+  "schema": "sehatharian_test_rombak_visual_release_20261110b",
+  "pid": 22649,
+  "status": "passed",
+  "zip_sha256": "f415001a9f690360283df8e6b05a26462da62096176fe2c45106d04bbd33164a",
+  "evidence_scope": "FINAL ZIP extraction, distinct from candidate/source and old releases",
+  "schema_verified_in_profile": true,
+  "browser_screens": 5,
+  "launcher_steps": [
+    "setupDatabase BUILD SUCCESSFUL",
+    "7795 foods prepared/imported",
+    "JPro server started",
+    "real login + Profile schema + Beranda/Hidrasi/Latihan/onboarding smoke passed"
+  ],
+  "test_server_stopped_after_success": true
+}

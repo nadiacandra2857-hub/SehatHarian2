@@ -1,0 +1,46 @@
+{
+  "mode": "instance-b",
+  "db": "sehatharian_test_recovery_20261111a",
+  "started": "2026-11-11T05:07:39.455Z",
+  "screens": [
+    {
+      "name": "kartu-pemulihan-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Lanjutkan latihan Anda\nSatu sesi tersimpan untuk akun ini\nProgram pemulihan fixture\nGerakan 1 dari 2 · menunggu konfirmasi\n1 menit 0 detik aktif tersimpan\nCheckpoint: 11 Nov 2026 · 12:07:42\nLanjutkan sesi tersimpan\nBuang sesi\nSesi dipulihkan dalam keadaan jeda. Waktu selama \naplikasi ditutup tidak dihitung. Susunan baru dapat \ndibuat setelah sesi ini diselesaikan atau dibuang.\nPeriksa status sesi\nRiwayat latihan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "instance-b-pulih-jeda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 2\nKeluar\nCheckpoint terkonfirmasi · 60 detik aktif · 12:07:46. Progres \nsesudahnya masih di perangkat ini.\n00:00\nBicycle Kick\nDijeda · menunggu konfirmasi · waktu tidak dihitung\nLanjutkan\nLewati\nBerikutnya: Bicycle Kick\nBerbaring, tekuk kaki bergantian dan putar tubuh ke \narah lutut berlawanan.\nPanduan & sumber\nSimpan progres sekarang\nBuang sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "owned": {
+    "operation": "1a41e724-1c4d-4cdf-925b-f91a6b3381f9",
+    "holder": "72042751-5559-4dba-99ea-0d50a9b13b93",
+    "revision": 35,
+    "at": "2026-11-11 05:07:46.581",
+    "status": "ACTIVE",
+    "hash": "0770495fdb3c75bd6ab381eacabcde652804dfcb976c0f112f67ea9519976d6a",
+    "magic": 1397249091,
+    "version": 1,
+    "program": 0,
+    "programVersion": 0,
+    "name": "Program pemulihan fixture",
+    "preparation": 5,
+    "rest": 4,
+    "index": 0,
+    "phase": "CONFIRM",
+    "confirmedFrom": "EXERCISE",
+    "elapsedNanos": "60000000000",
+    "activeNanos": "60000000000",
+    "paused": true,
+    "stopped": false,
+    "phaseRevision": "7",
+    "stepCount": 2
+  },
+  "finished": "2026-11-11T05:07:47.958Z"
+}

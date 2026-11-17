@@ -1,0 +1,16 @@
+{
+  "db": "sehatharian_test_rombak_20261110b",
+  "before": 3,
+  "media": [
+    {
+      "paused": false,
+      "loop": true,
+      "time": 3.147319,
+      "ready": 4
+    }
+  ],
+  "summary": "Pengingat tidur belum diatur\nTutup\nSesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya",
+  "beforeSave": 3,
+  "afterSave": 4,
+  "saved": "Pengingat tidur belum diatur\nTutup\nSesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nData berhasil disimpan.\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya"
+}

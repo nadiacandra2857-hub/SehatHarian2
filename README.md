@@ -1,3 +1,23 @@
+# Kelanjutan source — 12 November 2026
+
+Revisi menu oat semalam dan nasi goreng tersedia di `content/menus/lanjutan-2026.json`: bahan lengkap, takaran adaptasi dan produk eksplisit. [Panduan dan hasil uji](docs/LAPORAN_KELANJUTAN_MENU.md). Impor pilihan: `bash impor-menu.sh --dry-run --source content/menus/lanjutan-2026.json`, kemudian `--apply` dengan sumber sama; admin meninjau dan menerbitkan. Gizi total kedua menu tetap belum diketahui. ZIP di bawah adalah arsip 11 November dan belum diperbarui untuk source hari ini; perbandingan `--source .` akan mendeteksi perbedaannya.
+
+# Rilis source sebelumnya — 11 November 2026
+
+Mulai dari [BACA_DULU.md](BACA_DULU.md) dan [laporan kurasi/rilis](docs/LAPORAN_KURASI_MENU_DAN_RILIS.md). ZIP `rilis/SehatHarian-Rombak.zip` memuat riwayat latihan, pemulihan checkpoint, menu personal dan paket lima resep bersumber. ZIP adalah source: diperlukan JDK27, Python3, MariaDB serta internet saat dependency Gradle pertama diunduh.
+
+- Web: `bash jalankan-web.sh`; port opsional lewat `JPRO_PORT`.
+- Instalasi baru kosong dari akun/catatan demo. Daftar akun sendiri; admin lewat `bash buat-admin.sh`.
+- Menu nyata: `bash impor-menu.sh --dry-run`, lalu `--apply` pada DB tujuan yang dipilih eksplisit. Login admin diperlukan; hasil selalu draft untuk ditinjau dan diterbitkan.
+- Instance paralel harus memakai **folder berbeda**; port saja tidak cukup. Jangan hapus RUNNING_PID untuk memaksa penggantian proses yang hidup.
+- Verifikasi ZIP: `python3 scripts/verify-release.py rilis/SehatHarian-Rombak.zip --source .`. Checksum ZIP ada di file `.zip.sha256`; data/runtime/cache/kredensial nyata dan bukti uji tidak dikemas.
+
+Petunjuk lama di bawah dipertahankan sebagai riwayat; akun contoh lama hanya berlaku bila memang sudah ada pada database Anda.
+
+# Rilis rombak SehatHarian — November 2026
+
+Mulai JPro: `bash jalankan-web.sh`. Baca [panduan demo dosen](docs/PANDUAN_DEMO_DOSEN.md), [laporan implementasi dan verifikasi](docs/LAPORAN_ROMBAK_SEHATHARIAN.md), [contoh OOP](docs/CONTOH_OOP_ROMBAK.md), serta [asal aset](docs/ASAL_ASET_ROMBAK.md). Dokumentasi lama di bawah dipertahankan sebagai riwayat; rincian penerimaan terbaru mengikuti laporan rombak.
+
 > **Menjalankan di Linux:** `bash jalankan-linux-macos.sh`. Database lokal pada port 13306 dinyalakan otomatis dan SQL bawaan diimpor saat pertama dijalankan. Lihat [BACA_DULU.md](BACA_DULU.md) untuk konfigurasi terbaru; bagian setup manual di bawah hanya referensi server eksternal.
 
 # SehatHarian 🌿

@@ -18,7 +18,7 @@ public class MainApp extends Application {
         try {
             // Inisialisasi koordinator navigasi desktop
             PenggunaRepository accounts = new PenggunaRepository();
-            context = new ApplicationContext(accounts, accounts);
+            context = createContext(accounts);
             context.navigator().attachStage(primaryStage);
 
             try {
@@ -37,8 +37,8 @@ public class MainApp extends Application {
                 System.out.println("Instance SehatHarian ditutup.");
             });
 
-            // Mulai di Halaman Landing Page (Sesuai Alur Spesifikasi Tahap 4 & 6)
-            context.navigator().showLandingPage();
+            // Mulai langsung di halaman login agar aplikasi siap digunakan.
+            context.navigator().showLogin();
             primaryStage.show();
             if (com.jpro.webapi.WebAPI.isBrowser()) {
                 browserApi = com.jpro.webapi.WebAPI.getWebAPI(primaryStage);
@@ -53,6 +53,8 @@ public class MainApp extends Application {
             System.err.println("Gagal memulai antarmuka JavaFX: " + e.getMessage());
         }
     }
+
+    protected ApplicationContext createContext(PenggunaRepository accounts){return new ApplicationContext(accounts,accounts);}
 
     private void closeContext() {
         if (browserApi != null && browserCloseListener != null) {

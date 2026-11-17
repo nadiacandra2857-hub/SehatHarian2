@@ -11,24 +11,24 @@
 .root {
     -fx-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Inter', Roboto, sans-serif;
     -fx-font-size: 13px;
-    -fx-background-color: #F8FAFC;
-    -fx-text-fill: #1E293B;
+    -fx-background-color: #111827;
+    -fx-text-fill: #E5E7EB;
 }
 
 .main-content-scroll {
     -fx-background-color: transparent;
-    -fx-background: #F8FAFC;
+    -fx-background: #111827;
     -fx-border-color: transparent;
     -fx-padding: 0;
 }
 
 .main-content-scroll > .viewport {
-    -fx-background-color: #F8FAFC;
+    -fx-background-color: #111827;
 }
 
 .content-pane {
     -fx-padding: 24px 28px;
-    -fx-background-color: #F8FAFC;
+    -fx-background-color: #111827;
 }
 
 /* ScrollBar modern halus */

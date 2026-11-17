@@ -34,6 +34,15 @@ public class KebiasaanService {
     }
 
     // --- AKTIVITAS FISIK ---
+    /** Same validation and activity model for manual entries and transactional training history. */
+    public int tambahLatihanDalamTransaksi(java.sql.Connection connection, com.sehatharian.storage.WriteTransaction tx,
+            com.sehatharian.training.TrainingSnapshot snapshot) throws SQLException {
+        access.owner();
+        if(!ValidationUtil.isValidDurasiAktivitas(snapshot.minutes()))throw new IllegalArgumentException("Durasi aktivitas harus antara 1 sampai 720 menit.");
+        var a=new Aktivitas(0,access.owner(),snapshot.startedAt().atZone(java.time.ZoneId.of("Asia/Jakarta")).toLocalDate(),
+                "Latihan SehatHarian",snapshot.minutes(),"Aktif "+snapshot.activeSeconds()+" detik; selesai "+snapshot.completed()+"; rincian tersedia di Riwayat latihan.");
+        return aktivitasRepo.simpanDalamTransaksi(connection,tx,a);
+    }
     public List<Aktivitas> getAktivitasHariIni(int penggunaId, LocalDate tanggal) throws SQLException {
         access.owner(penggunaId);
         return access.rows(access.call(() -> aktivitasRepo.getByTanggal(penggunaId, tanggal)), Aktivitas::getPenggunaId);

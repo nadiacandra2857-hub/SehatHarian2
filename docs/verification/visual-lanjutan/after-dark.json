@@ -1,0 +1,55 @@
+{
+  "phase": "after",
+  "mode": "dark",
+  "screens": [
+    {
+      "name": "hidrasi-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3750\nml tercatat\n3750 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tidur-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur aktual\nAktual · bangun hari ini\n4,0 jam\nCatat tidur\nForm catatan tidur\nRiwayat aktual · 30 hari\nJadwal tidur & pengingat (rencana)\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "nutrisi-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nSiang\n+\nBelum tercatat\nMalam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nLatihan\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nLihat gerakan · Flutter Kicks\nJalan Kaki\nLihat gerakan · Jalan Kaki\nJogging\nLihat gerakan · Jogging\nMountain Climbers\nLihat gerakan · Mountain Climbers\nPush-up\nLihat gerakan · Push-up\nSit-up\nLihat gerakan · Sit-up\nSumo Squat\nLihat gerakan · Sumo Squat\nTricep Dip\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tantangan-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTantangan & bacaan\nTentang halaman ini\nMuat ulang konten\nAir 1000 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nAir 500 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n1000.0 ml · Belum selesai\nAlasan & tanggal\nPeriksa catatan & selesaikan\nAir 500 ml\n500.0 ml · Selesai\nAlasan & tanggal\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "progres-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nProgres kebiasaan\nPeriode (hari)\n7\nTanggal akhir\n11/10/2026\nMuat progres\nTidur aktual\n1 / 7 hari tercatat · jam aktual\n2026-11-04\n2026-11-06\n2026-11-08\n2026-11-10\njam aktual\n0\n1\n2\n3\n4\n5\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nHidrasi\n2 / 7 hari tercatat · ml\n2026-11-04\n2026-11-06\n2026-11-08\n2026-11-10\nml\n0\n1,000\n2,000\n3,000\n4,000\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nNutrisi\n1 / 7 hari tercatat · catatan makan\n2026-11-04\n2026-11-06\n2026-11-08\n2026-11-10\ncatatan makan\n0.00\n0.25\n0.50\n0.75\n1.00\n1.25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nAktivitas\n3 / 7 hari tercatat · menit\n2026-11-04\n2026-11-06\n2026-11-08\n2026-11-10\nmenit\n0\n5\n10\n15\n20\n25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nPreferensi nutrisi tersimpan\nPola makan\nPantangan / alergi (atau tidak ada)\nSimpan preferensi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "profil-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nProfil & pengaturan\nIdentitas & rutinitas\nNama Lengkap:\nFixture Alpha\nTanggal Lahir:\nWaktu luang (menit):\n30\nMembatasi durasi pilihan aktivitas.\nKelompok usia\nDewasa (18 - 59 Tahun)\nDewasa (18–59 tahun) atau Lansia (≥ 60 tahun).\nRutinitas harian\nDi Dalam Rumah\nPekerja di luar rumah (mobilitas tinggi) atau di dalam \nrumah (WFH / domestik).\n↺ Muat Ulang\nSimpan Perubahan Profil\nDiagnostik koneksi\nSesi akun\nKeluar mengakhiri sesi dan menutup data pribadi pada \nperangkat ini.\nKeluar dari akun\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ]
+}

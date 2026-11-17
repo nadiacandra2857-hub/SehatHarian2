@@ -84,25 +84,23 @@ class WriteConfirmationTest {
         assertEquals(GAGAL,WriteResult.attempt(()->repo.simpan(new Hidrasi(0,1,day,250,""))).status());
         assertEquals(0,f.db.executions);assertEquals(0,f.db.commits);
     }
-    @Test void confirmedSleepAndFailedEvaluationArePartialNotFailedSleep() {
-        f.db.failExecutionNumber=2;
+    @Test void confirmedScheduleDoesNotStartActualSleepEvaluation() {
+        f.db.failExecutionNumber=3; // schedule plus active-plan pointer share one commit
         var result=f.tidur().catatDenganEvaluasi(1,day,LocalTime.of(23,0),LocalTime.of(2,0),true,f.evaluasi());
-        assertEquals(PARSIAL,result.status());assertNotNull(result.value());
-        assertEquals(BERHASIL,result.steps().getFirst().status());assertEquals(GAGAL,result.steps().getLast().status());
+        assertEquals(BERHASIL,result.status());assertNotNull(result.value());
         assertEquals(1,f.db.table("jadwal_tidur").size());assertTrue(f.db.table("evaluasi_mingguan").isEmpty());
         assertEquals(2,f.db.executions);assertEquals(1,f.db.commits);
     }
     @Test void uncertainSleepDoesNotStartEvaluationOrRetry() {
         f.db.loseCommitAck=true;
         var result=f.tidur().catatDenganEvaluasi(1,day,LocalTime.of(23,0),LocalTime.of(2,0),true,f.evaluasi());
-        assertEquals(BELUM_PASTI,result.status());assertEquals(1,f.db.executions);assertTrue(f.db.table("evaluasi_mingguan").isEmpty());
+        assertEquals(BELUM_PASTI,result.status());assertEquals(2,f.db.executions);assertTrue(f.db.table("evaluasi_mingguan").isEmpty());
     }
-    @Test void uncertainEvaluationRetainsConfirmedSleepAndMarksFollowupUnknown() {
+    @Test void scheduleDoesNotAttemptSecondCommitForEvaluation() {
         f.db.beforeCommit=()-> { if(f.db.commits==2)f.db.loseCommitAck=true; };
         var result=f.tidur().catatDenganEvaluasi(1,day,LocalTime.of(23,0),LocalTime.of(2,0),true,f.evaluasi());
-        assertEquals(PARSIAL,result.status());assertTrue(result.needsReview());
-        assertEquals(BERHASIL,result.steps().getFirst().status());assertEquals(BELUM_PASTI,result.steps().getLast().status());
-        assertEquals(1,f.db.table("jadwal_tidur").size());assertEquals(1,f.db.table("evaluasi_mingguan").size());
+        assertEquals(BERHASIL,result.status());assertFalse(result.needsReview());
+        assertEquals(1,f.db.table("jadwal_tidur").size());assertTrue(f.db.table("evaluasi_mingguan").isEmpty());assertEquals(1,f.db.commits);
     }
     @Test void validationAndOwnershipRemainRejectionsNotWriteResults() {
         assertThrows(SecurityException.class,()->WriteResult.attempt(()->{f.kebiasaan().tambahHidrasi(2,day,250,"");return null;}));

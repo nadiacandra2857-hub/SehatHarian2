@@ -67,7 +67,7 @@ public class CreateAccountController implements AutoCloseable {
     public void initialize() {
         com.sehatharian.util.AuthLayoutHelper.bindResponsiveHero(authRoot, authHeroPane);
         try {
-            var logoUrl = getClass().getResource("/images/logo.png");
+            var logoUrl = getClass().getResource("/images/home/routine.jpg");
             if (logoUrl != null) {
                 brandLogoView.setImage(new Image(logoUrl.toExternalForm()));
             }

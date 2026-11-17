@@ -19,7 +19,7 @@ public interface ReminderScheduler extends AutoCloseable {
                 });
             public void execute(Runnable work) { executor.execute(work); }
             public Runnable everyFiveSeconds(Runnable work) {
-                var task = executor.scheduleAtFixedRate(work, 5, 5, TimeUnit.SECONDS);
+                var task = executor.scheduleWithFixedDelay(work, 5, 5, TimeUnit.SECONDS);
                 return () -> task.cancel(false);
             }
             public void close() { executor.shutdownNow(); }

@@ -1,0 +1,26 @@
+VERSION()
+13.0.2-MariaDB
+SCHEMA_NAME
+sehatharian_test_ux_20261104
+TABLE_NAME	ENGINE
+pengguna	InnoDB
+tantangan	InnoDB
+rekomendasi	InnoDB
+jadwal_tidur	InnoDB
+aktivitas	InnoDB
+hidrasi	InnoDB
+kebiasaan_makan	InnoDB
+riwayat_tantangan	InnoDB
+evaluasi_mingguan	InnoDB
+id	email
+1	nadia@sehatharian.local
+pengguna_id	COUNT(*)
+1	3
+Field	Type	Null	Key	Default	Extra
+id	int(11)	NO	PRI	NULL	auto_increment
+pengguna_id	int(11)	NO	MUL	NULL	
+tanggal	date	NO		NULL	
+jenis_aktivitas	varchar(100)	NO		NULL	
+durasi_menit	int(11)	NO		NULL	
+keterangan	varchar(255)	YES		NULL	
+created_at	timestamp	YES		current_timestamp()	

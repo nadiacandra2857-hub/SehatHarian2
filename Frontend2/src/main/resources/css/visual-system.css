@@ -1,0 +1,45 @@
+/* Approved home visual direction; deliberately scoped away from MainLayout and Dashboard. */
+.visual-page { -v-surface:#1F2937; -v-ink:#E5E7EB; -v-muted:#A8B4C4; -v-line:#3D4A5D; -v-canvas:#111827; -v-soft:#164D40; -v-accent:#52D8AB; }
+.light.visual-page, .light .visual-page { -v-surface:#FFFFFF; -v-ink:#203047; -v-muted:#526579; -v-line:#DBE3EC; -v-canvas:#F7F9FC; -v-soft:#DDF7ED; -v-accent:#126846; }
+.visual-page.ui2, .visual-page.ui2 > .viewport { -fx-background-color:-v-canvas; }
+.visual-page.ui2 .habit-page, .visual-page.ui2 .content-pane { -fx-padding:18; -fx-spacing:16; }
+.visual-page.ui2 .label { -fx-text-fill:-v-ink; }
+.visual-page.ui2 .habit-note, .visual-page.ui2 .card-subtitle, .visual-page.ui2 .form-hint, .visual-page.ui2 .page-subtitle { -fx-text-fill:-v-muted; -fx-font-size:12; }
+.visual-page.ui2 .visual-heading { -fx-font-size:25; -fx-font-weight:bold; }
+.visual-page.ui2 .visual-header { -fx-padding:0 0 4 0; -fx-spacing:14; }
+.visual-page .wellness-art { -fx-background-color:#DFF7E8; -fx-background-radius:14; }
+.visual-page .wellness-art:activity { -fx-background-color:#09151C; }
+.visual-page.ui2 .habit-card, .visual-page.ui2 .wellness-card, .visual-page.ui2 .meal-group { -fx-background-color:-v-surface; -fx-border-color:-v-line; -fx-background-radius:20; -fx-border-radius:20; -fx-padding:16; -fx-spacing:12; }
+.visual-page.ui2 .button { -fx-min-height:44; -fx-background-color:-v-surface; -fx-text-fill:-v-ink; -fx-border-color:-v-line; -fx-border-radius:22; -fx-background-radius:22; -fx-padding:9 14; -fx-font-size:13; }
+.visual-page.ui2 .button:hover { -fx-border-color:#16B87A; }
+.visual-page.ui2 .button:focused, .visual-page.ui2 .text-field:focused, .visual-page.ui2 .combo-box:focused { -fx-border-color:#16B87A; -fx-border-width:2; }
+.visual-page.ui2 .button.visual-primary, .visual-page.ui2 .button.btn-primary, .visual-page.ui2 .button.auth-btn-primary, .visual-page.ui2 .button.onboarding-btn-next, .visual-page.ui2 .button.onboarding-btn-finish { -fx-background-color:#126846; -fx-text-fill:white; -fx-border-color:#126846; -fx-font-weight:bold; -fx-min-height:48; }
+.visual-page.ui2 .titled-pane > .title { -fx-background-color:-v-soft; -fx-padding:12; -fx-background-radius:12; }
+.visual-page.ui2 .titled-pane > .title .text { -fx-fill:-v-ink; }
+.visual-page.ui2 .titled-pane > .content { -fx-background-color:-v-surface; -fx-border-color:-v-line; -fx-padding:12; }
+.visual-page.ui2 .text-field, .visual-page.ui2 .combo-box, .visual-page.ui2 .date-picker { -fx-min-height:44; }
+.visual-page.ui2 .state-error { -fx-text-fill:#FF9DA6; }
+.light.visual-page.ui2 .state-error, .light .visual-page.ui2 .state-error { -fx-text-fill:#A71930; }
+.visual-page.ui2 .water-stage { -fx-min-height:240; }
+.visual-page.ui2 .button.water-add { -fx-background-color:#227BB5; -fx-text-fill:white; -fx-font-size:20; -fx-min-height:52; -fx-border-color:transparent; }
+.visual-page.ui2 .button.volume-choice { -fx-padding:7 2; -fx-min-height:76; -fx-background-radius:16; -fx-border-radius:16; }
+.visual-page.ui2 .button.volume-choice.selected { -fx-background-color:-v-soft; -fx-border-color:#16B87A; }
+.visual-page.ui2 .nutrition-summary { -fx-background-color:-v-soft; -fx-background-radius:20; -fx-padding:16; }
+.visual-page.ui2 .nutrition-summary .habit-value { -fx-font-size:32; }
+.visual-page.ui2 .sleep-summary { -fx-background-color:#E9E4FA; -fx-padding:18; -fx-background-radius:22; }
+.visual-page.ui2 .sleep-summary .label { -fx-text-fill:#38255C; }
+.visual-page.ui2 .training-catalog { -fx-spacing:16; }
+.visual-page.ui2 .training-session .button { -fx-min-height:48; }
+.visual-page.ui2 .entry-action-bar { -fx-background-color:-v-surface; -fx-border-color:-v-line; }
+.visual-page.ui2 .content-grid { -fx-hgap:12; -fx-vgap:12; }
+.visual-page.ui2 .chart-plot-background { -fx-background-color:transparent; }
+.visual-page.ui2 .chart-horizontal-grid-lines { -fx-stroke:-v-line; }
+.visual-page.ui2 .chart-vertical-grid-lines { -fx-stroke:transparent; }
+.visual-page.ui2 .chart-series-line { -fx-stroke:#16B87A; -fx-stroke-width:2.5; }
+.visual-page.ui2 .chart-line-symbol { -fx-background-color:#16B87A; }
+.visual-page.ui2 .axis { -fx-tick-label-fill:-v-muted; -fx-tick-label-font-size:10; }
+.visual-page.ui2 .auth-form-card { -fx-padding:24 20; -fx-background-radius:22; }
+.visual-page.ui2 .auth-hero-pane { -fx-background-color:-v-soft; }
+.visual-page.ui2 .onboarding-card { -fx-padding:20 18; -fx-spacing:18; }
+.visual-page.ui2 .label.onboarding-step-indicator.active { -fx-background-color:#126846; -fx-text-fill:white; -fx-padding:5 7; -fx-background-radius:12; }
+.visual-page.ui2 .titled-pane > .title { -fx-min-height:44; }

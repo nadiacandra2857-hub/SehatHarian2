@@ -1,0 +1,20 @@
+{
+  "mode": "legacy",
+  "db": "sehatharian_test_history_20261111a",
+  "screens": [
+    {
+      "name": "catatan-aktivitas-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nHA\nHistory Alpha\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nCatatan harian\nTanggal catatan\n11/11/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n9\nmenit aktif bergerak\nSaran: Tambah 21 menit lagi untuk mencapai rekomendasi harian 30 menit.\nJenis aktivitas\nPilih atau tulis nama aktivitas\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\nDurasi (menit)\nKeterangan (opsional)\nKeterangan / Lokasi\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\nKeterangan\nAksi\nLatihan SehatHarian · rincian\n1\nAktif 60 detik; selesai 1; rincian tersedia di Riwayat latihan.\nHapus\nLatihan SehatHarian · rincian\n1\nAktif 60 detik; selesai 1; rincian tersedia di Riwayat latihan.\nHapus\nLegacy training · rincian\n2\nOnly legacy description\nHapus\nMinum\nAktivitas\nMakan"
+    },
+    {
+      "name": "legacy-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Catatan harian\nTanggal catatan\n11/11/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n9\nmenit aktif bergerak\nSaran: Tambah 21 menit lagi untuk mencapai rekomendasi \nharian 30 menit.\nJenis aktivitas\nPilih atau tulis nama aktivitas\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\nDurasi (menit)\nKeterangan (opsional)\nKeterangan / Lokasi\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 60 detik; selesai 1; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 60 detik; selesai 1; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n2\nKeterangan\nOnly legacy description\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia di \nRiwayat latihan.\nAksi\nHapus\nMinum\nAktivitas\nMakan\nBeranda\nCatatan\nProgres\nLainnya\nClose\nRincian latihan\nCatatan aktivitas\nRincian latihan belum tersedia\nLegacy training\n2026-11-11 · 2 menit\nOnly legacy description\nRincian latihan"
+    }
+  ]
+}

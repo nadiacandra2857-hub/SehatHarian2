@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane fx:id="latihanRoot" fitToWidth="true" hbarPolicy="NEVER" styleClass="ui2" stylesheets="@../css/ui2.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sehatharian.controller.LatihanController"/>

@@ -33,9 +33,15 @@
             <Label fx:id="navSectionMenu" text="MENU UTAMA" styleClass="nav-section-label"/>
             
             <Button fx:id="btnNavDashboard" text="Beranda" maxWidth="Infinity" styleClass="nav-button, active" onAction="#handleNavDashboard"/>
+            <Button fx:id="btnNavLatihan" text="Latihan" accessibleText="Buka latihan berpemandu" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavLatihan"/>
             <Button fx:id="btnNavTantangan" text="Tantangan Harian" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavTantangan"/>
             <Button fx:id="btnNavRekomendasi" text="Rekomendasi Aktivitas" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavRekomendasi"/>
             <Button fx:id="btnNavKebiasaan" text="Catatan Kebiasaan" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavKebiasaan"/>
+            <Button fx:id="btnNavAdmin" text="Admin konten" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavAdmin"/>
+            <Button text="Riwayat tantangan lama" maxWidth="Infinity" styleClass="nav-button" onAction="#handleLegacyTantangan"/>
+            <Button text="Statistik lama" maxWidth="Infinity" styleClass="nav-button" onAction="#handleLegacyStatistik"/>
+            <Button text="Hidrasi" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavHidrasi"/>
+            <Button text="Nutrisi" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavNutrisi"/>
             <Button fx:id="btnNavTidur" text="Jadwal &amp; Alarm Tidur" maxWidth="Infinity" styleClass="nav-button" onAction="#handleNavTidur"/>
 
             <Label fx:id="navSectionAnalisis" text="ANALISIS &amp; LAPORAN" styleClass="nav-section-label"/>
@@ -56,6 +62,7 @@
                     </VBox>
                 </HBox>
                 <Button fx:id="btnNavProfil" text="Profil" styleClass="btn-secondary" maxWidth="Infinity" minHeight="44" accessibleText="Buka profil pengguna" style="-fx-font-size: 12px;" onAction="#handleNavProfil"/>
+                <Button text="Tema terang / gelap" onAction="#handleTheme" maxWidth="Infinity" styleClass="btn-secondary"/>
                 <Button fx:id="btnLogout" text="Keluar ke Beranda" minHeight="44" accessibleText="Keluar dari akun ini" maxWidth="Infinity" styleClass="sidebar-link-btn"
                         onAction="#handleLogout"/>
             </VBox>
@@ -95,7 +102,7 @@
 
             <!-- Dynamic View Container -->
             <center>
-                <StackPane fx:id="contentArea" style="-fx-background-color: #FBFAF6;">
+                <StackPane fx:id="contentArea" >
                     <!-- Konten Halaman Aktif Dimuat di Sini Secara Dinamis -->
                 </StackPane>
             </center>

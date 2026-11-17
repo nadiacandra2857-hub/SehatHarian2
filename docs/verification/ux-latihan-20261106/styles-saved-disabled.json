@@ -1,0 +1,2366 @@
+[
+  {
+    "text": "NC",
+    "rect": {
+      "x": 55,
+      "y": 557.9099731445312,
+      "w": 17.671875,
+      "h": 15
+    },
+    "style": {
+      "color": "rgb(17, 24, 39)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(17, 24, 39)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(17, 24, 39)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Profil",
+    "rect": {
+      "x": 54,
+      "y": 603.8400268554688,
+      "w": 29.5625,
+      "h": 14
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Keluar",
+    "rect": {
+      "x": 45,
+      "y": 651.77001953125,
+      "w": 31.15625,
+      "h": 13
+    },
+    "style": {
+      "color": "rgb(156, 163, 175)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(156, 163, 175)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(156, 163, 175)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Sesi selesai",
+    "rect": {
+      "x": 244,
+      "y": 56.97999954223633,
+      "w": 73.484375,
+      "h": 15.999996185302734
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Durasi aktif: 1 menit 6 detik (66 detik). Selesai: 2 · dilewati: 0 · belum selesai: 0",
+    "rect": {
+      "x": 244,
+      "y": 86.97999572753906,
+      "w": 483.546875,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Persiapan, jeda, dan istirahat tidak dihitung. Catatan memakai menit utuh dibulatkan ke bawah (1 menit); sisa 6 detik tidak menambah menit, total detik disertakan",
+    "rect": {
+      "x": 244,
+      "y": 116.97999572753906,
+      "w": 1008.828125,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "dalam keterangan. Sesi di bawah satu menit tidak dapat disimpan pada model aktivitas saat ini.",
+    "rect": {
+      "x": 244,
+      "y": 134.97999572753906,
+      "w": 593.171875,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "1. Cycling · Selesai",
+    "rect": {
+      "x": 244,
+      "y": 164.97999572753906,
+      "w": 115.796875,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "2. Air Bike · Selesai",
+    "rect": {
+      "x": 244,
+      "y": 194.97999572753906,
+      "w": 117.71875,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Simpan aktivitas",
+    "rect": {
+      "x": 259,
+      "y": 238.91000366210938,
+      "w": 95.546875,
+      "h": 15
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "0.4",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Data berhasil disimpan.",
+    "rect": {
+      "x": 244,
+      "y": 280.9800109863281,
+      "w": 146.3125,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "text": "Simpan hanya mencatat aktivitas dengan durasi di atas. Rincian program tetap sementara. Tidak ada penyimpanan otomatis.",
+    "rect": {
+      "x": 244,
+      "y": 310.9800109863281,
+      "w": 776.40625,
+      "h": 16
+    },
+    "style": {
+      "color": "rgb(229, 231, 235)",
+      "opacity": "1"
+    },
+    "chain": [
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(229, 231, 235)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "DIV",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "JPRO-APP",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "tag": "BODY",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "tag": "HTML",
+        "opacity": "1",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  }
+]

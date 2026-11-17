@@ -1,0 +1,319 @@
+{
+  "root": "/home/adhitya/Documents/projekpbo/BARU/SehatHarian2-github/.runtime/repdb",
+  "commit": "66c4298af8d99b9dc397dad6699e508fb871d249",
+  "imported": 24,
+  "verified": [
+    {
+      "file": "images/flat/cycling-main.webp",
+      "sha256": "1c03e91886b44e1fcbd3ad46080d1738531694b6d890b5890db68855765d52d8"
+    },
+    {
+      "file": "images/flat/cycling-main.png",
+      "sha256": "7f2d98e1478cad0b115d56ce8483a3f6509b8de090ca466fa681a13d492a4b2d"
+    },
+    {
+      "file": "images/flat/air-bike-main.webp",
+      "sha256": "df7cdb23508a43f1df2c861d437c61ebedc26c22b343b7aa67ef766a4f384fd7"
+    },
+    {
+      "file": "images/flat/air-bike-main.png",
+      "sha256": "45b7ccecc055ac65cb1db940ddd3e91099351101ff52a74a1a8854456bae1d4a"
+    },
+    {
+      "file": "images/flat/clean-start.webp",
+      "sha256": "46676d3d5d217611e904bd24bac395efb565bc795ab1daad594fc1df5b2c19ec"
+    },
+    {
+      "file": "images/flat/clean-start.png",
+      "sha256": "a7de36dbfe60e9c7034aada3484566c47ffaae1a63e3f4ce46de9e0a30c24082"
+    },
+    {
+      "file": "images/flat/clean-peak.webp",
+      "sha256": "23725e708d3b598c7fe1a1da968f6453de27d9d5c22182ab55dfb74bf3daf43f"
+    },
+    {
+      "file": "images/flat/clean-peak.png",
+      "sha256": "9914108278108966deaf159093172af0a6788d387cf2d0bf3d44395c95f2eab6"
+    },
+    {
+      "file": "images/flat/jump-squat-start.webp",
+      "sha256": "76da50a6dbb1d809172916dabd7b4745fab345a2c06ef98568b6967d937e252d"
+    },
+    {
+      "file": "images/flat/jump-squat-start.png",
+      "sha256": "108462a1d7d5d95bfff327941205e466653f3feded19bbd9025e75e8ac7b64c8"
+    },
+    {
+      "file": "images/flat/jump-squat-peak.webp",
+      "sha256": "b61416ddd73198e52b4db48c86412df9fceba205ed479548efcd1b253b561ba2"
+    },
+    {
+      "file": "images/flat/jump-squat-peak.png",
+      "sha256": "bac4b35891a39a6d99adf0576014324ffedb66804b318a056ebadda553644ef2"
+    },
+    {
+      "file": "images/flat/box-jump-start.webp",
+      "sha256": "f4ccf54a89093d17b5de636f9f569384c4b2cc843e72d4ee0e0964ba931b04c6"
+    },
+    {
+      "file": "images/flat/box-jump-start.png",
+      "sha256": "9ab6e80a59981953366b8377164a15b2dabf5501abfe8d1d1dd6e4a8dbe6262f"
+    },
+    {
+      "file": "images/flat/box-jump-peak.webp",
+      "sha256": "3bc7ba653c0c5c11bf674f50a8a21859ca910f9adf708bf2bec78cea0424fd97"
+    },
+    {
+      "file": "images/flat/box-jump-peak.png",
+      "sha256": "bc7072852a1ed8d173a3d684b20f2f7b5281454db39cfc7515478454543aad7e"
+    },
+    {
+      "file": "images/flat/archer-pull-ups-start.webp",
+      "sha256": "01b0eb06d4d2d02432a97893f778e2377c9606b867a9c3ec914c3dd3beb6fcbe"
+    },
+    {
+      "file": "images/flat/archer-pull-ups-start.png",
+      "sha256": "0ac81fe16e0bc9bddcf09ccc6fad5b043ecc346b36b2b9f2fbbf2063ecc1a2d0"
+    },
+    {
+      "file": "images/flat/archer-pull-ups-peak.webp",
+      "sha256": "44252be7ebebaefff697a438b7d2e0df6fc269d891bfcb9138c75207dc6de6cd"
+    },
+    {
+      "file": "images/flat/archer-pull-ups-peak.png",
+      "sha256": "605a679fd17c07c46ca6677ee68bc132ace0725c97934f38a71738bcbd11a914"
+    },
+    {
+      "file": "images/flat/assisted-dips-start.webp",
+      "sha256": "4665fb137f03b3d248a6dd05d342d92e281108d92856b8a4af88947547cc3593"
+    },
+    {
+      "file": "images/flat/assisted-dips-start.png",
+      "sha256": "28b844aa5cf02bda3aa1bb7084ebcb12cb20469e503fef17e6051704ea81d2f7"
+    },
+    {
+      "file": "images/flat/assisted-dips-peak.webp",
+      "sha256": "88156b889f0b63400c19900ca8c3a4c39bb5e3f32f6d9dbea30fc708461390cf"
+    },
+    {
+      "file": "images/flat/assisted-dips-peak.png",
+      "sha256": "cb8c16f2335e9ee9373017e1f4164f30b781d4916bb5441a2412c098caef6026"
+    },
+    {
+      "file": "images/flat/ab-wheel-rollout-start.webp",
+      "sha256": "cc6976578c8a220bdfefb1d65116227ba4a8ff2eb6fffe82622a1d2ffcb1761b"
+    },
+    {
+      "file": "images/flat/ab-wheel-rollout-start.png",
+      "sha256": "7cadf549b5baa3a3303b26e33d9ca1496fe00cd4b6b6ac1d703ee6791c5e42c6"
+    },
+    {
+      "file": "images/flat/ab-wheel-rollout-peak.webp",
+      "sha256": "bfbdc823735bb889a3c14c40a384c2803a2d3759a3369803f3c89ff558566870"
+    },
+    {
+      "file": "images/flat/ab-wheel-rollout-peak.png",
+      "sha256": "4ef0d534ed7b9127b7d462cf42ef620a90044b79a98b763ec909f48b177e4ddb"
+    },
+    {
+      "file": "images/flat/standing-split-main.webp",
+      "sha256": "bd88f8d07e30ca2199c3537258bb88fde7eefe4885f80fcaa8e43243566917d1"
+    },
+    {
+      "file": "images/flat/standing-split-main.png",
+      "sha256": "be34e071615ae901b8a4fadf7435c824d0e862b09ceee20c63432eaf15044737"
+    },
+    {
+      "file": "images/flat/90-90-hold-main.webp",
+      "sha256": "60b11ae7bd385d88fb892a412a0a9bc0f73523cd0d390f545a6386af3383c373"
+    },
+    {
+      "file": "images/flat/90-90-hold-main.png",
+      "sha256": "8a96367af38f9679af1768b99614ac032fb3dba5016000bb8a9bea5da4fec413"
+    },
+    {
+      "file": "images/flat/90-90-switch-start.webp",
+      "sha256": "26ba1456fd5d9387919d50e6c510bc18c98f98ca0654245d9599f50d35b27b9b"
+    },
+    {
+      "file": "images/flat/90-90-switch-start.png",
+      "sha256": "782120eae23ef118b5e459328cb68c5e676b121ccdda6120bf9d109fd8824049"
+    },
+    {
+      "file": "images/flat/90-90-switch-peak.webp",
+      "sha256": "f32ce930baa5bb0ed056c72bc9951597bf5572c89ef94082444d9f353c9a1bec"
+    },
+    {
+      "file": "images/flat/90-90-switch-peak.png",
+      "sha256": "7e4f23560d3c4056dec4d346d00961d72c54fc187a61f09f73711117dd468e7d"
+    },
+    {
+      "file": "images/flat/elliptical-trainer-main.webp",
+      "sha256": "820fb73d24e4c0269cb23183eb0a9e4dab3382ac77fe41cc8505febbd0f91662"
+    },
+    {
+      "file": "images/flat/elliptical-trainer-main.png",
+      "sha256": "b7ae6db8c8e232332b0c235abb2b710f59021b4329511052820e91f5fc548d63"
+    },
+    {
+      "file": "images/flat/battle-rope-double-slam-start.webp",
+      "sha256": "027de6616f77a5f0270ab8aaf8e6745a6ff9924fe6711d274d3afa1e225321f4"
+    },
+    {
+      "file": "images/flat/battle-rope-double-slam-start.png",
+      "sha256": "4ff550a120c632435acfa4d576a9cf2de523ae546f6150693a25dc15cc22194b"
+    },
+    {
+      "file": "images/flat/battle-rope-double-slam-peak.webp",
+      "sha256": "24b0c4fa02a5089db6b0fdf4e0d0a51ee2400ac1cfefd2689d841bba4b3376eb"
+    },
+    {
+      "file": "images/flat/battle-rope-double-slam-peak.png",
+      "sha256": "f0effea02c2f3b2550de303876fd13f155222cbb792dfc8865655b383aacb20a"
+    },
+    {
+      "file": "images/flat/clean-and-jerk-start.webp",
+      "sha256": "95e0b781b18dbdc479aa34e64f29f70668cc338345e18b857b2307144ccbdf51"
+    },
+    {
+      "file": "images/flat/clean-and-jerk-start.png",
+      "sha256": "f9133a7a5d96a30266a38ba8476c1e8ad7c4d886562ce61df011a72968c42b8f"
+    },
+    {
+      "file": "images/flat/clean-and-jerk-peak.webp",
+      "sha256": "75abc500349c6c0dcda024521e2f8a6d1335ec39456befbd8f442bca5e1a07ba"
+    },
+    {
+      "file": "images/flat/clean-and-jerk-peak.png",
+      "sha256": "ff0f1ff21edef08b662702d4b0dadda890994a8849d42af1ebf568064984c06c"
+    },
+    {
+      "file": "images/flat/plyo-lunge-start.webp",
+      "sha256": "d293a5d2659cea494bf86a627c6ceb3c37863b32d27915e6c4f4475a1e25b366"
+    },
+    {
+      "file": "images/flat/plyo-lunge-start.png",
+      "sha256": "1efeb4d3328d85846af056066434bf0dc748e3e2472767d7746579ce34abc7ed"
+    },
+    {
+      "file": "images/flat/plyo-lunge-peak.webp",
+      "sha256": "b5cef3ff0f98b8ae6e273cd7a711fe0782549a09e0bb9c5a26e1b748c008d4de"
+    },
+    {
+      "file": "images/flat/plyo-lunge-peak.png",
+      "sha256": "5c4fcd96ec3c3228f6f7b16d64e4aae5fc55e14ef3ed071a04617b9bf950ae72"
+    },
+    {
+      "file": "images/flat/archer-push-ups-start.webp",
+      "sha256": "241567e89bf7d2b49ead8e91542eb82996a9efe6a7fb8f4abe760b07923eafa6"
+    },
+    {
+      "file": "images/flat/archer-push-ups-start.png",
+      "sha256": "53c35f91addef1f78afc1144dea0ec2eb74fd240b03d7b563d0371d956158206"
+    },
+    {
+      "file": "images/flat/archer-push-ups-peak.webp",
+      "sha256": "0372e00fdedebe22e40c4a6b5130bf654c1467445f54a8a2ee4d0bbf7692890a"
+    },
+    {
+      "file": "images/flat/archer-push-ups-peak.png",
+      "sha256": "3de8fbfd452ec9912651e50cd8cbd4575ca10279fda2c087e29bf06145570cec"
+    },
+    {
+      "file": "images/flat/assisted-pull-ups-start.webp",
+      "sha256": "9480c74d6c29b39251fc77c2e13edd406e212027bc2031f4a98587d58c6f82d9"
+    },
+    {
+      "file": "images/flat/assisted-pull-ups-start.png",
+      "sha256": "7a0ecd9df04742daedf35d0dc24e1e8b64fd04d99579750c0d615ce23c3d63f1"
+    },
+    {
+      "file": "images/flat/assisted-pull-ups-peak.webp",
+      "sha256": "b98c126192dcbf9733c2276d0fe017f282055b4de91129f5fcc32b7d2aed7c3e"
+    },
+    {
+      "file": "images/flat/assisted-pull-ups-peak.png",
+      "sha256": "2081e849698668831e851b86db34bf78024b6ebc9f1cdf058381bf4e7ad96aaa"
+    },
+    {
+      "file": "images/flat/arnold-press-start.webp",
+      "sha256": "d739dd5bb39c83985d29e6f49142ceb563c13075984a27c67e814ca5aa2fefd6"
+    },
+    {
+      "file": "images/flat/arnold-press-start.png",
+      "sha256": "0eb07ff5d7246efbd9a7975dd1dff343b67c2c5f538aa7b03dd6553efefa2d66"
+    },
+    {
+      "file": "images/flat/arnold-press-peak.webp",
+      "sha256": "8d3404f1fe321b68b120f63195667b76d7af3a8e8dd4b5fa4844c111a88f7ab0"
+    },
+    {
+      "file": "images/flat/arnold-press-peak.png",
+      "sha256": "e933b2fab2902b77cd6abba6761a88f879681887283e42ad0ea9efb9514badc3"
+    },
+    {
+      "file": "images/flat/banded-adductor-stretch-main.webp",
+      "sha256": "7cd51e134c7bc14ab5eaf65420379cc61b4e0f284fa90bb6560d449422b11007"
+    },
+    {
+      "file": "images/flat/banded-adductor-stretch-main.png",
+      "sha256": "dec20a694e6db7825c71c3254fe1a3df31df99467c354062d3972735ee28e067"
+    },
+    {
+      "file": "images/flat/camel-pose-main.webp",
+      "sha256": "b2def2dfc1c5530af12a5b358f0e3a0f6523c6be5d22f68c3b0b5f16973d42c4"
+    },
+    {
+      "file": "images/flat/camel-pose-main.png",
+      "sha256": "2ed0e4ae660e31854c10b04fba5196aa13473d26abc336e25d98c507343c9651"
+    },
+    {
+      "file": "images/flat/heel-flicks-main.webp",
+      "sha256": "01d37620d6d01108340d306c6ae31bb1888299cbf31f1e5ab2155164136e4ce0"
+    },
+    {
+      "file": "images/flat/heel-flicks-main.png",
+      "sha256": "bdf0a0641427bb8e89991d3af6c9e57de0b5ca3d4b1455a285ef119414739a99"
+    },
+    {
+      "file": "images/flat/battle-ropes-main.webp",
+      "sha256": "933120551f3b84d18d7dbc7da274333393bb83c71a3e93fa954cb210004420ac"
+    },
+    {
+      "file": "images/flat/battle-ropes-main.png",
+      "sha256": "b395f1f9d80666db3dade06db4b41319a4df4fbcc0bafefd300573bacede713d"
+    },
+    {
+      "file": "images/flat/double-kettlebell-dead-clean-start.webp",
+      "sha256": "5a1b0ab673c100a9819c9da4d6184ee1ebcf2ac9c58938be44ee48dc84d25015"
+    },
+    {
+      "file": "images/flat/double-kettlebell-dead-clean-start.png",
+      "sha256": "9a265dc5acc237416c322af03531a1cb002494da4e21374f3043836053b00793"
+    },
+    {
+      "file": "images/flat/double-kettlebell-dead-clean-peak.webp",
+      "sha256": "41f1ae8afccd3f29838c1389186e05925df073c9a5374fbd38f8a9bf64aaad23"
+    },
+    {
+      "file": "images/flat/double-kettlebell-dead-clean-peak.png",
+      "sha256": "5b062ac90ca475b9d74178efac9f41a80a79249f84d1af1ecbee214a17eb8a52"
+    },
+    {
+      "file": "images/flat/plyo-push-up-start.webp",
+      "sha256": "12a63efd69587158fe205ebe20f79bb26e60ea9cc1e264008f9785f8b8b299a9"
+    },
+    {
+      "file": "images/flat/plyo-push-up-start.png",
+      "sha256": "b7840b64fd5da1b3975f3df0fd3df4784c0b788561e5878e10c35a00f3f2097e"
+    },
+    {
+      "file": "images/flat/plyo-push-up-peak.webp",
+      "sha256": "f5b6d59c42840677a3eb84a9c71bca7f90d9995d6b87db3ce6136844762c8523"
+    },
+    {
+      "file": "images/flat/plyo-push-up-peak.png",
+      "sha256": "085e89558e84a4c6d39c5951fe38b746ba7b1aee568b755de82e759af77d45eb"
+    }
+  ]
+}

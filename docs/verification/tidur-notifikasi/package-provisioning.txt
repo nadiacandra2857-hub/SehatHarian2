@@ -1,0 +1,6 @@
+WARNING: option --ssl-verify-server-cert is disabled, because of an insecure passwordless login.
+--------------
+SELECT (SELECT COUNT(*) FROM pengguna),(SELECT COUNT(*) FROM food_item),(SELECT COUNT(*) FROM sleep_evaluation_request)
+--------------
+
+ERROR 1146 (42S02) at line 1: Table 'sehatharian_test_sleep_package_pre_20261116.food_item' doesn't exist

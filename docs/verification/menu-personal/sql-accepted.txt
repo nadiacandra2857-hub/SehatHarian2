@@ -1,0 +1,11 @@
+id	title	state	revision	completeness	recipe_servings	reviewed
+14	[UJI] Beras dasar	PUBLISHED	1	COMPLETE	1	1
+15	[UJI] Susu beras	PUBLISHED	1	COMPLETE	1	1
+16	[UJI] Menu JPro	DRAFT	1	UNREVIEWED	NULL	0
+17	[UJI] Menu JPro	PUBLISHED	2	COMPLETE	1	1
+pengguna_id	revision	diet	avoid_status	restriction_status	allergens
+5	8	VEGETARIAN	NONE	SELECTED	MILK
+pengguna_id	meals
+5	4
+meal_id	pengguna_id	menu_id	content_revision	preference_revision	portions	recipe_servings	nutrients
+11	5	17	2	4	1	1	calories=100.0;protein=1.0;carbs=1.0;fat=1.0;fiber=1.0;sugar=1.0;saturated_fat=1.0;salt=1.0

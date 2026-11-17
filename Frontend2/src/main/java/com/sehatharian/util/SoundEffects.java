@@ -21,13 +21,17 @@ public final class SoundEffects implements AudioOutput {
         detach = session.onIdentityChanged(this::reset);
     }
     @Override public boolean supportsPlayback() { return backend.supportsPlayback(); }
+    @Override public void configureSound(boolean enabled,double volume){backend.configureSound(enabled,volume);}
+    public AudioOutput backend(){return backend;}
+    @Override public synchronized boolean readyForAlarm(){return !closed&&aktif&&backend.readyForAlarm();}
+    @Override public synchronized void playUntil(String resource,double volume,long expires){if(!closed&&aktif&&session.isLoggedIn())backend.playUntil(resource,volume,expires);}
     public synchronized boolean isAktif() { return aktif; }
     public synchronized void setAktif(boolean enabled) {
         if (closed) return;
         aktif = enabled;
         if (!enabled) stop();
     }
-    public synchronized void reset() { if (!closed) { aktif = true; stop(); } }
+    public synchronized void reset() { if (!closed) { aktif = true; backend.resetIdentity(); } }
     @Override public synchronized void play(String resource, double volume) {
         if (!closed && aktif && session.isLoggedIn()) backend.play(resource, volume);
     }

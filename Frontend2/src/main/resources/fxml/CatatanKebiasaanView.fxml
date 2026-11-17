@@ -55,7 +55,7 @@
                         <VBox spacing="6" HBox.hgrow="ALWAYS">
                             <Label text="Total Asupan Air Minum Hari terpilih" styleClass="card-subtitle" wrapText="true"/>
                             <AdaptiveRow alignment="BASELINE_LEFT" spacing="8">
-                                <Label fx:id="labelTotalHidrasi" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                                <Label fx:id="labelTotalHidrasi" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #06B6D4;" wrapText="true"/>
                                 <Label text="ml · acuan aplikasi 2.000 ml" styleClass="card-subtitle" wrapText="true"/>
                             </AdaptiveRow>
                             <ProgressBar fx:id="progressBarHidrasi" progress="0.0" maxWidth="Infinity" styleClass="pb-blue"/>
@@ -94,7 +94,7 @@
                         <VBox spacing="6" HBox.hgrow="ALWAYS">
                             <Label text="Total Durasi Aktivitas Hari terpilih" styleClass="card-subtitle" wrapText="true"/>
                             <AdaptiveRow alignment="BASELINE_LEFT" spacing="8">
-                                <Label fx:id="labelTotalAktivitas" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                                <Label fx:id="labelTotalAktivitas" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #22C55E;" wrapText="true"/>
                                 <Label text="menit aktif bergerak" styleClass="card-subtitle" wrapText="true"/>
                             </AdaptiveRow>
                             <Label fx:id="labelAktivitasStatus" text="Durasi yang Anda catat pada tanggal terpilih." styleClass="card-subtitle" wrapText="true"/>
@@ -103,7 +103,7 @@
 
                     <!-- Form Tambah Aktivitas -->
                     <AdaptiveRow spacing="10" alignment="CENTER_LEFT" styleClass="form-panel">
-                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Jenis aktivitas" styleClass="form-label"/><ComboBox fx:id="comboPresetAktivitas" promptText="Pilih atau tulis nama aktivitas" prefWidth="200" maxWidth="Infinity"/><Button fx:id="btnKatalogLatihan" text="Jelajahi katalog latihan RepDB" onAction="#handleBukaKatalogLatihan" styleClass="btn-outline" wrapText="true"/></VBox>
+                        <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Jenis aktivitas" styleClass="form-label"/><ComboBox fx:id="comboPresetAktivitas" promptText="Pilih atau tulis nama aktivitas" prefWidth="200" maxWidth="Infinity"/><Button text="Latihan berpemandu" onAction="#handleLatihan" styleClass="btn-primary" wrapText="true"/><Button fx:id="btnKatalogLatihan" text="Jelajahi katalog latihan RepDB" onAction="#handleBukaKatalogLatihan" styleClass="btn-outline" wrapText="true"/></VBox>
                         <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Durasi (menit)" styleClass="form-label"/><TextField fx:id="txtDurasiAktivitas" promptText="Durasi (menit)" prefWidth="110"/></VBox>
                         <VBox spacing="5" minWidth="0" HBox.hgrow="ALWAYS"><Label text="Keterangan (opsional)" styleClass="form-label"/><TextField fx:id="txtKeteranganAktivitas" promptText="Keterangan / Lokasi"/></VBox>
                         <Button text="Simpan Aktivitas" styleClass="btn-primary, write-command" onAction="#handleSimpanAktivitas"/>

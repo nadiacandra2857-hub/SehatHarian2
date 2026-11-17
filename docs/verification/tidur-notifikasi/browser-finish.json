@@ -1,0 +1,43 @@
+{
+  "mode": "finish",
+  "db": "sehatharian_test_sleep_browser_20261116",
+  "appPort": "8096",
+  "started": "2026-11-16T02:35:51.980Z",
+  "screens": [
+    {
+      "name": "failure-finish",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nUS\nUJI tidur sintetis\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nWaktu tidur tiba (WIB). Saatnya beristirahat. \nTutup\nTidur\nJadwal tersimpan. Rencana terpisah dari tidur aktual.\nJadwal berikutnya\nPengingat aktif · 2026-11-17T22:00 → 2026-11-18T06:00 WIB (Asia/Jakarta)\nWaktu tidur tiba (WIB). Saatnya beristirahat. \nAtur jadwal\nBerlaku mulai (WIB)\n11/16/2026\nJam tidur · HH:mm\n22:00\nJam bangun · HH:mm\n06:00\nPengingat aktif\nSimpan jadwal\nUbah jadwal\nSuara pengingat\nSuara pengingat\nVolume pilihan\nSimpan pilihan suara\nPilihan suara tersimpan. Aktivasi berlaku pada instance ini.\nPemutaran selesai (maksimal 6 detik).\nAktifkan suaraCoba suaraHentikan alarm\nBunyi maksimal 6 detik. Coba suara memutar sampel meskipun pilihan otomatis mati. Aktifkan lewat tombol pada tab ini. Tab harus tersambung dan berada di depan; aplikasi \ntertutup, suspend, dan pembatasan browser dapat melewatkan pengingat. Banner tetap tersedia.\nAktual · bangun hari ini\nBelum tercatat\nCatat tidur\nCatat atau revisi tidur\nEvaluasi tidur\nTotal episode per tanggal bangun; kurang dari 5 jam adalah ambang internal proyek. Hari tanpa catatan belum diketahui.\nTanggal bangun yang dinilai\n11/16/2026\nPeriksa / coba lagi evaluasi\nBelum diperiksa.\nHasil terdahulu\nRiwayat tidur aktual"
+    }
+  ],
+  "audio": {
+    "starts": [
+      {
+        "at": 1794796398414,
+        "duration": 6
+      },
+      {
+        "at": 1794796461720,
+        "duration": 6
+      },
+      {
+        "at": 1794796553026,
+        "duration": 6
+      },
+      {
+        "at": 1794796553793,
+        "duration": 6
+      }
+    ],
+    "stops": [
+      1794796399717,
+      1794796467720,
+      1794796553793
+    ]
+  },
+  "error": "Error: navigation replayed alarm",
+  "body": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nUS\nUJI tidur sintetis\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nWaktu tidur tiba (WIB). Saatnya beristirahat. \nTutup\nTidur\nJadwal tersimpan. Rencana terpisah dari tidur aktual.\nJadwal berikutnya\nPengingat aktif · 2026-11-17T22:00 → 2026-11-18T06:00 WIB (Asia/Jakarta)\nWaktu tidur tiba (WIB). Saatnya beristirahat. \nAtur jadwal\nBerlaku mulai (WIB)\n11/16/2026\nJam tidur · HH:mm\n22:00\nJam bangun · HH:mm\n06:00\nPengingat aktif\nSimpan jadwal\nUbah jadwal\nSuara pengingat\nSuara pengingat\nVolume pilihan\nSimpan pilihan suara\nPilihan suara tersimpan. Aktivasi berlaku pada instance ini.\nPemutar memulai suara; periksa volume perangkat.\nAktifkan suaraCoba suaraHentikan alarm\nBunyi maksimal 6 detik. Coba suara memutar sampel meskipun pilihan otomatis mati. Aktifkan lewat tombol pada tab ini. Tab harus tersambung dan berada di depan; aplikasi \ntertutup, suspend, dan pembatasan browser dapat melewatkan pengingat. Banner tetap tersedia.\nAktual · bangun hari ini\nBelum tercatat\nCatat tidur\nCatat atau revisi tidur\nEvaluasi tidur\nTotal episode per tanggal bangun; kurang dari 5 jam adalah ambang internal proyek. Hari tanpa catatan belum diketahui.\nTanggal bangun yang dinilai\n11/16/2026\nPeriksa / coba lagi evaluasi\nBelum diperiksa.\nHasil terdahulu\nRiwayat tidur aktual",
+  "finished": "2026-11-16T02:36:00.124Z"
+}

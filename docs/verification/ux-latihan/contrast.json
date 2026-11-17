@@ -1,0 +1,125 @@
+{
+  "method": "DOM computed color \u00d7 ancestor opacity; screenshot sample for effective background; disabled group composited over #111827. Non-antialiased solid color calculation, not text-edge pixels.",
+  "controls": [
+    {
+      "foreground": "#E5E7EB",
+      "background": "#1F2937",
+      "ratio": 11.86
+    },
+    {
+      "foreground": "#111827",
+      "background": "#22C55E",
+      "ratio": 7.79
+    },
+    {
+      "foreground": "#FDE68A",
+      "background": "#451A03",
+      "ratio": 12.03
+    },
+    {
+      "foreground": "#22C55E",
+      "background": "#1F2937",
+      "ratio": 6.44
+    }
+  ],
+  "measurements": [
+    {
+      "state": "catalog-secondary",
+      "text": "Cari nama latihan (bahasa Inggris)",
+      "source": "#9CA3AF",
+      "opacity": 1.0,
+      "background": "#1F2937",
+      "sample": [
+        250,
+        295
+      ],
+      "effective": "#9CA3AF",
+      "ratio": 5.78,
+      "disabled": false
+    },
+    {
+      "state": "catalog-secondary",
+      "text": "Pemula \u00b7 Sepeda",
+      "source": "#9CA3AF",
+      "opacity": 1.0,
+      "background": "#1F2937",
+      "sample": [
+        255,
+        796
+      ],
+      "effective": "#9CA3AF",
+      "ratio": 5.78,
+      "disabled": false
+    },
+    {
+      "state": "dropdown",
+      "text": "Pemula",
+      "source": "#E5E7EB",
+      "opacity": 1.0,
+      "background": "#1F2937",
+      "sample": [
+        256,
+        525
+      ],
+      "effective": "#E5E7EB",
+      "ratio": 11.86,
+      "disabled": false
+    },
+    {
+      "state": "dropdown-selected",
+      "text": "Pemula",
+      "source": "#22C55E",
+      "opacity": 1.0,
+      "background": "#064E3B",
+      "sample": [
+        256,
+        525
+      ],
+      "effective": "#22C55E",
+      "ratio": 4.27,
+      "disabled": false
+    },
+    {
+      "state": "combo-selected",
+      "text": "Pemula",
+      "source": "#E5E7EB",
+      "opacity": 1.0,
+      "background": "#1F2937",
+      "sample": [
+        258,
+        410
+      ],
+      "effective": "#E5E7EB",
+      "ratio": 11.86,
+      "disabled": false
+    },
+    {
+      "state": "spinner",
+      "text": "5",
+      "source": "#E5E7EB",
+      "opacity": 1.0,
+      "background": "#1F2937",
+      "sample": [
+        254,
+        136
+      ],
+      "effective": "#E5E7EB",
+      "ratio": 11.86,
+      "disabled": false
+    },
+    {
+      "state": "saved-disabled",
+      "text": "Simpan aktivitas",
+      "source": "#E5E7EB",
+      "opacity": 0.4,
+      "background": "#192233",
+      "sample": [
+        255,
+        246
+      ],
+      "effective": "#666B75",
+      "ratio": 2.97,
+      "disabled": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "mode": "states",
+  "db": "sehatharian_test_history_20261111a",
+  "screens": [
+    {
+      "name": "kosong-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nBelum ada riwayat latihan pada periode ini.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "gagal-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nRiwayat latihan gagal dimuat. Silakan coba lagi.\nCoba muat kembali\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "pulih-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nProgram Riwayat\n11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram Riwayat\n11 Nov 2026 · 10:45\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ]
+}

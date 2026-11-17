@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import com.sehatharian.util.AdaptiveRow?>
@@ -38,10 +39,10 @@
 
         <VBox spacing="8" styleClass="wellness-card">
             <Label fx:id="labelSumberData" text="Memuat katalog…" wrapText="true"/>
-            <AdaptiveRow spacing="8">
+            <TitledPane text="Sumber &amp; pratinjau" expanded="false"><content><AdaptiveRow spacing="8">
                 <Button text="Muat Katalog Database" styleClass="btn-outline" onAction="#handleLoadDatabase"/>
                 <Button text="Pratinjau Data Contoh" styleClass="btn-outline" onAction="#handlePreviewDemo"/>
-            </AdaptiveRow>
+            </AdaptiveRow></content></TitledPane>
         </VBox>
 
         <!-- 2. KONTROL FILTER (F-02 WAKTU LUANG & F-06 KATEGORI DEMOGRAFI) -->

@@ -36,8 +36,11 @@ class ReminderLifecycleTest {
                 public boolean existsByEmail(String email) { return findByEmail(email) != null; }
                 public int createPengguna(Pengguna user) { throw new AssertionError("No writes in lifecycle tests"); }
             };
-            context = new ApplicationContext(accounts, FrontendAuthFixture.noDatabaseProfiles(),
-                id -> { requested.add(id); return provider.latest(id); }, scheduler, time, ui::add, output);
+            context = ApplicationContext.withScheduleFactory(accounts, FrontendAuthFixture.noDatabaseProfiles(),
+                ignored -> new SleepScheduleProvider() {
+                    public Schedule latest(int id) throws Exception { requested.add(id); return provider.latest(id); }
+                    public boolean claim(int id,Schedule schedule,java.time.LocalDateTime occurrence)throws Exception { return provider.claim(id,schedule,occurrence); }
+                }, scheduler, time, ui::add, output);
         }
         void login(String email) throws Exception { context.authService().login(email, PASSWORD); }
         void start() throws Exception {
@@ -123,20 +126,22 @@ class ReminderLifecycleTest {
         a.context.reminders().reloadSchedule(); assertNull(a.context.reminders().getTargetJamTidur());
         a.scheduler.load(); a.scheduler.tick(); a.flush();
         assertNull(a.context.reminders().getTargetJamTidur()); assertEquals(0, a.output.plays);
-        assertEquals(0, a.scheduler.liveTasks()); assertTrue(a.context.reminders().getStatus().contains("Belum ada"));
+        assertEquals(1, a.scheduler.liveTasks()); assertTrue(a.context.reminders().getStatus().contains("Pengingat tidur belum diatur"));
     }
     @Test void failedScheduleClearsOldTargetAndShowsUnavailable() throws Exception {
         var a = create(); a.start(); a.provider = id -> { throw new java.sql.SQLException("Synthetic failure"); };
         a.context.reminders().reloadSchedule(); a.scheduler.load(); a.scheduler.tick(); a.flush();
         assertNull(a.context.reminders().getTargetJamTidur()); assertEquals(0, a.output.plays);
-        assertTrue(a.context.reminders().getStatus().contains("tidak tersedia"));
-        assertTrue(a.messages.stream().anyMatch(m -> m.contains("tidak tersedia")));
+        assertTrue(a.context.reminders().getStatus().contains("Jadwal tidur belum dapat dimuat"));
+        assertTrue(a.messages.stream().anyMatch(m -> m.contains("Jadwal tidur belum dapat dimuat")));
     }
     @Test void datedMidnightOccurrenceFiresOnceAcrossDateChange() throws Exception {
         var a = create(); a.start(); a.scheduler.tick(); a.flush();
         a.time.at("2026-10-31T17:00:05Z"); a.scheduler.tick(); a.flush();
         assertEquals(1, a.output.plays); assertEquals(1, a.messages.size());
-        a.time.at("2026-11-01T16:59:55Z"); a.scheduler.tick(); a.flush(); assertEquals(2, a.output.plays);
+        a.time.at("2026-11-01T16:59:55Z"); a.scheduler.tick(); a.flush(); assertEquals(1, a.output.plays); // suspend gap never catches up audio
+        a.time.at("2026-11-01T17:00:00Z"); a.scheduler.tick(); a.flush();
+        assertEquals(1, a.output.plays); // skipped midnight occurrence stays skipped on subsequent polls
     }
     @Test void notificationAndAlarmWindowsKeepExistingToleranceInExplicitJakartaZone() throws Exception {
         var a = create(); a.start();
@@ -144,6 +149,7 @@ class ReminderLifecycleTest {
         a.time.at("2026-10-31T16:49:30Z"); a.scheduler.tick(); a.flush(); assertEquals(1, a.messages.size());
         a.time.at("2026-10-31T16:50:30Z"); a.scheduler.tick(); a.flush(); assertEquals(1, a.messages.size());
         assertTrue(a.messages.getFirst().contains("WIB")); assertEquals(0, a.output.plays);
+        for(var instant=java.time.Instant.parse("2026-10-31T16:51:30Z");instant.isBefore(java.time.Instant.parse("2026-10-31T16:59:49Z"));instant=instant.plusSeconds(60)){a.time.at(instant.toString());a.scheduler.tick();a.flush();}
         a.time.at("2026-10-31T16:59:49Z"); a.scheduler.tick(); a.flush(); assertEquals(0, a.output.plays);
         a.time.at("2026-10-31T16:59:50Z"); a.scheduler.tick(); a.flush(); assertEquals(1, a.output.plays);
     }
@@ -253,4 +259,41 @@ class ReminderLifecycleTest {
         assertFalse(output.supportsPlayback());
         assertDoesNotThrow(() -> { output.play(null, 1); output.stop(); output.close(); output.close(); });
     }
+    @Test void subsecondOutsideWindowCannotTriggerAndPositiveBoundaryHasDispatchTime() throws Exception {
+        var a=create();a.start();a.time.at("2026-10-31T16:59:49.999Z");a.scheduler.tick();a.flush();
+        assertEquals(0,a.output.plays);
+        a.time.at("2026-10-31T17:00:10Z");a.scheduler.tick();a.flush();assertEquals(1,a.output.plays);
+        var b=create();b.start();b.time.at("2026-10-31T17:00:10.001Z");b.scheduler.tick();b.flush();assertEquals(0,b.output.plays);
+    }
+    @Test void crossTabDurableClaimSurvivesReloadAndNewContext() throws Exception {
+        var claimed=new java.util.HashSet<java.time.LocalDateTime>();
+        SleepScheduleProvider shared=new SleepScheduleProvider(){
+            public Schedule latest(int id){return MIDNIGHT;}
+            public boolean claim(int id,Schedule schedule,java.time.LocalDateTime at){return claimed.add(at);}
+        };
+        var a=create();a.provider=shared;a.start();a.scheduler.tick();a.flush();assertEquals(1,a.output.plays);
+        a.context.reminders().reloadSchedule();a.scheduler.load();a.flush();a.scheduler.tick();a.flush();assertEquals(1,a.output.plays);
+        var b=create();b.provider=shared;b.start();b.scheduler.tick();b.flush();assertEquals(0,b.output.plays);
+        assertTrue(b.messages.stream().anyMatch(m->m.contains("tab lain")));
+    }
+    @Test void changedOrDisabledScheduleInvalidatesQueuedOldAlarm() throws Exception {
+        var a=create();a.start();a.scheduler.tick();
+        a.provider=id->new SleepScheduleProvider.Schedule(LocalTime.of(22,0),false);
+        a.scheduler.tick();a.flush();assertEquals(0,a.output.plays);assertFalse(a.context.reminders().isAktif());
+        assertTrue(a.context.reminders().getStatus().contains("nonaktif"));
+    }
+    @Test void suspendAndBackwardClockDoNotReplayOldAlarm() throws Exception {
+        var a=create();a.start();a.scheduler.tick();a.flush();
+        a.time.at("2026-11-01T17:00:00Z");a.scheduler.tick();a.flush();assertEquals(1,a.output.plays);
+        a.time.at("2026-10-31T17:00:00Z");a.scheduler.tick();a.flush();
+        a.scheduler.tick();a.flush();assertEquals(1,a.output.plays);
+    }
+    @Test void nextOccurrenceIncludesEffectiveDateAndZone() throws Exception {
+        var a=create();a.provider=id->new SleepScheduleProvider.Schedule(LocalTime.MIDNIGHT,true,
+            java.time.LocalDate.of(2026,11,3),LocalTime.of(6,0),"future",false,.35);
+        a.start();assertTrue(a.context.reminders().getStatus().contains("2026-11-03T00:00"));
+        assertTrue(a.context.reminders().getStatus().contains("Asia/Jakarta"));
+        a.scheduler.tick();a.flush();assertEquals(0,a.output.plays);
+    }
+
 }

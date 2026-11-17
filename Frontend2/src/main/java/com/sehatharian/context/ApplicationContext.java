@@ -19,13 +19,18 @@ public final class ApplicationContext implements AutoCloseable {
     public ApplicationContext(AccountRepository accounts, PenggunaRepository profiles) {
         this(accounts, profiles, (java.util.function.Function<UserSession, SleepScheduleProvider>) SqlSleepScheduleProvider::new, ReminderScheduler.worker(),
             Clock.system(PengingatTidurService.ZONE), javafx.application.Platform::runLater,
-            new AudioPlayerHelper(com.jpro.webapi.WebAPI.isBrowser()));
+            new InstanceAudioOutput());
     }
     /** Explicit ports for isolated tests; never call bootstrap or an application database in fixtures. */
     public ApplicationContext(AccountRepository accounts, PenggunaRepository profiles,
             SleepScheduleProvider schedules, ReminderScheduler scheduler, Clock clock,
             Consumer<Runnable> ui, AudioOutput output) {
         this(accounts, profiles, (java.util.function.Function<UserSession, SleepScheduleProvider>) ignored -> java.util.Objects.requireNonNull(schedules), scheduler, clock, ui, output);
+    }
+    public static ApplicationContext withScheduleFactory(AccountRepository accounts, PenggunaRepository profiles,
+            java.util.function.Function<UserSession, SleepScheduleProvider> schedules,
+            ReminderScheduler scheduler, Clock clock, Consumer<Runnable> ui, AudioOutput output) {
+        return new ApplicationContext(accounts, profiles, schedules, scheduler, clock, ui, output);
     }
     private ApplicationContext(AccountRepository accounts, PenggunaRepository profiles,
             java.util.function.Function<UserSession, SleepScheduleProvider> schedules,

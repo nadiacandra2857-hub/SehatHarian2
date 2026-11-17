@@ -1,0 +1,14 @@
+{
+  "mode": "admin",
+  "db": "sehatharian_test_curated_ui_20261111",
+  "screens": [
+    {
+      "name": "admin-publikasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Kelola konten\nTentang halaman ini\nPerubahan konten tersimpan.\nKelola bahan & alias\nMenu resep\nJenis konten\nMENU\nPencarian judul\nCari konten\nBuat konten baru\nNasi goreng sayur · PUBLISHED · v1\nOat semalam buah · PUBLISHED · v1\nSalad tomat mentimun · PUBLISHED · v1\nOmelet spinach · PUBLISHED · v1\nPisang beku lembut · PUBLISHED · v1\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "published": "1\tPisang beku lembut\tPUBLISHED\n2\tOmelet spinach\tPUBLISHED\n3\tSalad tomat mentimun\tPUBLISHED\n4\tOat semalam buah\tPUBLISHED\n5\tNasi goreng sayur\tPUBLISHED"
+}

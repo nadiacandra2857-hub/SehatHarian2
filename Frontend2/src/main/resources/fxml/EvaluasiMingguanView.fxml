@@ -41,13 +41,13 @@
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
                 <VBox alignment="CENTER_RIGHT" spacing="2">
-                    <Label fx:id="labelSkorEvaluasi" text="0%" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                    <Label fx:id="labelSkorEvaluasi" text="0%" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #22C55E;" wrapText="true"/>
                     <Label fx:id="labelGradeEvaluasi" text="Status Konsistensi" styleClass="badge-category" wrapText="true"/>
                 </VBox>
             </AdaptiveRow>
 
             <!-- Status Standar Tidur -->
-            <AdaptiveRow fx:id="boxStatusTidur" alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #F8FAFC; -fx-padding: 10 14; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10;">
+            <AdaptiveRow fx:id="boxStatusTidur" alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #263345; -fx-padding: 10 14; -fx-background-radius: 10; -fx-border-color: #374151; -fx-border-radius: 10;">
                 <Label text="Rencana tidur (aturan 5 jam):" styleClass="form-label" wrapText="true"/>
                 <Label fx:id="labelStatusTidur" text="Memenuhi Standar Minimal" styleClass="badge-selesai" wrapText="true"/>
                 <Region HBox.hgrow="ALWAYS"/>
@@ -61,9 +61,9 @@
             </VBox>
 
             <!-- Rekomendasi Solutif -->
-            <VBox spacing="6" style="-fx-background-color: #F0FDF4; -fx-padding: 14; -fx-background-radius: 10; -fx-border-color: #BBF7D0; -fx-border-radius: 10;">
-                <Label text="Rekomendasi Langkah Nyata Berkelanjutan:" style="-fx-font-weight: bold; -fx-font-size: 13.5px; -fx-text-fill: #202121;" wrapText="true"/>
-                <Label fx:id="labelRekomendasiTeks" text="• Rekomendasi akan terbentuk secara otomatis berdasarkan catatan mingguan Anda." wrapText="true" style="-fx-line-spacing: 4px; -fx-font-size: 13px; -fx-text-fill: #202121;"/>
+            <VBox spacing="6" style="-fx-background-color: #064E3B; -fx-padding: 14; -fx-background-radius: 10; -fx-border-color: #14532D; -fx-border-radius: 10;">
+                <Label text="Rekomendasi Langkah Nyata Berkelanjutan:" style="-fx-font-weight: bold; -fx-font-size: 13.5px; -fx-text-fill: #22C55E;" wrapText="true"/>
+                <Label fx:id="labelRekomendasiTeks" text="• Rekomendasi akan terbentuk secara otomatis berdasarkan catatan mingguan Anda." wrapText="true" style="-fx-line-spacing: 4px; -fx-font-size: 13px; -fx-text-fill: #E5E7EB;"/>
             </VBox>
 
             <!-- Disclaimer Medis Sehat Sesuai PRD -->

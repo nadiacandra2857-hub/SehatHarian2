@@ -104,20 +104,7 @@ public class TidurService {
         var primary = com.sehatharian.storage.WriteResult.attempt(() ->
             catatJamTidur(penggunaId, tanggal, jamTidur, jamBangun, pengingatAktif));
         access.owner();
-        if (!primary.confirmed() || primary.value().isMemenuhiStandar()) return primary;
-        com.sehatharian.storage.WriteResult<?> followup;
-        try {
-            followup = com.sehatharian.storage.WriteResult.attempt(() -> evaluasi.buatEvaluasiMingguan(penggunaId, tanggal));
-        } catch (IllegalStateException insufficientData) {
-            // Existing evaluation data-eligibility rule: no evaluation write has been attempted.
-            followup = com.sehatharian.storage.WriteResult.failed();
-        }
-        access.owner();
-        var steps = java.util.List.of(
-            new com.sehatharian.storage.WriteResult.Step("Catatan tidur", primary.status()),
-            new com.sehatharian.storage.WriteResult.Step("Evaluasi mingguan", followup.status()));
-        return access.result(new com.sehatharian.storage.WriteResult<>(followup.confirmed()
-            ? com.sehatharian.storage.WriteResult.Status.BERHASIL : com.sehatharian.storage.WriteResult.Status.PARSIAL,
-            primary.value(), steps));
+        // These legacy records are plans. Actual sleep is stored separately and fires tidur_kurang.
+        return primary;
     }
 }

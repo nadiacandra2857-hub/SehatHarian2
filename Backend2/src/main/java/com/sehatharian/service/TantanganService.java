@@ -13,12 +13,14 @@ import java.util.List;
 
 public class TantanganService {
     private final SessionAccess access;
+    private boolean validateRecords;
     private final TantanganRepository tantanganRepo;
     private final RiwayatTantanganRepository riwayatRepo;
 
     public TantanganService(SessionAccess access) {
         this.access = java.util.Objects.requireNonNull(access);
         this.tantanganRepo = new TantanganRepository();
+        validateRecords=true;
         this.riwayatRepo = new RiwayatTantanganRepository(access);
     }
 
@@ -36,7 +38,8 @@ public class TantanganService {
     public List<RiwayatTantangan> pastikanTantanganHariIni(Pengguna pengguna, LocalDate tanggal) throws SQLException {
         if (pengguna == null) throw new IllegalArgumentException("Profil wajib diisi.");
         access.owner(pengguna.getId());
-        final Pengguna trusted = access.profile();
+        final Pengguna trusted = validateRecords?new com.sehatharian.repository.PenggunaRepository().getById(access.owner(),access):access.profile();
+        if(validateRecords){var eligible=new HabitInsights(access).advise("activity",tanggal);if(!"READY".equals(eligible.state()))return getTantanganByTanggal(access.owner(),tanggal); }
         if (access.automaticChallengesBlocked(tanggal))
             return getTantanganByTanggal(trusted.getId(), tanggal); // read-only review; never retry the assignment
         java.util.List<com.sehatharian.storage.WriteResult.Step> steps = new java.util.ArrayList<>();
@@ -51,12 +54,10 @@ public class TantanganService {
         List<Tantangan> kandidat = access.call(() -> tantanganRepo.getByFilter(
             trusted.getGolonganKesibukan(),
             trusted.getGolonganUsia(),
-            Math.max(trusted.getWaktuLuangMenit(), 15)
+            trusted.getWaktuLuangMenit()
         ));
 
-        if (kandidat.isEmpty()) {
-            kandidat = access.call(() -> tantanganRepo.getAll());
-        }
+
 
         // Ambil hingga 3 tantangan
         int count = Math.min(kandidat.size(), 3);
@@ -102,6 +103,15 @@ public class TantanganService {
     }
 
     public boolean selesaikanTantangan(int riwayatId) throws SQLException {
+        if(validateRecords) {
+            var today=LocalDate.now(java.time.ZoneId.of("Asia/Jakarta"));
+            var row=riwayatRepo.getByRange(access.owner(),LocalDate.of(1900,1,1),today).stream().filter(r->r.getId()==riwayatId).findFirst().orElseThrow(()->new IllegalArgumentException("Tantangan tidak tersedia."));
+            String category=row.getTantanganKategori();
+            if(!java.util.Set.of("jalan kaki","workout di rumah","peregangan").contains(category))throw new IllegalStateException("Kriteria legacy kategori ini tidak terbukti. Gunakan tantangan baru yang memiliki target bersatuan.");
+            var records=new com.sehatharian.repository.AktivitasRepository(access).getByTanggal(access.owner(),row.getTanggal());
+            if(records.stream().mapToInt(com.sehatharian.model.Aktivitas::getDurasiMenit).sum()<row.getDurasiTargetMenit())throw new IllegalStateException("Durasi aktivitas tersimpan belum memenuhi target menit.");
+        }
+
         return access.call(() -> riwayatRepo.updateStatus(riwayatId, "selesai", access.owner()));
     }
 

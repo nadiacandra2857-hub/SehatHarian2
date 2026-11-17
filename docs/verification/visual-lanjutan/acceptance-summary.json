@@ -1,0 +1,63 @@
+{
+  "routes_inventoried": 20,
+  "fxml_parsed": 20,
+  "unit": {
+    "Backend2": {
+      "tests": 176,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "Frontend2": {
+      "tests": 90,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "parser": "8/8",
+  "approved_home_source_unchanged": true,
+  "screens_accepted": 71,
+  "widths": [
+    360,
+    390,
+    1440
+  ],
+  "accepted_evidence": [
+    "after-matrix-a.json",
+    "after-matrix-b.json",
+    "after-matrix-c.json",
+    "after-matrix-progres.json",
+    "after-admin.json",
+    "after-public.json",
+    "after-onboarding.json",
+    "after-onboarding-steps.json",
+    "after-support.json",
+    "after-dark-accepted.json",
+    "after-flow.json"
+  ],
+  "no_document_horizontal_overflow": true,
+  "flow": {
+    "waterBefore": 3500,
+    "waterAfter": 3750,
+    "activityBefore": 3,
+    "video": [
+      {
+        "paused": false,
+        "ready": 4,
+        "loop": true,
+        "w": 356
+      }
+    ],
+    "activityBeforeSave": 3,
+    "activityAfter": 4,
+    "row": "2\t1\tAktif 60 detik; selesai 1, dilewati 0; selesai. Program Uji v1; rincian sesi sementara."
+  },
+  "progres": "all dates fixed on CategoryAxis; missing days remain gaps; screenshot checked",
+  "legacy_date_controls": "retained, Hari ini and date picker visible",
+  "limits": [
+    "physical devices/screen reader/other browsers not tested",
+    "30/90 day individual tick labels hidden; full range retained",
+    "package evidence stored separately as package-*"
+  ]
+}

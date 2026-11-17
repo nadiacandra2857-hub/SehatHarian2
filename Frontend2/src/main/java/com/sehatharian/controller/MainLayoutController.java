@@ -66,6 +66,7 @@ public class MainLayoutController implements AutoCloseable {
     @FXML private StackPane bannerIconSlot;
 
     @FXML private ImageView brandLogoImageView;
+    @FXML private Button btnNavAdmin;
     @FXML private Button btnNavDashboard;
     @FXML private Button btnNavTantangan;
     @FXML private Button btnNavRekomendasi;
@@ -90,6 +91,7 @@ public class MainLayoutController implements AutoCloseable {
 
     @FXML
     public void initialize() {
+        btnNavAdmin.setVisible(session.isAdmin());btnNavAdmin.setManaged(session.isAdmin());
         // 1. Logo
         try {
             var logoUrl = getClass().getResource("/images/logo.png");
@@ -128,6 +130,7 @@ public class MainLayoutController implements AutoCloseable {
     @FXML
     public void handleLogout() {
         if (released || session.getGeneration() != viewGeneration) return;
+        if(latihanPage!=null){latihanPage.requestLeave(()->{latihanPage=null;navigator.logout();});return;}
         navigator.logout();
     }
 
@@ -137,7 +140,7 @@ public class MainLayoutController implements AutoCloseable {
         if (p == null) return;
         sidebarUserNameLabel.setText(p.getNama());
         if (sidebarAvatarLabel != null) sidebarAvatarLabel.setText(inisial(p.getNama()));
-        sidebarUserTagLabel.setText(p.getLabelGolonganUsia() + " • " + 
+        sidebarUserTagLabel.setText(p.getLabelGolonganUsia() + " • " +
             ("dalam_rumah".equalsIgnoreCase(p.getGolonganKesibukan()) ? "Di Dalam Rumah" : "Di Luar Rumah"));
     }
 
@@ -170,7 +173,7 @@ public class MainLayoutController implements AutoCloseable {
 
     private void pasangIkonNavigasi() {
         Object[][] peta = {
-            {btnNavDashboard, "home"}, {btnNavTantangan, "target"}, {btnNavRekomendasi, "bulb"},
+            {btnNavLatihan, "run"}, {btnNavDashboard, "home"}, {btnNavTantangan, "target"}, {btnNavRekomendasi, "bulb"},
             {btnNavKebiasaan, "habit"}, {btnNavTidur, "moon"}, {btnNavStatistik, "chart"},
             {btnNavEvaluasi, "clipboard"}
         };
@@ -200,6 +203,8 @@ public class MainLayoutController implements AutoCloseable {
             bannerIconSlot.getChildren().setAll(IconFactory.icon("bell", 16, "svg-icon-orange"));
         }
     }
+
+    @FXML public void handleTheme() { requireView(); navigator.toggleTheme(); }
 
     @FXML
     public void handleToggleSuara() {
@@ -238,7 +243,7 @@ public class MainLayoutController implements AutoCloseable {
         if (mobile && mainRoot.getBottom() == null) {
             HBox nav = new HBox(2);
             nav.getStyleClass().add("mobile-nav");
-            nav.setStyle("-fx-background-color: white; -fx-padding: 6; -fx-border-color: #e5e7e2; -fx-border-width: 1 0 0 0;");
+
             String[] names = {"Beranda", "Catatan", "Progres"};
             Runnable[] actions = {this::handleNavDashboard, this::handleNavKebiasaan, this::handleNavStatistik};
             for (int i = 0; i < names.length; i++) {
@@ -251,19 +256,24 @@ public class MainLayoutController implements AutoCloseable {
             }
             javafx.scene.control.MenuButton more = new javafx.scene.control.MenuButton("Lainnya");
             more.setMinHeight(44); more.setAccessibleText("Navigasi lainnya, profil, dan keluar");
-            String[] labels = {"Tantangan", "Rekomendasi", "Tidur", "Evaluasi", "Profil", "Keluar"};
-            Runnable[] routes = {this::handleNavTantangan, this::handleNavRekomendasi, this::handleNavTidur,
+            String[] labels = {"Hidrasi", "Nutrisi", "Latihan", "Tantangan", "Rekomendasi", "Tidur", "Evaluasi", "Profil", "Keluar"};
+            Runnable[] routes = {this::handleNavHidrasi,this::handleNavNutrisi, this::handleNavLatihan, this::handleNavTantangan, this::handleNavRekomendasi, this::handleNavTidur,
                 this::handleNavEvaluasi, this::handleNavProfil, this::handleLogout};
             for (int i = 0; i < labels.length; i++) {
                 var item = new javafx.scene.control.MenuItem(labels[i]);
                 final Runnable route = routes[i]; item.setOnAction(e -> { requireView(); route.run(); });
                 more.getItems().add(item);
             }
+            var theme = new javafx.scene.control.MenuItem("Tema terang / gelap"); theme.setOnAction(e -> navigator.toggleTheme()); more.getItems().add(theme);
+            if(session.isAdmin()){var admin=new javafx.scene.control.MenuItem("Admin konten");admin.setOnAction(e->handleNavAdmin());more.getItems().add(admin);}
+            var legacy=new javafx.scene.control.MenuItem("Riwayat tantangan lama");legacy.setOnAction(e->handleLegacyTantangan());more.getItems().add(legacy);
+            var stats=new javafx.scene.control.MenuItem("Statistik lama");stats.setOnAction(e->handleLegacyStatistik());more.getItems().add(stats);
             nav.getChildren().add(more); mainRoot.setBottom(nav);
             updateMobileSelection();
         } else if (!mobile) mainRoot.setBottom(null);
         setTampil(sidebarScroll, !mobile);
-        boolean ringkas = true;
+        boolean ringkas = lebar < 1100;
+        sidebarScroll.setStyle("-fx-pref-width: "+(ringkas?92:220)+"; -fx-min-width: "+(ringkas?92:220)+"; -fx-max-width: "+(ringkas?92:220)+";");
         if (sidebarRoot == null) return;
         if (ringkas == sidebarRoot.getStyleClass().contains("compact")) return;
         sidebarRingkas = ringkas;
@@ -277,7 +287,7 @@ public class MainLayoutController implements AutoCloseable {
         if (ringkas) sidebarRoot.getStyleClass().add("compact");
         else sidebarRoot.getStyleClass().remove("compact");
 
-        Button[] tombol = {btnNavDashboard, btnNavTantangan, btnNavRekomendasi, btnNavKebiasaan,
+        Button[] tombol = {btnNavLatihan,btnNavDashboard, btnNavTantangan, btnNavRekomendasi, btnNavKebiasaan,
                            btnNavTidur, btnNavStatistik, btnNavEvaluasi};
         for (Button b : tombol) {
             if (b == null) continue;
@@ -320,6 +330,11 @@ public class MainLayoutController implements AutoCloseable {
 
     // --- NAVIGASI HALAMAN ---
 
+    @FXML private Button btnNavLatihan;
+    private LatihanController latihanPage;
+    private Button displayedNav;
+    @FXML public void handleNavLatihan() { requireView();setActiveNav(btnNavLatihan);muatTampilan("/fxml/LatihanView.fxml","Latihan"); }
+
     @FXML
     public void handleNavDashboard() {
         setActiveNav(btnNavDashboard);
@@ -333,7 +348,7 @@ public class MainLayoutController implements AutoCloseable {
         setActiveNav(btnNavTantangan);
         headerTitleLabel.setText("Tantangan Kesehatan Harian");
         headerSubtitleLabel.setText("Tantangan realistis yang disesuaikan dengan rutinitas harian dan kondisi fisik Anda.");
-        muatTampilan("/fxml/TantanganView.fxml", "Tantangan");
+        muatTampilan("/fxml/KontenView.fxml", "Tantangan");
     }
 
     @FXML
@@ -357,7 +372,7 @@ public class MainLayoutController implements AutoCloseable {
         setActiveNav(btnNavTidur);
         headerTitleLabel.setText("Jadwal Tidur & Pengingat Alarm");
         headerSubtitleLabel.setText("Pencatatan jam tidur manual, standar minimal 5 jam, serta alarm desktop.");
-        muatTampilan("/fxml/JadwalTidurView.fxml", "Tidur");
+        muatTampilan("/fxml/TidurAktualView.fxml", "Tidur");
     }
 
     @FXML
@@ -365,7 +380,7 @@ public class MainLayoutController implements AutoCloseable {
         setActiveNav(btnNavStatistik);
         headerTitleLabel.setText("Grafik Konsistensi Mingguan");
         headerSubtitleLabel.setText("Visualisasi data aktual konsistensi kebiasaan sehat selama 7 hari terakhir.");
-        muatTampilan("/fxml/StatistikMingguanView.fxml", "Statistik");
+        muatTampilan("/fxml/ProgresView.fxml", "Statistik");
     }
 
     @FXML
@@ -384,6 +399,12 @@ public class MainLayoutController implements AutoCloseable {
         muatTampilan("/fxml/ProfilPengaturanView.fxml", "Profil");
     }
 
+    @FXML public void handleNavAdmin() { requireView();new com.sehatharian.model.SessionAccess(session).requireAdmin();muatTampilan("/fxml/AdminView.fxml","Admin"); }
+    @FXML public void handleLegacyTantangan() { muatTampilan("/fxml/TantanganView.fxml","Tantangan lama"); }
+    @FXML public void handleLegacyStatistik() { muatTampilan("/fxml/StatistikMingguanView.fxml","Statistik lama"); }
+    @FXML public void handleNavHidrasi() { setActiveNav(btnNavKebiasaan); muatTampilan("/fxml/HidrasiView.fxml","Hidrasi"); }
+    @FXML public void handleNavNutrisi() { setActiveNav(btnNavKebiasaan); muatTampilan("/fxml/NutrisiView.fxml","Nutrisi"); }
+
     private void updateMobileSelection() {
         if(!(mainRoot.getBottom() instanceof HBox nav))return;
         int active=currentNav==btnNavDashboard?0:currentNav==btnNavKebiasaan?1:currentNav==btnNavStatistik?2:3;
@@ -394,7 +415,7 @@ public class MainLayoutController implements AutoCloseable {
     private void setActiveNav(Button activeButton) {
         currentNav=activeButton;updateMobileSelection();
         Button[] buttons = {
-            btnNavDashboard, btnNavTantangan, btnNavRekomendasi, btnNavKebiasaan,
+            btnNavLatihan,btnNavDashboard, btnNavRekomendasi, btnNavKebiasaan,
             btnNavTidur, btnNavStatistik, btnNavEvaluasi, btnNavProfil
         };
         for (Button b : buttons) {
@@ -408,6 +429,11 @@ public class MainLayoutController implements AutoCloseable {
     }
 
     private void muatTampilan(String fxmlPath, String viewKey) {
+        if(latihanPage!=null && "Latihan".equals(viewKey))return;
+        if(latihanPage!=null && !"Latihan".equals(viewKey)){
+            Button requestedNav=currentNav;setActiveNav(displayedNav);
+            LatihanController old=latihanPage;old.requestLeave(()->{latihanPage=null;setActiveNav(requestedNav);muatTampilan(fxmlPath,viewKey);});return;
+        }
         try {
             session.requireActiveUser();
             if (released || session.getGeneration() != viewGeneration) throw new SecurityException("Halaman sesi sudah tidak berlaku.");
@@ -418,16 +444,28 @@ public class MainLayoutController implements AutoCloseable {
             mainRoot.getStyleClass().add("ui1-shell");
             mainRoot.getStyleClass().remove("ui2-shell");
             if(!home)mainRoot.getStyleClass().add("ui2-shell");
-            contentArea.setStyle(home?"-fx-background-color:#eeeeee; -fx-padding:0 0 0 12;":"-fx-background-color:#eeeeee; -fx-padding:0 0 0 12;");
+            contentArea.setStyle("-fx-padding: 0;");
             setTampil(sharedHeader,false);
             if(homeNavSpacer==null){homeNavSpacer=new javafx.scene.layout.Region();homeNavSpacer.setMinHeight(100);homeNavSpacer.setPrefHeight(100);}
             sidebarRoot.getChildren().remove(homeNavSpacer);
-            if(home)sidebarRoot.getChildren().add(1,homeNavSpacer);
+
             Object ctrl = view.controller();
+            if(ctrl instanceof LatihanController lc){latihanPage=lc;lc.open();lc.setManualSelection(exercise->{
+                handleNavKebiasaan();
+                try {var manual=navigator.loadPrivateView("/fxml/CatatanKebiasaanView.fxml");((CatatanKebiasaanController)manual.controller()).pilihLatihan(exercise);}
+                catch(IOException ex){throw new IllegalStateException(ex);}
+            });}
+            if(ctrl instanceof CatatanKebiasaanController kc)kc.setOpenTraining(this::handleNavLatihan);
             if (ctrl instanceof DashboardController dc) dc.setMainController(this);
             else if (ctrl instanceof ProfilPengaturanController pc) pc.setMainController(this);
 
             // Segarkan data halaman secara dinamis saat navigasi agar selalu up-to-date
+            if(ctrl instanceof KontenController kc)kc.reload();
+            if(ctrl instanceof AdminController ac)ac.reload();
+            if(ctrl instanceof ProgresController pc) pc.reload();
+            if(ctrl instanceof NutrisiController nc) nc.reload();
+            if(ctrl instanceof HidrasiController hc) hc.reload();
+            if(ctrl instanceof TidurAktualController tc) tc.reload();
             if (ctrl instanceof DashboardController dc) {
                 dc.muatDataPenggunaDanDashboard();
             } else if (ctrl instanceof TantanganController tc) {
@@ -448,6 +486,7 @@ public class MainLayoutController implements AutoCloseable {
             if (!contentArea.getChildren().isEmpty() && !contentArea.getChildren().contains(node)) {
                 sounds.play(SoundEffects.Efek.KLIK);
             }
+            displayedNav=currentNav;
             contentArea.getChildren().setAll(node);
             AnimationHelper.pageTransition(node);
 
@@ -459,6 +498,7 @@ public class MainLayoutController implements AutoCloseable {
     @Override public void close() {
         if (released) return;
         released = true;
+        if(latihanPage!=null)latihanPage.close();
         detachReminder.run();
         sounds.close();
         if (mainRoot != null) mainRoot.widthProperty().removeListener(widthListener);

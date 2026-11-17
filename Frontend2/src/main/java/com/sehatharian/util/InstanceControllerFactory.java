@@ -35,6 +35,13 @@ public final class InstanceControllerFactory implements Callback<Class<?>, Objec
         session.requireActiveUser();
         if (type == OnboardingController.class) return new OnboardingController(session, profiles, navigator);
         if (type == MainLayoutController.class) return new MainLayoutController(session, navigator, reminders, sounds);
+        if (type == AdminController.class) return new AdminController(session);
+        if (type == KontenController.class) return new KontenController(session);
+        if (type == ProgresController.class) return new ProgresController(session);
+        if (type == HidrasiController.class) return new HidrasiController(session);
+        if (type == TidurAktualController.class) return new TidurAktualController(session,navigator,reminders,sounds);
+        if (type == NutrisiController.class) return new NutrisiController(session);
+        if (type == LatihanController.class) return new LatihanController(session);
         if (type == DashboardController.class) return new DashboardController(session, sounds);
         if (type == TantanganController.class) return new TantanganController(session, sounds);
         if (type == RekomendasiController.class) return new RekomendasiController(session);

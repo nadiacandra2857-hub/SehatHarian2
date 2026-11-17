@@ -1,0 +1,203 @@
+{
+  "date": "2026-11-11",
+  "result": "PASS",
+  "release": {
+    "zip": "/home/adhitya/Documents/projekpbo/BARU/SehatHarian2-github/rilis/SehatHarian-Rombak.zip",
+    "bytes": 27312562,
+    "files": 329,
+    "sha256": "670133254d133947b73d131af10fa1f823570a972d7867e97305cb44b19d6c6d"
+  },
+  "checksum_unchanged_after_tests": true,
+  "source_and_extracted_manifest_verified": 329,
+  "extraction_folder": "/tmp/sehatharian-kurasi-release-final-20261111/SehatHarian",
+  "database": "sehatharian_test_curated_release_final",
+  "jpro_port": 8091,
+  "prerequisites": "JDK27/Python3/MariaDB, Linux/Chromium tested; dependency cache pre-existing",
+  "unit": {
+    "Backend2": {
+      "tests": 187,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "Frontend2": {
+      "tests": 94,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "jdbc": {
+    "curation": 31,
+    "curation_fresh_jvm": 1,
+    "menu_regression": 43,
+    "history_regression": 34,
+    "recovery_regression": 36,
+    "recovery_fresh_jvm": 15
+  },
+  "before_fixture": {
+    "users": 0,
+    "meals": 0,
+    "food_catalog": 7795,
+    "curated_receipts": 0
+  },
+  "package_browser": {
+    "proof": "package-browser-final.json",
+    "sql": "7795\t5\t5\t1\t1\t1\t1",
+    "duration": "60000000000\t60000000000\t1",
+    "synthetic_data": "Explicit account/profile/history/checkpoint fixtures only; recipes sourced"
+  },
+  "source_ui": {
+    "meal_count_before": 3,
+    "after": 4,
+    "calories": 89,
+    "proofs": {
+      "admin": {
+        "file": "browser-admin.json",
+        "screens": [
+          "admin-publikasi-390"
+        ]
+      },
+      "unrestrict": {
+        "file": "browser-unrestrict.json",
+        "screens": [
+          "rekomendasi-390"
+        ]
+      },
+      "restriction": {
+        "file": "browser-restriction.json",
+        "screens": [
+          "bahan-omelet-390",
+          "pantangan-susu-390"
+        ]
+      },
+      "portion": {
+        "file": "browser-portion.json",
+        "screens": [
+          "bahan-pisang-390",
+          "tinjauan-porsi-390",
+          "porsi-disimpan-390"
+        ]
+      },
+      "sizes": {
+        "file": "browser-sizes.json",
+        "screens": [
+          "rekomendasi-360",
+          "bahan-pisang-360",
+          "rekomendasi-1440",
+          "bahan-pisang-1440",
+          "rekomendasi-gelap-390"
+        ]
+      },
+      "catalog": {
+        "file": "browser-catalog.json",
+        "screens": [
+          "katalog-belum-lengkap-390"
+        ]
+      },
+      "history": {
+        "file": "browser-history.json",
+        "screens": [
+          "riwayat-porsi-390"
+        ]
+      }
+    }
+  },
+  "screens": {
+    "docs/screenshots/kurasi-rilis/rekomendasi-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "677214843b5b74a472811e8358251d22496d9aed30b5916b8dbdb434f81af71f"
+    },
+    "docs/screenshots/kurasi-rilis/pantangan-susu-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "750f08a68721b6b7189201e2d06b92a2a1bec137a93cd2f844586b9cab78ec30"
+    },
+    "docs/screenshots/kurasi-rilis/bahan-omelet-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "b11226cfd00ff148533d3342aaef8d8480f38df6dca5ec387c7a145fde8bdb80"
+    },
+    "docs/screenshots/kurasi-rilis/bahan-pisang-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "f09133e6c229e779fb81719f9c76fe5f9da62619da32c3007c7ee67b4369b394"
+    },
+    "docs/screenshots/kurasi-rilis/tinjauan-porsi-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "b44c948526e3d0322746a898ff72286f4e7a830a45bdcc3350a649da5087c97c"
+    },
+    "docs/screenshots/kurasi-rilis/rekomendasi-360.png": {
+      "width": 360,
+      "height": 844,
+      "sha256": "55343b3f711044d7fc2efe8e85b619212fd423024e51786b0340091e19f216aa"
+    },
+    "docs/screenshots/kurasi-rilis/bahan-pisang-360.png": {
+      "width": 360,
+      "height": 844,
+      "sha256": "4ae4c78fb2685ada8fd160d9e806034194e820af5dbc6d6429348b519a031db9"
+    },
+    "docs/screenshots/kurasi-rilis/rekomendasi-1440.png": {
+      "width": 1440,
+      "height": 1000,
+      "sha256": "3476d9af0d9df8cd3b61fb8e6ccc52bf5148b7a56221133a5d5271b29f951640"
+    },
+    "docs/screenshots/kurasi-rilis/bahan-pisang-1440.png": {
+      "width": 1440,
+      "height": 1000,
+      "sha256": "818234905cdc3c1823db6fca475cd9b330bcbe70a2033ea6634a5b65e8450ab7"
+    },
+    "docs/screenshots/kurasi-rilis/rekomendasi-gelap-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "02af2867c00368b4a771aa5122b9afa11103acbd52b63f9483813fe425e4a38d"
+    },
+    "docs/screenshots/kurasi-rilis/katalog-belum-lengkap-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "5166a3b486ebb791ca79eb710c6a747c5023e098209ffa09a2cc808683ffd32b"
+    },
+    "docs/screenshots/kurasi-rilis/riwayat-porsi-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "c607aa447a90c12524d319b9058ae70d0267fd6fdca5a3d871f97f67f15486ee"
+    },
+    "docs/screenshots/kurasi-rilis/paket-final-menu-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "63ead795a55629cf6735bfe3d73b9c57fdfe7c9364ba47d4e3690c8e4bb2e092"
+    },
+    "docs/screenshots/kurasi-rilis/paket-final-porsi-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "b820b9c2175020c4f06809b2e7e7e12614167b586d6d3239ce46ab4193f15baa"
+    },
+    "docs/screenshots/kurasi-rilis/paket-final-pemulihan-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "bcaff3e231e296e4129ec7619b09a70323e00e8532b46d83c106b6429e472958"
+    },
+    "docs/screenshots/kurasi-rilis/paket-final-riwayat-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "9af0545e7a0ff0d5effeb8b3f30076d44bd366daa3a903b181d513201de50565"
+    }
+  },
+  "pid_guard": {
+    "exit": 1,
+    "existing_source_pid": 44818,
+    "alive_and_port_8089_open": true,
+    "no_jpro_stop_finalizer": true,
+    "restored_8088_pid": 40507
+  },
+  "limitations": [
+    "Two recipes remain incomplete general catalogue",
+    "Only banana recipe has all eight nutrition parameters; other measurements/conversions unknown",
+    "No physical phone, Windows/macOS or native alarm/codec acceptance",
+    "TempoLife upstream commit not pinned",
+    "Initial JPro PID interruption and failed first guard documented; original 8088 restored and final guard verified"
+  ],
+  "evidence_outside_zip": true
+}

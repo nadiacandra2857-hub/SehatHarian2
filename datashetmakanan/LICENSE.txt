@@ -1,0 +1,9 @@
+Creative Commons Attribution 4.0 International Public License
+
+This dataset (tempolife-foods.csv and tempolife-foods.json) is licensed under CC-BY-4.0.
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Food nutrition data from TempoLife (tempolife.app), CC-BY-4.0.
+Source: https://github.com/tempolife-app/tempo-food-db/tree/main/data
+The underlying USDA FoodData Central (SR Legacy) values are public domain (U.S. Government work).
+The curation, packaging and Estonian/Finnish/Russian category organization is TempoLife's and carries CC-BY-4.0.

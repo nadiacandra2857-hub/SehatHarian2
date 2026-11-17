@@ -1,0 +1,38 @@
+[
+  {
+    "path": "Frontend2/src/main/resources/images/home/routine.jpg",
+    "size": [
+      1060,
+      663
+    ],
+    "bytes": 51393,
+    "sha256": "cac0fa3c4a4c0c5707260cf562fa0d419c5d4512a1ad526e145fa098d23cede4"
+  },
+  {
+    "path": "Frontend2/src/main/resources/images/home/water.jpg",
+    "size": [
+      384,
+      384
+    ],
+    "bytes": 8971,
+    "sha256": "ed0728b2c44a6cdeced5f95cf24b1c16b71141279ca363caa548b3b8108fd61d"
+  },
+  {
+    "path": "Frontend2/src/main/resources/images/home/sleep.jpg",
+    "size": [
+      384,
+      384
+    ],
+    "bytes": 15251,
+    "sha256": "e5e71db9a6cf8ecbb0de7552a31d379ceed5e5cdf409940f625f76782b56ae2e"
+  },
+  {
+    "path": "Frontend2/src/main/resources/images/home/nutrition.jpg",
+    "size": [
+      384,
+      384
+    ],
+    "bytes": 18217,
+    "sha256": "89451e87fe3d5547b1c0e69abc54cf4159e830dc3a5b22f01a7cda0a1ceedd76"
+  }
+]

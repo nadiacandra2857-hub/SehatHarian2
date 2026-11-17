@@ -1,0 +1,236 @@
+{
+  "phase": "after",
+  "started": "2026-11-10T11:25:52.273Z",
+  "screens": [
+    {
+      "name": "tantangan-sebelum-geser-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3500 ml\nNutrisi\n1 catatan\nAktivitas\n1 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/routine.jpg",
+          "complete": true,
+          "w": 1060,
+          "rect": {
+            "x": 15.132730484008789,
+            "y": -178,
+            "width": 351.734375,
+            "height": 220,
+            "top": -178,
+            "right": 366.8671054840088,
+            "bottom": 42,
+            "left": 15.132730484008789
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/sleep.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 25,
+            "y": 70,
+            "width": 68,
+            "height": 68,
+            "top": 70,
+            "right": 93,
+            "bottom": 138,
+            "left": 25
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/water.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 203,
+            "y": 70,
+            "width": 68,
+            "height": 68,
+            "top": 70,
+            "right": 271,
+            "bottom": 138,
+            "left": 203
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/nutrition.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 25,
+            "y": 176,
+            "width": 68,
+            "height": 68,
+            "top": 176,
+            "right": 93,
+            "bottom": 244,
+            "left": 25
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/team/Jogging.jpg",
+          "complete": true,
+          "w": 480,
+          "rect": {
+            "x": 205,
+            "y": 192,
+            "width": 64,
+            "height": 36,
+            "top": 192,
+            "right": 269,
+            "bottom": 228,
+            "left": 205
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/water.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 73,
+            "y": 336,
+            "width": 108,
+            "height": 108,
+            "top": 336,
+            "right": 181,
+            "bottom": 444,
+            "left": 73
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/water.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 301,
+            "y": 336,
+            "width": 108,
+            "height": 108,
+            "top": 336,
+            "right": 409,
+            "bottom": 444,
+            "left": 301
+          }
+        }
+      ]
+    },
+    {
+      "name": "tantangan-sesudah-geser-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3500 ml\nNutrisi\n1 catatan\nAktivitas\n1 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nBeranda\nCatatan\nProgres\nLainnya",
+      "images": [
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/routine.jpg",
+          "complete": true,
+          "w": 1060,
+          "rect": {
+            "x": 15.132730484008789,
+            "y": -178,
+            "width": 351.734375,
+            "height": 220,
+            "top": -178,
+            "right": 366.8671054840088,
+            "bottom": 42,
+            "left": 15.132730484008789
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/sleep.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 25,
+            "y": 70,
+            "width": 68,
+            "height": 68,
+            "top": 70,
+            "right": 93,
+            "bottom": 138,
+            "left": 25
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/water.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 203,
+            "y": 70,
+            "width": 68,
+            "height": 68,
+            "top": 70,
+            "right": 271,
+            "bottom": 138,
+            "left": 203
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/nutrition.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 25,
+            "y": 176,
+            "width": 68,
+            "height": 68,
+            "top": 176,
+            "right": 93,
+            "bottom": 244,
+            "left": 25
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/team/Jogging.jpg",
+          "complete": true,
+          "w": 480,
+          "rect": {
+            "x": 205,
+            "y": 192,
+            "width": 64,
+            "height": 36,
+            "top": 192,
+            "right": 269,
+            "bottom": 228,
+            "left": 205
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/water.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": -27,
+            "y": 336,
+            "width": 108,
+            "height": 108,
+            "top": 336,
+            "right": 81,
+            "bottom": 444,
+            "left": -27
+          }
+        },
+        {
+          "src": "http://localhost:8088/app/default/resourcesencoded/cp:/1/1/images/home/water.jpg",
+          "complete": true,
+          "w": 384,
+          "rect": {
+            "x": 201,
+            "y": 336,
+            "width": 108,
+            "height": 108,
+            "top": 336,
+            "right": 309,
+            "bottom": 444,
+            "left": 201
+          }
+        }
+      ]
+    }
+  ],
+  "routes": [],
+  "horizontalOverflow": false
+}

@@ -1,0 +1,9 @@
+{
+  "package": "awal-2026",
+  "version": "2026-11-11.1",
+  "menus": 5,
+  "ingredients": 18,
+  "complete": 3,
+  "status": "prepared locally; no database writes",
+  "output": ".runtime/menus.xml"
+}

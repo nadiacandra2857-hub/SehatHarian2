@@ -1,0 +1,35 @@
+{
+  "method": "WCAG sRGB contrast from CSS colors; hero background sampled representative light mint, not every image pixel",
+  "checks": [
+    {
+      "name": "primary",
+      "foreground": "#FFFFFF",
+      "background": "#126846",
+      "ratio": 6.79
+    },
+    {
+      "name": "hero heading",
+      "foreground": "#123D31",
+      "background": "#CDEFD2",
+      "ratio": 9.71
+    },
+    {
+      "name": "muted light",
+      "foreground": "#5C6D80",
+      "background": "#FFFFFF",
+      "ratio": 5.31
+    },
+    {
+      "name": "muted dark",
+      "foreground": "#9CA3AF",
+      "background": "#1F2937",
+      "ratio": 5.78
+    },
+    {
+      "name": "badge",
+      "foreground": "#124D38",
+      "background": "#FFFFFF",
+      "ratio": 9.79
+    }
+  ]
+}

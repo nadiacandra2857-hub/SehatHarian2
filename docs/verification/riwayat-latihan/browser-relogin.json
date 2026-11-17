@@ -1,0 +1,14 @@
+{
+  "mode": "relogin",
+  "db": "sehatharian_test_history_20261111a",
+  "screens": [
+    {
+      "name": "detail-apres-relogin-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak \ndihitung. Durasi total dihitung sebelum pembulatan waktu tiap \nlangkah.\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak \ndihitung. Durasi total dihitung sebelum pembulatan waktu tiap \nlangkah.\nBeranda\nCatatan\nProgres\nLainnya"
+}

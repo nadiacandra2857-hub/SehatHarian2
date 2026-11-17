@@ -1,0 +1,55 @@
+{
+  "phase": "after",
+  "started": "2026-11-10T11:25:15.371Z",
+  "screens": [],
+  "routes": [
+    {
+      "label": "Lihat rutinitas",
+      "expected": "Kebiasaan harian",
+      "passed": true,
+      "text": "CATATAN HARIAN\nKebiasaan harian\nCatat asupan hidrasi air putih, durasi bergerak aktif, dan \npola makan bergizi untuk memantau konsistensi Anda.\nTanggal catatan\n11/10/2026\nHari ini\nTotal Asupan Air Minum Hari terpilih\n3,500\nml · acuan aplikasi 2.000 ml\n+250 ml (1 Gelas)\n+500 ml (Botol)\n+600 ml\nJumlah air (ml)\nJumlah ml (misal 300)\nCatatan (opsional)\nCatatan (opsional)\nTambah Air\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nfixture\nAksi\nHapus\nMinum\nAktivitas\nMakan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Tidur",
+      "expected": "Catatan tidur aktual",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur\nPisahkan rencana istirahat dari tidur yang benar-benar \nterjadi\nCatatan tidur aktual\nTanggal mulai tidur\n11/9/2026\nJam tidur (HH:mm)\n22:00\nTanggal bangun\n11/10/2026\nJam bangun (HH:mm)\n06:00\nUntuk melewati tengah malam, pilih tanggal \nbangun berikutnya. Catatan dikelompokkan \nberdasarkan tanggal bangun.\nSimpan tidur aktual\nRiwayat aktual · 30 hari\n2026-11-10 · 23:00 → 03:00 · 4.00 jam\nJadwal tidur & pengingat (rencana)\nPengingat desktop memerlukan aplikasi aktif. Web \nmenampilkan notifikasi selama sesi/tab tersambung; \nsuara/getar dan alarm setelah aplikasi ditutup tidak dijamin.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Hidrasi",
+      "expected": "Kapasitas gelas",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nHidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Nutrisi",
+      "expected": "Catat makanan",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129\nkkal tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), \nCC-BY-4.0. Katalog komposisi terpisah dari resep dan \ninspirasi menu.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Aktivitas",
+      "expected": "Program",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nLatihan berpemandu\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nVideo tim · target dapat diatur\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nVideo tim · target dapat diatur\nLihat gerakan · Flutter Kicks\nJalan Kaki\nVideo tim · target dapat diatur\nLihat gerakan · Jalan Kaki\nJogging\nVideo tim · target dapat diatur\nLihat gerakan · Jogging\nMountain Climbers\nVideo tim · target dapat diatur\nLihat gerakan · Mountain Climbers\nPush-up\nVideo tim · target dapat diatur\nLihat gerakan · Push-up\nSit-up\nVideo tim · target dapat diatur\nLihat gerakan · Sit-up\nSumo Squat\nVideo tim · target dapat diatur\nLihat gerakan · Sumo Squat\nTricep Dip\nVideo tim · target dapat diatur\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Lihat semua",
+      "expected": "Tantangan & bacaan",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nTantangan & bacaan\nKonten terbit · pilihan dari katalog umum, bukan saran \npersonal\nMuat ulang konten\nAir 1000 ml\nhydration|1000\nVersi 1 · CHALLENGE · inspirasi umum\nIkuti tantangan hari ini\nAir 500 ml\nhydration|500\nVersi 1 · CHALLENGE · inspirasi umum\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n2026-11-10 · 1000.0 ml\nDipilih sendiri dari katalog umum. Lengkapi profil, \nkelompok usia, rutinitas, dan waktu luang \ntersimpan.\nBelum selesai\nPeriksa catatan & selesaikan\nAir 500 ml\n2026-11-10 · 500.0 ml\nDipilih sendiri dari katalog umum. Lengkapi profil, \nkelompok usia, rutinitas, dan waktu luang \ntersimpan.\nSelesai\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Buka tantangan",
+      "expected": "Tantangan & bacaan",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nTantangan & bacaan\nKonten terbit · pilihan dari katalog umum, bukan saran \npersonal\nMuat ulang konten\nAir 1000 ml\nhydration|1000\nVersi 1 · CHALLENGE · inspirasi umum\nIkuti tantangan hari ini\nAir 500 ml\nhydration|500\nVersi 1 · CHALLENGE · inspirasi umum\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n2026-11-10 · 1000.0 ml\nDipilih sendiri dari katalog umum. Lengkapi profil, \nkelompok usia, rutinitas, dan waktu luang \ntersimpan.\nBelum selesai\nPeriksa catatan & selesaikan\nAir 500 ml\n2026-11-10 · 500.0 ml\nDipilih sendiri dari katalog umum. Lengkapi profil, \nkelompok usia, rutinitas, dan waktu luang \ntersimpan.\nSelesai\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "label": "Lihat progres",
+      "expected": "Progres kebiasaan",
+      "passed": true,
+      "text": "Pengingat tidur belum diatur\nTutup\nProgres kebiasaan\nNilai tercatat per kebiasaan · hari tanpa catatan tidak \ndianggap nol\nPeriode (hari)\n7\nTanggal akhir\n11/10/2026\nMuat progres\nTidur aktual\n1 / 7 hari tercatat · jam aktual\n2026-11-10\njam aktual\n0\n1\n2\n3\n4\n5\nEvaluasi 7 hari · INSUFFICIENT\n\n\n1/7 hari tercatat; aturan proyek memerlukan \nminimal 3 hari per kebiasaan untuk saran. \nLengkapi catatan.\nHidrasi\n2 / 7 hari tercatat · ml\n2026-11-09\n2026-11-10\nml\n0\n500\n1,000\n1,500\n2,000\n2,500\n3,000\n3,500\n4,000\nEvaluasi 7 hari · INSUFFICIENT\n\n\n2/7 hari tercatat; aturan proyek memerlukan \nminimal 3 hari per kebiasaan untuk saran. \nLengkapi catatan.\nNutrisi\n1 / 7 hari tercatat · catatan makan\n2026-11-10\ncatatan makan\n0.00\n0.25\n0.50\n0.75\n1.00\n1.25\nEvaluasi 7 hari · INSUFFICIENT\n\n\nIsi pola makan dan pantangan (tulis tidak ada bila \ntidak memiliki) di Progres.\nAktivitas\n3 / 7 hari tercatat · menit\n2026-11-08\n2026-11-09\n2026-11-10\nmenit\n0\n5\n10\n15\n20\n25\nEvaluasi 7 hari · READY\n\n\n3/7 hari tercatat, rata-rata 13.7 menit pada hari \ntercatat (2026-11-04–2026-11-10). Profil \ntersimpan: dewasa, dalam_rumah, waktu luang \n30 menit. Pilih satu aktivitas dalam waktu luang; \ndurasi kandidat bukan durasi total program.\nPernapasan Diafragma 5 Menit · 5 menit\nJalan Kaki Sore 25 Menit · 25 menit\nPeregangan Otot Kaki & Betis · 15 menit\nPreferensi nutrisi tersimpan\nPola makan\nPantangan / alergi (atau tidak ada)\nSimpan preferensi\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ]
+}

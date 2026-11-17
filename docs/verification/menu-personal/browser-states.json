@@ -1,0 +1,28 @@
+{
+  "mode": "states",
+  "db": "sehatharian_test_menu_20261111b",
+  "screens": [
+    {
+      "name": "gagal-muat-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\nMenu gagal dimuat. Pilih Periksa menu personal untuk \nmencoba lagi.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "pulih-muat-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n2 menu cocok · 1 disaring · 0 belum dapat dinilai.\n\n\nDiperiksa 15:15:21.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\n[UJI] Beras dasar\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Beras dasar\nTinjau porsi · [UJI] Beras dasar\n[UJI] Menu JPro\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Menu JPro\nTinjau porsi · [UJI] Menu JPro\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "hasil-kosong-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n4/7 hari makan tercatat pada 2026-11-05–2026-11-11. \nUrutan menu mempertimbangkan variasi menu yang \ndicatat dalam periode ini. 0 menu cocok; 3 disaring, 0 \nbelum dapat dinilai. Pantangan tetap diterapkan; \njelajahi katalog umum atau lengkapi bahan/preferensi.\n\n\nDiperiksa 15:15:26.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\nTidak ada menu yang cocok\nBelum ada menu yang dapat ditampilkan sebagai \nhasil personal. Katalog umum tetap dapat \ndijelajahi.\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "empty": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n4/7 hari makan tercatat pada 2026-11-05–2026-11-11. \nUrutan menu mempertimbangkan variasi menu yang \ndicatat dalam periode ini. 0 menu cocok; 3 disaring, 0 \nbelum dapat dinilai. Pantangan tetap diterapkan; \njelajahi katalog umum atau lengkapi bahan/preferensi.\n\n\nDiperiksa 15:15:26.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\nTidak ada menu yang cocok\nBelum ada menu yang dapat ditampilkan sebagai \nhasil personal. Katalog umum tetap dapat \ndijelajahi.\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+}

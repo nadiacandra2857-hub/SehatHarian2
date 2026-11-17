@@ -98,9 +98,9 @@ public class EvaluasiMingguanController implements AutoCloseable {
         emptyBox.setAlignment(javafx.geometry.Pos.CENTER);
         emptyBox.setStyle("-fx-padding: 24 10;");
         Label emptyTitle = new Label("Belum Ada Riwayat Evaluasi");
-        emptyTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 13.5px; -fx-text-fill: #34483F;");
+        emptyTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 13.5px; -fx-text-fill: #E5E7EB;");
         Label emptySub = new Label("Jalankan evaluasi mingguan untuk melihat analisis menyeluruh konsistensi hidup sehat.");
-        emptySub.setStyle("-fx-font-size: 12px; -fx-text-fill: #5A6D63;");
+        emptySub.setStyle("-fx-font-size: 12px; -fx-text-fill: #9CA3AF;");
         emptyBox.getChildren().addAll(emptyTitle, emptySub);
         tableArsipEvaluasi.setPlaceholder(emptyBox);
 

@@ -35,14 +35,14 @@ public final class ExerciseCatalogPane extends VBox implements AutoCloseable {
     private final Button previous=new Button("Sebelumnya"), next=new Button("Berikutnya");
     private final Label source=new Label("Sumber: RepDB lokal · bukan data demo atau pengganti database");
 
-    public ExerciseCatalogPane(ExerciseCatalog catalog, Consumer<Exercise> select) { this(catalog,select,catalog::load); }
+    public ExerciseCatalogPane(ExerciseCatalog catalog, Consumer<Exercise> select) { this(catalog,select,catalog::reload); }
     /** Read seam for isolated UI fixtures, never changes application authentication. */
     public ExerciseCatalogPane(ExerciseCatalog catalog, Consumer<Exercise> select, Callable<ExerciseCatalog.Snapshot> read) {
         this.catalog=Objects.requireNonNull(catalog);this.select=Objects.requireNonNull(select);this.read=Objects.requireNonNull(read);
         setId("exerciseCatalog");setSpacing(12);setMinWidth(0);getStyleClass().add("ui2");
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/ui2.css")).toExternalForm());
         Label title=label("Katalog latihan", "page-title");
-        Label note=label("Jelajahi gerakan sebagai referensi. Memilih hanya mengisi nama aktivitas; durasi aktual tetap Anda masukkan. Katalog ini tidak menilai kecocokan pribadi atau kondisi medis.","card-subtitle");
+        Label note=label("Jelajahi gerakan sebagai referensi. Pilih gerakan untuk catatan atau susunan sesi; pemilihan tidak menyimpan aktivitas. Katalog ini tidak menilai kecocokan pribadi atau kondisi medis.","card-subtitle");
         search.setId("exerciseSearch");search.setPromptText("Cari nama latihan (bahasa Inggris)");search.setMaxWidth(Double.MAX_VALUE);
         Label searchLabel=label("Cari nama", "form-label");searchLabel.setLabelFor(search);search.setAccessibleText("Cari nama latihan");
         VBox searchBox=new VBox(5,searchLabel,search);
@@ -59,6 +59,7 @@ public final class ExerciseCatalogPane extends VBox implements AutoCloseable {
         Button reset=new Button("Atur ulang filter");reset.setId("exerciseReset");reset.setOnAction(e->{search.clear();filters.forEach(f->f.setValue(""));});
         Button reload=new Button("Muat ulang katalog lokal");reload.setId("exerciseReload");reload.setOnAction(e->reload());
         AdaptiveRow actions=new AdaptiveRow(8);actions.getChildren().addAll(reset,reload);
+        status.setMinHeight(Region.USE_PREF_SIZE);source.setMinHeight(Region.USE_PREF_SIZE);
         status.setId("exerciseStatus");status.setWrapText(true);source.setWrapText(true);source.getStyleClass().add("form-hint");
         cards.setMinWidth(0);cards.setPrefColumns(3);
         cards.widthProperty().addListener((o,a,b)->{
@@ -69,14 +70,16 @@ public final class ExerciseCatalogPane extends VBox implements AutoCloseable {
         });
         previous.setOnAction(e->{page--;renderCards();});next.setOnAction(e->{page++;renderCards();});
         AdaptiveRow pager=new AdaptiveRow(8);pager.getChildren().addAll(previous,pageLabel,next);
-        list.getChildren().addAll(searchBox,filterRow,actions,status,cards,pager);body.getChildren().setAll(list);
+        TitledPane additional=new TitledPane("Filter tambahan",new VBox(8,filterRow,actions));additional.setExpanded(false);
+        list.getChildren().addAll(searchBox,additional,status,cards,pager);body.getChildren().setAll(list);
         Hyperlink credit=new Hyperlink("Exercise data by RepDB (repdb.co)");credit.setWrapText(true);credit.setMinHeight(44);
         credit.setOnAction(e->{
             if(com.jpro.webapi.WebAPI.isBrowser())com.jpro.webapi.WebAPI.getWebAPI(getScene()).openURLAsTab("https://repdb.co");
             else try { java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://repdb.co")); } catch(Exception ex) { status.setText("Kredit: https://repdb.co"); }
         });
         Label credits=label("Tentang / Kredit · RepDB Free Tier v1.0. Ilustrasi statis, bukan video/animasi. Instruksi dan istilah otot dalam bahasa Inggris asli; terjemahan Indonesia belum tersedia atau ditinjau.","form-hint");
-        getChildren().addAll(title,note,source,body,credits,credit);
+        TitledPane provenance=new TitledPane("Sumber & lisensi",new VBox(8,source,credits));provenance.setExpanded(false);
+        getChildren().addAll(title,note,body,credit,provenance);
         reload();
     }
     public void reload() {
@@ -94,7 +97,7 @@ public final class ExerciseCatalogPane extends VBox implements AutoCloseable {
                     for(int i=0;i<4;i++) { final int index=i;List<String> options=new ArrayList<>();options.add("");loaded.exercises().stream().map(values[index]).distinct().sorted(Comparator.comparing(ExerciseLabels::label)).forEach(options::add);filters.get(i).setItems(FXCollections.observableArrayList(options));filters.get(i).setValue("");filters.get(i).setDisable(false); }
                     search.setDisable(false);filter();
                 });
-            } catch(Exception e) { deliver(request,()->{status.setText("Katalog lokal gagal dimuat. Jalankan scripts/prepare-repdb.py, lalu buka kembali katalog. Tidak ada data contoh otomatis.");source.setText("Sumber RepDB lokal belum tersedia · bukan kegagalan SQL");}); }
+            } catch(Exception e) { deliver(request,()->{status.setText("Katalog lokal gagal dimuat. Lokasi: "+catalog.root()+". Jalankan python3 scripts/prepare-repdb.py --limit 24 dari root proyek atau periksa SEHATHARIAN_REPDB_DIR, lalu tekan Muat ulang. Detail: "+e.getClass().getSimpleName()+" — "+e.getMessage()+"");source.setText("Sumber RepDB lokal belum tersedia · bukan kegagalan SQL");}); }
         });
     }
     @SuppressWarnings("unchecked") private static Function<Exercise,String>[] functions(){return new Function[]{(Function<Exercise,String>)Exercise::difficulty,(Function<Exercise,String>)Exercise::equipment,(Function<Exercise,String>)Exercise::bodyPart,(Function<Exercise,String>)Exercise::category};}
@@ -115,27 +118,37 @@ public final class ExerciseCatalogPane extends VBox implements AutoCloseable {
         }
         pageLabel.setText("Halaman "+(page+1)+" / "+pages);previous.setDisable(page==0);next.setDisable(page+1>=pages);
     }
+    private java.util.function.Consumer<Exercise> manualSelection;
+    public void setManualSelection(java.util.function.Consumer<Exercise> action){manualSelection=action;}
+    private ScrollPane parentScroll(){for(javafx.scene.Parent n=getParent();n!=null;n=n.getParent())if(n instanceof ScrollPane scroll)return scroll;return null;}
+    private String selectionLabel="Gunakan untuk catatan";
+    public void setSelectionLabel(String label){selectionLabel=label;}
     public void detail(Exercise e) {
         if(closed)return;
+        javafx.scene.Node previousFocus=getScene()==null?null:getScene().getFocusOwner();
+        ScrollPane scroll=parentScroll();double position=scroll==null?0:scroll.getVvalue();
         VBox detail=new VBox(12);detail.setId("exerciseDetail");detail.setMinWidth(0);
-        Button back=new Button("Kembali ke katalog");back.setId("exerciseBack");back.setOnAction(event->body.getChildren().setAll(list));
+        Button back=new Button("Kembali ke katalog");back.setId("exerciseBack");back.setOnAction(event->{body.getChildren().setAll(list);if(previousFocus!=null)previousFocus.requestFocus();if(scroll!=null)Platform.runLater(()->scroll.setVvalue(position));});
         detail.getChildren().addAll(back,label(e.name(),"page-title"),label("ID RepDB: "+e.externalId(),"form-hint"),label(ExerciseLabels.label(e.difficulty())+" · "+ExerciseLabels.label(e.equipment()),"card-subtitle"));
         AdaptiveRow poses=new AdaptiveRow(12);
         for(String pose:List.of("start","peak","main"))if(e.images().containsKey(pose)) {
             VBox box=new VBox(6);box.setMinWidth(0);box.setPrefWidth(300);HBox.setHgrow(box,Priority.ALWAYS);
-            box.getChildren().addAll(label(switch(pose){case "start"->"Posisi awal";case "peak"->"Posisi akhir/puncak";default->"Ilustrasi posisi";},"form-label"),image(e.images().get(pose),e.name(),box,300));poses.getChildren().add(box);
+            box.getChildren().addAll(label(switch(pose){case "start"->"Posisi awal";case "peak"->"Posisi puncak";default->"Ilustrasi posisi";},"form-label"),image(e.images().get(pose),e.name(),box,300));poses.getChildren().add(box);
         }
+        Button primary=new Button(selectionLabel);primary.setOnAction(event->{if(!closed)select.accept(e);});primary.setMinHeight(44);
+        detail.getChildren().add(primary);
+        if(manualSelection!=null){Button manual=new Button("Gunakan untuk catatan");manual.setOnAction(event->{if(!closed)manualSelection.accept(e);});detail.getChildren().add(manual);}
         detail.getChildren().addAll(poses,label("Bahasa sumber: Inggris · belum diterjemahkan/ditinjau", "form-hint"),label(e.description(),"card-subtitle"),label("Instruksi", "card-title"));
         int n=1;for(String step:e.instructions())detail.getChildren().add(label((n++)+". "+step,"card-subtitle"));
         detail.getChildren().add(label("Tips", "card-title"));for(String tip:e.tips())detail.getChildren().add(label("• "+tip,"card-subtitle"));
         if(e.tips().isEmpty())detail.getChildren().add(label("Tips tidak dicantumkan.","card-subtitle"));
         detail.getChildren().addAll(label("Otot sasaran (istilah sumber)","card-title"),label("Utama: "+(e.primaryMuscles().isEmpty()?"Tidak dicantumkan":String.join(", ",e.primaryMuscles()))+"\nSekunder: "+(e.secondaryMuscles().isEmpty()?"Tidak dicantumkan":String.join(", ",e.secondaryMuscles())),"card-subtitle"));
-        Button choose=new Button("Gunakan nama untuk catatan");choose.setId("exerciseChoose");choose.getStyleClass().add("btn-primary");choose.setOnAction(event->{if(!closed)select.accept(e);});
+        Button choose=new Button(selectionLabel);choose.setId("exerciseChoose");choose.getStyleClass().add("btn-primary");choose.setOnAction(event->{if(!closed)select.accept(e);});
         detail.getChildren().addAll(label("Durasi, repetisi, usia yang sesuai dan kontraindikasi tidak ditentukan oleh katalog ini. Label kesulitan bukan penilaian medis.","form-hint"),choose);
         body.getChildren().setAll(detail);
     }
     private Node image(String path,String name,Region width,double height) {
-        VBox box=new VBox(4);box.setMinWidth(0);ImageView view=new ImageView();view.setPreserveRatio(true);view.setFitHeight(height);view.fitWidthProperty().bind(width.widthProperty().subtract(32).map(v->Math.max(1,v.doubleValue())));view.setAccessibleText("Ilustrasi statis "+name);
+        VBox box=new VBox(4);box.setMinWidth(0);box.getStyleClass().add("repdb-media-box");ImageView view=new ImageView();view.setPreserveRatio(true);view.setFitHeight(height);view.fitWidthProperty().bind(width.widthProperty().subtract(32).map(v->Math.max(1,v.doubleValue())));view.setAccessibleText("Ilustrasi statis "+name);
         Label missing=label("Gambar tidak tersedia", "form-hint");
         try { Image image=new Image(catalog.asset(path).toUri().toString(),true);view.setImage(image);missing.setVisible(false);missing.setManaged(false);image.errorProperty().addListener((o,a,b)->{if(b){missing.setVisible(true);missing.setManaged(true);}});if(image.isError()){missing.setVisible(true);missing.setManaged(true);} }
         catch(Exception ex) { missing.setVisible(true);missing.setManaged(true); }

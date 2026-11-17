@@ -21,6 +21,7 @@ public final class SessionAccess implements AutoCloseable {
                 || userId != session.getUserId()) throw new SecurityException("Permintaan sesi tidak berlaku. Silakan masuk kembali.");
         return userId;
     }
+    public int requireAdmin() { int id=owner(); if(!session.isAdmin())throw new SecurityException("Akses admin diperlukan.");return id; }
     public int owner(int claimed) {
         int actual = owner();
         if (claimed != actual) throw new SecurityException("Data tidak tersedia.");

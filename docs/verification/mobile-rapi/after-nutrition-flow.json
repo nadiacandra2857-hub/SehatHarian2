@@ -1,0 +1,44 @@
+{
+  "phase": "after",
+  "started": "2026-11-10T06:40:06.821Z",
+  "screens": [
+    {
+      "name": "nutrisi-porsi-viewport-390x480",
+      "width": 390,
+      "height": 480,
+      "scrollWidth": 390,
+      "text": "Catat makanan\n‹\n11/10/2026\n›\nWaktu makan\nSarapan\nCari makanan\nBaked potato\nCari katalog\nBaked potato · nilai per 100 g\nPorsi (gram)\n150\nKembali\nTinjau porsi\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "nutrisi-review-viewport-390x480",
+      "width": 390,
+      "height": 480,
+      "scrollWidth": 390,
+      "text": "Catat makanan\n‹\n11/10/2026\n›\nPeriksa estimasi, lalu simpan dengan tombol di bawah.\nWaktu makan\nSarapan\nCari makanan\nBaked potato\nCari katalog\nBaked potato · nilai per 100 g\nPorsi (gram)\n150\nEstimasi · 150.0 g\nEnergi: 129.00 kkal\n\n\nProtein: 3.30 g\n\n\nKarbohidrat: 27.60 g\n\n\nLemak: 0.30 g\n\n\nSerat: 2.70 g\n\n\nGula: 0.00 g\n\n\nLemak jenuh: belum diketahui\n\n\nGaram: belum diketahui\nSumber & versi komposisi\nKembali\nSimpan porsi ini\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "nutrisi-setelah-simpan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Nutrisi\n‹\n11/10/2026\n›\nPorsi berhasil disimpan.\nRingkasan gizi hari ini\n258\nkkal tercatat\nProtein\n6.6 g\nKarbohidrat\n55.2 g\nLemak\n0.6 g\n+ Catat makanan\nSarapan\n+\n2 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 2 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), \nCC-BY-4.0. Katalog komposisi terpisah dari resep dan \ninspirasi menu.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "nutrisi-porsi-invalid-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Catat makanan\n‹\n11/10/2026\n›\nPeriksa porsi: Porsi harus lebih dari 0 dan maksimal \n10.000 gram.\nWaktu makan\nSarapan\nCari makanan\nBaked potato\nCari katalog\nBaked potato · nilai per 100 g\nPorsi (gram)\n0\nKembali\nTinjau porsi\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    }
+  ],
+  "before": 1,
+  "heightResizeWorkaround": true,
+  "estimate": true,
+  "after": 2,
+  "snapshot": "150.00\tcalories=129.0;protein=3.3;carbs=27.6;fat=0.3;fiber=2.7;sugar=0.0\t4c764d32b31e9d96898ee8f8fc6e12f30f6b27cd4214c827f7ecdff05cf365a9",
+  "afterInvalid": 2
+}

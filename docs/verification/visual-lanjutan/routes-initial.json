@@ -1,0 +1,82 @@
+[
+  {
+    "fxml": "AdminView.fxml",
+    "sha256": "dc744f0a796e4eef6005da69c7166cd4a9f69f3fcc8303fabeb2a6a4f5e44a56"
+  },
+  {
+    "fxml": "CatatanKebiasaanView.fxml",
+    "sha256": "c20887205f827b916b6cbc654367fe706ae3cb2393d8500825795bd646de5bb7"
+  },
+  {
+    "fxml": "CreateAccountView.fxml",
+    "sha256": "b312086cb2b2989a1062a86a284c75a13b97a27ab4202d0ca440768f0edaee5c"
+  },
+  {
+    "fxml": "DashboardView.fxml",
+    "sha256": "15e50db81a86189ebc6da8f043014b3f7322cc6244ffa62e4584d9f5ac222632"
+  },
+  {
+    "fxml": "EvaluasiMingguanView.fxml",
+    "sha256": "f30fa1fcd46b4eb4bd0084e02860ffd77f4cba0944186f72a26b61b0642a6183"
+  },
+  {
+    "fxml": "HidrasiView.fxml",
+    "sha256": "cec5654e22c39629e413e5da9ca80659463f7fb00a1b377ae4ec460c7ca6a854"
+  },
+  {
+    "fxml": "JadwalTidurView.fxml",
+    "sha256": "01d54a46ab3a76817a7153826f3c01c4921d342b36d60d70edd63b7e631d97d5"
+  },
+  {
+    "fxml": "KontenView.fxml",
+    "sha256": "5665c149e3eb9889eb3c0af888519e45b3bb269a7b80509eb2cf561052c439d3"
+  },
+  {
+    "fxml": "LandingPageView.fxml",
+    "sha256": "3a9c942b6570d3728786c2c77eca307290695677617a9424bde14c7ee0e7b3c6"
+  },
+  {
+    "fxml": "LatihanView.fxml",
+    "sha256": "832cd1e156523646e16912f39029a72cf14c3e851ca500c1076ce4df763fa7fd"
+  },
+  {
+    "fxml": "LoginView.fxml",
+    "sha256": "ac5331313199e268e7aeb33ca02d228f84ab29d8a355b4a00885ce3a96ee07a7"
+  },
+  {
+    "fxml": "MainLayout.fxml",
+    "sha256": "6536445501f47889413b7ccf37926cea7ae3aff09d2ff7a567c1a1a0df4071a4"
+  },
+  {
+    "fxml": "NutrisiView.fxml",
+    "sha256": "a01ec3d5f04357d7bc25436b4d38e57ab8c4e770faa6a1829fa01a2a26c645e5"
+  },
+  {
+    "fxml": "OnboardingView.fxml",
+    "sha256": "cdf307e1626c51e92e53f4138aeb448bf16d87f1217ccec09ca88dc55aff2169"
+  },
+  {
+    "fxml": "ProfilPengaturanView.fxml",
+    "sha256": "d38825e31b7e31f01a5db2979809c596dd16d076d44948b013e6bddef3bb2e5c"
+  },
+  {
+    "fxml": "ProgresView.fxml",
+    "sha256": "7b94cf1f1d0c3e54c55aefaa391a5ddd4b207dd3da8110ce5837fe6b806fc8cc"
+  },
+  {
+    "fxml": "RekomendasiView.fxml",
+    "sha256": "257c61a41c71b5e511f82e54d5c59d4586c141bbd9252505e23f5a68b2b880c5"
+  },
+  {
+    "fxml": "StatistikMingguanView.fxml",
+    "sha256": "06c75478f877a690a9154e2f5e39a70aa202417ad0e7008d6469f6a54fc08d5b"
+  },
+  {
+    "fxml": "TantanganView.fxml",
+    "sha256": "fac02e9a7be6d7223a2f1493fa67cb9a596c2bb4c732ba4ca920a863721d0081"
+  },
+  {
+    "fxml": "TidurAktualView.fxml",
+    "sha256": "0bd47da09826b048e179bcaba682509689d6a13bd117eac5632684967d3121b0"
+  }
+]

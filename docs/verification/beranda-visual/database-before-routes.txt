@@ -1,0 +1,12 @@
+id	email
+2	alpha@example.test
+hydration	SUM(jumlah_ml)
+hydration	3500
+meals	COUNT(*)
+meals	1
+activity_minutes	SUM(durasi_menit)
+activity_minutes	1
+sleep_hours	SUM(TIMESTAMPDIFF(MINUTE,started_at,ended_at))/60
+sleep_hours	4.0000
+total_rows	(SELECT COUNT(*) FROM aktivitas)	(SELECT COUNT(*) FROM hidrasi)	(SELECT COUNT(*) FROM kebiasaan_makan)
+total_rows	4	15	2

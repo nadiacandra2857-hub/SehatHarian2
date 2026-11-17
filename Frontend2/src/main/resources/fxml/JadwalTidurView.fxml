@@ -83,7 +83,7 @@
                         <Label text="Waktu Masuk Tidur:" styleClass="form-label" wrapText="true"/>
                         <AdaptiveRow spacing="4" alignment="CENTER_LEFT">
                             <ComboBox fx:id="comboJamTidur" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
-                            <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                            <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #E5E7EB;" wrapText="true"/>
                             <ComboBox fx:id="comboMenitTidur" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
                         </AdaptiveRow>
                         <Label text="Format 24 jam" styleClass="form-hint" wrapText="true"/>
@@ -93,7 +93,7 @@
                         <Label text="Waktu Bangun Pagi:" styleClass="form-label" wrapText="true"/>
                         <AdaptiveRow spacing="4" alignment="CENTER_LEFT">
                             <ComboBox fx:id="comboJamBangun" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
-                            <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                            <Label text=":" style="-fx-font-weight: bold; -fx-text-fill: #E5E7EB;" wrapText="true"/>
                             <ComboBox fx:id="comboMenitBangun" prefWidth="90" onAction="#handleHitungDurasiPreview"/>
                         </AdaptiveRow>
                         <Label text="Waktu bangun" styleClass="form-hint" wrapText="true"/>
@@ -127,7 +127,7 @@
                     <!-- Peringatan evaluasi otomatis jika < 5 jam -->
                     <Label fx:id="labelWarningKurangTidur"
                            text="Perhatian: Durasi tidur di bawah 5 jam memicu evaluasi mingguan otomatis dan menghasilkan rekomendasi pemulihan pada menu Evaluasi."
-                           style="-fx-text-fill: #202121; -fx-font-size: 11.5px; -fx-font-weight: 600;"
+                           style="-fx-text-fill: #FDE68A; -fx-font-size: 11.5px; -fx-font-weight: 600;"
                            visible="false" managed="false" wrapText="true"/>
                 </VBox>
 
@@ -150,7 +150,7 @@
                 <!-- Panel Informasi Jadwal Aktif -->
                 <VBox spacing="8" styleClass="sleep-control-panel">
                     <Label text="Jadwal Alarm Aktif:" styleClass="form-label" wrapText="true"/>
-                    <Label fx:id="labelJadwalAktifInfo" text="Pukul 22:30 WIB" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                    <Label fx:id="labelJadwalAktifInfo" text="Pukul 22:30 WIB" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #22C55E;" wrapText="true"/>
                     <Label text="Waktu mulai istirahat malam yang dipantau oleh pengingat." styleClass="form-hint" wrapText="true"/>
                 </VBox>
 
@@ -161,7 +161,7 @@
                     <VBox spacing="4" styleClass="sleep-timeline-item">
                         <AdaptiveRow alignment="CENTER_LEFT" spacing="6">
                             <Label text="Tahap 1" styleClass="sleep-timeline-step-label" wrapText="true"/>
-                            <Label text="T-10 Menit Sebelum Tidur" style="-fx-font-weight: 600; -fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                            <Label text="T-10 Menit Sebelum Tidur" style="-fx-font-weight: 600; -fx-font-size: 12px; -fx-text-fill: #E5E7EB;" wrapText="true"/>
                         </AdaptiveRow>
                         <Label text="Notifikasi visual desktop muncul di layar sebagai panduan persiapan istirahat."
                                styleClass="sleep-hint-text" wrapText="true"/>
@@ -170,7 +170,7 @@
                     <VBox spacing="4" styleClass="sleep-timeline-item">
                         <AdaptiveRow alignment="CENTER_LEFT" spacing="6">
                             <Label text="Tahap 2" styleClass="sleep-timeline-step-label" wrapText="true"/>
-                            <Label text="Waktu Tidur Tiba (Jendela 10 Detik)" style="-fx-font-weight: 600; -fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                            <Label text="Waktu Tidur Tiba (Jendela 10 Detik)" style="-fx-font-weight: 600; -fx-font-size: 12px; -fx-text-fill: #E5E7EB;" wrapText="true"/>
                         </AdaptiveRow>
                         <Label text="Pengingat visual muncul saat waktunya tiba. Suara hanya tersedia pada desktop yang mendukungnya."
                                styleClass="sleep-hint-text" wrapText="true"/>

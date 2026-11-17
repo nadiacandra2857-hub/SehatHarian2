@@ -1,0 +1,30 @@
+{
+  "mode": "portion",
+  "db": "sehatharian_test_menu_20261111b",
+  "screens": [
+    {
+      "name": "bahan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n2 menu cocok · 1 disaring · 0 belum dapat dinilai.\n\n\nDiperiksa 13:38:03.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\n[UJI] Beras dasar\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Beras dasar\nTinjau porsi · [UJI] Beras dasar\n[UJI] Menu JPro\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nSINTETIS UJI — bukan resep/nilai gizi \nnyata; fixture menu-personal v1 — \nlengkapi melalui editor JPro\nBahan sudah ditinjau\nHasil resep: 1.0 porsi\nBeras · 100.0 g\nSumber bahan · Beras\nSumber resep: SINTETIS UJI JPro — satu \nbahan beras 100 g, hasil 1 porsi; bukan \nresep/nilai nyata.\nPencocokan hanya berdasarkan bahan yang \ntercatat. Label produk, kontaminasi silang dan \nvariasi resep perlu diperiksa terpisah; bukan \njaminan bebas alergen.\nBahan & sumber · [UJI] Menu JPro\nTinjau porsi · [UJI] Menu JPro\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tinjauan-porsi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\nTinjau estimasi dan bahan, lalu simpan porsi ini.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\n[UJI] Beras dasar\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Beras dasar\nTinjau porsi · [UJI] Beras dasar\n[UJI] Menu JPro\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nSINTETIS UJI — bukan resep/nilai gizi \nnyata; fixture menu-personal v1 — \nlengkapi melalui editor JPro\nBahan sudah ditinjau\nHasil resep: 1.0 porsi\nBeras · 100.0 g\nSumber bahan · Beras\nSumber resep: SINTETIS UJI JPro — satu \nbahan beras 100 g, hasil 1 porsi; bukan \nresep/nilai nyata.\nPencocokan hanya berdasarkan bahan yang \ntercatat. Label produk, kontaminasi silang dan \nvariasi resep perlu diperiksa terpisah; bukan \njaminan bebas alergen.\nBahan & sumber · [UJI] Menu JPro\nTinjau porsi · [UJI] Menu JPro\nCatat menu · [UJI] Menu JPro\nJumlah porsi resep\n1\nWaktu makan menu\nmakan_siang\nTinjau porsi menu\nTinjauan porsi · 1.0\nEnergi: 100.00 kkal\n\n\nProtein: 1.00 g\n\n\nKarbohidrat: 1.00 g\n\n\nLemak: 1.00 g\n\n\nSerat: 1.00 g\n\n\nGula: 1.00 g\n\n\nLemak jenuh: 1.00 g\n\n\nGaram: 1.00 g\nBahan, satuan & keterbatasan\nSimpan porsi menu\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "porsi-tersimpan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n2 menu cocok · 1 disaring · 0 belum dapat dinilai.\n\n\nDiperiksa 13:38:56.\nPorsi menu berhasil disimpan. Snapshot ada di riwayat \nNutrisi.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\n[UJI] Beras dasar\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Beras dasar\nTinjau porsi · [UJI] Beras dasar\n[UJI] Menu JPro\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Menu JPro\nTinjau porsi · [UJI] Menu JPro\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "before": "3",
+  "after": "4",
+  "snapshot": "11\t5\t17\t2\t4\t1\t1\tcalories=100.0;protein=1.0;carbs=1.0;fat=1.0;fiber=1.0;sugar=1.0;saturated_fat=1.0;salt=1.0\tSINTETIS UJI JPro — satu bahan beras 100 g, hasil 1 porsi; bukan resep/nilai nyata. | https://www.fda.gov/food/buy-store-serve-safe-food/food-allergies-what-you-need-know | https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/the-vegetarian-diet/ | https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/the-vegan-diet/"
+}

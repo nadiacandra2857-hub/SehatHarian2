@@ -30,6 +30,11 @@ public class CatatanKebiasaanController implements AutoCloseable {
     private final com.sehatharian.util.WriteAction writes;
 
     private Dialog<Void> exerciseDialog;
+    private Dialog<Void> historyDialog;
+    private com.sehatharian.util.TrainingDialog trainingDialog;
+    private Runnable openTraining=()->{};
+    public void setOpenTraining(Runnable action){openTraining=action;}
+    @FXML public void handleLatihan(){ access.owner(); openTraining.run(); }
     private final SoundEffects.View sounds;
 
     public CatatanKebiasaanController(UserSession session, SoundEffects effects) {
@@ -181,6 +186,15 @@ public class CatatanKebiasaanController implements AutoCloseable {
             }
         });
         tableAktivitas.setItems(listAktivitas);
+        colAktivitasJenis.setCellFactory(column -> new TableCell<>() {
+            @Override protected void updateItem(String value,boolean empty){
+                super.updateItem(value,empty);setText(null);setGraphic(null);
+                if(!empty && getTableRow()!=null){
+                    Hyperlink detail=new Hyperlink(value+" · rincian");detail.setWrapText(true);
+                    detail.setOnAction(event->{var item=getTableRow().getItem();if(item!=null)openActivityDetail(item.getId());});setGraphic(detail);
+                }
+            }
+        });
 
         // Kolom Makan
         colMakanWaktu.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLabelWaktuMakan()));
@@ -375,8 +389,14 @@ public class CatatanKebiasaanController implements AutoCloseable {
         double height=dialog.getOwner()==null?800:dialog.getOwner().getHeight();
         pane.setMinWidth(0);pane.setPrefWidth(Math.max(280,Math.min(1050,width-24)));
         scroll.setPrefViewportHeight(Math.max(200,Math.min(700,height-150)));
+        if(dialog.getOwner()!=null){
+            pane.prefWidthProperty().bind(dialog.getOwner().widthProperty().map(w->Math.max(280,Math.min(1050,w.doubleValue()-24))));
+            scroll.prefViewportHeightProperty().bind(dialog.getOwner().heightProperty().map(h->Math.max(200,Math.min(700,h.doubleValue()-150))));
+        }
+        javafx.beans.value.ChangeListener<Number> resizeDialog=(o,a,b)->dialog.setWidth(Math.max(280,Math.min(1050,b.doubleValue()-24)));
+        if(dialog.getOwner()!=null)dialog.getOwner().widthProperty().addListener(resizeDialog);
         Runnable detach=session.onIdentityChanged(dialog::close);
-        dialog.setOnHidden(event->{content.close();detach.run();exerciseDialog=null;});
+        dialog.setOnHidden(event->{if(dialog.getOwner()!=null)dialog.getOwner().widthProperty().removeListener(resizeDialog);content.close();detach.run();exerciseDialog=null;});
         dialog.show();
     }
 
@@ -457,7 +477,39 @@ public class CatatanKebiasaanController implements AutoCloseable {
         datePickerTanggal.setValue(tanggalDipilih);
         muatSemuaData();
     }
+    private void openActivityDetail(int id){
+        access.owner();if(historyDialog!=null)historyDialog.close();
+        Dialog<Void> detail=new Dialog<>();historyDialog=detail;detail.setTitle("Rincian latihan");detail.initOwner(kebiasaanRoot.getScene().getWindow());
+        var content=new com.sehatharian.util.TrainingHistoryPane(access,()->detail.close());
+        ScrollPane scroll=new ScrollPane(content);scroll.setFitToWidth(true);scroll.setMinWidth(0);
+        var pane=detail.getDialogPane();pane.setContent(scroll);pane.getButtonTypes().add(ButtonType.CLOSE);
+        pane.getStylesheets().setAll(kebiasaanRoot.getScene().getStylesheets());
+        for(javafx.scene.Parent parent=kebiasaanRoot;parent!=null;parent=parent.getParent()){
+            for(String css:parent.getStylesheets())if(!pane.getStylesheets().contains(css))pane.getStylesheets().add(css);
+            if(parent.getStyleClass().contains("light"))pane.getStyleClass().add("light");
+        }
+        pane.getStyleClass().addAll("ui2","ui2-dialog","visual-page");pane.setMinSize(0,0);
+        ((Button)pane.lookupButton(ButtonType.CLOSE)).setText("Tutup");
+        var scene=kebiasaanRoot.getScene();
+        Runnable fit=()->{
+            double width=Math.max(280,Math.min(900,scene.getWidth()-24));
+            double height=Math.max(250,Math.min(760,scene.getHeight()-48));
+            pane.setPrefSize(width,height);pane.setMaxSize(width,height);
+            scroll.setPrefViewportWidth(Math.max(100,width-48));scroll.setPrefViewportHeight(Math.max(100,height-110));
+            detail.setWidth(width);detail.setHeight(height);
+            detail.setX(detail.getOwner().getX()+Math.max(0,(scene.getWidth()-width)/2));
+            detail.setY(detail.getOwner().getY()+Math.max(0,(scene.getHeight()-height)/2));
+        };
+        javafx.beans.value.ChangeListener<Number> resize=(o,a,b)->fit.run();
+        scene.widthProperty().addListener(resize);scene.heightProperty().addListener(resize);
+        detail.setOnShown(event->fit.run());
+        var detach=session.onIdentityChanged(detail::close);
+        detail.setOnHidden(event->{scene.widthProperty().removeListener(resize);scene.heightProperty().removeListener(resize);content.close();detach.run();if(historyDialog==detail)historyDialog=null;});
+        content.activity(id);detail.show();
+    }
     @Override public void close() {
+        if(historyDialog!=null)historyDialog.close();
+        if(trainingDialog!=null)trainingDialog.close();
         if (exerciseDialog != null) exerciseDialog.close();
         access.close(); sounds.close(); }
 }

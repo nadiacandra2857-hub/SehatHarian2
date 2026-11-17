@@ -1,0 +1,27 @@
+{
+  "mode": "save-failure",
+  "db": "sehatharian_test_sleep_browser3_20261116",
+  "appPort": "8098",
+  "started": "2026-11-16T03:22:30.188Z",
+  "screens": [
+    {
+      "name": "catatan-tersimpan-evaluasi-gagal-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Waktu tidur tiba (WIB). Saatnya beristirahat...\nTutup\nTidur\nTidur aktual tersimpan. Evaluasi diproses terpisah dari \ncatatan.\nJadwal berikutnya\nPengingat aktif · 2026-11-17T22:00 → \n2026-11-18T06:00 WIB (Asia/Jakarta)\nBerikutnya · 2026-11-16T22:00 WIB \n(Asia/Jakarta)\nUbah jadwal\nSuara pengingat\nSuara pengingat\nVolume pilihan\nSimpan pilihan suara\nPilihan suara tersimpan aktif; aktivasi tab tetap \ndiperlukan.\nAudio siap pada instance ini. Coba suara untuk \nmemeriksa perangkat.\nAktifkan suaraCoba suaraHentikan alarm\nBunyi maksimal 6 detik. Coba suara memutar sampel \nmeskipun pilihan otomatis mati. Aktifkan lewat tombol \npada tab ini. Tab harus tersambung dan berada di depan; \naplikasi tertutup, suspend, dan pembatasan browser \ndapat melewatkan pengingat. Banner tetap tersedia.\nAktual · bangun hari ini\n3,98 jam\nCatat tidur\nCatatan tidur aktual\nTanggal mulai tidur\n11/15/2026\nJam tidur · HH:mm\n23:00\nTanggal bangun\n11/16/2026\nJam bangun · HH:mm\n02:59\nUntuk lintas tengah malam, pilih tanggal bangun \nberikutnya.\nSimpan tidur aktual\nCatat atau revisi tidur\nEvaluasi tidur\nTotal episode per tanggal bangun; kurang dari 5 jam \nadalah ambang internal proyek. Hari tanpa catatan belum \ndiketahui.\nTanggal bangun yang dinilai\n11/16/2026\nPeriksa / coba lagi evaluasi\nEvaluasi belum berhasil. Catatan tidur tetap \ntersimpan; pilih Periksa / coba lagi.\nHasil terdahulu\n2026-11-16\n2026-11-15T23:00 → 2026-11-16T02:59\n3.98 jam\nRevisi\nHapus\n2026-11-14\n2026-11-14T00:00 → 2026-11-14T04:00\n4.00 jam\nRevisi\nHapus\n2026-11-13\n2026-11-13T00:00 → 2026-11-13T04:00\n4.00 jam\nRevisi\nHapus\nRiwayat tidur aktual\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "evaluasi-pulih-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Waktu tidur tiba (WIB). Saatnya beristirahat...\nTutup\nTidur\nTidur aktual tersimpan. Evaluasi diproses terpisah dari \ncatatan.\nJadwal berikutnya\nPengingat aktif · 2026-11-17T22:00 → \n2026-11-18T06:00 WIB (Asia/Jakarta)\nBerikutnya · 2026-11-16T22:00 WIB \n(Asia/Jakarta)\nUbah jadwal\nSuara pengingat\nSuara pengingat\nVolume pilihan\nSimpan pilihan suara\nPilihan suara tersimpan aktif; aktivasi tab tetap \ndiperlukan.\nAudio siap pada instance ini. Coba suara untuk \nmemeriksa perangkat.\nAktifkan suaraCoba suaraHentikan alarm\nBunyi maksimal 6 detik. Coba suara memutar sampel \nmeskipun pilihan otomatis mati. Aktifkan lewat tombol \npada tab ini. Tab harus tersambung dan berada di depan; \naplikasi tertutup, suspend, dan pembatasan browser \ndapat melewatkan pengingat. Banner tetap tersedia.\nAktual · bangun hari ini\n3,98 jam\nCatat tidur\nCatatan tidur aktual\nTanggal mulai tidur\n11/15/2026\nJam tidur · HH:mm\n23:00\nTanggal bangun\n11/16/2026\nJam bangun · HH:mm\n02:59\nUntuk lintas tengah malam, pilih tanggal bangun \nberikutnya.\nSimpan tidur aktual\nCatat atau revisi tidur\nEvaluasi tidur\nTotal episode per tanggal bangun; kurang dari 5 jam \nadalah ambang internal proyek. Hari tanpa catatan belum \ndiketahui.\nTanggal bangun yang dinilai\n11/16/2026\nPeriksa / coba lagi evaluasi\nSaran tersedia · revisi 2\n\n\nTanggal bangun 2026-11-16 · 1 episode · total \n3.98 jam aktual. Di bawah ambang internal 5 jam.\n\n\nJumlah hanya episode tercatat per tanggal \nbangun WIB; belum menjamin seluruh tidur harian \nsudah dicatat. Periode 2026-11-10–2026-11-16. \n3/7 hari tercatat pada 2026-11-10–2026-11-16; \nrata-rata 3.99 jam pada hari tercatat. Tinjau \nkesempatan istirahat dan jadwal pilihan Anda; \nkualitas tidur tidak diukur.\nHasil terdahulu\n2026-11-16\n2026-11-15T23:00 → 2026-11-16T02:59\n3.98 jam\nRevisi\nHapus\n2026-11-14\n2026-11-14T00:00 → 2026-11-14T04:00\n4.00 jam\nRevisi\nHapus\n2026-11-13\n2026-11-13T00:00 → 2026-11-13T04:00\n4.00 jam\nRevisi\nHapus\nRiwayat tidur aktual\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "before": "3",
+  "persisted": "2026-11-16 02:59:00",
+  "pending": "PENDING",
+  "after": "READY\t2",
+  "finished": "2026-11-16T03:22:41.235Z"
+}

@@ -1,0 +1,69 @@
+{
+  "phase": "after",
+  "mode": "flow",
+  "screens": [
+    {
+      "name": "hidrasi-tersimpan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3750\nml tercatat\n3750 / 1500 ml · target pilihan Anda\n+ 250 ml\nAir berhasil dicatat.\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "program-detail-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Program Uji\nVideo tim 60 detik\nVersi 1 · 1 langkah\n1. Jalan Kaki\n60 detik\nGunakan program & tinjau\nKembali ke katalog\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-review-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Tinjau sesi · pengaturan Anda\nPersiapan (detik)\n5\nIstirahat (detik)\n15\n1. Jalan Kaki · 60 detik\nNilai persiapan dan istirahat di atas berlaku untuk sesi \nini. Video tim berulang mengikuti langkah aktif; sumber \nRepDB memakai gambar statis. Tidak menghitung \ngerakan tubuh. Timer dijeda bila respons browser hilang; \nlanjutkan secara eksplisit setelah kembali.\nUbah pengaturan\nMulai persiapan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-aktif-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 1\nKeluar\n00:58\nJalan Kaki\nLatihan aktif\nJeda\nLewati\nBerikutnya: Ringkasan\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nPanduan & sumber\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-jeda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 1\nKeluar\n00:57\nJalan Kaki\nDijeda · waktu tidak dihitung\nLanjutkan\nLewati\nBerikutnya: Ringkasan\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nPanduan & sumber\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-ringkasan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-tersimpan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nData berhasil disimpan.\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "waterBefore": 3500,
+  "waterAfter": 3750,
+  "activityBefore": 3,
+  "video": [
+    {
+      "paused": false,
+      "ready": 4,
+      "loop": true,
+      "w": 356
+    }
+  ],
+  "activityBeforeSave": 3,
+  "activityAfter": 4,
+  "row": "2\t1\tAktif 60 detik; selesai 1, dilewati 0; selesai. Program Uji v1; rincian sesi sementara."
+}

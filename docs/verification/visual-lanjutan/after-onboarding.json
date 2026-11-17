@@ -1,0 +1,27 @@
+{
+  "phase": "after",
+  "mode": "onboarding",
+  "screens": [
+    {
+      "name": "onboarding-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nBerapa lama waktu luang yang \nAnda miliki setiap hari?\nPilih durasi waktu luang terbesar yang realistis dapat \nAnda luangkan setiap hari (maksimal 4 jam).\nKurang dari 1 jam\n15-45 mnt\n1 jam\n60 mnt\n2 jam\n120 mnt\n3 jam\n180 mnt\n4 jam (Batas Maksimal)\n240 mnt\nBerikutnya →"
+    },
+    {
+      "name": "onboarding-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nBerapa lama waktu luang \nyang Anda miliki setiap hari?\nPilih durasi waktu luang terbesar yang realistis \ndapat Anda luangkan setiap hari (maksimal 4 jam).\nKurang dari 1 jam\n15-45 mnt\n1 jam\n60 mnt\n2 jam\n120 mnt\n3 jam\n180 mnt\n4 jam (Batas Maksimal)\n240 mnt\nBerikutnya →"
+    },
+    {
+      "name": "onboarding-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nBerapa lama waktu luang yang Anda miliki setiap hari?\nPilih durasi waktu luang terbesar yang realistis dapat Anda luangkan setiap hari (maksimal 4 jam).\nKurang dari 1 jam\n15-45 mnt\n1 jam\n60 mnt\n2 jam\n120 mnt\n3 jam\n180 mnt\n4 jam (Batas Maksimal)\n240 mnt\nBerikutnya →"
+    }
+  ]
+}

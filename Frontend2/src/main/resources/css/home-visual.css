@@ -1,0 +1,31 @@
+/* Scoped to Beranda. Images are decorative; all labels/actions remain native JavaFX controls. */
+.ui1.home-screen { -fx-spacing:18; -home-surface:#1F2937; -home-line:#374151; }
+.light .ui1.home-screen { -home-surface:#FFFFFF; -home-line:#DBE3EC; }
+.ui1.home-screen .label.home-text { -fx-text-fill:-sh-text; }
+.ui1.home-screen .label.home-brand { -fx-font-size:22; -fx-font-weight:bold; }
+.ui1.home-screen .label.home-muted { -fx-font-size:12; -fx-text-fill:-sh-muted; }
+.ui1.home-screen .home-button { -fx-cursor:hand; -fx-font-size:13; -fx-padding:8 12; -fx-background-radius:24; -fx-border-radius:24; -fx-background-color:-home-surface; -fx-text-fill:-sh-text; -fx-border-color:-home-line; -fx-border-width:1; }
+.ui1.home-screen .home-button:hover { -fx-border-color:#16B87A; }
+.ui1.home-screen .home-button:focused { -fx-border-color:#16B87A; -fx-border-width:2; -fx-effect: dropshadow(gaussian,rgba(22,184,122,0.3),6,0,0,0); }
+.ui1.home-screen .home-profile { -fx-min-width:64; }
+.ui1.home-screen .label.home-hero-heading { -fx-font-size:25; -fx-font-weight:bold; -fx-text-fill:#123D31; -fx-line-spacing:0; }
+.ui1.home-screen .label.home-badge { -fx-font-size:11; -fx-font-weight:bold; -fx-text-fill:#124D38; -fx-background-color:rgba(255,255,255,0.92); -fx-padding:5 9; -fx-background-radius:20; }
+.ui1.home-screen .home-primary { -fx-background-color:#126846; -fx-text-fill:white; -fx-font-weight:bold; -fx-border-color:#126846; -fx-min-height:46; }
+.ui1.home-screen .home-primary:hover { -fx-background-color:#0D5035; }
+.ui1.home-screen .home-habit-tile { -fx-padding:8; -fx-background-radius:18; -fx-border-radius:18; -fx-alignment:center-left; -fx-content-display:graphic-only; }
+.ui1.home-screen .label.home-habit-name { -fx-font-size:12; -fx-font-weight:bold; }
+.ui1.home-screen .label.home-habit-value { -fx-font-size:12; -fx-font-weight:normal; -fx-text-fill:-sh-muted; }
+.ui1.home-screen .label.home-section-title { -fx-font-size:20; -fx-font-weight:bold; }
+.ui1.home-screen .home-link { -fx-padding:6 0 6 8; -fx-background-color:transparent; -fx-border-color:transparent; -fx-font-size:12; -fx-text-fill:#46D5A0; }
+.light .ui1.home-screen .home-link { -fx-text-fill:#116846; }
+.ui1.home-screen .home-link:focused { -fx-border-color:#16B87A; }
+.ui1.home-screen .home-challenge-strip, .ui1.home-screen .home-challenge-strip > .viewport { -fx-background-color:transparent; -fx-padding:0; -fx-border-color:transparent; }
+.ui1.home-screen .home-challenge-card { -fx-background-color:-home-surface; -fx-background-radius:20; -fx-border-color:-home-line; -fx-border-radius:20; -fx-padding:10; }
+.ui1.home-screen .label.home-challenge-title { -fx-font-size:15; -fx-font-weight:bold; }
+.ui1.home-screen .label.home-challenge-status { -fx-font-size:12; -fx-text-fill:-sh-muted; }
+.ui1.home-screen .home-challenge-action { -fx-background-color:-sh-green-soft; -fx-text-fill:-sh-text; -fx-font-size:12; -fx-font-weight:bold; -fx-border-color:transparent; }
+.ui1.home-screen .home-progress { -fx-background-color:-home-surface; -fx-background-radius:20; -fx-border-color:-home-line; -fx-border-radius:20; -fx-padding:14; }
+.ui1.home-screen .home-chart-grid { -fx-stroke:-home-line; }
+.ui1.home-screen .home-chart-dot { -fx-fill:#16B87A; }
+.ui1.home-screen .home-chart-line { -fx-stroke:#16B87A; -fx-stroke-width:2.5; }
+.ui1.home-screen .label.home-chart-label { -fx-font-size:11; -fx-text-fill:-sh-muted; }

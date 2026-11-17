@@ -1,0 +1,17 @@
+version	schema_name
+13.0.2-MariaDB	sehatharian_test_recovery_20261111a
+table_name	engine
+training_checkpoint_slot	InnoDB
+training_checkpoint	InnoDB
+training_step	InnoDB
+training_session	InnoDB
+aktivitas	InnoDB
+pengguna_id	operation_id	session_id	activity_id	active_nanos	step_nanos	durasi_menit	status	revision	terminal_payload_cleared
+4	2bab5031-3610-426e-a450-a608dab0c77a	3	4	60000000000	60000000000	1	COMPLETED	27	1
+source	rows_for_owner
+aktivitas	1
+training_session	1
+Table	Create Table
+training_checkpoint	CREATE TABLE `training_checkpoint` (\n  `pengguna_id` int(11) NOT NULL,\n  `operation_id` char(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  `status` varchar(16) NOT NULL,\n  `holder_token` char(36) CHARACTER SET ascii COLLATE ascii_bin DEFAULT NULL,\n  `revision` bigint(20) NOT NULL,\n  `format_version` int(11) NOT NULL,\n  `payload` mediumblob DEFAULT NULL,\n  `payload_hash` char(64) DEFAULT NULL,\n  `checkpoint_at` datetime(3) NOT NULL DEFAULT current_timestamp(3),\n  PRIMARY KEY (`pengguna_id`,`operation_id`),\n  KEY `idx_checkpoint_owner_status` (`pengguna_id`,`status`),\n  CONSTRAINT `1` FOREIGN KEY (`pengguna_id`) REFERENCES `pengguna` (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+Table	Create Table
+training_checkpoint_slot	CREATE TABLE `training_checkpoint_slot` (\n  `pengguna_id` int(11) NOT NULL,\n  `operation_id` char(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,\n  PRIMARY KEY (`pengguna_id`),\n  KEY `pengguna_id` (`pengguna_id`,`operation_id`),\n  CONSTRAINT `1` FOREIGN KEY (`pengguna_id`, `operation_id`) REFERENCES `training_checkpoint` (`pengguna_id`, `operation_id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci

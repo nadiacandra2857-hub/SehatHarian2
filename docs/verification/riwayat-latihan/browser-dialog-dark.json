@@ -1,0 +1,28 @@
+{
+  "mode": "dialog-dark",
+  "db": "sehatharian_test_history_20261111a",
+  "screens": [
+    {
+      "name": "tautan-detail-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Catatan harian\nTanggal catatan\n11/11/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n9\nmenit aktif bergerak\nSaran: Tambah 21 menit lagi untuk mencapai \nrekomendasi harian 30 menit.\nJenis aktivitas\nPilih atau tulis nama aktivitas\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\nDurasi (menit)\nKeterangan (opsional)\nKeterangan / Lokasi\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 60 detik; selesai 1; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 60 detik; selesai 1; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n2\nKeterangan\nOnly legacy description\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nJenis Aktivitas\nDurasi (Menit)\n1\nKeterangan\nAktif 63 detik; selesai 2; rincian tersedia \ndi Riwayat latihan.\nAksi\nHapus\nMinum\nAktivitas\nMakan\nBeranda\nCatatan\nProgres\nLainnya\nTutup\nRincian latihan\nCatatan aktivitas\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu \nkonfirmasi tidak dihitung. Durasi total dihitung sebelum \npembulatan waktu tiap langkah.\nRincian latihan"
+    }
+  ],
+  "modalSizing": [
+    {
+      "width": 390,
+      "close": {
+        "x": 276,
+        "y": 741.9099731445312,
+        "width": 33.625,
+        "height": 15,
+        "top": 741.9099731445312,
+        "right": 309.625,
+        "bottom": 756.9099731445312,
+        "left": 276
+      }
+    }
+  ]
+}

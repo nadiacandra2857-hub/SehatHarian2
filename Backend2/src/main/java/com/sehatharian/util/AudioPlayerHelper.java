@@ -10,7 +10,9 @@ public final class AudioPlayerHelper implements AudioOutput {
     private final boolean browser;
     private final Map<String, MediaPlayer> players = new HashMap<>();
     private boolean closed;
-    public AudioPlayerHelper(boolean browser) { this.browser = browser; }
+    private final java.util.function.Consumer<String> events;
+    public AudioPlayerHelper(boolean browser) { this(browser, ignored -> {}); }
+    public AudioPlayerHelper(boolean browser, java.util.function.Consumer<String> events) { this.browser = browser; this.events = events; }
     @Override public boolean supportsPlayback() { return !browser; }
     @Override public synchronized void play(String resource, double volume) {
         if (closed || browser) return;
@@ -18,16 +20,19 @@ public final class AudioPlayerHelper implements AudioOutput {
             MediaPlayer player = players.get(resource);
             if (player == null) {
                 var url = getClass().getResource(resource);
-                if (url == null) return;
+                if (url == null) { events.accept("BLOCKED"); return; }
                 player = new MediaPlayer(new Media(url.toExternalForm()));
-                player.setOnError(() -> System.err.println("Audio desktop tidak tersedia; gunakan notifikasi visual."));
+                player.setOnError(() -> events.accept("BLOCKED"));
+                player.setOnPlaying(() -> events.accept("PLAYING"));
+                player.setOnEndOfMedia(() -> events.accept("ENDED"));
+                player.setStopTime(javafx.util.Duration.seconds(6));
                 players.put(resource, player);
             }
             player.stop();
             player.setVolume(volume);
             player.play();
         } catch (RuntimeException | LinkageError e) {
-            System.err.println("Audio desktop tidak tersedia; notifikasi visual tetap digunakan.");
+            events.accept("BLOCKED");
         }
     }
     @Override public synchronized void stop() {

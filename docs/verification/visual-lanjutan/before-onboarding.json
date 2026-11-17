@@ -1,0 +1,13 @@
+{
+  "phase": "before",
+  "mode": "onboarding",
+  "screens": [
+    {
+      "name": "onboarding-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nBerapa lama waktu luang yang \nAnda miliki setiap hari?\nPilih durasi waktu luang terbesar yang realistis dapat \nAnda luangkan setiap hari (maksimal 4 jam).\nKurang dari 1 jam\nCocok untuk peregangan singkat atau jalan \nsantai 15–30 menit di sela aktivitas padat.\n15-45 mnt\n1 jam\nIdeal untuk rutinitas jalan kaki harian dan latihan \nfisik teratur di rumah.\n60 mnt\n2 jam\nCukup leluasa untuk kombinasi olahraga kardio, \npersiapan makan bergizi, dan istirahat rileks.\n120 mnt\n3 jam\nWaktu yang sangat baik untuk rutinitas olahraga \nkomprehensif dan pemulihan kebugaran.\n180 mnt\n4 jam (Batas Maksimal)\nWaktu luang maksimal untuk variasi olahraga \nluar dan dalam ruangan tanpa mengganggu jam \ntidur.\n240 mnt\nBerikutnya →"
+    }
+  ]
+}

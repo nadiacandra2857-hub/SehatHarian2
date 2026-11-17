@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
+<?import com.sehatharian.util.WellnessArt?>
 <?import javafx.scene.layout.HBox?>
 <?import com.sehatharian.util.AdaptiveRow?>
 <?import javafx.scene.layout.Priority?>
@@ -22,6 +23,7 @@
 
     <StackPane alignment="CENTER" style="-fx-padding: 32 20;">
         <VBox styleClass="onboarding-card" spacing="22.0" maxWidth="720.0">
+            <WellnessArt category="routine" prefHeight="64" maxHeight="64"/>
 
             <!-- HEADER & PROGRESS BAR -->
             <VBox spacing="12.0">
@@ -59,7 +61,7 @@
 
                         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                             <Label text="Kurang dari 1 jam" styleClass="onboarding-option-title" wrapText="true"/>
-                            <Label text="Cocok untuk peregangan singkat atau jalan santai 15–30 menit di sela aktivitas padat." styleClass="onboarding-option-desc" wrapText="true"/>
+
                         </VBox>
                         <Label text="15-45 mnt" styleClass="preference-badge-amber" wrapText="true"/>
                     </AdaptiveRow>
@@ -69,7 +71,7 @@
 
                         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                             <Label text="1 jam" styleClass="onboarding-option-title" wrapText="true"/>
-                            <Label text="Ideal untuk rutinitas jalan kaki harian dan latihan fisik teratur di rumah." styleClass="onboarding-option-desc" wrapText="true"/>
+
                         </VBox>
                         <Label text="60 mnt" styleClass="preference-badge-green" wrapText="true"/>
                     </AdaptiveRow>
@@ -79,7 +81,7 @@
 
                         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                             <Label text="2 jam" styleClass="onboarding-option-title" wrapText="true"/>
-                            <Label text="Cukup leluasa untuk kombinasi olahraga kardio, persiapan makan bergizi, dan istirahat rileks." styleClass="onboarding-option-desc" wrapText="true"/>
+
                         </VBox>
                         <Label text="120 mnt" styleClass="preference-badge-green" wrapText="true"/>
                     </AdaptiveRow>
@@ -89,7 +91,7 @@
 
                         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                             <Label text="3 jam" styleClass="onboarding-option-title" wrapText="true"/>
-                            <Label text="Waktu yang sangat baik untuk rutinitas olahraga komprehensif dan pemulihan kebugaran." styleClass="onboarding-option-desc" wrapText="true"/>
+
                         </VBox>
                         <Label text="180 mnt" styleClass="preference-badge-blue" wrapText="true"/>
                     </AdaptiveRow>
@@ -99,7 +101,7 @@
 
                         <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                             <Label text="4 jam (Batas Maksimal)" styleClass="onboarding-option-title" wrapText="true"/>
-                            <Label text="Waktu luang maksimal untuk variasi olahraga luar dan dalam ruangan tanpa mengganggu jam tidur." styleClass="onboarding-option-desc" wrapText="true"/>
+
                         </VBox>
                         <Label text="240 mnt" styleClass="preference-badge-blue" wrapText="true"/>
                     </AdaptiveRow>
@@ -125,16 +127,16 @@
                             <ImageView fx:id="imgOutdoorView" fitWidth="42.0" fitHeight="42.0" preserveRatio="true"/>
                             <VBox spacing="1.0" HBox.hgrow="ALWAYS">
                                 <Label text="Outdoor" styleClass="onboarding-option-title" style="-fx-font-size: 16px;" wrapText="true"/>
-                                <Label text="Aktivitas di Luar Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #202121; -fx-font-weight: 600;" wrapText="true"/>
+                                <Label text="Aktivitas di Luar Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #9CA3AF; -fx-font-weight: 600;" wrapText="true"/>
                             </VBox>
 
                         </AdaptiveRow>
 
                         <VBox spacing="5.0" style="-fx-padding: 4 0 0 0;">
-                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
-                            <Label text="• Berjalan kaki di taman atau rute sekitar rumah" style="-fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
-                            <Label text="• Jogging santai pagi atau sore hari" style="-fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
-                            <Label text="• Bersepeda keliling kompleks perumahan" style="-fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #E5E7EB;" wrapText="true"/>
+                            <Label text="• Berjalan kaki di taman atau rute sekitar rumah" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
+                            <Label text="• Jogging santai pagi atau sore hari" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
+                            <Label text="• Bersepeda keliling kompleks perumahan" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
                         </VBox>
                     </VBox>
 
@@ -144,16 +146,16 @@
                             <ImageView fx:id="imgIndoorView" fitWidth="42.0" fitHeight="42.0" preserveRatio="true"/>
                             <VBox spacing="1.0" HBox.hgrow="ALWAYS">
                                 <Label text="Indoor" styleClass="onboarding-option-title" style="-fx-font-size: 16px;" wrapText="true"/>
-                                <Label text="Aktivitas di Dalam Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #202121; -fx-font-weight: 600;" wrapText="true"/>
+                                <Label text="Aktivitas di Dalam Ruangan" style="-fx-font-size: 11.5px; -fx-text-fill: #9CA3AF; -fx-font-weight: 600;" wrapText="true"/>
                             </VBox>
 
                         </AdaptiveRow>
 
                         <VBox spacing="5.0" style="-fx-padding: 4 0 0 0;">
-                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
-                            <Label text="• Peregangan otot dan mobilitas tubuh di rumah" style="-fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
-                            <Label text="• Latihan beban tubuh ringan (bodyweight workout)" style="-fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
-                            <Label text="• Yoga dan latihan relaksasi pernapasan" style="-fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                            <Label text="Contoh anjuran aktivitas:" style="-fx-font-size: 11.5px; -fx-font-weight: bold; -fx-text-fill: #E5E7EB;" wrapText="true"/>
+                            <Label text="• Peregangan otot dan mobilitas tubuh di rumah" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
+                            <Label text="• Latihan beban tubuh ringan (bodyweight workout)" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
+                            <Label text="• Yoga dan latihan relaksasi pernapasan" style="-fx-font-size: 12px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
                         </VBox>
                     </VBox>
                 </AdaptiveRow>

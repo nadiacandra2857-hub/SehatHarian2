@@ -1,0 +1,11 @@
+{
+  "final_zip_started": true,
+  "login": true,
+  "themes": true,
+  "manifest_files_verified": 365,
+  "cleanup": [
+    "final JPro stopped",
+    "Chromium test stopped",
+    "isolated MariaDB stopped"
+  ]
+}

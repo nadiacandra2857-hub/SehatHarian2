@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="nutritionRoot" styleClass="ui2" stylesheets="@../css/ui2.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sehatharian.controller.NutrisiController">
+    <center><ScrollPane fx:id="nutritionScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="ui2"><StackPane alignment="TOP_CENTER"><VBox fx:id="page"/></StackPane></ScrollPane></center>
+    <bottom><VBox fx:id="entryActions" visible="false" managed="false"/></bottom>
+</BorderPane>

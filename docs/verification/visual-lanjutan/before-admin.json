@@ -1,0 +1,13 @@
+{
+  "phase": "before",
+  "mode": "admin",
+  "screens": [
+    {
+      "name": "admin-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Kelola konten\nDraft → Ditinjau → Diterbitkan → Diarsipkan · katalog gizi impor \ndikelola terpisah\nJenis konten\nMOVEMENT\nPencarian judul\nCari konten\nBuat konten baru\nJalan Kaki revisi · v2 · PUBLISHED\nJalan Kaki · v1 · SUPERSEDED\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ]
+}

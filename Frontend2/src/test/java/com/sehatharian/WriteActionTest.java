@@ -52,12 +52,10 @@ class WriteActionTest {
         assertNull(displayed);assertEquals(1,form.size());assertEquals(2,f.session.getUserId());assertEquals(1,f.db.commits);
         release();assertEquals(List.of(true),busy);assertFalse(action.isRunning());
     }
-    @Test void partialSleepDoesNotClearOrRepeatPrimarySave() throws Exception {
-        f.db.failExecutionNumber=2;
-        action.execute(()->f.tidur().catatDenganEvaluasi(1,LocalDate.of(2026,10,31),LocalTime.of(23,0),LocalTime.of(2,0),true,f.evaluasi()),this::render,busy::add);
+    @Test void partialWorkflowDoesNotClearOrRepeatPrimarySave() throws Exception {
+        action.execute(()->{save();return new WriteResult<>(PARSIAL,null,java.util.List.of(new WriteResult.Step("Primary",BERHASIL),new WriteResult.Step("Followup",GAGAL)));},this::render,busy::add);
         assertEquals(PARSIAL,displayed.status());assertEquals(1,form.size());assertTrue(action.reviewRequired());release();
-        assertFalse(action.execute(this::save,this::render,busy::add));
-        assertEquals(1,f.db.table("jadwal_tidur").size());assertEquals(2,f.db.executions);
+        assertFalse(action.execute(this::save,this::render,busy::add));assertEquals(1,f.db.executions);
     }
     @Test void validationRemainsValidationAndReleasesGateWithoutStorageMessage() {
         assertThrows(IllegalArgumentException.class,()->action.execute(()->{throw new IllegalArgumentException("Synthetic validation");},this::render,busy::add));

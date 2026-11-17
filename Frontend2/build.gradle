@@ -90,3 +90,8 @@ test {
 tasks.named('run', JavaExec) {
     workingDir rootProject.projectDir
 }
+
+// Canonical team source, packaged once under the media namespace.
+processResources {
+    from(rootProject.file('DatasetAktivitas')) { include '*.mp4'; into 'media/team' }
+}

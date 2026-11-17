@@ -1,0 +1,27 @@
+{
+  "phase": "after",
+  "mode": "admin",
+  "screens": [
+    {
+      "name": "admin-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Kelola konten\nTentang halaman ini\nJenis konten\nMOVEMENT\nPencarian judul\nCari konten\nBuat konten baru\nJalan Kaki revisi · PUBLISHED · v2\nJalan Kaki · SUPERSEDED · v1\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "admin-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Kelola konten\nTentang halaman ini\nJenis konten\nMOVEMENT\nPencarian judul\nCari konten\nBuat konten baru\nJalan Kaki revisi · PUBLISHED · v2\nJalan Kaki · SUPERSEDED · v1\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "admin-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nAdmin konten\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Admin\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nKelola konten\nTentang halaman ini\nJenis konten\nMOVEMENT\nPencarian judul\nCari konten\nBuat konten baru\nJalan Kaki revisi · PUBLISHED · v2\nJalan Kaki · SUPERSEDED · v1"
+    }
+  ]
+}

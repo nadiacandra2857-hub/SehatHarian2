@@ -1,0 +1,34 @@
+/* Shared composition for mobile refinement; uses the existing light/dark semantic tokens. */
+.habit-date-row { -fx-spacing:8; }
+.ui2 .habit-date-row .button { -fx-padding:4 10; -fx-font-size:20; }
+.ui2 .habit-date-row .date-picker { -fx-pref-height:44; }
+.home-screen .ui1-heading { -fx-font-size:25; }
+.home-screen .home-habit { -fx-padding:14; -fx-spacing:6; -fx-min-height:104; }
+.home-screen .home-habit .ui1-muted { -fx-font-size:12; }
+.home-screen .home-hero { -fx-background-color:-sh-green-soft; -fx-border-color:transparent; -fx-padding:18; -fx-min-height:146; }
+.home-screen .home-hero-title { -fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:-sh-text; }
+.home-screen .recording-track { -fx-stroke:-sh-line; }
+.home-screen .home-shortcuts .button { -fx-min-height:48; -fx-font-size:14; -fx-background-radius:24; }
+.ui2 .hydration-page, .ui2 .nutrition-page { -fx-padding:18 18 24 18; -fx-spacing:14; }
+.water-stage { -fx-padding:2 0; -fx-min-height:260; }
+.water-bowl { -fx-fill:#E0F3FF; -fx-stroke:#CAE8F8; -fx-stroke-width:1; }
+.water-fill { -fx-fill:#53B8F3; }
+.ui2 .hydration-page .button.water-add { -fx-background-color:#319EE8; -fx-text-fill:white; -fx-background-radius:28; -fx-border-radius:28; -fx-border-color:transparent; -fx-font-size:20; -fx-font-weight:bold; -fx-min-height:52; }
+.ui2 .hydration-page .button.volume-choice { -fx-min-height:76; -fx-padding:8 3; -fx-font-size:12; -fx-background-color:-ui-elevated; -fx-border-color:transparent; -fx-background-radius:14; -fx-border-radius:14; }
+.ui2 .hydration-page .button.volume-choice.selected { -fx-background-color:-sh-cyan-soft; -fx-border-color:-sh-cyan; }
+.ui2 .hydration-page .button.volume-choice .svg-icon { -fx-fill:#319EE8; }
+.nutrition-summary { -fx-padding:0 8 10 8; -fx-spacing:8; }
+.nutrition-summary .habit-note { -fx-font-size:12; }
+.ui2 .meal-group { -fx-background-color:-ui-card; -fx-background-radius:16; -fx-padding:12; -fx-border-radius:16; -fx-border-color:-ui-line; }
+.ui2 .meal-group .card-title { -fx-font-size:14; }
+.ui2 .nutrition-page .button.meal-add { -fx-min-width:44; -fx-padding:3; -fx-font-size:24; -fx-text-fill:-sh-green; -fx-background-color:transparent; -fx-border-color:transparent; }
+.ui2 .nutrition-page .button.meal-history-link { -fx-padding:3 0; -fx-font-size:12; -fx-background-color:transparent; -fx-border-color:transparent; -fx-text-fill:-sh-green; }
+.entry-action-bar { -fx-padding:10 16; -fx-background-color:-ui-card; -fx-border-color:-ui-line; -fx-border-width:1 0 0 0; }
+.ui2 .entry-action-bar .btn-primary { -fx-background-color:-sh-green; -fx-text-fill:#122034; -fx-font-weight:bold; -fx-background-radius:24; -fx-border-radius:24; -fx-border-color:transparent; }
+.ui2.training-session { -fx-spacing:12; }
+.ui2.training-session .session-movement { -fx-font-size:20; -fx-font-weight:bold; }
+.ui2 .session-controls .button { -fx-min-height:54; -fx-background-radius:28; -fx-border-radius:28; }
+.ui2 .session-controls .session-primary { -fx-background-color:-sh-green-soft; -fx-text-fill:-sh-text; -fx-border-color:-sh-green; -fx-font-size:18; -fx-font-weight:bold; }
+.ui2.training-session .progress-bar { -fx-pref-height:5; -fx-max-height:5; }
+
+.water-fill { -fx-stroke:transparent; }

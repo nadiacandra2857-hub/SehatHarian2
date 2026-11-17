@@ -1,0 +1,75 @@
+{
+  "database": "sehatharian_test_ux_20261104",
+  "owner": 1,
+  "checks": [
+    {
+      "state": "after-history",
+      "width": 1440,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 1135,
+          "y": 77,
+          "w": 123,
+          "h": 40
+        }
+      }
+    },
+    {
+      "state": "after-history",
+      "width": 768,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 159,
+          "y": -60,
+          "w": 490,
+          "h": 40
+        }
+      }
+    },
+    {
+      "state": "after-history",
+      "width": 390,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 41,
+          "y": -855,
+          "w": 281,
+          "h": 40
+        }
+      }
+    },
+    {
+      "state": "after-history",
+      "width": 360,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 61,
+          "y": -301,
+          "w": 214,
+          "h": 40
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "after-history-1440",
+    "after-history-controls-1440",
+    "after-history-768",
+    "after-history-controls-768",
+    "after-history-390",
+    "after-history-controls-390",
+    "after-history-360",
+    "after-history-controls-360",
+    "after-history-rows-1440"
+  ],
+  "history": "NC\nProfil\nKeluar\nCATATAN HARIAN\nKebiasaan harian\nCatat asupan hidrasi air putih, durasi bergerak aktif, dan pola makan bergizi untuk memantau konsistensi Anda.\nTanggal catatan\n11/4/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n21\nmenit aktif bergerak\nSaran: Tambah 9 menit lagi untuk mencapai rekomendasi harian 30 menit.\nJenis aktivitas\nPilih atau tulis nama aktivitas\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\nDurasi (menit)\nKeterangan (opsional)\nKeterangan / Lokasi\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\nKeterangan\nAksi\nLatihan RepDB\n1\nAktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian ...\nHapus\nJalan santai pagi\n20\nKeliling perumahan sebelum berangkat kerja\nHapus\nMinum\nAktivitas\nMakan",
+  "countAfterReopen": 2
+}

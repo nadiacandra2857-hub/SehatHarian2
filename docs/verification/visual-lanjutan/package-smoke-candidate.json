@@ -1,0 +1,42 @@
+{
+  "phase": "package",
+  "mode": "smoke",
+  "screens": [
+    {
+      "name": "profil-schema-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Profil & pengaturan\nIdentitas & rutinitas\nNama Lengkap:\nFixture Alpha\nTanggal Lahir:\nWaktu luang (menit):\n30\nMembatasi durasi pilihan aktivitas.\nKelompok usia\nDewasa (18 - 59 Tahun)\nDewasa (18–59 tahun) atau Lansia (≥ 60 tahun).\nRutinitas harian\nDi Dalam Rumah\nPekerja di luar rumah (mobilitas tinggi) atau di dalam rumah \n(WFH / domestik).\n↺ Muat Ulang\nSimpan Perubahan Profil\nKoneksi layanan\nURL Koneksi JDBC:\njdbc:mysql://127.0.0.1:13317/sehathar\nian_test_rombak_visual_release_202611\n10a?useSSL=false&allowPublicKeyRetrie\nval=true&serverTimezone=Asia/Jakarta&\nconnectTimeout=1500&socketTimeout=200\n0\nStatus Koneksi:\n✓ Terhubung (MySQL 8.0)\nUji Koneksi Ulang\nCakupan layanan\nProfil, catatan kebiasaan, jadwal, tantangan dan evaluasi.\nDiagnostik koneksi\nSesi akun\nKeluar mengakhiri sesi dan menutup data pribadi pada \nperangkat ini.\nKeluar dari akun\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "beranda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3750 ml\nNutrisi\n1 catatan\nAktivitas\n2 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nJalan Kaki Ringan Pagi\nBelum selesai\nBuka tantangan\nWorkout Penguat Inti di R...\nBelum selesai\nBuka tantangan\nTantangan Hidrasi 2 Liter\nBelum selesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "hidrasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3750\nml tercatat\n3750 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Latihan\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nLihat gerakan · Flutter Kicks\nJalan Kaki\nLihat gerakan · Jalan Kaki\nJogging\nLihat gerakan · Jogging\nMountain Climbers\nLihat gerakan · Mountain Climbers\nPush-up\nLihat gerakan · Push-up\nSit-up\nLihat gerakan · Sit-up\nSumo Squat\nLihat gerakan · Sumo Squat\nTricep Dip\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "onboarding-kontras-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nBerapa lama waktu luang yang \nAnda miliki setiap hari?\nPilih durasi waktu luang terbesar yang realistis dapat \nAnda luangkan setiap hari (maksimal 4 jam).\nKurang dari 1 jam\n15-45 mnt\n1 jam\n60 mnt\n2 jam\n120 mnt\n3 jam\n180 mnt\n4 jam (Batas Maksimal)\n240 mnt\nBerikutnya →"
+    }
+  ],
+  "schemaVisible": true
+}

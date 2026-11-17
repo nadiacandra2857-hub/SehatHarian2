@@ -60,33 +60,29 @@ public class AktivitasRepository extends OwnedRepository {
 
     public int simpan(Aktivitas a) throws SQLException {
         access.owner(a.getPenggunaId());
+        var tx=new WriteTransaction(access,connections);
+        try{return tx.confirm(simpanDalamTransaksi(tx.open(),tx,a));}
+        catch(SQLException e){return tx.recover(e);}
+        catch(RuntimeException e){tx.abort();throw e;}
+        finally{tx.close();}
+    }
 
-        WriteTransaction tx = new WriteTransaction(access, connections);
-        try {
+    /** Caller owns the transaction; this method never opens, commits or closes its connection. */
+    public int simpanDalamTransaksi(Connection conn, WriteTransaction tx, Aktivitas a) throws SQLException {
+        access.owner(a.getPenggunaId());
+        try(var ps=conn.prepareStatement("INSERT INTO aktivitas(pengguna_id,tanggal,jenis_aktivitas,durasi_menit,keterangan) VALUES(?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS)){
+            ps.setInt(1,access.owner());ps.setDate(2,Date.valueOf(a.getTanggal()));ps.setString(3,a.getJenisAktivitas());ps.setInt(4,a.getDurasiMenit());ps.setString(5,a.getKeterangan());
+            if(tx.execute(ps)!=1)throw new SQLException("Aktivitas belum tersimpan.");
+            try(var r=ps.getGeneratedKeys()){if(r.next()&&r.getInt(1)>0)return r.getInt(1);}
+            throw new SQLException("ID aktivitas belum tersedia.");
+        }
+    }
 
-            String sql = "INSERT INTO aktivitas (pengguna_id, tanggal, jenis_aktivitas, durasi_menit, keterangan) " +
-                         "VALUES (?, ?, ?, ?, ?)";
-            Connection conn = tx.open();
-            try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, access.owner());
-                ps.setDate(2, Date.valueOf(a.getTanggal()));
-                ps.setString(3, a.getJenisAktivitas());
-                ps.setInt(4, a.getDurasiMenit());
-                ps.setString(5, a.getKeterangan());
-
-                if (tx.execute(ps) <= 0) throw new SQLException("Penyimpanan belum dikonfirmasi.");
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        int genId = rs.getInt(1);
-                        if (genId <= 0) throw new SQLException("ID penyimpanan belum dikonfirmasi.");
-                        return tx.confirm(genId);
-                    }
-                }
-            }
-            throw new SQLException("Penyimpanan belum dikonfirmasi.");
-        } catch (SQLException e) { return tx.recover(e); }
-        catch (RuntimeException e) { tx.abort(); throw e; }
-        finally { tx.close(); }
+    public Aktivitas getById(int id) throws SQLException {
+        try(var c=open();var p=c.prepareStatement("SELECT * FROM aktivitas WHERE id=? AND pengguna_id=?")){
+            p.setInt(1,id);p.setInt(2,access.owner());
+            try(var r=p.executeQuery()){return access.result(r.next()?mapResultSetToAktivitas(r):null);}
+        }
     }
 
     public boolean hapus(int id, int penggunaId) throws SQLException {

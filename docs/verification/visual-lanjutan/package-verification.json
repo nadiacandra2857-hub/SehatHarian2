@@ -1,0 +1,18 @@
+{
+  "zip": "/home/adhitya/Documents/projekpbo/BARU/SehatHarian2-github/rilis/SehatHarian-Rombak.zip",
+  "sha256": "f415001a9f690360283df8e6b05a26462da62096176fe2c45106d04bbd33164a",
+  "files": 638,
+  "extracted": "/tmp/sehatharian-visual-final-eei135tk/SehatHarian",
+  "schema": "sehatharian_test_rombak_visual_release_20261110b",
+  "crc": "passed",
+  "manifest": "all hashes passed",
+  "touch_header_rule": "44px explicit; included in final payload",
+  "status": "passed",
+  "source_matches_archive": true,
+  "sanitized_db_properties": true,
+  "private_env_and_runtime_excluded": true,
+  "browser_smoke": "5 screens, real login, expected final isolated schema verified",
+  "checksums_unchanged_after_launcher_test": true,
+  "source_evidence": "acceptance-summary.json (71 screens, 266 unit, 8 parser)",
+  "package_evidence": "package-launch.log, package-smoke.json, package-browser.log"
+}

@@ -1,0 +1,97 @@
+{
+  "phase": "before",
+  "mode": "matrix",
+  "screens": [
+    {
+      "name": "beranda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3500 ml\nNutrisi\n1 catatan\nAktivitas\n1 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "hidrasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tidur-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur\nPisahkan rencana istirahat dari tidur yang benar-benar \nterjadi\nCatatan tidur aktual\nTanggal mulai tidur\n11/9/2026\nJam tidur (HH:mm)\n22:00\nTanggal bangun\n11/10/2026\nJam bangun (HH:mm)\n06:00\nUntuk melewati tengah malam, pilih tanggal \nbangun berikutnya. Catatan dikelompokkan \nberdasarkan tanggal bangun.\nSimpan tidur aktual\nRiwayat aktual · 30 hari\n2026-11-10 · 23:00 → 03:00 · 4.00 jam\nJadwal tidur & pengingat (rencana)\nPengingat desktop memerlukan aplikasi aktif. Web \nmenampilkan notifikasi selama sesi/tab tersambung; \nsuara/getar dan alarm setelah aplikasi ditutup tidak dijamin.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "nutrisi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129\nkkal tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), \nCC-BY-4.0. Katalog komposisi terpisah dari resep dan \ninspirasi menu.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nLatihan berpemandu\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nVideo tim · target dapat diatur\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nVideo tim · target dapat diatur\nLihat gerakan · Flutter Kicks\nJalan Kaki\nVideo tim · target dapat diatur\nLihat gerakan · Jalan Kaki\nJogging\nVideo tim · target dapat diatur\nLihat gerakan · Jogging\nMountain Climbers\nVideo tim · target dapat diatur\nLihat gerakan · Mountain Climbers\nPush-up\nVideo tim · target dapat diatur\nLihat gerakan · Push-up\nSit-up\nVideo tim · target dapat diatur\nLihat gerakan · Sit-up\nSumo Squat\nVideo tim · target dapat diatur\nLihat gerakan · Sumo Squat\nTricep Dip\nVideo tim · target dapat diatur\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tantangan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTantangan & bacaan\nKonten terbit · pilihan dari katalog umum, bukan saran \npersonal\nMuat ulang konten\nAir 1000 ml\nhydration|1000\nVersi 1 · CHALLENGE · inspirasi umum\nIkuti tantangan hari ini\nAir 500 ml\nhydration|500\nVersi 1 · CHALLENGE · inspirasi umum\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n2026-11-10 · 1000.0 ml\nDipilih sendiri dari katalog umum. Lengkapi profil, \nkelompok usia, rutinitas, dan waktu luang \ntersimpan.\nBelum selesai\nPeriksa catatan & selesaikan\nAir 500 ml\n2026-11-10 · 500.0 ml\nDipilih sendiri dari katalog umum. Lengkapi profil, \nkelompok usia, rutinitas, dan waktu luang \ntersimpan.\nSelesai\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "rekomendasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nKatalog & inspirasi umum. Filter di halaman ini untuk \nmenjelajah; saran personal tervalidasi tersedia di Progres.\nPILIHAN KEBIASAAN\nRekomendasi untuk rutinitasmu\nPilihan aktivitas dan menu berdasarkan filter profil. Kartu \nlatihan berupa deskripsi; sesi berpemandu belum \ntersedia.\n5 Rekomendasi Tersedia\nSesuai kriteria filter\nKatalog dari database.\nMuat Katalog Database\nPratinjau Data Contoh\nSesuaikan pilihan\nSesuaikan dengan waktu luang aktual dan rutinitas kerja \nAnda hari ini\nAtur Ulang Filter\nKetersediaan Waktu Luang:\n30 Menit\nAktivitas dijamin ≤ 30 menit\nTipe Rutinitas Kerja:\nPekerja Dari Rumah / Domestik\nDalam rumah (WFH) vs luar kantor\nKelompok Usia Pengguna:\nDewasa\nPenyesuaian intensitas fisik\nKategori Rekomendasi:\nSemua\nAktivitas\nMenu\nLatihan rumah\nAKTIVITAS\n5 Menit\nSemua Usia • Semua Rutinitas\nKatalog database\nPernapasan Diafragma 5 Menit\nDuduk tegak, tarik napas dalam 4 detik, tahan 4 detik, \ndan hembuskan perlahan 6 detik untuk menurunkan \nstres.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan \nusia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah \nilustrasi suasana, bukan panduan teknik.\nAKTIVITAS\n25 Menit\nSemua Usia • Di Dalam Rumah\nKatalog database\nJalan Kaki Sore 25 Menit\nBerjalan santai mengelilingi perumahan sambil \nmenikmati udara sore yang segar.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan \nusia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah \nilustrasi suasana, bukan panduan teknik.\nAKTIVITAS\n15 Menit\nDewasa • Semua Rutinitas\nKatalog database\nPeregangan Otot Kaki & Betis\nRegangkan otot betis dan paha belakang setelah \nduduk lama bekerja.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan \nusia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah \nilustrasi suasana, bukan panduan teknik.\nMENU SEHAT\n10 Menit\nDewasa • Di Dalam Rumah\nKatalog database\nSarapan Oatmeal Pisang & Madu\nSemangkuk oatmeal hangat dengan irisan pisang, \ntaburan biji chia, dan satu sendok teh madu alami.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan \nusia yang dipilih. Preferensi bahan, porsi dan pantangan belum \ndimodelkan.\nLatihan fisik\nWORKOUT\n20 Menit\nDewasa • Di Dalam Rumah\nKatalog database\nWorkout HIIT Ringan Tanpa Lompat (Low \nImpact)\nVariasi gerakan squat perlahan, march in place, dan \nwall push-up untuk membakar kalori tanpa beban \nsendi.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan \nusia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah \nilustrasi suasana, bukan panduan teknik.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "progres-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nProgres kebiasaan\nNilai tercatat per kebiasaan · hari tanpa catatan tidak \ndianggap nol\nPeriode (hari)\n7\nTanggal akhir\n11/10/2026\nMuat progres\nTidur aktual\n1 / 7 hari tercatat · jam aktual\n2026-11-10\njam aktual\n0\n1\n2\n3\n4\n5\nEvaluasi 7 hari · INSUFFICIENT\n\n\n1/7 hari tercatat; aturan proyek memerlukan \nminimal 3 hari per kebiasaan untuk saran. \nLengkapi catatan.\nHidrasi\n2 / 7 hari tercatat · ml\n2026-11-09\n2026-11-10\nml\n0\n500\n1,000\n1,500\n2,000\n2,500\n3,000\n3,500\n4,000\nEvaluasi 7 hari · INSUFFICIENT\n\n\n2/7 hari tercatat; aturan proyek memerlukan \nminimal 3 hari per kebiasaan untuk saran. \nLengkapi catatan.\nNutrisi\n1 / 7 hari tercatat · catatan makan\n2026-11-10\ncatatan makan\n0.00\n0.25\n0.50\n0.75\n1.00\n1.25\nEvaluasi 7 hari · INSUFFICIENT\n\n\nIsi pola makan dan pantangan (tulis tidak ada bila \ntidak memiliki) di Progres.\nAktivitas\n3 / 7 hari tercatat · menit\n2026-11-08\n2026-11-09\n2026-11-10\nmenit\n0\n5\n10\n15\n20\n25\nEvaluasi 7 hari · READY\n\n\n3/7 hari tercatat, rata-rata 13.7 menit pada hari \ntercatat (2026-11-04–2026-11-10). Profil \ntersimpan: dewasa, dalam_rumah, waktu luang \n30 menit. Pilih satu aktivitas dalam waktu luang; \ndurasi kandidat bukan durasi total program.\nPernapasan Diafragma 5 Menit · 5 menit\nJalan Kaki Sore 25 Menit · 25 menit\nPeregangan Otot Kaki & Betis · 15 menit\nPreferensi nutrisi tersimpan\nPola makan\nPantangan / alergi (atau tidak ada)\nSimpan preferensi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "catatan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nCATATAN HARIAN\nKebiasaan harian\nCatat asupan hidrasi air putih, durasi bergerak aktif, dan \npola makan bergizi untuk memantau konsistensi Anda.\nTanggal catatan\n11/10/2026\nHari ini\nTotal Asupan Air Minum Hari terpilih\n3,500\nml · acuan aplikasi 2.000 ml\n+250 ml (1 Gelas)\n+500 ml (Botol)\n+600 ml\nJumlah air (ml)\nJumlah ml (misal 300)\nCatatan (opsional)\nCatatan (opsional)\nTambah Air\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n125 ml (0.13 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nWater Tracker\nAksi\nHapus\nJumlah Air\n500 ml (0.50 L)\nCatatan / Waktu Minum\nfixture\nAksi\nHapus\nMinum\nAktivitas\nMakan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tantangan-lama-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTANTANGAN & RIWAYAT\nLangkah kecil hari ini\nPilih kategori untuk melihat detail dan status. Gunakan \ntanggal untuk membuka riwayat.\nTanggal:\n11/10/2026\nHari Ini\nKemajuan Tantangan 10 Nov 2026\n0 dari 3 tantangan berhasil diselesaikan\n0%\nKategori:\nSemua\nJalan Kaki\nLatihan rumah\nPeregangan\nMinum & makan\nJALAN KAKI\n15 Menit\nDISARANKAN\nJalan Kaki Ringan Pagi\nLuangkan waktu untuk berjalan santai di sekitar rumah \natau kantor selama 15 menit untuk memompa sirkulasi \ndarah.\nSelesaikan\nLewati\nWORKOUT DI RUMAH\n20 Menit\nDISARANKAN\nWorkout Penguat Inti di Rumah\nGerakan peregangan dan penguatan otot dasar: plank \nlembut, glute bridge, dan bird-dog tanpa alat beban.\nSelesaikan\nLewati\nHIDRASI\n5 Menit\nDISARANKAN\nTantangan Hidrasi 2 Liter\nPastikan tubuh terhidrasi baik dengan minum minimal 8 \ngelas atau 2000 ml air putih hari ini.\nSelesaikan\nLewati\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "statistik-lama-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nPROGRES PENCATATAN\nProgres mingguan\nPeriode: 4 Nov 2026 s.d. 10 Nov 2026 (7 Hari Terakhir)\nAkhir Periode:\n11/10/2026\nSegarkan Data\n3/7 hari memiliki catatan. Hari tanpa catatan tidak berarti nilai \nnol. Rata-rata indikator memakai periode 7 hari; tidur adalah \nrencana, bukan pengukuran aktual.\nRata-rata Skor Konsistensi\n11%\nIndikator aplikasi; bukan skor kesehatan\nRata-rata rencana tidur\n4.0 Jam\nStatus: Di bawah standar PRD (< 5.0 jam)\nTotal Hidrasi 7 Hari\n3,500 ml\nJumlah air yang tercatat\nTotal Aktivitas Fisik\n41 Menit\nDurasi aktivitas yang tercatat\nSkor Konsistensi Komposit Harian (%)\nHari\nMin (8)\nSen (9)\nSel (10)\nSkor (%)\n0\n20\n40\n60\n80\n100\nRencana tidur harian (jam)\nHari\nSel (10)\nRab (4)\nKam (5)\nJum (6)\nSab (7)\nMin (8)\nSen (9)\nDurasi (Jam)\n0\n2\n4\n6\n8\n10\n12\nRencana tidur (jam)\nAturan aplikasi (5 jam)\nAsupan Hidrasi Air Putih Harian (ml)\nHari\nSen (9)\nSel (10)\nMililiter (ml)\n0\n500\n1,000\n1,500\n2,000\n2,500\n3,000\n3,500\n4,000\nDurasi Aktivitas Fisik (Menit)\nHari\nMin (8)\nSen (9)\nSel (10)\nMenit\n0.0\n2.5\n5.0\n7.5\n10.0\n12.5\n15.0\n17.5\n20.0\n22.5\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "evaluasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nREFLEKSI MINGGUAN\nEvaluasi kebiasaan\nRingkasan catatan tujuh hari. Data yang belum dicatat \nbukan bukti kebiasaan buruk; indikator aplikasi bukan \nskor kesehatan.\nJalankan Analisis Sekarang\nHasil Evaluasi Mingguan Terbaru\nBelum ada evaluasi tersimpan di database.\n-\nBelum Dievaluasi\nRencana tidur (aturan 5 \njam):\nBelum Ada \nData\n-\nRingkasan Pencapaian Kebiasaan:\nSistem belum memiliki evaluasi yang tersimpan. Klik \ntombol 'Jalankan Evaluasi Sekarang' untuk menganalisis \n7 hari terakhir.\nRekomendasi Langkah Nyata Berkelanjutan:\n• Rekomendasi otomatis akan ditampilkan setelah \nevaluasi dijalankan.\nCatatan: Evaluasi dan rekomendasi SehatHarian disusun \nuntuk pendampingan kebiasaan hidup sehat harian dan \nbukan pengganti diagnosis medis profesional.\nRiwayat evaluasi\nBelum Ada Riwayat Evaluasi\n\n\nJalankan evaluasi mingguan untuk melihat analisis \nmenyeluruh konsistensi hidup sehat.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "profil-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nPENGATURAN AKUN & PREFERENSI\nProfil & pengaturan\nPengaturan profil menentukan rekomendasi tantangan \nadaptif, filter menu, dan latihan workout harian Anda.\nIdentitas & rutinitas\nNama Lengkap:\nFixture Alpha\nTanggal Lahir:\nEstimasi Waktu Luang Harian (Menit):\n30\nMembatasi durasi pilihan aktivitas.\nKelompok usia\nDewasa (18 - 59 Tahun)\nDewasa (18–59 tahun) atau Lansia (≥ 60 tahun).\nRutinitas harian\nDi Dalam Rumah\nPekerja di luar rumah (mobilitas tinggi) atau di dalam \nrumah (WFH / domestik).\n↺ Muat Ulang\nSimpan Perubahan Profil\nKoneksi layanan\nURL Koneksi JDBC:\njdbc:mysql://127.0.0.1:13317/sehatharian_\ntest_rombak_mobile_20261110d?useSSL=false\n&allowPublicKeyRetrieval=true&serverTimez\none=Asia/Jakarta&connectTimeout=1500&sock\netTimeout=2000\nStatus Koneksi:\n✓ Terhubung (MySQL 8.0)\nUji Koneksi Ulang\nCakupan layanan\nProfil, catatan kebiasaan, jadwal, tantangan dan evaluasi.\nSesi akun\nKeluar mengakhiri sesi dan menutup data pribadi pada \nperangkat ini.\nKeluar dari akun\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ]
+}

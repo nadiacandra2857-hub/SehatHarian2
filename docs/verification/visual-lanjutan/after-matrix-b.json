@@ -1,0 +1,90 @@
+{
+  "phase": "after",
+  "mode": "matrix",
+  "screens": [
+    {
+      "name": "latihan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Latihan\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nLihat gerakan · Flutter Kicks\nJalan Kaki\nLihat gerakan · Jalan Kaki\nJogging\nLihat gerakan · Jogging\nMountain Climbers\nLihat gerakan · Mountain Climbers\nPush-up\nLihat gerakan · Push-up\nSit-up\nLihat gerakan · Sit-up\nSumo Squat\nLihat gerakan · Sumo Squat\nTricep Dip\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Latihan\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nLihat gerakan · Flutter Kicks\nJalan Kaki\nLihat gerakan · Jalan Kaki\nJogging\nLihat gerakan · Jogging\nMountain Climbers\nLihat gerakan · Mountain Climbers\nPush-up\nLihat gerakan · Push-up\nSit-up\nLihat gerakan · Sit-up\nSumo Squat\nLihat gerakan · Sumo Squat\nTricep Dip\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "latihan-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nLatihan\nUrutan: 0 / 20 gerakan\nTinjau sesi\nProgram terbit\nProgram Uji\nProgram Uji · lihat program\nKatalog video tim · inspirasi umum\nBicycle Kick\nLihat gerakan · Bicycle Kick\nFlutter Kicks\nLihat gerakan · Flutter Kicks\nJalan Kaki\nLihat gerakan · Jalan Kaki\nJogging\nLihat gerakan · Jogging\nMountain Climbers\nLihat gerakan · Mountain Climbers\nPush-up\nLihat gerakan · Push-up\nSit-up\nLihat gerakan · Sit-up\nSumo Squat\nLihat gerakan · Sumo Squat\nTricep Dip\nLihat gerakan · Tricep Dip\nKatalog RepDB · sumber terpisah"
+    },
+    {
+      "name": "tantangan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Tantangan & bacaan\nTentang halaman ini\nMuat ulang konten\nAir 1000 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nAir 500 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n1000.0 ml · Belum selesai\nAlasan & tanggal\nPeriksa catatan & selesaikan\nAir 500 ml\n500.0 ml · Selesai\nAlasan & tanggal\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tantangan-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Tantangan & bacaan\nTentang halaman ini\nMuat ulang konten\nAir 1000 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nAir 500 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n1000.0 ml · Belum selesai\nAlasan & tanggal\nPeriksa catatan & selesaikan\nAir 500 ml\n500.0 ml · Selesai\nAlasan & tanggal\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tantangan-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nTantangan & bacaan\nTentang halaman ini\nMuat ulang konten\nAir 1000 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nAir 500 ml\nKatalog umum · versi 1\nBaca rincian\nIkuti tantangan hari ini\nBelum tercatat. Belum ada MENU terbit.\nBelum tercatat. Belum ada EDUCATION terbit.\nRiwayat tantangan · 30 hari\nAir 1000 ml\n1000.0 ml · Belum selesai\nAlasan & tanggal\nPeriksa catatan & selesaikan\nAir 500 ml\n500.0 ml · Selesai\nAlasan & tanggal"
+    },
+    {
+      "name": "rekomendasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Katalog & inspirasi umum. Filter di halaman ini untuk menjelajah; \nsaran personal tervalidasi tersedia di Progres.\nInspirasi aktivitas\n5 Rekomendasi Tersedia\nKatalog dari database.\nSumber & pratinjau\nFilter katalog\nPernapasan Diafragma 5 Menit\nKatalog umum · 5 menit\nBuka rincian\nRincian & kecocokan\nJalan Kaki Sore 25 Menit\nKatalog umum · 25 menit\nBuka rincian\nRincian & kecocokan\nPeregangan Otot Kaki & Betis\nKatalog umum · 15 menit\nBuka rincian\nRincian & kecocokan\nSarapan Oatmeal Pisang & Madu\nKatalog umum · 10 menit\nBuka rincian\nRincian & kecocokan\nWorkout HIIT Ringan Tanpa Lompat (Low \nImpact)\nKatalog umum · 20 menit\nBuka rincian\nRincian & kecocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "rekomendasi-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Katalog & inspirasi umum. Filter di halaman ini untuk \nmenjelajah; saran personal tervalidasi tersedia di Progres.\nInspirasi aktivitas\n5 Rekomendasi Tersedia\nKatalog dari database.\nSumber & pratinjau\nFilter katalog\nPernapasan Diafragma 5 Menit\nKatalog umum · 5 menit\nBuka rincian\nRincian & kecocokan\nJalan Kaki Sore 25 Menit\nKatalog umum · 25 menit\nBuka rincian\nRincian & kecocokan\nPeregangan Otot Kaki & Betis\nKatalog umum · 15 menit\nBuka rincian\nRincian & kecocokan\nSarapan Oatmeal Pisang & Madu\nKatalog umum · 10 menit\nBuka rincian\nRincian & kecocokan\nWorkout HIIT Ringan Tanpa Lompat \n(Low Impact)\nKatalog umum · 20 menit\nBuka rincian\nRincian & kecocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "rekomendasi-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nKatalog & inspirasi umum. Filter di halaman ini untuk menjelajah; saran personal tervalidasi tersedia di Progres.\nInspirasi aktivitas\n5 Rekomendasi Tersedia\nKatalog dari database.\nSumber & pratinjau\nFilter katalog\nPernapasan Diafragma 5 Menit\nKatalog umum · 5 menit\nBuka rincian\nRincian & kecocokan\nJalan Kaki Sore 25 Menit\nKatalog umum · 25 menit\nBuka rincian\nRincian & kecocokan\nPeregangan Otot Kaki & Betis\nKatalog umum · 15 menit\nBuka rincian\nRincian & kecocokan\nSarapan Oatmeal Pisang & Madu\nKatalog umum · 10 menit\nBuka rincian\nRincian & kecocokan\nWorkout HIIT Ringan Tanpa Lompat (Low Impact)\nKatalog umum · 20 menit\nBuka rincian\nRincian & kecocokan"
+    },
+    {
+      "name": "progres-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Progres kebiasaan\nPeriode (hari)\n7\nTanggal akhir\n11/10/2026\nMuat progres\nTidur aktual\n1 / 7 hari tercatat · jam aktual\n2026-11-10\njam aktual\n0\n1\n2\n3\n4\n5\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nHidrasi\n2 / 7 hari tercatat · ml\n2026-11-09\n2026-11-10\nml\n0\n1,000\n2,000\n3,000\n4,000\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nNutrisi\n1 / 7 hari tercatat · catatan makan\n2026-11-10\ncatatan makan\n0.00\n0.25\n0.50\n0.75\n1.00\n1.25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nAktivitas\n3 / 7 hari tercatat · menit\n2026-11-08\n2026-11-09\n2026-11-10\nmenit\n0\n5\n10\n15\n20\n25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nPreferensi nutrisi tersimpan\nPola makan\nPantangan / alergi (atau tidak ada)\nSimpan preferensi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "progres-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Progres kebiasaan\nPeriode (hari)\n7\nTanggal akhir\n11/10/2026\nMuat progres\nTidur aktual\n1 / 7 hari tercatat · jam aktual\n2026-11-10\njam aktual\n0\n1\n2\n3\n4\n5\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nHidrasi\n2 / 7 hari tercatat · ml\n2026-11-09\n2026-11-10\nml\n0\n1,000\n2,000\n3,000\n4,000\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nNutrisi\n1 / 7 hari tercatat · catatan makan\n2026-11-10\ncatatan makan\n0.00\n0.25\n0.50\n0.75\n1.00\n1.25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nAktivitas\n3 / 7 hari tercatat · menit\n2026-11-08\n2026-11-09\n2026-11-10\nmenit\n0\n5\n10\n15\n20\n25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nPreferensi nutrisi tersimpan\nPola makan\nPantangan / alergi (atau tidak ada)\nSimpan preferensi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "progres-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nProgres kebiasaan\nPeriode (hari)\n7\nTanggal akhir\n11/10/2026\nMuat progres\nTidur aktual\n1 / 7 hari tercatat · jam aktual\n2026-11-10\njam aktual\n0\n1\n2\n3\n4\n5\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nHidrasi\n2 / 7 hari tercatat · ml\n2026-11-09\n2026-11-10\nml\n0\n1,000\n2,000\n3,000\n4,000\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nNutrisi\n1 / 7 hari tercatat · catatan makan\n2026-11-10\ncatatan makan\n0.00\n0.25\n0.50\n0.75\n1.00\n1.25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nAktivitas\n3 / 7 hari tercatat · menit\n2026-11-08\n2026-11-09\n2026-11-10\nmenit\n0\n5\n10\n15\n20\n25\n2026-11-04 — 2026-11-10\nEvaluasi & alasan\nPreferensi nutrisi tersimpan\nPola makan\nPantangan / alergi (atau tidak ada)\nSimpan preferensi"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "unit_tests": {
+    "Backend2": {
+      "tests": 176,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "Frontend2": {
+      "tests": 90,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "browser_routes": [
+    "Lihat rutinitas",
+    "Tidur",
+    "Hidrasi",
+    "Nutrisi",
+    "Aktivitas",
+    "Lihat semua",
+    "Buka tantangan",
+    "Lihat progres"
+  ],
+  "screens": 7,
+  "widths": [
+    390,
+    360,
+    1440
+  ],
+  "document_overflow": false,
+  "empty_state": "passed, 0/4 and Belum tercatat",
+  "failure_state": "passed, failure labels and no chart; temporary database restored",
+  "carousel": "horizontal screenshot shows second card; document width unchanged",
+  "record_counts_unchanged": "total_rows\t4\t15\t2",
+  "test_schema": "sehatharian_test_rombak_mobile_20261110d",
+  "scope": "Beranda only; no release ZIP updated",
+  "recovery": "passed, authenticated owner data and 4/4 restored"
+}

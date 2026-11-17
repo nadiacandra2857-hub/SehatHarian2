@@ -15,12 +15,14 @@ public final class ExerciseCatalog {
     public ExerciseCatalog(Path root) { this.root = root.toAbsolutePath().normalize(); }
     public static ExerciseCatalog local() {
         String value = System.getenv("SEHATHARIAN_REPDB_DIR");
-        Path location = Path.of(value == null ? ".runtime/repdb" : value);
+        Path location = Path.of(value == null || value.isBlank() ? ".runtime/repdb" : value);
         // JPro starts with Frontend2 as its working directory; packaged deployments may set the env explicitly.
-        if (value == null && !Files.isDirectory(location) && Files.isRegularFile(Path.of("../settings.gradle")))
+        if ((value == null || value.isBlank()) && !Files.isDirectory(location) && Files.isRegularFile(Path.of("../settings.gradle")))
             location = Path.of("../.runtime/repdb");
         return new ExerciseCatalog(location);
     }
+    public Path root() { return root; }
+    public synchronized Snapshot reload() throws IOException { cached = null; return load(); }
     public synchronized Snapshot load() throws IOException {
         if (cached != null) return cached;
         Properties p = new Properties();

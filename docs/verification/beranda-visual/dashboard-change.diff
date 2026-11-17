@@ -1,0 +1,251 @@
+--- before/DashboardController.java
++++ after/DashboardController.java
+@@ -1,4 +1,5 @@
+ package com.sehatharian.controller;
++
+ import com.sehatharian.model.*;
+ import com.sehatharian.service.*;
+ import com.sehatharian.util.*;
+@@ -13,96 +14,161 @@
+ import java.time.*;
+ import java.util.*;
+ 
+-/** Home view reads through owner-scoped services; no automatic assignments or sample fallback. */
++/** Owner-scoped home overview. Illustrations describe categories, never personal advice. */
+ public class DashboardController implements AutoCloseable {
+- private final UserSession session; private final SessionAccess access;
+- private final WriteAction writes; private final SoundEffects.View sounds;
+- private final KebiasaanService habits; private final TidurService sleep; private final TantanganService challenges; private final EvaluasiService evaluation;
+- @FXML private ScrollPane dashboardScroll; @FXML private VBox dashboardRoot;
++ private final UserSession session;
++ private final SessionAccess access;
++ private final WriteAction writes;
++ private final SoundEffects.View sounds;
++ private final KebiasaanService habits;
++ private final TidurService sleep;
++ private final TantanganService challenges;
++ private final EvaluasiService evaluation;
++ @FXML private ScrollPane dashboardScroll;
++ @FXML private VBox dashboardRoot;
+  private MainLayoutController mainController;
+- private GridPane metrics, middle, bottom, photoGrid;
+- private HBox homeTabs;
+- private final Label[] values=new Label[5]; private final Label[] notes=new Label[5];
+- private VBox challengeRows, progressRows;
+- private Pane chart; private Label chartState;
+- private Label greeting,date,coverageState,challengeState; private Button scheduleAction;
+- private final List<Node> metricCards=new ArrayList<>();
+- private Arc recordingArc;
++ private GridPane topGrid,metrics;
++ private StackPane hero;
++ private Label badge,greeting,chartState;
++ private Pane chart;
++ private HBox challengeCards;
++ private ScrollPane challengeStrip;
++ private final Label[] values=new Label[4];
++ private final Button[] habitButtons=new Button[4];
++ private final Map<String,Image> images=new HashMap<>();
++ private List<RingkasanKonsistensi> plotted=List.of();
+  private boolean closed;
+- private TrainingDialog trainingDialog;
+- private void openTraining(){if(mainController!=null)mainController.handleNavLatihan(); }
+- private List<RingkasanKonsistensi> plotted=List.of();
+  private final ChangeListener<Number> chartResize=(o,a,b)->drawChart();
+  private final ChangeListener<Number> resize=(o,a,b)->layout(b.doubleValue());
+- public DashboardController(UserSession session,SoundEffects effects) {
+-  this.session=Objects.requireNonNull(session); access=new SessionAccess(session); writes=new WriteAction(access); sounds=effects.forView();
++
++ public DashboardController(UserSession session,SoundEffects effects){
++  this.session=Objects.requireNonNull(session);access=new SessionAccess(session);writes=new WriteAction(access);sounds=effects.forView();
+   habits=new KebiasaanService(access);sleep=new TidurService(access);challenges=new TantanganService(access);evaluation=new EvaluasiService(access);
+  }
+  public void setMainController(MainLayoutController value){access.owner();mainController=value;}
+- private Label label(String text,String style){Label l=new Label(text);l.getStyleClass().add(style);l.setWrapText(true);l.setMinWidth(0);l.setMaxWidth(Double.MAX_VALUE);return l;}
+- private Button button(String text,Runnable action){Button b=new Button(text);b.getStyleClass().add("ui1-button");b.setMinHeight(44);b.setAccessibleText(text);b.setOnAction(e->{access.owner();action.run();});return b;}
+- private VBox card(String title){VBox v=new VBox(10);v.getStyleClass().add("ui1-card");v.setMinWidth(0);v.getChildren().add(label(title,"ui1-title"));return v;}
++ private Label label(String text,String style){
++  Label l=new Label(text);l.getStyleClass().addAll("home-text",style);l.setWrapText(true);l.setMinWidth(0);l.setMinHeight(Region.USE_PREF_SIZE);return l;
++ }
++ private Button button(String text,String style,Runnable action){
++  Button b=new Button(text);b.setMinHeight(44);b.setMinWidth(0);b.getStyleClass().addAll("home-button",style);b.setAccessibleText(text);
++  b.setOnAction(e->{access.owner();action.run();});return b;
++ }
++ private Image image(String name){return images.computeIfAbsent(name,n->new Image(Objects.requireNonNull(getClass().getResource(n)).toExternalForm()));}
++ /** Cover crops are calculated from the actual region; clipping also rounds the image corners. */
++ private StackPane picture(String path,String description,double height,boolean contain){
++  Image source=image(path);ImageView view=new ImageView(source);view.setAccessibleText(description);view.setMouseTransparent(true);
++  StackPane frame=new StackPane(view){@Override protected void layoutChildren(){
++   double w=getWidth(),h=getHeight();if(w<=0||h<=0)return;
++   if(contain){view.setPreserveRatio(true);view.setFitWidth(w);view.setFitHeight(h);}
++   else{double ratio=w/h,sw=source.getWidth(),sh=source.getHeight(),cw=Math.min(sw,sh*ratio),ch=cw/ratio;
++    view.setViewport(new Rectangle2D((sw-cw)/2,(sh-ch)/2,cw,ch));view.setPreserveRatio(false);view.setFitWidth(w);view.setFitHeight(h);}
++   super.layoutChildren();
++  }};
++  frame.setMinWidth(0);frame.setMinHeight(height);frame.setPrefHeight(height);frame.setMaxHeight(height);frame.getStyleClass().add("home-picture");
++  Rectangle clip=new Rectangle();clip.setArcWidth(28);clip.setArcHeight(28);clip.widthProperty().bind(frame.widthProperty());clip.heightProperty().bind(frame.heightProperty());frame.setClip(clip);return frame;
++ }
+  @FXML public void initialize(){
+-  access.owner();metrics=new GridPane();middle=new GridPane();bottom=new GridPane();challengeRows=new VBox(8);progressRows=new VBox(12);chart=new Pane();chartState=new Label();greeting=label("","ui1-muted");date=label("","ui1-muted");
+-  dashboardRoot.setSpacing(18);dashboardRoot.setMaxWidth(1200);dashboardRoot.getStyleClass().add("home-screen");
+-  homeTabs=new HBox(4,button("Beranda",this::muatDataPenggunaDanDashboard),button("Catatan",this::handleBukaKebiasaan),button("Progres",this::handleBukaStatistik));homeTabs.getStyleClass().add("ui1-tabs");
+-  HBox header=new HBox(12);VBox heading=new VBox(5,label("SehatHarian","ui1-heading"),greeting);heading.setMinWidth(0);HBox.setHgrow(heading,Priority.ALWAYS);
+-  header.getChildren().addAll(heading,button("Profil",()->{if(mainController!=null)mainController.handleNavProfil();}));header.setAlignment(Pos.CENTER_LEFT);
+-  dashboardRoot.getChildren().addAll(homeTabs,header,metrics);
+-  String[] names={"Ringkasan hari ini","Tidur","Hidrasi","Nutrisi","Aktivitas"};String[] icons={"habit","moon","drop","utensils","run"};
+-  Runnable[] actions={this::handleBukaKebiasaan,this::handleBukaTidur,()->{if(mainController!=null)mainController.handleNavHidrasi();},()->{if(mainController!=null)mainController.handleNavNutrisi();},this::openTraining};
+-  for(int i=0;i<5;i++){
+-   VBox c=new VBox(7);c.setMinWidth(0);c.getStyleClass().addAll("ui1-card","home-habit");values[i]=label("—","ui1-value");notes[i]=label("Memuat…","ui1-muted");
+-   Label title=label(names[i],"ui1-title");HBox line=new HBox(6,IconFactory.icon(icons[i],18,"ui1-icon"),title);line.setAlignment(Pos.CENTER_LEFT);c.getChildren().addAll(line,values[i],notes[i]);
+-   c.setFocusTraversable(true);c.setAccessibleRole(javafx.scene.AccessibleRole.BUTTON);c.setAccessibleText(names[i]+", buka");final Runnable action=actions[i];
+-   c.setOnMouseClicked(e->{access.owner();action.run();});c.setOnKeyPressed(e->{if(e.getCode()==javafx.scene.input.KeyCode.ENTER||e.getCode()==javafx.scene.input.KeyCode.SPACE){access.owner();action.run();e.consume();}});
+-   if(i==0){
+-    c.getStyleClass().add("home-hero");Circle track=new Circle(30);track.setFill(javafx.scene.paint.Color.TRANSPARENT);track.getStyleClass().add("recording-track");track.setStrokeWidth(6);
+-    recordingArc=new Arc(0,0,30,30,90,0);recordingArc.setFill(javafx.scene.paint.Color.TRANSPARENT);recordingArc.setStroke(javafx.scene.paint.Color.web("#16B87A"));recordingArc.setStrokeWidth(6);recordingArc.setManaged(false);recordingArc.setCenterX(36);recordingArc.setCenterY(36);
+-    StackPane ring=new StackPane(track,recordingArc,values[0]);values[0].setAlignment(Pos.CENTER);ring.setMinSize(72,72);ring.setMaxSize(72,72);
+-    VBox info=new VBox(6,label("Hari ini, mulai dari yang kecil","home-hero-title"),notes[0]);info.setMinWidth(0);HBox.setHgrow(info,Priority.ALWAYS);
+-    HBox hero=new HBox(18,info,ring);hero.setAlignment(Pos.CENTER_LEFT);c.getChildren().setAll(title,hero);
+-   }
+-   metricCards.add(c);
++  access.owner();dashboardRoot.getStyleClass().add("home-screen");dashboardRoot.setMaxWidth(1080);dashboardRoot.setSpacing(18);
++  dashboardRoot.getStylesheets().add(getClass().getResource("/css/home-visual.css").toExternalForm());
++  greeting=label("","home-muted");greeting.setWrapText(false);
++  VBox identity=new VBox(3,label("SehatHarian","home-brand"),greeting);identity.setMinWidth(0);HBox.setHgrow(identity,Priority.ALWAYS);
++  Button profile=button("Profil","home-profile",()->{if(mainController!=null)mainController.handleNavProfil();});profile.setId("homeProfile");
++  HBox header=new HBox(12,identity,profile);header.setAlignment(Pos.CENTER_LEFT);
++  hero=picture("/images/home/routine.jpg","Ilustrasi botol air, mangkuk makanan, dan bantal",220,false);hero.setId("homeRoutine");
++  Label title=label("Rutinitas\nhari ini","home-hero-heading");title.setMaxWidth(145);
++  badge=label("Memuat…","home-badge");badge.setMaxWidth(Region.USE_PREF_SIZE);
++  VBox heroCopy=new VBox(8,title,badge);heroCopy.setMaxSize(150,Region.USE_PREF_SIZE);heroCopy.setMouseTransparent(true);
++  StackPane.setAlignment(heroCopy,Pos.TOP_LEFT);StackPane.setMargin(heroCopy,new Insets(22));
++  Button routine=button("Lihat rutinitas","home-primary",this::handleBukaKebiasaan);routine.setId("homeRoutineAction");routine.setPrefWidth(148);
++  StackPane.setAlignment(routine,Pos.BOTTOM_LEFT);StackPane.setMargin(routine,new Insets(18));hero.getChildren().addAll(heroCopy,routine);
++  String[] names={"Tidur","Hidrasi","Nutrisi","Aktivitas"};
++  String[] assets={"/images/home/sleep.jpg","/images/home/water.jpg","/images/home/nutrition.jpg","/images/team/Jogging.jpg"};
++  Runnable[] actions={this::handleBukaTidur,()->{if(mainController!=null)mainController.handleNavHidrasi();},()->{if(mainController!=null)mainController.handleNavNutrisi();},()->{if(mainController!=null)mainController.handleNavLatihan();}};
++  metrics=new GridPane();metrics.setId("homeHabits");columns(metrics,50,50);
++  for(int i=0;i<4;i++){
++   StackPane art=picture(assets[i],names[i],68,i==3);art.setMinWidth(58);art.setPrefWidth(64);art.setMaxWidth(64);
++   if(i==3)art.setStyle("-fx-background-color:#09151C;");
++   values[i]=label("Memuat…","home-habit-value");VBox copy=new VBox(5,label(names[i],"home-habit-name"),values[i]);copy.setMinWidth(0);HBox.setHgrow(copy,Priority.ALWAYS);
++   HBox graphic=new HBox(8,art,copy);graphic.setAlignment(Pos.CENTER_LEFT);graphic.setMouseTransparent(true);graphic.setMinWidth(0);
++   Button tile=button("","home-habit-tile",actions[i]);tile.setGraphic(graphic);tile.setMaxWidth(Double.MAX_VALUE);tile.setAlignment(Pos.CENTER_LEFT);tile.setAccessibleText(names[i]+", memuat");tile.setId("homeHabit"+i);habitButtons[i]=tile;
++   metrics.add(tile,i%2,i/2);
+   }
+-  // Preserve the existing schedule entry point, with a shorter card caption on mobile.
+-  scheduleAction=button("Atur jadwal",this::handleBukaTidur);scheduleAction.setVisible(false);scheduleAction.setManaged(false);
+-  HBox links=new HBox(10,button("Tantangan",this::handleBukaTantangan),button("Lihat progres",this::handleBukaStatistik));for(Node n:links.getChildren()){((Button)n).setMaxWidth(Double.MAX_VALUE);HBox.setHgrow(n,Priority.ALWAYS);}links.getStyleClass().add("home-shortcuts");
+-  VBox tasks=card("Tantangan Anda");tasks.getChildren().addAll(challengeRows,button("Lihat semua tantangan",this::handleBukaTantangan));
+-  coverageState=label("Memuat hari tercatat…","ui1-muted");challengeState=label("Memuat tantangan…","ui1-muted");
+-  VBox graph=card("Progres 7 hari");chart.widthProperty().addListener(chartResize);chart.setMinHeight(100);chart.setPrefHeight(100);chart.setMinWidth(0);
+-  graph.getChildren().addAll(coverageState,challengeState,chartState,chart,label("Menit aktivitas tercatat","ui1-muted"),button("Buka progres",this::handleBukaStatistik));middle.getChildren().addAll(tasks,graph);
+-  VBox editorial=card("Pilihan kebiasaan");GridPane photos=new GridPane();photoGrid=photos;photos.setHgap(8);photos.setVgap(8);Image atlas=new Image(getClass().getResource("/images/dashboard/habits-editorial.png").toExternalForm());
+-  String[] titles={"Minum","Makan","Istirahat","Bergerak"};
+-  for(int i=0;i<4;i++){ImageView image=new ImageView(atlas);image.setViewport(new Rectangle2D(i%2*627+(i<2?112:70),i<2?0:568,i<2?403:486,i<2?568:686));image.setFitHeight(120);image.setPreserveRatio(false);image.setAccessibleText(titles[i]);VBox item=new VBox(4,image,button(titles[i],actions[new int[]{2,3,1,4}[i]]));item.setMinWidth(0);image.fitWidthProperty().bind(item.widthProperty());photos.add(item,i,0);}
+-  editorial.getChildren().add(photos);VBox progress=card("Nilai per kebiasaan");progress.getChildren().addAll(progressRows,label("Nilai tercatat, bukan skor kesehatan.","ui1-muted"),scheduleAction);bottom.getChildren().addAll(editorial,progress);
+-  dashboardRoot.getChildren().addAll(links,middle,bottom);dashboardScroll.widthProperty().addListener(resize);layout(1000);muatDataPenggunaDanDashboard();
++  topGrid=new GridPane();topGrid.getChildren().addAll(hero,metrics);
++  Label challengeTitle=label("Tantangan","home-section-title");HBox.setHgrow(challengeTitle,Priority.ALWAYS);challengeTitle.setMaxWidth(Double.MAX_VALUE);
++  HBox challengeHeading=new HBox(8,challengeTitle,button("Lihat semua","home-link",this::handleBukaTantangan));challengeHeading.setAlignment(Pos.CENTER_LEFT);
++  challengeCards=new HBox(12);challengeCards.setPadding(new Insets(0,0,6,0));
++  challengeStrip=new ScrollPane(challengeCards);challengeStrip.setId("homeChallengeStrip");challengeStrip.setFitToHeight(true);challengeStrip.setPannable(true);challengeStrip.setMinWidth(0);challengeStrip.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);challengeStrip.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);challengeStrip.getStyleClass().add("home-challenge-strip");
++  // Keep vertical gestures on the page; horizontal trackpad/Shift-wheel gestures stay inside this strip.
++  challengeStrip.addEventFilter(javafx.scene.input.ScrollEvent.SCROLL,e->{
++   if(e.isShiftDown()||Math.abs(e.getDeltaX())>Math.abs(e.getDeltaY())){
++    double range=challengeCards.getWidth()-challengeStrip.getViewportBounds().getWidth();
++    if(range>0)challengeStrip.setHvalue(Math.max(0,Math.min(1,challengeStrip.getHvalue()-(e.isShiftDown()?e.getDeltaY():e.getDeltaX())/range)));
++   }else dashboardScroll.fireEvent(e.copyFor(dashboardScroll,dashboardScroll));e.consume();
++  });
++  chart=new Pane();chart.setMinWidth(0);chart.setMinHeight(114);chart.setPrefHeight(114);chart.widthProperty().addListener(chartResize);
++  chartState=label("Memuat…","home-muted");
++  Label graphTitle=label("Progres 7 hari","home-section-title");graphTitle.setMaxWidth(Double.MAX_VALUE);HBox.setHgrow(graphTitle,Priority.ALWAYS);
++  HBox graphHeading=new HBox(8,graphTitle,button("Lihat progres","home-link",this::handleBukaStatistik));graphHeading.setAlignment(Pos.CENTER_LEFT);
++  VBox graph=new VBox(8,graphHeading,chartState,chart);graph.getStyleClass().add("home-progress");
++  dashboardRoot.getChildren().setAll(header,topGrid,new VBox(4,challengeHeading,challengeStrip),graph);
++  dashboardScroll.widthProperty().addListener(resize);layout(390);muatDataPenggunaDanDashboard();
+  }
+  private void columns(GridPane grid,double... widths){grid.getColumnConstraints().clear();for(double w:widths){ColumnConstraints c=new ColumnConstraints();c.setMinWidth(0);c.setPercentWidth(w);c.setHgrow(Priority.ALWAYS);grid.getColumnConstraints().add(c);}grid.setHgap(10);grid.setVgap(10);}
+  private void layout(double width){
+-  boolean mobile=width<650;homeTabs.setVisible(!mobile);homeTabs.setManaged(!mobile);dashboardRoot.setPadding(new Insets(mobile?18:8));
+-  columns(metrics,mobile?new double[]{50,50}:new double[]{32,17,17,17,17});metrics.getChildren().clear();
+-  for(int i=0;i<5;i++){Node c=metricCards.get(i);metrics.add(c,mobile?(i==0?0:(i-1)%2):i,mobile?(i==0?0:1+(i-1)/2):0);GridPane.setColumnSpan(c,mobile&&i==0?2:1);}
+-  columns(middle,mobile?new double[]{100}:new double[]{45,55});for(int i=0;i<2;i++){GridPane.setColumnIndex(middle.getChildren().get(i),mobile?0:i);GridPane.setRowIndex(middle.getChildren().get(i),mobile?i:0);}
+-  columns(photoGrid,mobile?new double[]{50,50}:new double[]{25,25,25,25});for(int i=0;i<4;i++){GridPane.setColumnIndex(photoGrid.getChildren().get(i),mobile?i%2:i);GridPane.setRowIndex(photoGrid.getChildren().get(i),mobile?i/2:0);}
+-  columns(bottom,mobile?new double[]{100}:new double[]{55,45});for(int i=0;i<2;i++){GridPane.setColumnIndex(bottom.getChildren().get(i),mobile?0:i);GridPane.setRowIndex(bottom.getChildren().get(i),mobile?i:0);}
++  boolean mobile=width<700;dashboardRoot.setPadding(new Insets(mobile?18:28));
++  columns(topGrid,mobile?new double[]{100}:new double[]{54,46});topGrid.setHgap(mobile?0:22);topGrid.setVgap(14);
++  GridPane.setColumnIndex(hero,0);GridPane.setRowIndex(hero,0);GridPane.setColumnIndex(metrics,mobile?0:1);GridPane.setRowIndex(metrics,mobile?1:0);
++  hero.setMinHeight(mobile?220:300);hero.setPrefHeight(mobile?220:300);hero.setMaxHeight(mobile?220:300);
++  for(Button b:habitButtons){b.setMinHeight(mobile?96:125);b.setPrefHeight(mobile?96:125);}
+  }
+- public void muatDataPenggunaDanDashboard(){access.owner();if(dashboardRoot==null)return;LocalDate today=LocalDate.now(ZoneId.of("Asia/Jakarta"));greeting.setText("Halo, "+session.getUserName().split(" ")[0]+" · "+DateHelper.formatTanggalPendek(today));date.setText(DateHelper.formatTanggalLengkap(today));try{
+-  int owner=access.owner();var h=habits.getHidrasiHariIni(owner,today);var a=habits.getAktivitasHariIni(owner,today);var m=habits.getMakanHariIni(owner,today);var t=sleep.getJadwalTerbaru(owner);var actual=new com.sehatharian.repository.ActualSleepRepository(access).getByRange(owner,today,today);
+-  values[0].setText(((!h.isEmpty()?1:0)+(!a.isEmpty()?1:0)+(!m.isEmpty()?1:0)+(!actual.isEmpty()?1:0))+" / 4");notes[0].setText("Kebiasaan yang sudah dicatat");recordingArc.setLength(-90*Integer.parseInt(values[0].getText().split(" ")[0]));
+-  scheduleAction.setVisible(t==null);scheduleAction.setManaged(t==null);values[1].setText(actual.isEmpty()?"—":String.format("%.1f jam",actual.stream().mapToDouble(com.sehatharian.model.JadwalTidur::getDurasiJam).sum()));notes[1].setText(actual.isEmpty()?"Tidur aktual belum tercatat":"Aktual · bangun hari ini");values[2].setText(h.isEmpty()?"—":String.valueOf(h.stream().mapToInt(Hidrasi::getJumlahMl).sum()));notes[2].setText(h.isEmpty()?"Belum tercatat":"ml · "+h.size()+" catatan");values[3].setText(m.isEmpty()?"—":String.valueOf(m.size()));notes[3].setText(m.isEmpty()?"Belum tercatat":"catatan makan");values[4].setText(a.isEmpty()?"—":String.valueOf(a.stream().mapToInt(Aktivitas::getDurasiMenit).sum()));notes[4].setText(a.isEmpty()?"Belum tercatat":"menit · "+a.size()+" catatan");
+-  challengeRows.getChildren().clear();var list=challenges.getTantanganByTanggal(owner,today);var newChallenges=new HabitChallengeService(access).history(today).stream().filter(c->c.date().equals(today)).toList();if(list.isEmpty()&&newChallenges.isEmpty())challengeRows.getChildren().add(label("Belum ada tantangan hari ini.","ui1-muted"));for(var item:newChallenges.stream().limit(3).toList())challengeRows.getChildren().add(label(item.title()+" · "+(item.complete()?"selesai":"belum selesai"),"ui1-muted"));for(var item:list.stream().limit(3).toList())challengeRows.getChildren().add(label(item.getTantanganJudul()+" · "+item.getStatus(),"ui1-muted"));
+-  progressRows.getChildren().clear();for(int i=1;i<5;i++)progressRows.getChildren().add(label(new String[]{"","Tidur aktual","Hidrasi","Nutrisi","Aktivitas"}[i]+"   "+values[i].getText()+new String[]{"",""," ml"," catatan"," menit"}[i],"ui1-title"));
+-  var week=evaluation.getKonsistensi7HariTerakhir(owner,today);chartState.setText(week.stream().anyMatch(RingkasanKonsistensi::isAktivitasTercatat)?"Durasi aktivitas":"Belum cukup catatan aktivitas");coverageState.setText(week.stream().filter(d->d.isAktivitasTercatat()||d.isHidrasiTercatat()||d.isTidurTercatat()).count()+" / 7 hari mencatat aktivitas, hidrasi atau tidur");challengeState.setText((list.stream().filter(d->"selesai".equalsIgnoreCase(d.getStatus())).count()+newChallenges.stream().filter(HabitChallengeService.Entry::complete).count())+" tantangan selesai hari ini");plotted=List.copyOf(week);chart.setAccessibleText("Menit aktivitas tercatat: "+week.stream().map(d->d.getTanggal()+": "+(d.isAktivitasTercatat()?d.getDurasiAktivitasMenit():"belum tercatat")).toList());drawChart();
+- }catch(Exception e){access.owner();scheduleAction.setVisible(false);scheduleAction.setManaged(false);notes[1].setText("Jadwal tidur belum dapat dimuat");recordingArc.setLength(0);for(int i=0;i<5;i++){values[i].setText("—");notes[i].setText("Gagal dimuat");}challengeRows.getChildren().setAll(label("Tantangan gagal dimuat.","ui1-muted"));progressRows.getChildren().setAll(label("Data belum tersedia. Muat ulang setelah koneksi pulih.","ui1-muted"));notes[1].setText("Jadwal tidur belum dapat dimuat");coverageState.setText("Pencatatan gagal dimuat");challengeState.setText("Tantangan gagal dimuat");chartState.setText("Grafik gagal dimuat");plotted=List.of();chart.getChildren().clear();}}
++ private String challengeImage(String category){return switch(category==null?"":category.toLowerCase(Locale.ROOT)){
++  case "hydration","hidrasi"->"/images/home/water.jpg";case "nutrition","makan","nutrisi"->"/images/home/nutrition.jpg";
++  case "sleep","tidur"->"/images/home/sleep.jpg";case "activity","aktivitas","olahraga"->"/images/team/Jogging.jpg";default->"/images/home/routine.jpg";};}
++ private void challengeCard(String title,String category,String status){
++  String asset=challengeImage(category);StackPane art=picture(asset,"Ilustrasi kategori tantangan",108,true);art.setStyle(asset.contains("/team/")?"-fx-background-color:#09151C;":"-fx-background-color:#DFF7E8;");
++  Label name=label(title,"home-challenge-title");name.setWrapText(false);name.setMaxWidth(194);Tooltip.install(name,new Tooltip(title));
++  Label state=label(status,"home-challenge-status");Button open=button("Buka tantangan","home-challenge-action",this::handleBukaTantangan);open.setAccessibleText("Buka tantangan: "+title);open.setMaxWidth(Double.MAX_VALUE);
++  VBox tile=new VBox(7,art,name,state,open);tile.getStyleClass().add("home-challenge-card");tile.setMinWidth(216);tile.setPrefWidth(216);tile.setMaxWidth(216);challengeCards.getChildren().add(tile);
++ }
++ public void muatDataPenggunaDanDashboard(){
++  access.owner();if(dashboardRoot==null)return;LocalDate today=LocalDate.now(ZoneId.of("Asia/Jakarta"));
++  greeting.setText("Halo, "+session.getUserName().split(" ")[0]);
++  try{
++   int owner=access.owner();var h=habits.getHidrasiHariIni(owner,today);var a=habits.getAktivitasHariIni(owner,today);var m=habits.getMakanHariIni(owner,today);var actual=new com.sehatharian.repository.ActualSleepRepository(access).getByRange(owner,today,today);
++   int recorded=(!h.isEmpty()?1:0)+(!a.isEmpty()?1:0)+(!m.isEmpty()?1:0)+(!actual.isEmpty()?1:0);badge.setText(recorded+"/4 tercatat");badge.setAccessibleText(recorded+" dari empat kebiasaan tercatat hari ini");
++   values[0].setText(actual.isEmpty()?"Belum tercatat":String.format(Locale.forLanguageTag("id-ID"),"%.1f jam",actual.stream().mapToDouble(JadwalTidur::getDurasiJam).sum()));
++   values[1].setText(h.isEmpty()?"Belum tercatat":h.stream().mapToInt(Hidrasi::getJumlahMl).sum()+" ml");
++   values[2].setText(m.isEmpty()?"Belum tercatat":m.size()+" catatan");
++   values[3].setText(a.isEmpty()?"Belum tercatat":a.stream().mapToInt(Aktivitas::getDurasiMenit).sum()+" menit");
++  }catch(Exception e){access.owner();badge.setText("Gagal dimuat");badge.setAccessibleText("Pencatatan gagal dimuat");for(Label v:values)v.setText("Gagal dimuat");}
++  String[] names={"Tidur","Hidrasi","Nutrisi","Aktivitas"};for(int i=0;i<4;i++)habitButtons[i].setAccessibleText(names[i]+", "+values[i].getText()+", buka");
++  challengeCards.getChildren().clear();
++  try{
++   var list=challenges.getTantanganByTanggal(access.owner(),today);var recent=new HabitChallengeService(access).history(today).stream().filter(c->c.date().equals(today)).toList();
++   for(var item:recent.stream().limit(6).toList())challengeCard(item.title(),item.category(),item.complete()?"Selesai":"Belum selesai");
++   for(var item:list.stream().limit(6).toList())challengeCard(item.getTantanganJudul(),item.getTantanganKategori(),item.isSelesai()?"Selesai":item.isDilewati()?"Dilewati":"Belum selesai");
++   if(challengeCards.getChildren().isEmpty())challengeCards.getChildren().add(label("Belum ada tantangan hari ini.","home-muted"));
++  }catch(Exception e){access.owner();challengeCards.getChildren().setAll(label("Tantangan gagal dimuat.","home-muted"));}
++  try{
++   plotted=List.copyOf(evaluation.getKonsistensi7HariTerakhir(access.owner(),today));boolean recorded=plotted.stream().anyMatch(RingkasanKonsistensi::isAktivitasTercatat);
++   chartState.setText(recorded?"Menit aktivitas tercatat":"Aktivitas belum tercatat.");chart.setVisible(recorded);chart.setManaged(recorded);
++   chart.setAccessibleText("Menit aktivitas: "+plotted.stream().map(d->d.getTanggal()+": "+(d.isAktivitasTercatat()?d.getDurasiAktivitasMenit():"belum tercatat")).toList());drawChart();
++  }catch(Exception e){access.owner();chartState.setText("Progres gagal dimuat.");plotted=List.of();chart.getChildren().clear();chart.setVisible(false);chart.setManaged(false);}
++ }
+  private void drawChart(){
+   if(chart==null)return;chart.getChildren().clear();if(plotted.isEmpty())return;
+-  double w=Math.max(180,chart.getWidth()),left=24,top=8,h=62;int max=Math.max(1,plotted.stream().mapToInt(RingkasanKonsistensi::getDurasiAktivitasMenit).max().orElse(1));
+-  for(int g=0;g<4;g++){double y=top+g*h/3;Line line=new Line(left,y,w-8,y);line.setStroke(javafx.scene.paint.Color.web("#374151"));line.getStrokeDashArray().addAll(2.0,3.0);chart.getChildren().add(line);}
+-  for(int i=0;i<plotted.size();i++){var d=plotted.get(i);double x=left+i*(w-left-8)/6;double y=top+h-h*d.getDurasiAktivitasMenit()/max;
+-   Label day=label(d.getLabelHari(),"ui1-muted");day.relocate(x-10,82);chart.getChildren().add(day);
+-   if(d.isAktivitasTercatat()){Circle dot=new Circle(x,y,3,javafx.scene.paint.Color.web("#22C55E"));Tooltip.install(dot,new Tooltip(d.getTanggal()+": "+d.getDurasiAktivitasMenit()+" menit tercatat"));chart.getChildren().add(dot);
+-    if(i>0&&plotted.get(i-1).isAktivitasTercatat()){Line segment=new Line(left+(i-1)*(w-left-8)/6,top+h-h*plotted.get(i-1).getDurasiAktivitasMenit()/max,x,y);segment.setStrokeWidth(2);segment.setStroke(javafx.scene.paint.Color.web("#22C55E"));chart.getChildren().add(segment);}}
++  double w=Math.max(180,chart.getWidth()),left=22,top=12,h=66;int max=Math.max(1,plotted.stream().mapToInt(RingkasanKonsistensi::getDurasiAktivitasMenit).max().orElse(1));
++  Label unit=label(Integer.toString(max),"home-chart-label");unit.relocate(0,0);chart.getChildren().add(unit);
++  for(int g=0;g<3;g++){double y=top+g*h/2;Line line=new Line(left,y,w-12,y);line.getStyleClass().add("home-chart-grid");line.getStrokeDashArray().addAll(2.0,4.0);chart.getChildren().add(line);}
++  for(int i=0;i<plotted.size();i++){
++   var d=plotted.get(i);double x=left+i*(w-left-16)/6,y=top+h-h*d.getDurasiAktivitasMenit()/max;
++   Label day=label(d.getLabelHari(),"home-chart-label");day.relocate(x-10,92);chart.getChildren().add(day);
++   if(d.isAktivitasTercatat()){
++    Circle dot=new Circle(x,y,4);dot.getStyleClass().add("home-chart-dot");Tooltip.install(dot,new Tooltip(d.getTanggal()+": "+d.getDurasiAktivitasMenit()+" menit"));chart.getChildren().add(dot);
++    if(i>0&&plotted.get(i-1).isAktivitasTercatat()){
++     Line segment=new Line(left+(i-1)*(w-left-16)/6,top+h-h*plotted.get(i-1).getDurasiAktivitasMenit()/max,x,y);segment.getStyleClass().add("home-chart-line");chart.getChildren().add(segment);
++    }
++   }
+   }
+  }
+  @FXML public void handleQuickAddHydration(){access.owner();try{writes.submit(dashboardRoot,()->{habits.tambahHidrasi(access.owner(),LocalDate.now(ZoneId.of("Asia/Jakarta")),250,"Tambah cepat beranda");return null;},this::muatDataPenggunaDanDashboard);}catch(java.sql.SQLException e){DialogHelper.showError(dashboardRoot, "Penyimpanan","Data belum dikonfirmasi.");}}
+@@ -111,5 +177,5 @@
+  @FXML public void handleBukaKebiasaan(){access.owner();if(mainController!=null)mainController.handleNavKebiasaan();}
+  @FXML public void handleBukaTidur(){access.owner();if(mainController!=null)mainController.handleNavTidur();}
+  @FXML public void handleBukaStatistik(){access.owner();if(mainController!=null)mainController.handleNavStatistik();}
+- public void close(){if(trainingDialog!=null)trainingDialog.close();if(closed)return;closed=true;access.close();sounds.close();if(dashboardScroll!=null)dashboardScroll.widthProperty().removeListener(resize);if(chart!=null)chart.widthProperty().removeListener(chartResize);}
++ public void close(){if(closed)return;closed=true;access.close();sounds.close();if(dashboardScroll!=null)dashboardScroll.widthProperty().removeListener(resize);if(chart!=null)chart.widthProperty().removeListener(chartResize);}
+ }

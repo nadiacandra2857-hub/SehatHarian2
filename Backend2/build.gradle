@@ -58,9 +58,29 @@ test {
 // Package the canonical SQL files for automatic first-run initialization.
 sourceSets.main.resources {
     srcDir('sql')
+    exclude('seed.sql')
 }
 
 tasks.register('createAdmin', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'com.sehatharian.config.CreateAdmin'
+}
+
+tasks.register('importFoods', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.sehatharian.nutrition.FoodImport'
+    workingDir rootProject.projectDir
+}
+
+tasks.register('setupDatabase', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.sehatharian.config.SetupDatabase'
+    workingDir rootProject.projectDir
+}
+
+tasks.register('importMenus', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.sehatharian.nutrition.CuratedMenus'
+    workingDir rootProject.projectDir
+    args(project.hasProperty('applyMenus') ? '--apply' : '--dry-run')
 }

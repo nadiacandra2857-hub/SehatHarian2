@@ -1,0 +1,7 @@
+WARNING: option --ssl-verify-server-cert is disabled, because of an insecure passwordless login.
+isolated_schema
+sehatharian_test_rombak_visual_release_20261110b
+food_catalog_rows
+7795
+activity_rows_owner2
+4

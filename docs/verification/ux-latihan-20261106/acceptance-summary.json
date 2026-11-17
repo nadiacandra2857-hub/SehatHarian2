@@ -1,0 +1,37 @@
+{
+  "completedAt": "2026-11-06T14:35:52.609961+00:00",
+  "sourceTestsBefore": 262,
+  "sourceTestsAfter": 262,
+  "parserTests": 8,
+  "build": "SUCCESS",
+  "browserModes": [
+    "session",
+    "history",
+    "manual",
+    "retention",
+    "sidebar",
+    "recommendations",
+    "lifecycle",
+    "landing"
+  ],
+  "activityCounts": [
+    3,
+    3,
+    3,
+    4,
+    4
+  ],
+  "savedActivity": {
+    "id": 4,
+    "owner": 1,
+    "activeSeconds": 66,
+    "storedMinutes": 1
+  },
+  "unchangedAfterReadNavigation": 4,
+  "screenshotsVerified": 106,
+  "limits": [
+    "Demo 90-day schema absent; no seed or demo writes",
+    "Failure/uncertain/retry/owner replacement tested with JDBC proxy fixtures",
+    "No durable session/idempotency or real transient-network acceptance"
+  ]
+}

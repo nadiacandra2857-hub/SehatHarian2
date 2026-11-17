@@ -211,9 +211,9 @@ public class JadwalTidurController implements AutoCloseable {
         emptyBox.setAlignment(Pos.CENTER);
         emptyBox.setStyle("-fx-padding: 30 10;");
         Label title = new Label("Belum Ada Riwayat Istirahat Tersimpan");
-        title.setStyle("-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #34483F;");
+        title.setStyle("-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #E5E7EB;");
         Label sub = new Label("Catat waktu tidur dan bangun pada formulir di atas untuk memulai pemantauan pola istirahat.");
-        sub.setStyle("-fx-font-size: 12.5px; -fx-text-fill: #5A6D63;");
+        sub.setStyle("-fx-font-size: 12.5px; -fx-text-fill: #9CA3AF;");
         emptyBox.getChildren().addAll(title, sub);
         tableRiwayatTidur.setPlaceholder(emptyBox);
     }

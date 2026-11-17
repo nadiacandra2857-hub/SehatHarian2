@@ -1,0 +1,245 @@
+{
+  "phase": "after",
+  "mode": "matrix",
+  "screens": [
+    {
+      "name": "beranda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3500 ml\nNutrisi\n1 catatan\nAktivitas\n1 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nJalan Kaki Ringan Pagi\nBelum selesai\nBuka tantangan\nWorkout Penguat Inti di R...\nBelum selesai\nBuka tantangan\nTantangan Hidrasi 2 Liter\nBelum selesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "beranda-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3500 ml\nNutrisi\n1 catatan\nAktivitas\n1 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nJalan Kaki Ringan Pagi\nBelum selesai\nBuka tantangan\nWorkout Penguat Inti di R...\nBelum selesai\nBuka tantangan\nTantangan Hidrasi 2 Liter\nBelum selesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "beranda-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nSehatHarian\nHalo, Fixture\nProfil\nRutinitas\n\n\nhari ini\n4/4 tercatat\nLihat rutinitas\nTidur\n4,0 jam\nHidrasi\n3500 ml\nNutrisi\n1 catatan\nAktivitas\n1 menit\nTantangan\nLihat semua\nAir 1000 ml\nBelum selesai\nBuka tantangan\nAir 500 ml\nSelesai\nBuka tantangan\nJalan Kaki Ringan Pagi\nBelum selesai\nBuka tantangan\nWorkout Penguat Inti di R...\nBelum selesai\nBuka tantangan\nTantangan Hidrasi 2 Liter\nBelum selesai\nBuka tantangan\nProgres 7 hari\nLihat progres\nMenit aktivitas tercatat\n20\nRab\nKam\nJum\nSab\nMin\nSen\nSel"
+    },
+    {
+      "name": "hidrasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "hidrasi-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "hidrasi-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nHidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml"
+    },
+    {
+      "name": "tidur-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur aktual\nAktual · bangun hari ini\n4,0 jam\nCatat tidur\nForm catatan tidur\nRiwayat aktual · 30 hari\nJadwal tidur & pengingat (rencana)\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tidur-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Pengingat tidur belum diatur\nTutup\nTidur aktual\nAktual · bangun hari ini\n4,0 jam\nCatat tidur\nForm catatan tidur\nRiwayat aktual · 30 hari\nJadwal tidur & pengingat (rencana)\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "tidur-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nTidur aktual\nAktual · bangun hari ini\n4,0 jam\nCatat tidur\nForm catatan tidur\nRiwayat aktual · 30 hari\nJadwal tidur & pengingat (rencana)"
+    },
+    {
+      "name": "nutrisi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Pengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan \nmalam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "nutrisi-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Pengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan \nsiang\n+\nBelum tercatat\nMakan \nmalam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "nutrisi-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi"
+    },
+    {
+      "name": "latihan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "latihan-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "latihan-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "tantangan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "tantangan-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "tantangan-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "rekomendasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "rekomendasi-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "rekomendasi-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "progres-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "progres-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "progres-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "catatan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "catatan-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "catatan-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "tantangan-lama-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "tantangan-lama-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "tantangan-lama-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "statistik-lama-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "statistik-lama-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "statistik-lama-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    },
+    {
+      "name": "evaluasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nPengingat tidur belum diatur\nTutup\nNutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129 kkal\nEnergi tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nSumber katalog gizi\nReconnecting"
+    }
+  ],
+  "error": "Error: CDP timeout: Runtime.evaluate"
+}

@@ -1,0 +1,8 @@
+{
+  "launcher": "bash jalankan-web.sh",
+  "cwd": "/tmp/sehatharian-visual-release-xje8_u5q/SehatHarian",
+  "schema": "sehatharian_test_rombak_visual_release_20261110a",
+  "pid": 21574,
+  "status": "started",
+  "evidence_scope": "current ZIP extraction; separate from source and old release"
+}

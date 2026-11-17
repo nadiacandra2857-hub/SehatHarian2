@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -47,7 +48,7 @@
                     </VBox>
 
                     <VBox spacing="4">
-                        <Label text="Estimasi Waktu Luang Harian (Menit):" styleClass="form-label" wrapText="true"/>
+                        <Label text="Waktu luang (menit):" styleClass="form-label" wrapText="true"/>
                         <TextField fx:id="txtWaktuLuang" promptText="Contoh: 30"/>
                         <Label text="Membatasi durasi pilihan aktivitas." styleClass="form-hint" wrapText="true"/>
                     </VBox>
@@ -75,14 +76,15 @@
             </AdaptiveRow>
         </VBox>
 
+        <TitledPane text="Diagnostik koneksi" expanded="false"><content>
         <!-- STATUS KONEKSI DATABASE & DIAGNOSTIK -->
         <VBox styleClass="wellness-card" spacing="12">
             <Label text="Koneksi layanan" styleClass="card-title" wrapText="true"/>
             
-            <AdaptiveRow spacing="14" alignment="CENTER_LEFT" style="-fx-background-color: #F8FAFC; -fx-padding: 12 16; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10;">
+            <AdaptiveRow spacing="14" alignment="CENTER_LEFT" style="-fx-background-color: #263345; -fx-padding: 12 16; -fx-background-radius: 10; -fx-border-color: #374151; -fx-border-radius: 10;">
                 <VBox spacing="2" HBox.hgrow="ALWAYS">
                     <Label text="URL Koneksi JDBC:" styleClass="form-label" wrapText="true"/>
-                    <Label fx:id="labelJdbcUrl" text="jdbc:mysql://localhost:3306/sehatharian_db" style="-fx-font-family: monospace; -fx-font-size: 12px; -fx-text-fill: #202121;" wrapText="true"/>
+                    <Label fx:id="labelJdbcUrl" text="jdbc:mysql://localhost:3306/sehatharian_db" style="-fx-font-family: monospace; -fx-font-size: 12px; -fx-text-fill: #E5E7EB;" wrapText="true"/>
                 </VBox>
                 <VBox spacing="2">
                     <Label text="Status Koneksi:" styleClass="form-label" wrapText="true"/>
@@ -96,6 +98,8 @@
                 <Label text="Profil, catatan kebiasaan, jadwal, tantangan dan evaluasi." styleClass="form-hint" wrapText="true"/>
             </VBox>
         </VBox>
+
+        </content></TitledPane>
 
         <VBox styleClass="wellness-card" spacing="10">
             <Label text="Sesi akun" styleClass="card-title"/>

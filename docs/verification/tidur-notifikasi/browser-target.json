@@ -1,0 +1,11 @@
+{
+  "mode": "target",
+  "db": "sehatharian_test_sleep_browser2_20261116",
+  "appPort": "8098",
+  "started": "2026-11-16T03:33:06.164Z",
+  "screens": [],
+  "target": {
+    "targetId": "475ECDD9BAF59D54C57F394005E14A7A"
+  },
+  "finished": "2026-11-16T03:33:06.330Z"
+}

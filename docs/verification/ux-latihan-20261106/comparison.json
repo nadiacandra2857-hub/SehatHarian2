@@ -1,0 +1,13 @@
+{
+  "before": "docs/screenshots/ux-latihan-20261106/before/audit-dropdown-selected.png",
+  "after": "docs/screenshots/ux-latihan-20261106/audit-dropdown-selected.png",
+  "viewport": [
+    1440,
+    1000
+  ],
+  "selectedTextBefore": "#22C55E",
+  "selectedTextAfter": "#E5E7EB",
+  "background": "#064E3B",
+  "contrastBefore": 4.27,
+  "contrastAfter": 7.85
+}

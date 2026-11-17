@@ -1,0 +1,166 @@
+ M BACA_DULU.md
+ M Backend2/build.gradle
+ M Backend2/src/main/java/com/sehatharian/catalog/ExerciseCatalog.java
+ M Backend2/src/main/java/com/sehatharian/config/DatabaseBootstrap.java
+ M Backend2/src/main/java/com/sehatharian/config/DatabaseConfig.java
+ M Backend2/src/main/java/com/sehatharian/model/SessionAccess.java
+ M Backend2/src/main/java/com/sehatharian/repository/AktivitasRepository.java
+ M Backend2/src/main/java/com/sehatharian/service/EvaluasiService.java
+ M Backend2/src/main/java/com/sehatharian/service/KebiasaanService.java
+ M Backend2/src/main/java/com/sehatharian/service/PengingatTidurService.java
+ M Backend2/src/main/java/com/sehatharian/service/TantanganService.java
+ M Backend2/src/main/java/com/sehatharian/service/TidurService.java
+ M Backend2/src/main/resources/db.properties
+ M Backend2/src/test/java/com/sehatharian/WriteConfirmationTest.java
+ M Frontend2/build.gradle
+ M Frontend2/src/main/java/com/sehatharian/MainApp.java
+ M Frontend2/src/main/java/com/sehatharian/controller/CatatanKebiasaanController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/CreateAccountController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/DashboardController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/EvaluasiMingguanController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/JadwalTidurController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/LandingPageController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/LoginController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/MainLayoutController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/OnboardingController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/RekomendasiController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/StatistikMingguanController.java
+ M Frontend2/src/main/java/com/sehatharian/controller/TantanganController.java
+ M Frontend2/src/main/java/com/sehatharian/util/AdaptiveRow.java
+ M Frontend2/src/main/java/com/sehatharian/util/EditorialImage.java
+ M Frontend2/src/main/java/com/sehatharian/util/ExerciseCatalogPane.java
+ M Frontend2/src/main/java/com/sehatharian/util/InstanceControllerFactory.java
+ M Frontend2/src/main/java/com/sehatharian/util/SceneNavigator.java
+ M Frontend2/src/main/java/com/sehatharian/util/WriteAction.java
+ M Frontend2/src/main/resources/css/dashboard.css
+ M Frontend2/src/main/resources/css/sehat-theme.css
+ M Frontend2/src/main/resources/css/styles.css
+ M Frontend2/src/main/resources/css/ui2.css
+ M Frontend2/src/main/resources/fxml/CatatanKebiasaanView.fxml
+ M Frontend2/src/main/resources/fxml/CreateAccountView.fxml
+ M Frontend2/src/main/resources/fxml/DashboardView.fxml
+ M Frontend2/src/main/resources/fxml/EvaluasiMingguanView.fxml
+ M Frontend2/src/main/resources/fxml/JadwalTidurView.fxml
+ M Frontend2/src/main/resources/fxml/LandingPageView.fxml
+ M Frontend2/src/main/resources/fxml/LoginView.fxml
+ M Frontend2/src/main/resources/fxml/MainLayout.fxml
+ M Frontend2/src/main/resources/fxml/OnboardingView.fxml
+ M Frontend2/src/main/resources/fxml/ProfilPengaturanView.fxml
+ M Frontend2/src/main/resources/fxml/RekomendasiView.fxml
+ M Frontend2/src/main/resources/fxml/StatistikMingguanView.fxml
+ M Frontend2/src/main/resources/fxml/TantanganView.fxml
+ M Frontend2/src/test/java/com/sehatharian/ReminderLifecycleTest.java
+ M Frontend2/src/test/java/com/sehatharian/WriteActionTest.java
+ M README.md
+ D "SehatHarian Health App UI Collage.png"
+ M docs/PEKERJAAN_TERTUNDA.md
+ M docs/repdb/README.md
+ M jalankan-linux-macos.sh
+ M presentasi-web.sh
+ D reference/reference.png
+ M scripts/verify-source-tests.py
+?? .env.example
+?? Backend2/sql/rombak.sql
+?? Backend2/sql/training-history.sql
+?? Backend2/src/main/java/com/sehatharian/catalog/TeamExercises.java
+?? Backend2/src/main/java/com/sehatharian/config/SetupDatabase.java
+?? Backend2/src/main/java/com/sehatharian/content/
+?? Backend2/src/main/java/com/sehatharian/nutrition/
+?? Backend2/src/main/java/com/sehatharian/repository/ActualSleepRepository.java
+?? Backend2/src/main/java/com/sehatharian/service/HabitChallengeService.java
+?? Backend2/src/main/java/com/sehatharian/service/HabitInsights.java
+?? Backend2/src/main/java/com/sehatharian/service/HabitPreferences.java
+?? Backend2/src/main/java/com/sehatharian/training/
+?? Backend2/src/test/java/com/sehatharian/RombakDomainTest.java
+?? Backend2/src/test/java/com/sehatharian/RombakIntegration.java
+?? Backend2/src/test/java/com/sehatharian/RombakLegacyMigration.java
+?? Backend2/src/test/java/com/sehatharian/TrainingHistoryIntegration.java
+?? Backend2/src/test/java/com/sehatharian/TrainingSessionTest.java
+?? DatasetAktivitas/
+?? Frontend2/src/main/java/com/sehatharian/controller/AdminController.java
+?? Frontend2/src/main/java/com/sehatharian/controller/HidrasiController.java
+?? Frontend2/src/main/java/com/sehatharian/controller/KontenController.java
+?? Frontend2/src/main/java/com/sehatharian/controller/LatihanController.java
+?? Frontend2/src/main/java/com/sehatharian/controller/NutrisiController.java
+?? Frontend2/src/main/java/com/sehatharian/controller/ProgresController.java
+?? Frontend2/src/main/java/com/sehatharian/controller/TidurAktualController.java
+?? Frontend2/src/main/java/com/sehatharian/util/FocusReveal.java
+?? Frontend2/src/main/java/com/sehatharian/util/HabitUI.java
+?? Frontend2/src/main/java/com/sehatharian/util/TrainingDialog.java
+?? Frontend2/src/main/java/com/sehatharian/util/TrainingHistoryPane.java
+?? Frontend2/src/main/java/com/sehatharian/util/TrainingVideo.java
+?? Frontend2/src/main/java/com/sehatharian/util/VisualUI.java
+?? Frontend2/src/main/java/com/sehatharian/util/WaterGauge.java
+?? Frontend2/src/main/java/com/sehatharian/util/WellnessArt.java
+?? Frontend2/src/main/resources/css/home-visual.css
+?? Frontend2/src/main/resources/css/light.css
+?? Frontend2/src/main/resources/css/mobile-polish.css
+?? Frontend2/src/main/resources/css/visual-system.css
+?? Frontend2/src/main/resources/fxml/AdminView.fxml
+?? Frontend2/src/main/resources/fxml/HidrasiView.fxml
+?? Frontend2/src/main/resources/fxml/KontenView.fxml
+?? Frontend2/src/main/resources/fxml/LatihanView.fxml
+?? Frontend2/src/main/resources/fxml/NutrisiView.fxml
+?? Frontend2/src/main/resources/fxml/ProgresView.fxml
+?? Frontend2/src/main/resources/fxml/TidurAktualView.fxml
+?? Frontend2/src/main/resources/images/campus-generic.png
+?? Frontend2/src/main/resources/images/home/
+?? Frontend2/src/main/resources/images/team/
+?? Frontend2/src/test/java/com/sehatharian/TrainingWriteTest.java
+?? Reference/
+?? datashetmakanan/
+?? docs/ASAL_ASET_BERANDA_VISUAL.md
+?? docs/ASAL_ASET_ROMBAK.md
+?? docs/CONTOH_OOP_ROMBAK.md
+?? docs/LAPORAN_BERANDA_VISUAL.md
+?? docs/LAPORAN_LATIHAN_1.md
+?? docs/LAPORAN_PENYEMPURNAAN_MOBILE.md
+?? docs/LAPORAN_PERBAIKAN_UX_LATIHAN.md
+?? docs/LAPORAN_RIWAYAT_LATIHAN.md
+?? docs/LAPORAN_ROMBAK_SEHATHARIAN.md
+?? docs/LAPORAN_TEMA_1.md
+?? docs/LAPORAN_VISUAL_LANJUTAN.md
+?? docs/PANDUAN_DEMO_DOSEN.md
+?? docs/screenshots/beranda-visual/
+?? docs/screenshots/latihan-1/
+?? docs/screenshots/masalah/
+?? docs/screenshots/mobile-rapi/
+?? docs/screenshots/riwayat-latihan/
+?? docs/screenshots/rombak/
+?? docs/screenshots/tema-1/
+?? docs/screenshots/ux-latihan-20261106/
+?? docs/screenshots/ux-latihan/
+?? docs/screenshots/visual-lanjutan/
+?? docs/verification/
+?? jalankan-web.sh
+?? rilis/
+?? scripts/capture-tema1.py
+?? scripts/package-rombak.py
+?? scripts/prepare-foods.py
+?? scripts/rombak-check.init.gradle
+?? scripts/run-rombak-integration.py
+?? scripts/run-training-history-tests.py
+?? scripts/start-rombak-db.sh
+?? scripts/visual/Tema1Capture.java
+?? scripts/visual/Tema1CaptureLauncher.java
+?? scripts/visual/app-visual.mjs
+?? scripts/visual/beranda-visual.mjs
+?? scripts/visual/compare-app-visual.py
+?? scripts/visual/compare-beranda.py
+?? scripts/visual/compare-mobile-rapi.py
+?? scripts/visual/latihan-browser.mjs
+?? scripts/visual/latihan-catalog-check.mjs
+?? scripts/visual/latihan-cdp.mjs
+?? scripts/visual/latihan-flow.mjs
+?? scripts/visual/latihan-isolation.mjs
+?? scripts/visual/latihan-mobile.mjs
+?? scripts/visual/latihan-repetitions.mjs
+?? scripts/visual/latihan-reset.mjs
+?? scripts/visual/latihan-save.mjs
+?? scripts/visual/mobile-rapi.mjs
+?? scripts/visual/rombak-isolation.mjs
+?? scripts/visual/rombak.mjs
+?? scripts/visual/training-history.mjs
+?? scripts/visual/ux-acceptance.mjs
+?? scripts/visual/ux-contrast.py
+?? scripts/visual/ux-latihan.mjs

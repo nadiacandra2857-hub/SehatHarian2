@@ -6,9 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.mindrot.jbcrypt.BCrypt;
 
-/** Creates missing tables from the bundled SQL without reseeding existing user data. */
+/** Creates missing schema only; never inserts accounts, personal records or curated content. */
 public final class DatabaseBootstrap {
     private DatabaseBootstrap() {}
 
@@ -31,6 +30,12 @@ public final class DatabaseBootstrap {
                 }
             }
             execute(statement, read("schema.sql").replace("sehatharian_db", name));
+            execute(statement, read("rombak.sql"));
+            execute(statement, read("training-history.sql"));
+            execute(statement, read("training-checkpoint.sql"));
+            execute(statement, read("personal-menu.sql"));
+            execute(statement, read("curated-menu.sql"));
+            execute(statement, read("sleep-completion.sql"));
             // Existing installations need the new column too; never promote existing users.
             boolean hasRole;
             try (var columns = conn.getMetaData().getColumns(name, null, "pengguna", "role")) {
@@ -39,35 +44,8 @@ public final class DatabaseBootstrap {
             if (!hasRole) statement.executeUpdate(
                     "ALTER TABLE pengguna ADD COLUMN role ENUM('user','admin') NOT NULL DEFAULT 'user'");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS app_setup (id INT PRIMARY KEY)");
-            boolean initialized;
-            try (var result = statement.executeQuery("SELECT COUNT(*) FROM app_setup WHERE id = 1")) {
-                result.next();
-                initialized = result.getInt(1) > 0;
-            }
-            if (!initialized) {
-                boolean empty = true;
-                for (String table : new String[]{"pengguna", "tantangan", "rekomendasi"}) {
-                    try (var result = statement.executeQuery("SELECT COUNT(*) FROM " + table)) {
-                        result.next();
-                        empty &= result.getLong(1) == 0;
-                    }
-                }
-                // Seed uses fixed IDs: only apply it to a newly created, empty database.
-                conn.setAutoCommit(false);
-                try {
-                    if (empty) {
-                        String seed = read("seed.sql").replace("USE sehatharian_db;", "USE " + name + ";");
-                        seed = seed.replace("$2a$10$wG0.1d80gM63wZ4tKzO90.7nUq2D/jI485n6bH4x79mK1s6U5mX8q",
-                                BCrypt.hashpw("password123", BCrypt.gensalt()));
-                        execute(statement, seed);
-                    }
-                    statement.executeUpdate("INSERT INTO app_setup (id) VALUES (1)");
-                    conn.commit();
-                } catch (SQLException e) {
-                    conn.rollback();
-                    throw e;
-                }
-            }
+            // Provision schema only. Existing accounts/content remain untouched; demo fixtures are opt-in tests.
+            statement.executeUpdate("INSERT IGNORE INTO app_setup (id) VALUES (1)");
         }
         if (!DatabaseConfig.testConnection()) {
             throw new SQLException("Database selesai disiapkan tetapi koneksi aplikasi gagal.");

@@ -11,6 +11,7 @@ import java.util.List;
 public class AdaptiveRow extends HBox {
     public AdaptiveRow() { setMinWidth(0); setFillHeight(false); }
     public AdaptiveRow(double gap) { this(); setSpacing(gap); }
+    @Override public javafx.geometry.Orientation getContentBias() { return javafx.geometry.Orientation.HORIZONTAL; }
     private List<Node> items() { return getManagedChildren().stream()
         .filter(n -> n.getClass() != Region.class).toList(); }
     private double desired(Node n) {

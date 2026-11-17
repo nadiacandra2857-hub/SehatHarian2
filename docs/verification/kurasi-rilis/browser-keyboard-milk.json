@@ -1,0 +1,13 @@
+{
+  "mode": "keyboard-milk",
+  "db": "sehatharian_test_curated_ui_20261111",
+  "screens": [
+    {
+      "name": "keyboard-milk-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nKS\nKurasi — akun sintetis\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nMenu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\nPreferensi belum disimpan. Hasil sebelumnya ditangguhkan.\nPeriksa menu personal\nPreferensi menu tersimpan\nPerubahan belum disimpan. Hasil personal sebelumnya ditangguhkan.\nPola makan\nVegetarian (telur/susu diperbolehkan)\nBahan yang dihindari karena preferensi\nTidak ada — saya menyatakan eksplisit\nPernyataan pantangan / alergi\nAda pilihan yang dilaporkan\nKategori acuan FDA; bukan daftar semua pemicu alergi. Pilih bahan spesifik di bawah untuk pantangan lain.\nSusu\nTelur\nIkan\nKrustasea\nKacang pohon\nKacang tanah\nGandum\nKedelai\nWijen\nKategori pantangan yang dilaporkan\nCari bahan terstruktur\nCari bahan atau alias\nCari bahan preferensi\nTeks tambahan yang belum dipilih\nSimpan preferensi menu\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\nJelajahi menu umum\nBatas pencocokan"
+    }
+  ]
+}

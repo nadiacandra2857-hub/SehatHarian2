@@ -1,0 +1,8 @@
+{
+  "instance": "/tmp/sehatharian-sleep-package-final2-20261116/SehatHarian",
+  "database": "sehatharian_test_sleep_package_final2_20261116",
+  "pid_preserved": 32140,
+  "refused_exit_code": 1,
+  "message": "JPro masih berjalan di direktori ini. Gunakan salinan folder terpisah untuk instance paralel; proses lama dipertahankan.",
+  "first_process_alive": true
+}

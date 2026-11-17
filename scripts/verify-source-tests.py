@@ -19,7 +19,7 @@ ProgresHarianServiceTest RekomendasiServiceTest OwnershipServiceTest
 WriteConfirmationTest CatalogReadTest UserSessionTest FrontendFlowValidationTest
 FrontendFeatureFlowIntegrationTest InstanceContextTest ReminderLifecycleTest
 MainLayoutContractTest FrontendOwnershipTest WriteActionTest WriteViewContractTest
-CatalogPreviewTest ExerciseCatalogTest
+CatalogPreviewTest ExerciseCatalogTest TrainingSessionTest TrainingWriteTest RombakDomainTest MenuPolicyTest
 """.split()
 
 RUNNER = r"""

@@ -1,0 +1,17 @@
+[
+  {
+    "src": "http://localhost:8088/app/default/resources/cp:/1/1/media/team/Jalan_Kaki.mp4?instanceID=5wn2g49xek5xjwdl8ya99v8pf",
+    "paused": false,
+    "loop": true,
+    "readyState": 4,
+    "currentTime": 2.990216,
+    "videoWidth": 1280,
+    "videoHeight": 720,
+    "rect": {
+      "x": 17,
+      "y": 122,
+      "w": 348,
+      "h": 196
+    }
+  }
+]

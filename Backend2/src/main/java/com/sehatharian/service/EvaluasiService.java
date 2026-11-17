@@ -12,6 +12,7 @@ import java.util.Locale;
 
 public class EvaluasiService {
     private final SessionAccess access;
+    private boolean validateSavedData;
     private final RiwayatTantanganRepository riwayatRepo;
     private final JadwalTidurRepository tidurRepo;
     private final AktivitasRepository aktivitasRepo;
@@ -21,7 +22,8 @@ public class EvaluasiService {
     public EvaluasiService(SessionAccess access) {
         this.access = java.util.Objects.requireNonNull(access);
         this.riwayatRepo = new RiwayatTantanganRepository(access);
-        this.tidurRepo = new JadwalTidurRepository(access);
+        this.tidurRepo = new ActualSleepRepository(access);
+        validateSavedData=true;
         this.aktivitasRepo = new AktivitasRepository(access);
         this.hidrasiRepo = new HidrasiRepository(access);
         this.evaluasiRepo = new EvaluasiMingguanRepository(access);
@@ -98,8 +100,7 @@ public class EvaluasiService {
             double durasiTidur = 0.0;
             for (JadwalTidur jt : listTidur) {
                 if (jt.getTanggal().equals(tgl)) {
-                    durasiTidur = jt.getDurasiJam();
-                    break;
+                    durasiTidur += jt.getDurasiJam();
                 }
             }
             rk.setDurasiTidurJam(durasiTidur);
@@ -124,6 +125,11 @@ public class EvaluasiService {
      * dan menyimpannya ke MySQL.
      */
     public EvaluasiMingguan buatEvaluasiMingguan(int penggunaId, LocalDate tanggalAcuan) throws SQLException {
+        if(validateSavedData)for(String category:List.of("activity","hydration","sleep")){
+            var advice=new HabitInsights(access).advise(category,tanggalAcuan);
+            if(!"READY".equals(advice.state()))throw new IllegalStateException(advice.reason());
+        }
+
         access.owner(penggunaId);
         List<RingkasanKonsistensi> harian = getKonsistensi7HariTerakhir(penggunaId, tanggalAcuan);
         if (harian.stream().noneMatch(RingkasanKonsistensi::hasRecordedData))
@@ -182,11 +188,11 @@ public class EvaluasiService {
         if (hariTidurTercatat == 0) {
             rekomendasi.append("• Belum ada catatan tidur; durasi tidur belum dapat dinilai.\n");
         } else if (!memenuhiStandarTidur) {
-            rekomendasi.append("• Prioritas Istirahat: Durasi tidur Anda kurang dari 5 jam. Sangat disarankan tidur lebih awal 30–45 menit malam ini, redupkan lampu, dan hindari paparan layar gawai minimal 30 menit sebelum tidur.\n");
+            rekomendasi.append("• Prioritas Istirahat: Ada total episode pada tanggal bangun di bawah ambang internal proyek 5 jam. Periksa kelengkapan catatan dan tinjau jadwal pilihan Anda.\n");
         } else if (rataRataTidur >= 7.0) {
-            rekomendasi.append("• Kualitas Istirahat: Pola tidur Anda sangat baik dan memenuhi standar pemulihan tubuh optimal.\n");
+            rekomendasi.append("• Kualitas Istirahat: Durasi tercatat berada di atas ambang internal proyek; kualitas tidur tidak diukur.\n");
         } else {
-            rekomendasi.append("• Optimasi Tidur: Durasi tidur mencukupi batas minimal, usahakan menambah durasi istirahat menuju 7 jam untuk pemulihan energi penuh.\n");
+            rekomendasi.append("• Optimasi Tidur: Durasi tercatat memenuhi ambang internal proyek 5 jam; tinjau jadwal pilihan dan catatan aktual.\n");
         }
 
         if (harian.stream().noneMatch(RingkasanKonsistensi::isHidrasiTercatat)) {
@@ -212,6 +218,12 @@ public class EvaluasiService {
         if (id <= 0) throw new SQLException("Penyimpanan belum dikonfirmasi.");
         em.setId(id);
         return access.result(em);
+    }
+
+    /** Dedicated sleep assessment reuses the saved-profile / 7-day / 3-recorded-day gate. */
+    public com.sehatharian.service.HabitInsights.Advice sleepAssessment(LocalDate day)throws SQLException {
+        access.owner();var advice=new HabitInsights(access).advise("sleep",day);
+        return access.result(advice);
     }
 
     public EvaluasiMingguan getEvaluasiTerbaru(int penggunaId) throws SQLException {

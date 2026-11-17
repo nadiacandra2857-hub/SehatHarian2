@@ -8,7 +8,7 @@ import java.util.Properties;
 
 /**
  * DatabaseConfig mengelola konfigurasi dan koneksi JDBC ke MySQL.
- * Mendukung pembacaan berkas eksternal db.properties, connection timeout,
+ * Membaca db.properties dari classpath (ditimpa environment), connection timeout,
  * dan cache ketersediaan koneksi; cache bukan bukti hasil baca/tulis.
  */
 public class DatabaseConfig {
@@ -32,11 +32,11 @@ public class DatabaseConfig {
             System.err.println("Peringatan: Gagal membaca db.properties, menggunakan konfigurasi default: " + e.getMessage());
         }
 
-        String host = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : props.getProperty("db.host", "127.0.0.1");
-        String port = System.getenv("DB_PORT") != null ? System.getenv("DB_PORT") : props.getProperty("db.port", "13306");
-        String dbName = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : props.getProperty("db.name", "sehatharian_db");
+        String host = setting("DB_HOST", "db.host", "127.0.0.1");
+        String port = setting("DB_PORT", "db.port", "13306");
+        String dbName = setting("DB_NAME", "db.name", "sehatharian_db");
         databaseName = dbName;
-        username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : props.getProperty("db.user", "root");
+        username = setting("DB_USER", "db.user", "root");
         password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : props.getProperty("db.password", "");
         String useSSL = props.getProperty("db.useSSL", "false");
         String allowPublicKey = props.getProperty("db.allowPublicKeyRetrieval", "true");
@@ -54,6 +54,13 @@ public class DatabaseConfig {
         } catch (ClassNotFoundException e) {
             System.err.println("Driver MySQL Connector/J tidak ditemukan: " + e.getMessage());
         }
+    }
+
+    private static String setting(String environment, String property, String fallback) {
+        String value = System.getenv(environment);
+        if (value != null && !value.isBlank()) return value.trim();
+        value = props.getProperty(property);
+        return value == null || value.isBlank() ? fallback : value.trim();
     }
 
     private static volatile Boolean dbAvailable = null;

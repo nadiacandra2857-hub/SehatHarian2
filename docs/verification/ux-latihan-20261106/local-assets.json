@@ -1,0 +1,105 @@
+{
+  "assets": {
+    "doctor_female_labcoat.jpg": {
+      "bytes": 117451,
+      "sha256": "90a63137201c6f443d8be682ff4d19f1c09b80564c842ad322adfcfbb7b1e916"
+    },
+    "doctor_hero.jpg": {
+      "bytes": 97888,
+      "sha256": "4e1c9b05b3c601a855a7d4a73ff7464bc12eac2d9b33f596135aa82512c8117a"
+    },
+    "doctor_hero_clinic.jpg": {
+      "bytes": 92943,
+      "sha256": "643c9484790c2f2d1921120a8f39f4ff7a4dfde8207d2957d1b029eebd38b621"
+    },
+    "doctor_hero_framed.png": {
+      "bytes": 417332,
+      "sha256": "265bc509b19ea861ee9c4890551ca0f2167d1d5151699dd00edef2895cdff6b4"
+    },
+    "foto1_showcase.png": {
+      "bytes": 57188,
+      "sha256": "8efbfb18f24ed5214282c8185dacaa89d418e25860d9a45ca1b397bdeb6d0558"
+    },
+    "foto2_tantangan.png": {
+      "bytes": 20696,
+      "sha256": "aa6955841c7b8ba76822fe2b61aba934fe085784caecfb1c5208697df36a4fd0"
+    },
+    "foto3_hidrasi.png": {
+      "bytes": 25299,
+      "sha256": "3473b165a3f03975bd79e3ede5599c9f2044949c5bafb4b320f9066c7f59fb64"
+    },
+    "foto4_isipiringku.png": {
+      "bytes": 26685,
+      "sha256": "3596478f62383a90f4343235b287060cfc1e6233df3c0de94383020fc7493c8d"
+    },
+    "foto5_tidur.png": {
+      "bytes": 52457,
+      "sha256": "da5cc0a4319f90ec7a7f6cccf9e083485ee541b3c58981fcc0d8175a03528ecc"
+    },
+    "gambar1.jpg": {
+      "bytes": 3419734,
+      "sha256": "da8aa9d65eda9e625761cde0060a153b27f6cb830e4ffd3370ea01b033c19870"
+    },
+    "hero_wellness.png": {
+      "bytes": 53331,
+      "sha256": "35264d13cdd6031941b3b11a38eccd76b1018ad6fed934ca5ef49965ce20ed2c"
+    },
+    "hospital_card_framed.png": {
+      "bytes": 313942,
+      "sha256": "eb4f6504a53a8c07dd05f3d1ec2c92d9bd1d0f0832c2a0017999534870ab0a11"
+    },
+    "hospital_modern.jpg": {
+      "bytes": 94373,
+      "sha256": "d5b675033e1801224a617166ef74e1fb11a1eaef3ad3c1a704b62c375fcecaf1"
+    },
+    "illustration_food.png": {
+      "bytes": 3731,
+      "sha256": "427305577664716a55f1dc77be4bbca66f85ba4b5d774bdee612c8c852db0076"
+    },
+    "illustration_sleep.png": {
+      "bytes": 6022,
+      "sha256": "78dcca3491e82334f0bedce1aa2a1142804e4b2cf5d394b72a7ad6e97aef29bc"
+    },
+    "illustration_stretch.png": {
+      "bytes": 3482,
+      "sha256": "3461f08a3a0292cff4993137288951093ad11bed3ebe953a09f4cd0e0bd573b9"
+    },
+    "illustration_walk.png": {
+      "bytes": 6085,
+      "sha256": "846fc8c5f0930d7acb917a17c2ac05f698c0b346dd111c894fae78f58de95c43"
+    },
+    "illustration_water.png": {
+      "bytes": 4341,
+      "sha256": "4e4632341fc6a27c69f1152571c7c918abd203b96cabdff6e1a3254ca8e346e5"
+    },
+    "logo.png": {
+      "bytes": 6393,
+      "sha256": "66dc6db4f473932bda3bd14aa75f19baa2d7485ef4ce39f8e60c7b8306cfce7f"
+    },
+    "organ_brain.png": {
+      "bytes": 44632,
+      "sha256": "5880b560453453d5a0b354c9c40918f840a3f4dbf725f0f50d9f411b564972e9"
+    },
+    "organ_kidney.png": {
+      "bytes": 30861,
+      "sha256": "f021d556838b006ff4c820b96f8e6512f18d4a721c5104bb11a1f2afd03ae4dc"
+    },
+    "organ_liver.png": {
+      "bytes": 33703,
+      "sha256": "dc3b9c76483dc1ac9031977220c7a1f6aeb924b2dd29260bf8923e223d631661"
+    },
+    "organ_lungs.png": {
+      "bytes": 100985,
+      "sha256": "4529e010f38bab0d66461b0d5aff44382f8d034a44d67a927e10d3bcb3dcfaf9"
+    },
+    "campus-generic.png": {
+      "bytes": 3283720,
+      "sha256": "463b408e35a08e2c90b23a910cbdeeda9d47231715e0a6481a7b687998746590"
+    },
+    "habits-editorial.png": {
+      "bytes": 2718594,
+      "sha256": "4e4e7454a38fdcdb13d6238a4dd410cf348687a93ab9753cc271bd14f46cf97e"
+    }
+  },
+  "campus": "New AI-generated generic campus; gambar1.jpg inspected and contains runners in a park; hospital_modern.jpg contains a hospital. No real campus photo identified. Existing category illustrations and RepDB media retained."
+}

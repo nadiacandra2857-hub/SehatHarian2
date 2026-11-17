@@ -97,3 +97,6 @@ $RECYCLE.BIN/
 __pycache__/
 *.py[cod]
 **/RUNNING_PID
+
+# Generated release archives and extracted package copies
+/rilis/

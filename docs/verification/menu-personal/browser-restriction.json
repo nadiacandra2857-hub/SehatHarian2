@@ -1,0 +1,22 @@
+{
+  "mode": "restriction",
+  "db": "sehatharian_test_menu_20261111b",
+  "screens": [
+    {
+      "name": "preferensi-pantangan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\nPreferensi belum disimpan. Hasil sebelumnya \nditangguhkan.\nPeriksa menu personal\nPreferensi menu tersimpan\nPerubahan belum disimpan. Hasil personal \nsebelumnya ditangguhkan.\nPola makan\nVegetarian (telur/susu diperbolehkan)\nBahan yang dihindari karena preferensi\nTidak ada — saya menyatakan eksplisit\nPernyataan pantangan / alergi\nAda pilihan yang dilaporkan\nKategori acuan FDA; bukan daftar semua pemicu \nalergi. Pilih bahan spesifik di bawah untuk \npantangan lain.\nSusu\nTelur\nIkan\nKrustasea\nKacang pohon\nKacang tanah\nGandum\nKedelai\nWijen\nKategori pantangan yang dilaporkan\nCari bahan terstruktur\nCari bahan atau alias\nCari bahan preferensi\nTeks tambahan yang belum dipilih\nSimpan preferensi menu\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "hasil-disaring-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n2 menu cocok · 1 disaring · 0 belum dapat dinilai.\n\n\nDiperiksa 13:38:03.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\n[UJI] Beras dasar\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Beras dasar\nTinjau porsi · [UJI] Beras dasar\n[UJI] Menu JPro\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Menu JPro\nTinjau porsi · [UJI] Menu JPro\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "afterRestriction": "Menu personal\nKembali ke Nutrisi\nMenu dari bahan yang ditinjau dan preferensi tersimpan\n2 menu cocok · 1 disaring · 0 belum dapat dinilai.\n\n\nDiperiksa 13:38:03.\nPeriksa menu personal\nPreferensi menu & pantangan\nTanggal penilaian\nDasar penilaian\n[UJI] Beras dasar\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Beras dasar\nTinjau porsi · [UJI] Beras dasar\n[UJI] Menu JPro\nSesuai pilihan vegetarian dan bahan yang tercatat pada \nmenu ini.\nIlustrasi kategori makanan · bukan foto resep ini\nBahan & sumber · [UJI] Menu JPro\nTinjau porsi · [UJI] Menu JPro\nJelajahi menu umum\nBatas pencocokan\nBeranda\nCatatan\nProgres\nLainnya",
+  "preferences": "VEGETARIAN\tNONE\tSELECTED\tMILK\t4"
+}

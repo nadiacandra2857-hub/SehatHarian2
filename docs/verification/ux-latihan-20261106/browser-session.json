@@ -1,0 +1,295 @@
+{
+  "database": "sehatharian_test_ux_20261104",
+  "owner": 1,
+  "startedAt": "2026-11-06T13:31:50.340Z",
+  "checks": [
+    {
+      "state": "after-catalog",
+      "width": 1440,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 240,
+          "y": -687,
+          "w": 1028,
+          "h": 44
+        }
+      }
+    },
+    {
+      "state": "after-catalog",
+      "width": 768,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 127,
+          "y": -1385,
+          "w": 582,
+          "h": 44
+        }
+      }
+    },
+    {
+      "state": "after-catalog",
+      "width": 390,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 29,
+          "y": 268,
+          "w": 336,
+          "h": 44
+        }
+      }
+    },
+    {
+      "state": "after-catalog",
+      "width": 360,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 29,
+          "y": 268,
+          "w": 306,
+          "h": 44
+        }
+      }
+    },
+    {
+      "state": "after-review",
+      "width": 1440,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 730,
+          "h": 74
+        }
+      }
+    },
+    {
+      "state": "after-review",
+      "width": 768,
+      "focus": {
+        "tag": "BODY",
+        "role": null,
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "w": 752,
+          "h": 0
+        }
+      }
+    },
+    {
+      "state": "after-review",
+      "width": 390,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "state": "after-review",
+      "width": 360,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 0
+        }
+      }
+    },
+    {
+      "state": "after-active",
+      "width": 1440,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 730,
+          "h": 74
+        }
+      }
+    },
+    {
+      "state": "after-active",
+      "width": 768,
+      "focus": {
+        "tag": "BODY",
+        "role": null,
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "w": 752,
+          "h": 0
+        }
+      }
+    },
+    {
+      "state": "after-active",
+      "width": 390,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "state": "after-active",
+      "width": 360,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 0
+        }
+      }
+    },
+    {
+      "state": "after-summary",
+      "width": 1440,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 730,
+          "h": 74
+        }
+      }
+    },
+    {
+      "state": "after-summary",
+      "width": 768,
+      "focus": {
+        "tag": "BODY",
+        "role": null,
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "w": 752,
+          "h": 0
+        }
+      }
+    },
+    {
+      "state": "after-summary",
+      "width": 390,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "state": "after-summary",
+      "width": 360,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 0
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "after-catalog-1440",
+    "after-catalog-controls-1440",
+    "after-catalog-focus-1440",
+    "after-catalog-768",
+    "after-catalog-controls-768",
+    "after-catalog-focus-768",
+    "after-catalog-390",
+    "after-catalog-controls-390",
+    "after-catalog-focus-390",
+    "after-catalog-360",
+    "after-catalog-controls-360",
+    "after-catalog-focus-360",
+    "after-review-1440",
+    "after-review-controls-1440",
+    "after-review-focus-1440",
+    "after-review-768",
+    "after-review-controls-768",
+    "after-review-focus-768",
+    "after-review-390",
+    "after-review-controls-390",
+    "after-review-focus-390",
+    "after-review-360",
+    "after-review-controls-360",
+    "after-review-focus-360",
+    "after-preparation-1440",
+    "after-paused-1440",
+    "after-active-1440",
+    "after-active-controls-1440",
+    "after-active-focus-1440",
+    "after-active-768",
+    "after-active-controls-768",
+    "after-active-focus-768",
+    "after-active-390",
+    "after-active-controls-390",
+    "after-active-focus-390",
+    "after-active-360",
+    "after-active-controls-360",
+    "after-active-focus-360",
+    "after-rest-1440",
+    "after-summary-1440",
+    "after-summary-controls-1440",
+    "after-summary-focus-1440",
+    "after-summary-768",
+    "after-summary-controls-768",
+    "after-summary-focus-768",
+    "after-summary-390",
+    "after-summary-controls-390",
+    "after-summary-focus-390",
+    "after-summary-360",
+    "after-summary-controls-360",
+    "after-summary-focus-360",
+    "after-saved-1440",
+    "audit-saved-disabled"
+  ],
+  "allOwnersBefore": "1\t3",
+  "before": 3,
+  "afterSelection": 3,
+  "summary": "NC\nProfil\nKeluar\nSesi selesai\nDurasi aktif: 1 menit 6 detik (66 detik). Selesai: 2 · dilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan memakai menit utuh dibulatkan ke bawah (1 menit); sisa 6 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat disimpan pada model aktivitas saat ini.\n1. Cycling · Selesai\n2. Air Bike · Selesai\nSimpan aktivitas\nSimpan hanya mencatat aktivitas dengan durasi di atas. Rincian program tetap sementara. Tidak ada penyimpanan otomatis.",
+  "beforeSave": 3,
+  "saved": "NC\nProfil\nKeluar\nSesi selesai\nDurasi aktif: 1 menit 6 detik (66 detik). Selesai: 2 · dilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan memakai menit utuh dibulatkan ke bawah (1 menit); sisa 6 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat disimpan pada model aktivitas saat ini.\n1. Cycling · Selesai\n2. Air Bike · Selesai\nSimpan aktivitas\nData berhasil disimpan.\nSimpan hanya mencatat aktivitas dengan durasi di atas. Rincian program tetap sementara. Tidak ada penyimpanan otomatis.",
+  "afterSave": 4,
+  "row": "4\t1\t1\tAktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian gerakan tidak disimpan.",
+  "allOwnersAfter": "1\t4"
+}

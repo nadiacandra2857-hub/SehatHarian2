@@ -6,4 +6,9 @@ if ! command -v java >/dev/null 2>&1; then
     printf '%s\n' 'Java tidak ditemukan. Pasang JDK 27 dan atur JAVA_HOME serta PATH.' >&2
     exit 1
 fi
+JAVA_VERSION="$(java -version 2>&1 | sed -n '1s/.*version "\([0-9]*\).*/\1/p')"
+if [[ "$JAVA_VERSION" != 27 ]]; then
+    printf 'JDK 27 diperlukan; versi Java aktif: %s. Atur JAVA_HOME dan PATH.\n' "${JAVA_VERSION:-tidak diketahui}" >&2
+    exit 1
+fi
 exec bash ./gradlew :Frontend2:run --console=plain "$@"

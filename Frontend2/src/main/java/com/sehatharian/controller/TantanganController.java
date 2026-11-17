@@ -239,7 +239,7 @@ public class TantanganController implements AutoCloseable {
                 } else {
                     lblWaktu.setText("Telah diselesaikan");
                 }
-                lblWaktu.setStyle("-fx-font-size: 12.5px; -fx-text-fill: #2E7D5B; -fx-font-weight: 600; -fx-padding: 0 8 0 0;");
+                lblWaktu.setStyle("-fx-font-size: 12.5px; -fx-text-fill: #22C55E; -fx-font-weight: 600; -fx-padding: 0 8 0 0;");
 
                 Button btnReset = new Button("Batalkan Selesai");
                 btnReset.getStyleClass().add("write-command");

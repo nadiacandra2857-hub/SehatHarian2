@@ -1,0 +1,29 @@
+{
+  "mode": "states",
+  "db": "sehatharian_test_history_20261111a",
+  "screens": [
+    {
+      "name": "kosong-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nBelum ada riwayat latihan pada periode ini.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "gagal-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nRiwayat latihan gagal dimuat. Silakan coba lagi.\nCoba muat kembali\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "pulih-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nProgram Riwayat\n11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram Riwayat\n11 Nov 2026 · 10:45\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "error": "Error: Missing Rincian latihan belum tersedia\nSehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nHA\nHistory Alpha\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nCatatan harian\nTanggal catatan\n11/11/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n9\nmenit aktif bergerak\nSaran: Tambah 21 menit lagi untuk mencapai rekomendasi harian 30 menit.\nJenis aktivitas\nPilih atau tulis nama aktivitas\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\nDurasi (menit)\nKeterangan (opsional)\nKeterangan / Lokasi\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\nKeterangan\nAksi\nLatihan SehatHarian · rincian\n1\nAktif 60 detik; selesai 1; rincian tersedia di Riwayat latihan.\nHapus\nLatihan SehatHarian · rincian\n1\nAktif 60 detik; selesai 1; rincian tersedia di Riwayat latihan.\nHapus\nLegacy training · rincian\n2\nOnly legacy description\nHapus\nMinum\nAktivitas\nMakan",
+  "body": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nHA\nHistory Alpha\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nCatatan harian\nTanggal catatan\n11/11/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n9\nmenit aktif bergerak\nSaran: Tambah 21 menit lagi untuk mencapai rekomendasi harian 30 menit.\nJenis aktivitas\nPilih atau tulis nama aktivitas\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\nDurasi (menit)\nKeterangan (opsional)\nKeterangan / Lokasi\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\nKeterangan\nAksi\nLatihan SehatHarian · rincian\n1\nAktif 60 detik; selesai 1; rincian tersedia di Riwayat latihan.\nHapus\nLatihan SehatHarian · rincian\n1\nAktif 60 detik; selesai 1; rincian tersedia di Riwayat latihan.\nHapus\nLegacy training · rincian\n2\nOnly legacy description\nHapus\nMinum\nAktivitas\nMakan"
+}

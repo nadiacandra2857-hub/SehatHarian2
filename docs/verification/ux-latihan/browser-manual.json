@@ -1,0 +1,12 @@
+{
+  "database": "sehatharian_test_ux_20261104",
+  "owner": 1,
+  "checks": [],
+  "screenshots": [
+    "after-manual-preserved-1440"
+  ],
+  "before": 3,
+  "picker": "NC\nProfil\nKeluar\nCATATAN HARIAN\nKebiasaan harian\nCatat asupan hidrasi air putih, durasi bergerak aktif, dan pola makan bergizi untuk memantau konsistensi Anda.\nTanggal catatan\n11/4/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n22\nmenit aktif bergerak\nNama dari RepDB dipilih. Masukkan durasi aktual lalu simpan jika sudah dilakukan.\nJenis aktivitas\nCycling\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\n7\nKeterangan (opsional)\nUX isian tetap\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\nKeterangan\nAksi\nLatihan RepDB\n1\nAktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian ...\nHapus\nLatihan RepDB\n1\nAktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian ...\nHapus\nJalan santai pagi\n20\nKeliling perumahan sebelum berangkat kerja\nHapus\nMinum\nAktivitas\nMakan",
+  "page": "NC\nProfil\nKeluar\nCATATAN HARIAN\nKebiasaan harian\nCatat asupan hidrasi air putih, durasi bergerak aktif, dan pola makan bergizi untuk memantau konsistensi Anda.\nTanggal catatan\n11/4/2026\nHari ini\nTotal Durasi Aktivitas Hari terpilih\n22\nmenit aktif bergerak\nNama dari RepDB dipilih. Masukkan durasi aktual lalu simpan jika sudah dilakukan.\nJenis aktivitas\nAir Bike\nLatihan berpemandu\nJelajahi katalog latihan RepDB\nDurasi (menit)\n7\nKeterangan (opsional)\nUX isian tetap\nSimpan Aktivitas\nJenis Aktivitas\nDurasi (Menit)\nKeterangan\nAksi\nJalan santai pagi\n20\nKeliling perumahan sebelum berangkat kerja\nHapus\nLatihan RepDB\n1\nAktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian ...\nHapus\nLatihan RepDB\n1\nAktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian ...\nHapus\nMinum\nAktivitas\nMakan",
+  "after": 3
+}

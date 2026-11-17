@@ -1,0 +1,80 @@
+{
+  "mode": "flow",
+  "db": "sehatharian_test_history_20261111a",
+  "screens": [
+    {
+      "name": "ringkasan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nPeriksa status penyimpanan\nRiwayat latihan\nSimpan mencatat satu aktivitas beserta rincian sesi. \nTarget repetisi berbeda dari konfirmasi selesai; gerakan \ntubuh tidak diukur.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "daftar-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nProgram Riwayat\n11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram Riwayat\n11 Nov 2026 · 10:45\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "detail-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak \ndihitung. Durasi total dihitung sebelum pembulatan waktu tiap \nlangkah.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "langkah-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak \ndihitung. Durasi total dihitung sebelum pembulatan waktu tiap \nlangkah.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "detail-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi \ntidak dihitung. Durasi total dihitung sebelum pembulatan \nwaktu tiap langkah.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "daftar-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti \nlatihan saat dilakukan\nKembali ke latihan\n30 hari terakhir\nProgram Riwayat\n11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram Riwayat\n11 Nov 2026 · 10:45\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "detail-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nHA\nHistory Alpha\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nRincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak dihitung. Durasi total dihitung sebelum pembulatan waktu tiap langkah."
+    },
+    {
+      "name": "daftar-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nHA\nHistory Alpha\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nRiwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan saat dilakukan\nKembali ke latihan\n30 hari terakhir\nProgram Riwayat\n11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram Riwayat\n11 Nov 2026 · 10:45\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi"
+    },
+    {
+      "name": "detail-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Riwayat\n11 Nov 2026 · 10:54 → 11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #11 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak \ndihitung. Durasi total dihitung sebelum pembulatan waktu tiap \nlangkah.\nBeranda\nCatatan\nProgres\nLainnya"
+    },
+    {
+      "name": "daftar-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Riwayat latihan\nSesi tersimpan · rincian tetap mengikuti latihan \nsaat dilakukan\nKembali ke latihan\n30 hari terakhir\nProgram Riwayat\n11 Nov 2026 · 10:55\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram Riwayat\n11 Nov 2026 · 10:45\n1 menit 0 detik aktif · 1 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nProgram historis\n11 Nov 2026 · 10:42\n1 menit 3 detik aktif · 2 gerakan selesai\nLihat rincian sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "activityBefore": 7,
+  "activityBeforeSave": 7,
+  "activityAfter": 8,
+  "saved": "9\tfc6c1f7b-ce67-474a-bf55-0cdbc23729f1\t11\t60000000000\t60000000000\tProgram Riwayat"
+}

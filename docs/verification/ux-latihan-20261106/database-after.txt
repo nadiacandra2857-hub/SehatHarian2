@@ -1,0 +1,4 @@
+pengguna_id	jumlah
+1	4
+id	pengguna_id	tanggal	jenis_aktivitas	durasi_menit	keterangan
+4	1	2026-11-06	Latihan RepDB	1	Aktif 66 detik; selesai 2, dilewati 0; selesai. Program sementara; rincian gerakan tidak disimpan.

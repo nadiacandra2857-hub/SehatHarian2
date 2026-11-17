@@ -1,0 +1,1 @@
+PASS launcher, empty provisioning, catalogue, fixture isolated, explicit dry-run/apply/no-op, CMS publication

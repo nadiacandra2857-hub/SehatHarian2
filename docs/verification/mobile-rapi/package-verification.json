@@ -1,0 +1,11 @@
+{
+  "zip": "rilis/SehatHarian-Rombak.zip",
+  "sha256": "d9b884404be6aabc1cb6198296cf026c540bb1e0207f1df2c8c09b43bd2e294f",
+  "files": 444,
+  "bytes": 38013417,
+  "crc": "passed",
+  "manifest_hashes": "all passed",
+  "current_module_sources": "all match except sanitized db.properties",
+  "runtime_databases_and_secrets": "excluded",
+  "launch_current_zip": "not repeated"
+}

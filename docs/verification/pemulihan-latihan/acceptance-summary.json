@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-11",
+  "source_checkout_only": true,
+  "zip_updated": false,
+  "extracted_release_tested": false,
+  "temporary_test_processes_stopped": true,
+  "unit_tests": {
+    "Backend2": {
+      "tests": 183,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "Frontend2": {
+      "tests": 94,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "jdbc_checks": 36,
+  "fresh_jvm_checks": 15,
+  "history_regression_checks": 34,
+  "history_fresh_jvm_checks": 1,
+  "browser": {
+    "start": {
+      "file": "docs/verification/pemulihan-latihan/browser-start.json",
+      "sha256": "ff581a4140c7c49b2f9f80da8e26b45189b86a776c2d217e0bb7593bd76769dc",
+      "screenshots": [
+        "checkpoint-sebelum-stop-390"
+      ]
+    },
+    "recover": {
+      "file": "docs/verification/pemulihan-latihan/browser-recover.json",
+      "sha256": "bdb2d7085a5c4c4290eb134de6f68cbce085c25e19adf05a19b40c88fb19ad7a",
+      "screenshots": [
+        "kartu-pemulihan-390",
+        "kartu-pemulihan-360",
+        "kartu-pemulihan-1440",
+        "sesi-pulih-jeda-390",
+        "sesi-pulih-jeda-360",
+        "sesi-pulih-jeda-1440",
+        "ringkasan-pulih-390",
+        "riwayat-hasil-pulih-390",
+        "detail-hasil-pulih-390"
+      ]
+    },
+    "states": {
+      "file": "docs/verification/pemulihan-latihan/browser-states.json",
+      "sha256": "1d49752015badc9b2bbaf63689cec70e69b67ea3cc79e2d64f6f0b085ec6d1a5",
+      "screenshots": [
+        "checkpoint-tidak-kompatibel-390",
+        "checkpoint-gagal-dimuat-390",
+        "checkpoint-gagal-tulis-390",
+        "checkpoint-dibuang-390"
+      ]
+    },
+    "instance-a": {
+      "file": "docs/verification/pemulihan-latihan/browser-instance-a.json",
+      "sha256": "37a40b028c1c82141cd512bfbf8269f3255bdc434ec19d1537c2921dbeb50da5",
+      "screenshots": [
+        "instance-a-sebelum-ambil-alih-390"
+      ]
+    },
+    "instance-b": {
+      "file": "docs/verification/pemulihan-latihan/browser-instance-b.json",
+      "sha256": "12b916b343cd44675607d5543e3eec145d897d6ff948be34f7b0979836a36345",
+      "screenshots": [
+        "kartu-pemulihan-gelap-390",
+        "instance-b-pulih-jeda-390"
+      ]
+    },
+    "instance-a-check": {
+      "file": "docs/verification/pemulihan-latihan/browser-instance-a-check.json",
+      "sha256": "6a734eb93f68ed209fe82d9e99cfb777446ccf7ccc11bdaba0745db7efcceed3",
+      "screenshots": [
+        "instance-a-kehilangan-hak-390"
+      ]
+    },
+    "instance-b-discard": {
+      "file": "docs/verification/pemulihan-latihan/browser-instance-b-discard.json",
+      "sha256": "df72963bf643c2ab2eb5a8559cfd4ef358969541ff1c94fdcb43805fd0781789",
+      "screenshots": []
+    },
+    "terminal": {
+      "file": "docs/verification/pemulihan-latihan/browser-terminal.json",
+      "sha256": "7b47d90b435a4ac0199330833e297ab4c8a236ab00096d34403c1b6cdbd84e80",
+      "screenshots": [
+        "receipt-setelah-login-390"
+      ]
+    }
+  },
+  "accepted_screenshot_count": 19,
+  "actual_process_restart": {
+    "stopped_pid": 19013,
+    "signal": "SIGKILL",
+    "expected_exit": 137,
+    "operation": "2bab5031-3610-426e-a450-a608dab0c77a",
+    "durable_nanos_before": "10505153192",
+    "restored_nanos_while_paused": "10505153192",
+    "result_columns": [
+      "operation",
+      "session_nanos",
+      "sum_step_nanos",
+      "activity_id",
+      "minutes",
+      "session_id"
+    ],
+    "result": [
+      "2bab5031-3610-426e-a450-a608dab0c77a",
+      "60000000000",
+      "60000000000",
+      "4",
+      "1",
+      "3"
+    ],
+    "activity_counts": [
+      0,
+      1
+    ],
+    "final_checkpoint_status": "COMPLETED"
+  },
+  "checkpoint_intervals_ms": [
+    2094,
+    5001,
+    4999,
+    4986
+  ],
+  "limitations": [
+    "Five-second nominal offers plus scheduling/I/O latency; last unconfirmed progress can be lost",
+    "Failure acknowledgements use wrappers around real JDBC commits; not physical network disconnect",
+    "Device/native/screen-reader and other browsers remain unverified",
+    "Existing release ZIP does not include this feature"
+  ],
+  "sha256": {
+    "Backend2/sql/training-checkpoint.sql": "8a0daea30ab8365a4ede6dd451ff1c73866cb3bbb364924b4c57eaa11281861a",
+    "Backend2/src/main/java/com/sehatharian/config/DatabaseBootstrap.java": "7c2d8f97d2faebc149612fcedcc7ee6ea80ba0863d840ee6d7fb41ca0ddfd546",
+    "Backend2/src/main/java/com/sehatharian/training/TrainingSession.java": "d8dae0a3585a9922922f8a4222793c309a749b36baf3c738121cd6cf2ddebdd2",
+    "Backend2/src/main/java/com/sehatharian/training/TrainingSnapshot.java": "081629cc0d16997c6099b91703a5aa1957b98f17b8f42b81e053d2378cabd15c",
+    "Backend2/src/main/java/com/sehatharian/training/TrainingHistory.java": "cc05c0631d66a3ef5a6199949aed8975b419432da68ca253edeec3dd95d80459",
+    "Backend2/src/main/java/com/sehatharian/training/TrainingCheckpoint.java": "808bbd826213ba5a1b920afb9eb7004aea7375a9726ad237c1edd1e379cb4b72",
+    "Backend2/src/main/java/com/sehatharian/training/TrainingCheckpointCodec.java": "f0dfcbab38b2faf24fc8a9db8f8d27c2df61bd52b1c47d1a7d0b0cb9d4a3af42",
+    "Backend2/src/main/java/com/sehatharian/training/TrainingCheckpoints.java": "d89d993910b5336deae50dfbbac1a3d61d837be605551dc32a0ea18ec7817ad9",
+    "Frontend2/src/main/java/com/sehatharian/util/TrainingDialog.java": "55c6d711ce8c5c188559a6130d73c538e58377d870ab5cff22b3acaab4f9fc1e",
+    "Frontend2/src/main/java/com/sehatharian/util/TrainingCheckpointWriter.java": "671600c5b05edb67f0293e9af3c3bfa0cd6df2edb258aa4c65c94a1388629703",
+    "Frontend2/src/main/java/com/sehatharian/util/WriteAction.java": "17ac89004df57db533b25e79d7c57990953305bb367893237eac86de04ed6fe8",
+    "Backend2/src/test/java/com/sehatharian/TrainingSessionTest.java": "77a42d030b6d92346152423d49846a5d05352edc7232fc08c484470294ff51d3",
+    "Backend2/src/test/java/com/sehatharian/TrainingRecoveryIntegration.java": "ec95309fe4ca0e321688c8da0e578663dd373ebfa3a3a3fb4be003d746383cee",
+    "Frontend2/src/test/java/com/sehatharian/TrainingWriteTest.java": "51608ad77a8262ea8b64e60a50e73bd7730aa54ca92f78733af6d160d770a7f0",
+    "scripts/run-training-recovery-tests.py": "bd60b9dba8f9165dff6ab662bfbb2f5db8197cc7b014b7ecc3332514a7239cbd",
+    "scripts/visual/training-recovery.mjs": "8fcdf95867dab024230884efcc90bccb5de547a7366f1dfe1c9397d9e0fc749f",
+    "BACA_DULU.md": "0e5bad25de50bb6438444927227c7635b278faca9084dec34eeb1505af1d6699",
+    "docs/PEKERJAAN_TERTUNDA.md": "9be627aa75e7d5ff95bf2fc106d28fac86c29382384f588c05218d193b99ce5d",
+    "docs/LAPORAN_PEMULIHAN_LATIHAN.md": "54f2794cdae5ee517c871dc9e94bcb6bcc2b5b705d8fd30974d5be35abbe5262"
+  }
+}

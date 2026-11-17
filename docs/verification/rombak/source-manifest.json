@@ -1,0 +1,710 @@
+[
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/config/CreateAdmin.java",
+    "sha256": "cf84aba48cc4fb2ac132107f4ce8861783fca1eaa8c60bd96800652cbadadf0c"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/config/DatabaseBootstrap.java",
+    "sha256": "7b398f076dd9c6e3e1697c661c2c8b175865567e4e68bea3a3a87114b1d83fc3"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/config/DatabaseConfig.java",
+    "sha256": "d6600b58e30033d4656574714068a6dfb5f02ce1ad8cb3a44ce3cbd8853be002"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/config/LocalDatabase.java",
+    "sha256": "2967d79e5ba209f37d258a75d543aace2e82ff190cab0321690711dc48c77f5b"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/config/SetupDatabase.java",
+    "sha256": "f4ec203c4083abb2c28ff2d4adce38847bc9d3e43cb8d403f3c75baf3b9fd6fd"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/Aktivitas.java",
+    "sha256": "215e19828ad4e276128048c622d028d050a1fa69d9b606df73d8d2a792ab78ed"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/EvaluasiMingguan.java",
+    "sha256": "99a6f294b3e4bc37ce7f2fb7ba39cb54238e957522616d294c377b3e61d7ae83"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/Hidrasi.java",
+    "sha256": "1929a631e8664a86ead213cbe48ab6689246983abcf1b735ca66b4c257132672"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/JadwalTidur.java",
+    "sha256": "b7435c7768e8542e6d91c90d5dfc96ee733b313170a104f5192264ad9a1fe332"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/KebiasaanMakan.java",
+    "sha256": "f8c5ddde4d4bcae6c8771c926d4039385132689a693cf9335ba6e49fb5dc78ef"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/Rekomendasi.java",
+    "sha256": "87529424ebef5bdba630904e867b4351296a871f204da806fd62ca48a90ff01c"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/RiwayatTantangan.java",
+    "sha256": "42781a6440cfd02f735f8a59bbb7ebc30a39a03fe5266547a13ba406f3fa0bce"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/Tantangan.java",
+    "sha256": "1c9f72e1350cc64532f99d87e77c8be2e9ca4895994eea00117dcb58e3066707"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/Pengguna.java",
+    "sha256": "0c8d144a61711667789ee1bcd615b6c54aec8fff61719e4cfceb1b5f5641cc12"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/ProgresHarian.java",
+    "sha256": "d568ef3ab4ce514adb4c931ff592b5ccdcecfbafc8f00dd6f7e2df82a72bd9ca"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/RingkasanKonsistensi.java",
+    "sha256": "752e6af93d733699a7d0200b94b6935e0a965916da4b258c3315974a4ae997bf"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/SessionAccess.java",
+    "sha256": "60c5b03efadfbf4bae85da4eff7f9759b35260c53298fb2d6c9e9c4ede4a0560"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/model/UserSession.java",
+    "sha256": "ce80e5d01b1c8b39d267ed086eff4a704dd9970caa30532a46e164eea30852a9"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/AccountRepository.java",
+    "sha256": "cb118ab6a084988bee64e39e2e71c6c2753dd15d494642b06ff4774fdb1f974e"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/AktivitasRepository.java",
+    "sha256": "1caa30b56f3deb043132b08fe4952188fa6301989dbb7de89ffbd92a5d778a06"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/EvaluasiMingguanRepository.java",
+    "sha256": "c3c14e8957f379d6f0a41fe4bbc972731ffbe4dd4258893a800ced7958fcdf27"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/HidrasiRepository.java",
+    "sha256": "2018c84c771ed2fd7daceba803de7622ad6b622df8f3d470959b2fead25bac09"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/InMemoryDataStore.java",
+    "sha256": "5039c8f11bdb90a29d7b2d38b430fbc31e87f91d39a79805e8c336cc14c8f1f8"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/JadwalTidurRepository.java",
+    "sha256": "ba0c7f213e2e7d85ecb995c151a3afb5fc1f9ca92f77354f0ac02219fb329e2c"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/KebiasaanMakanRepository.java",
+    "sha256": "95eb1118dbed6c1d3fb358193834cb3d3732fc5d5014025994da6e249cd48ac4"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/OwnedRepository.java",
+    "sha256": "0b2a4cec2251b79fa9ff947d41cc06d712e70150b82779b3ed7e73764c09e1ff"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/PenggunaRepository.java",
+    "sha256": "baa86e3712d8cf35f87897e30d42a11d943065f45234ba1a7c20b6caa1ac9937"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/ProgresHarianRepository.java",
+    "sha256": "5c9622cbf3fe2697da874927d0ff71497fdb262e8b6a6ba32bfac37f70438d17"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/RekomendasiRepository.java",
+    "sha256": "f911e9cd4bae829de73937f212e3882bd7c5b27538b8cf4b205e113ac0255bd9"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/RiwayatTantanganRepository.java",
+    "sha256": "c87d828c611620968b9b37a2963f7cc0b4ffa72b4be6c7686ad0500c78e60a84"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/SqlSleepScheduleProvider.java",
+    "sha256": "3069caf06ba4977168634c9782f1c635fa5f1bf3fc05bb5b99b7187a4c8075fc"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/TantanganRepository.java",
+    "sha256": "6caac12678d8c11de471d17afbcd22b50e36af64c0297fbd02e993f7177e38f7"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/repository/ActualSleepRepository.java",
+    "sha256": "27fec615dfaa77f2c1203234cca10aee6e858b29e53c61f6e46db789739676a6"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/AuthService.java",
+    "sha256": "8fb232f6013ba14a86935c9ecabc95bef38d3f7c1a16dc5b0743a8562c050a6b"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/DemoCatalog.java",
+    "sha256": "92cde4f4b96067acf2ec1f500e6f893f933685f3b94f24a035c52833de491417"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/EvaluasiService.java",
+    "sha256": "4a5b7b8c71e04006c67acdb14180ffbf6a6377b849fa1bd5f72d6339071120e5"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/KebiasaanService.java",
+    "sha256": "67cab26029a9067bfbe3379d93b4c26114567724efe6e8e9367076e87840eac3"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/PenggunaService.java",
+    "sha256": "6c4e9ddf0152e14678698cc9f99bc67fdaabbd7646d9a08f6ea5130ffa3dcda1"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/PengingatTidurService.java",
+    "sha256": "6da62243cfe8c361de8ff27c1bb93dc535b98580bad27407d8cc34ec9283fdda"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/ProgresHarianService.java",
+    "sha256": "31efb4d78f2b3402b2e9f684bf175d441102803849dcced383e66729829e7835"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/RekomendasiService.java",
+    "sha256": "059cc7a91efcb76c66bc607a15845f5d78770a4c33ec37195dd8e93042d26238"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/ReminderScheduler.java",
+    "sha256": "235865a875c45937e30a33673894cf5b72cf1522f4cd683b119eb42a3d892622"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/SleepScheduleProvider.java",
+    "sha256": "97dcd1d262e218409d65fe760c98172dbddd6434dff01acff52a04c70d120082"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/TantanganService.java",
+    "sha256": "d8128296d27447557903a2951f91979a75b3214a00d187232cfe427e0c3d4d1b"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/TidurService.java",
+    "sha256": "78e287541c97b12fed99e5a79f808eac346af104200b03994eae0fecb48ac592"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/HabitPreferences.java",
+    "sha256": "d70ade1f9beb32e18866783896f21bd770f179601dce6b7b6d598dfe34ab4dcc"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/HabitInsights.java",
+    "sha256": "f3cac1744c915d21bdb353d6bf957bd877c336ec1db70fc0c58b7136c70b5254"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/service/HabitChallengeService.java",
+    "sha256": "e28af6ed4f9bf1f2bf410b38e7578c1a85d042eb73864ef7af1e1645c8dec5a2"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/util/DateHelper.java",
+    "sha256": "19a0d54fc6e856a9ccd47a38b64d825f08189a08b01cf73d3d4811232c485cf1"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/util/ValidationUtil.java",
+    "sha256": "e88954b1461f8c8f4ba71fc8b34c271d8e26ec83562a9638a0e0adae7bb87ccc"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/util/AudioOutput.java",
+    "sha256": "5a0c779cd5596208aabe375de3c98bc559538b719eda33f949b92502601d528d"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/util/AudioPlayerHelper.java",
+    "sha256": "9a81bf730e3bffbcfadd950a0e55fe70fb07a8de07bf5594de413f1096665668"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/util/PasswordUtil.java",
+    "sha256": "a8dbbcc7f0376947f12d951bf487b7ff697cf21f20c726864c5dd2bb591f4e20"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/catalog/Exercise.java",
+    "sha256": "ed5bd783d0cd94f98b916edc82e4e324e7c646323e6de305e4719872cfeceb9b"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/catalog/ExerciseCatalog.java",
+    "sha256": "a9c385a46549773b2c8c5adfcf0e1183924375364879717fda9565890d3b4331"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/catalog/TeamExercises.java",
+    "sha256": "33a1841f77fee3765dda776873c6936f84d41d01c23ae7fcaaa6e10bfaf6ed55"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/storage/ReadResult.java",
+    "sha256": "f0b6c86a900fab0c9ab49da5353f266b0d8e28bbea6588a0a6bc3f2a41aa1f5d"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/storage/WriteException.java",
+    "sha256": "e529eb6254838bdc4b4ef1f337203c67ed1e0b7839828b408e78f6af3e046a4c"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/storage/WriteResult.java",
+    "sha256": "8bc51b098320e129a419b282f1bf2719c0ada67c68a41668134bdaeab082b91d"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/storage/WriteTransaction.java",
+    "sha256": "b4f85aaeeb7849b364fffc2b4298dea3874055a9c57956b537ad3622fa97e525"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/training/TrainingSession.java",
+    "sha256": "90fd6b1d4ffdc8b29884dff5845c1d25e2ee396077e67e2e0ee25c995a4086fe"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/nutrition/Nutrients.java",
+    "sha256": "b960fa15e7be4c20f4d1595486dfbcadcae8471520c2cc4a0d23e82849842df3"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/nutrition/FoodImport.java",
+    "sha256": "be708678f603dd69d735680ba49eee719479d4f74abe46646b1d320a02dbf1f6"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/nutrition/NutritionService.java",
+    "sha256": "cf4e307cfd3d6fb2fff8d090f514c78e8bb033c49b109d54eda2d1dcb0b936b4"
+  },
+  {
+    "file": "Backend2/src/main/java/com/sehatharian/content/ContentService.java",
+    "sha256": "b1e5062f0a8a933324a4eb651dd10e02067802337b2e931e1eead064b5c3d5ce"
+  },
+  {
+    "file": "Frontend2/src/main/resources/css/dashboard.css",
+    "sha256": "f145e5b43c48cbcb68189045f85adbeddc07a2c66557f80ffdac830057f2d2bd"
+  },
+  {
+    "file": "Frontend2/src/main/resources/css/sehat-theme.css",
+    "sha256": "d743c85bd149c7cfc3a65331d6381b912e0db723adff9fc18402156ad6ffe59b"
+  },
+  {
+    "file": "Frontend2/src/main/resources/css/styles.css",
+    "sha256": "f9c13a9296219d5cfb71f319493d98d0adbd833a8befcdbe59de2f2e43dd35fe"
+  },
+  {
+    "file": "Frontend2/src/main/resources/css/ui2.css",
+    "sha256": "f0f1bb3015ad2d80d6c741fd34a1568c036a832e447ecee21d17a0fac3bee418"
+  },
+  {
+    "file": "Frontend2/src/main/resources/css/light.css",
+    "sha256": "9b6a2ee58ee59921e7aa64c1c7e08b9ccc8b952b7cadc0dffd9da99e0d956d84"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/CatatanKebiasaanView.fxml",
+    "sha256": "c20887205f827b916b6cbc654367fe706ae3cb2393d8500825795bd646de5bb7"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/CreateAccountView.fxml",
+    "sha256": "b312086cb2b2989a1062a86a284c75a13b97a27ab4202d0ca440768f0edaee5c"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/DashboardView.fxml",
+    "sha256": "15e50db81a86189ebc6da8f043014b3f7322cc6244ffa62e4584d9f5ac222632"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/EvaluasiMingguanView.fxml",
+    "sha256": "f30fa1fcd46b4eb4bd0084e02860ffd77f4cba0944186f72a26b61b0642a6183"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/JadwalTidurView.fxml",
+    "sha256": "01d54a46ab3a76817a7153826f3c01c4921d342b36d60d70edd63b7e631d97d5"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/LandingPageView.fxml",
+    "sha256": "3a9c942b6570d3728786c2c77eca307290695677617a9424bde14c7ee0e7b3c6"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/LoginView.fxml",
+    "sha256": "ac5331313199e268e7aeb33ca02d228f84ab29d8a355b4a00885ce3a96ee07a7"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/MainLayout.fxml",
+    "sha256": "6536445501f47889413b7ccf37926cea7ae3aff09d2ff7a567c1a1a0df4071a4"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/OnboardingView.fxml",
+    "sha256": "cdf307e1626c51e92e53f4138aeb448bf16d87f1217ccec09ca88dc55aff2169"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/ProfilPengaturanView.fxml",
+    "sha256": "d38825e31b7e31f01a5db2979809c596dd16d076d44948b013e6bddef3bb2e5c"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/RekomendasiView.fxml",
+    "sha256": "257c61a41c71b5e511f82e54d5c59d4586c141bbd9252505e23f5a68b2b880c5"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/StatistikMingguanView.fxml",
+    "sha256": "06c75478f877a690a9154e2f5e39a70aa202417ad0e7008d6469f6a54fc08d5b"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/TantanganView.fxml",
+    "sha256": "fac02e9a7be6d7223a2f1493fa67cb9a596c2bb4c732ba4ca920a863721d0081"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/LatihanView.fxml",
+    "sha256": "832cd1e156523646e16912f39029a72cf14c3e851ca500c1076ce4df763fa7fd"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/NutrisiView.fxml",
+    "sha256": "c7e3dcc37b29cfb33ccd4a7c457f1b45c5b0ef9d0eddd53c0834e0bd6ab3463a"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/HidrasiView.fxml",
+    "sha256": "bf8215616af897afdc4a895be9fcdc5354e063db91b515d006633dce586d7099"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/TidurAktualView.fxml",
+    "sha256": "0bd47da09826b048e179bcaba682509689d6a13bd117eac5632684967d3121b0"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/ProgresView.fxml",
+    "sha256": "7b94cf1f1d0c3e54c55aefaa391a5ddd4b207dd3da8110ce5837fe6b806fc8cc"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/AdminView.fxml",
+    "sha256": "dc744f0a796e4eef6005da69c7166cd4a9f69f3fcc8303fabeb2a6a4f5e44a56"
+  },
+  {
+    "file": "Frontend2/src/main/resources/fxml/KontenView.fxml",
+    "sha256": "5665c149e3eb9889eb3c0af888519e45b3bb269a7b80509eb2cf561052c439d3"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/doctor_female_labcoat.jpg",
+    "sha256": "90a63137201c6f443d8be682ff4d19f1c09b80564c842ad322adfcfbb7b1e916"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/doctor_hero.jpg",
+    "sha256": "4e1c9b05b3c601a855a7d4a73ff7464bc12eac2d9b33f596135aa82512c8117a"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/doctor_hero_clinic.jpg",
+    "sha256": "643c9484790c2f2d1921120a8f39f4ff7a4dfde8207d2957d1b029eebd38b621"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/doctor_hero_framed.png",
+    "sha256": "265bc509b19ea861ee9c4890551ca0f2167d1d5151699dd00edef2895cdff6b4"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/foto1_showcase.png",
+    "sha256": "8efbfb18f24ed5214282c8185dacaa89d418e25860d9a45ca1b397bdeb6d0558"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/foto2_tantangan.png",
+    "sha256": "aa6955841c7b8ba76822fe2b61aba934fe085784caecfb1c5208697df36a4fd0"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/foto3_hidrasi.png",
+    "sha256": "3473b165a3f03975bd79e3ede5599c9f2044949c5bafb4b320f9066c7f59fb64"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/foto4_isipiringku.png",
+    "sha256": "3596478f62383a90f4343235b287060cfc1e6233df3c0de94383020fc7493c8d"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/foto5_tidur.png",
+    "sha256": "da5cc0a4319f90ec7a7f6cccf9e083485ee541b3c58981fcc0d8175a03528ecc"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/gambar1.jpg",
+    "sha256": "da8aa9d65eda9e625761cde0060a153b27f6cb830e4ffd3370ea01b033c19870"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/hero_wellness.png",
+    "sha256": "35264d13cdd6031941b3b11a38eccd76b1018ad6fed934ca5ef49965ce20ed2c"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/hospital_card_framed.png",
+    "sha256": "eb4f6504a53a8c07dd05f3d1ec2c92d9bd1d0f0832c2a0017999534870ab0a11"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/hospital_modern.jpg",
+    "sha256": "d5b675033e1801224a617166ef74e1fb11a1eaef3ad3c1a704b62c375fcecaf1"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/illustration_food.png",
+    "sha256": "427305577664716a55f1dc77be4bbca66f85ba4b5d774bdee612c8c852db0076"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/illustration_sleep.png",
+    "sha256": "78dcca3491e82334f0bedce1aa2a1142804e4b2cf5d394b72a7ad6e97aef29bc"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/illustration_stretch.png",
+    "sha256": "3461f08a3a0292cff4993137288951093ad11bed3ebe953a09f4cd0e0bd573b9"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/illustration_walk.png",
+    "sha256": "846fc8c5f0930d7acb917a17c2ac05f698c0b346dd111c894fae78f58de95c43"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/illustration_water.png",
+    "sha256": "4e4632341fc6a27c69f1152571c7c918abd203b96cabdff6e1a3254ca8e346e5"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/logo.png",
+    "sha256": "66dc6db4f473932bda3bd14aa75f19baa2d7485ef4ce39f8e60c7b8306cfce7f"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/organ_brain.png",
+    "sha256": "5880b560453453d5a0b354c9c40918f840a3f4dbf725f0f50d9f411b564972e9"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/organ_kidney.png",
+    "sha256": "f021d556838b006ff4c820b96f8e6512f18d4a721c5104bb11a1f2afd03ae4dc"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/organ_liver.png",
+    "sha256": "dc3b9c76483dc1ac9031977220c7a1f6aeb924b2dd29260bf8923e223d631661"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/organ_lungs.png",
+    "sha256": "4529e010f38bab0d66461b0d5aff44382f8d034a44d67a927e10d3bcb3dcfaf9"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/campus-generic.png",
+    "sha256": "463b408e35a08e2c90b23a910cbdeeda9d47231715e0a6481a7b687998746590"
+  },
+  {
+    "file": "Frontend2/src/main/resources/sounds/bell_reminder.wav",
+    "sha256": "86d7caef7cd065c3b41a3cab64903e8cc5fb498d4fca09f8c71cf0a13df795c0"
+  },
+  {
+    "file": "Frontend2/src/main/resources/sounds/soft_click.wav",
+    "sha256": "1260689d2f36083cd2e197e90c13c9323a29a9944d0b0d727d221da33373c4aa"
+  },
+  {
+    "file": "Frontend2/src/main/resources/sounds/success_chime.wav",
+    "sha256": "7ed678746e35d42c3e211166a340cf2d6ad06e8730ff62806a607286cee60564"
+  },
+  {
+    "file": "Frontend2/src/main/resources/sounds/water_drop.wav",
+    "sha256": "ba5bd4697370820d7f0ac98278f24e9bb719999489064407496f978015dffda5"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/dashboard/habits-editorial.png",
+    "sha256": "4e4e7454a38fdcdb13d6238a4dd410cf348687a93ab9753cc271bd14f46cf97e"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Bycycle_Kick.jpg",
+    "sha256": "d9ecc4f8c130159aecbbc9b28ce4555f6d7da8dea8378d397ec968ae10b4492d"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Flutter_kicks.jpg",
+    "sha256": "83e2e4634a4a38f4ff64d6fc7ef8333aa64a3645b49ae717edb3bdac7e6c85d9"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Jalan_Kaki.jpg",
+    "sha256": "5b7059ffa475816470e21d036b6040653dd0fd91443623d01b1b3f7f9255732d"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Jogging.jpg",
+    "sha256": "069f8e4846636bf0915a1bb8425681891f397be843c2b336673130d792bcd16f"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Mountain_Climbers.jpg",
+    "sha256": "0050556df4b489ac0c6015e59c982141fd6bb18b2cd3c1d9cf391ea2bf8846f2"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Push_Up.jpg",
+    "sha256": "81fa293f885c5b233dc08045b5535cd2c3310ab7b954280c79e32a2d9f5ee7d3"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Sit_Up.jpg",
+    "sha256": "544cf263f0a821fb244690106322ebf06017f7bd6221c6ad4f4cca51c9ce12a1"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Sumo_Squad.jpg",
+    "sha256": "e397aad81a4b6b0a04e8c375562d9d791d775d8e02e8188a9dda6a7a4a25fc0c"
+  },
+  {
+    "file": "Frontend2/src/main/resources/images/team/Tricep_Dip.jpg",
+    "sha256": "9c60df1d78d91d8aeff08170325679eb53d7e0bc36b157c774f141fb5a74972e"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/AppLauncher.java",
+    "sha256": "f0ea667904be523b04b915989136b8ea750aa9fe7fa1e45768644f8fc2447c07"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/MainApp.java",
+    "sha256": "43a42cfa13b7b14d21fd08d0571c3b39e0813983bb0b802b026c6ae837a960c7"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/CatatanKebiasaanController.java",
+    "sha256": "5f6a5bd92053f846a880028c1863f036240e6840c22a89a57fb7f338ce09a601"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/CreateAccountController.java",
+    "sha256": "a38d06dbd6e66bf750dabdb0cfdcdc6f4762fe01c6005f4a06c66c3ed0289dfc"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/DashboardController.java",
+    "sha256": "61a55eb0a38ebc26fcc80d3833855f27414a4de9fc0d189ffe51245be736b9bc"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/EvaluasiMingguanController.java",
+    "sha256": "20bb70a69a9459b6d11929268ffb23ec6141fce47629f1767ca8bbdb2fbd6ac6"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/JadwalTidurController.java",
+    "sha256": "13bd3260b91a174dbf6cdf130bc768bc96589ef40b3b68fe60c29521e8663f1c"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/LandingPageController.java",
+    "sha256": "49950afafb5705453d874465adfd2344ac12c63275a5f19436e40d6c932e1c3b"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/LoginController.java",
+    "sha256": "a6f3bab7ffa162b86a4606d20fc8a67c995200bdfb14fcf3700c908458b62aca"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/MainLayoutController.java",
+    "sha256": "79d2708c5b638dfe7a8053e08ef5794a33a2d3f5cc7528a42c14191121d23579"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/OnboardingController.java",
+    "sha256": "f83113c9dba972b4e266ced6a2c8ebd635654f845fdfef127287099b64875908"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/ProfilPengaturanController.java",
+    "sha256": "3541e572f7747b6b4218950c6f35fea6a8bd4a02c39eed4c7efd657c5599b3bf"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/RekomendasiController.java",
+    "sha256": "73d29137b4f7e054cd4704c6a93dd04fd78136bfe52e9648bd1c286ec3ac4cdc"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/StatistikMingguanController.java",
+    "sha256": "5ba5a11ef6f127998f530cc487e4ec08d89e2fbea2fec9a2e5604cb631d402f8"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/TantanganController.java",
+    "sha256": "ed90df0ebba6a48383a52216490d3e31f82e10ac6ce23b18b3a0edd68f73e7c4"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/LatihanController.java",
+    "sha256": "bcc84a92cde172db6c0a9e8ca626bc3839a765b8bad36949585d181aaa851800"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/NutrisiController.java",
+    "sha256": "2fe98b7dfd0c843c096a778adfb07e6f63cbb14409e0024e8af9c47b6a5c0245"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/HidrasiController.java",
+    "sha256": "ec097ce5aa3743cbe7765d40abb5744ae503ce37bff1b1084499c4eca667adf8"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/TidurAktualController.java",
+    "sha256": "14170522d6262b9be454acba27f738566c84edf503a28656e4ada420a132d805"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/ProgresController.java",
+    "sha256": "c2c9a98a0c65a275e36337f413084a1145a41b68e76d3dbe79fc730eb65ab5bf"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/AdminController.java",
+    "sha256": "daf3e5c66bed4fab12b38a6891bf0df520588fa742a9c994dcf01f174304f073"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/controller/KontenController.java",
+    "sha256": "c56c682b8e3e24ef7846fd22d34f5b8383b055cbd4dd7f93c8d90ae2ecff176a"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/AssetGenerator.java",
+    "sha256": "60703f0cea3dd6be2784cd24598fd8ae154fc4e9df2d5b8219ee36680be1fed6"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/GenerateAssets.java",
+    "sha256": "d93bb1963efe3ce0f239a94f5cb75ed0f97d029389003e65343fc469c7565af5"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/AdaptiveRow.java",
+    "sha256": "548f58a7f04d8517ad83291db33571502eeeecf3af3fc877abffcf9c70ddd288"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/AnimationHelper.java",
+    "sha256": "3465055e5ebed947d503e863d45cf80cfd2327a39846174442b2b81f57a29308"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/AuthLayoutHelper.java",
+    "sha256": "375a868c3578b4ad443b634bbf1fb078e0b790e3b7a9896dac1c6ae546c3b8bc"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/DialogHelper.java",
+    "sha256": "ad729a7ab9e139065e0ca7ca9ef0d5f72d699ed18ce7576ae26966f14d2ef0fe"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/EditorialImage.java",
+    "sha256": "60b4e3c5e3cf0aa6808863533fb717513ec8566be93e712f00936f359c17e405"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/ExerciseCatalogPane.java",
+    "sha256": "21ef2d2187d37b8d2ccabb3b629dbd3f763259b0e27ce3be6bef727ede5f7336"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/ExerciseLabels.java",
+    "sha256": "2c6033fa8ad88fa0c1779f3a8786de7b6b5ee9855716d6f47e632679fb60fd36"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/IconFactory.java",
+    "sha256": "04f40f490a878cc337df0d99e86170651351b29cfe846281b0df479bb0deae22"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/Illustrations.java",
+    "sha256": "213cb91478954e5534182f9d7d4e5ba1d7bc9bd66f0a18f729e911063e52ab52"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/InstanceControllerFactory.java",
+    "sha256": "d3f97d04699d79b5e462d34d31d5f83a35b155d6f2eeca190885687b30645f24"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/LayoutGuard.java",
+    "sha256": "d27160d45f6d1f23a39ca8b11647158b693c529e1fdb4385908afd3f27d576e9"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/PageDesign.java",
+    "sha256": "ff4e5356ac30a9096209f014e7c6cdfb643f54d4feed19ce573034c6d25b7241"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/PrivatePageCache.java",
+    "sha256": "ee3b7e7760e41b43724489501d7a02270a47653f4e6ac4e01f6c7a4fe82d9e6e"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/ResponsiveTable.java",
+    "sha256": "d49c93a1ba445df58e32bfe323a1d3f3071dd29d104f8de14cfb77c6d347c259"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/ResponsiveTabs.java",
+    "sha256": "f57a1a84d3605d4d4848dcde39183ec3bfb4ff5caa6ffa9b604f47e90ef5bcfd"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/SceneNavigator.java",
+    "sha256": "f213039a5defd37e2bba96bf4f0b53312761a6ead8e143e62d1e60e047d48804"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/SoundEffects.java",
+    "sha256": "73b3e4803a91cbe65082e811bc4bd117d78e9fc0e24943e1581e6c52769f5c5e"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/WriteAction.java",
+    "sha256": "71388809538189d5deb55a159f94ea793c62121c5b774327bb65f90d4705063a"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/TrainingDialog.java",
+    "sha256": "ba2a0ef76971589692c25822ebc7817980f7a1667203fa399d1cf528865e5a4d"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/HabitUI.java",
+    "sha256": "71da214c2d6d4c976b6c9c3256392182a7c4dcb2a048ed66c7910d6af09e4adf"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/util/TrainingVideo.java",
+    "sha256": "52c90a47f6d111eb6498d7acd811503ecef2826345de29087e5eb9f9b203bc04"
+  },
+  {
+    "file": "Frontend2/src/main/java/com/sehatharian/context/ApplicationContext.java",
+    "sha256": "3af9087dc65695f1ca38c9781200af225b345d5ff43dac3c89137a6fe904fdaf"
+  },
+  {
+    "file": "Backend2/sql/seed.sql",
+    "sha256": "8e78b5aec5175e5034976a797b6e14a7cbe51d12dbc3a9b50f014a8d54451bb0"
+  },
+  {
+    "file": "Backend2/sql/schema.sql",
+    "sha256": "8e0616f371b0f5b5a6079f5a0d4262b8b89d3cddbcb88c4d2fcf8e92f8d85bcd"
+  },
+  {
+    "file": "Backend2/sql/rombak.sql",
+    "sha256": "24057bf88e64929c7f2ac1fe0d9cf0b64534f8237a621c074383c18b6d37a9ee"
+  }
+]

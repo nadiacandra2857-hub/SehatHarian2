@@ -1,0 +1,45 @@
+{
+  "phase": "after",
+  "started": "2026-11-10T10:16:32.782Z",
+  "screens": [
+    {
+      "name": "hidrasi-setelah-volume-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3375\nml tercatat\n3375 / 1500 ml · target pilihan Anda\n+ 500 ml\nAir berhasil dicatat.\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "hidrasi-target-1500-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 500 ml\nTarget pilihan disimpan.\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nVolume pilihan\nVolume air (ml)\n125\nCatat jumlah khusus\nJumlah khusus\nRiwayat konsumsi\nTarget pilihan Anda\nTarget ini pilihan pribadi, bukan perhitungan \nkebutuhan medis.\nTarget per hari (ml)\n1500\nSimpan target\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "hidrasi-nol-valid-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/9/2026\n›\n0\nml tercatat\n0 / 1500 ml · target pilihan Anda\n+ 500 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nVolume pilihan\nVolume air (ml)\n125\nCatat jumlah khusus\nJumlah khusus\nRiwayat konsumsi\nTarget pilihan Anda\nTarget ini pilihan pribadi, bukan perhitungan \nkebutuhan medis.\nTarget per hari (ml)\n1500\nSimpan target\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "hidrasi-kosong-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/8/2026\n›\n—\nbelum tercatat\n0 / 1500 ml · target pilihan Anda\n+ 500 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nVolume pilihan\nVolume air (ml)\n125\nCatat jumlah khusus\nJumlah khusus\nRiwayat konsumsi\nTarget pilihan Anda\nTarget ini pilihan pribadi, bukan perhitungan \nkebutuhan medis.\nTarget per hari (ml)\n1500\nSimpan target\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    }
+  ],
+  "before": 2875,
+  "afterQuick": 3375,
+  "afterCustom": 3500,
+  "target": 1500,
+  "dateKeyboardFallback": true,
+  "zeroState": true,
+  "emptyState": true
+}

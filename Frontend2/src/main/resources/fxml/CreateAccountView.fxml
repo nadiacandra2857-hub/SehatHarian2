@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.sehatharian.util.EditorialImage?>
+<?import com.sehatharian.util.WellnessArt?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
@@ -29,7 +30,7 @@
             <Label text="SehatHarian" styleClass="brand-title" style="-fx-font-size: 20px;" wrapText="true"/>
             <Label text="Mulai Perjalanan Sehatmu Hari Ini" styleClass="auth-hero-title" wrapText="true"/>
             <Label text="Daftar sekali, lalu sesuaikan tantangan dan rekomendasi dengan rutinitasmu." styleClass="auth-hero-sub" wrapText="true"/>
-            <EditorialImage/>
+            <WellnessArt category="routine" prefHeight="240" maxHeight="240"/>
 
         </VBox>
 
@@ -110,7 +111,7 @@
                     <Button fx:id="btnRegister" text="Buat akun" styleClass="auth-btn-primary" onAction="#handleRegister" maxWidth="Infinity" prefHeight="42.0"/>
 
                     <HBox alignment="CENTER" spacing="6.0">
-                        <Label text="Sudah memiliki akun?" style="-fx-font-size: 12.5px; -fx-text-fill: #202121;" wrapText="true"/>
+                        <Label text="Sudah memiliki akun?" style="-fx-font-size: 12.5px; -fx-text-fill: #9CA3AF;" wrapText="true"/>
                         <Button text="Masuk" onAction="#handleGoToLogin" styleClass="auth-link"/>
                     </HBox>
                 </VBox>

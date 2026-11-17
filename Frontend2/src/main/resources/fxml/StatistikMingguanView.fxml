@@ -45,25 +45,25 @@
         <AdaptiveRow spacing="14">
             <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
                 <Label text="Rata-rata Skor Konsistensi" styleClass="card-subtitle" wrapText="true"/>
-                <Label fx:id="metricSkorLabel" text="0%" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                <Label fx:id="metricSkorLabel" text="0%" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #22C55E;" wrapText="true"/>
                 <Label text="Indikator aplikasi; bukan skor kesehatan" styleClass="form-hint" wrapText="true"/>
             </VBox>
 
             <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
                 <Label text="Rata-rata rencana tidur" styleClass="card-subtitle" wrapText="true"/>
-                <Label fx:id="metricTidurLabel" text="0.0 Jam" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                <Label fx:id="metricTidurLabel" text="0.0 Jam" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #06B6D4;" wrapText="true"/>
                 <Label fx:id="metricTidurStandarLabel" text="Standar minimal: ≥ 5.0 jam" styleClass="form-hint" wrapText="true"/>
             </VBox>
 
             <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
                 <Label text="Total Hidrasi 7 Hari" styleClass="card-subtitle" wrapText="true"/>
-                <Label fx:id="metricHidrasiLabel" text="0 ml" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                <Label fx:id="metricHidrasiLabel" text="0 ml" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #06B6D4;" wrapText="true"/>
                 <Label text="Jumlah air yang tercatat" styleClass="form-hint" wrapText="true"/>
             </VBox>
 
             <VBox styleClass="wellness-card" spacing="6" HBox.hgrow="ALWAYS">
                 <Label text="Total Aktivitas Fisik" styleClass="card-subtitle" wrapText="true"/>
-                <Label fx:id="metricAktivitasLabel" text="0 Menit" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #202121;" wrapText="true"/>
+                <Label fx:id="metricAktivitasLabel" text="0 Menit" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #22C55E;" wrapText="true"/>
                 <Label text="Durasi aktivitas yang tercatat" styleClass="form-hint" wrapText="true"/>
             </VBox>
         </AdaptiveRow>

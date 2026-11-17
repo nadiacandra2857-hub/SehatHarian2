@@ -1,0 +1,205 @@
+{
+  "phase": "before",
+  "started": "2026-11-10T06:11:30.639Z",
+  "screens": [
+    {
+      "name": "beranda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Beranda\nCatatan\nProgres\nRutinitas Sehat Hari Ini\nHalo, Fixture · 10 Nov 2026\nProfil\nPencatatan hari ini\n4 / 4\nCatatan hari ini\nEmpat kebiasaan aktual\nTidur\n4.0 jam\nAktual · tanggal bangun \nhari ini\nAtur jadwal\nHidrasi\n500\nml · 1 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nLatihan · video tim + \nRepDB\nTantangan harian\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat tantangan\nPencatatan\nPeriode 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nBuka progres\nAktivitas mingguan\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit tercatat · 7 hari terakhir\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nPer kebiasaan\nTidur aktual   4.0 jam\nHidrasi   500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "beranda-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Beranda\nCatatan\nProgres\nRutinitas Sehat Hari Ini\nHalo, Fixture · 10 Nov 2026\nProfil\nPencatatan hari ini\n4 / 4\nCatatan hari ini\nEmpat kebiasaan aktual\nTidur\n4.0 jam\nAktual · tanggal \nbangun hari ini\nAtur jadwal\nHidrasi\n500\nml · 1 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nLatihan · video tim + \nRepDB\nTantangan harian\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat tantangan\nPencatatan\nPeriode 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nBuka progres\nAktivitas mingguan\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit tercatat · 7 hari terakhir\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nPer kebiasaan\nTidur aktual   4.0 jam\nHidrasi   500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "beranda-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nBeranda\nCatatan\nProgres\nRutinitas Sehat Hari Ini\nHalo, Fixture · 10 Nov 2026\nProfil\nPencatatan hari ini\n4 / 4\nCatatan hari ini\nEmpat kebiasaan aktual\nTidur\n4.0 jam\nAktual · tanggal bangun hari ini\nAtur jadwal\nHidrasi\n500\nml · 1 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nLatihan · video tim + RepDB\nTantangan harian\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat tantangan\nPencatatan\nPeriode 7 hari\n3 / 7 hari mencatat aktivitas, \nhidrasi atau tidur\n1 tantangan selesai hari ini\nBuka progres\nAktivitas mingguan\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit tercatat · 7 hari terakhir\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nPer kebiasaan\nTidur aktual   4.0 jam\nHidrasi   500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.",
+      "video": []
+    },
+    {
+      "name": "nutrisi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Nutrisi\nCatat makanan · estimasi porsi dari komposisi per 100 g\nTanggal\n11/10/2026\nRingkasan gizi harian\n129\nkkal tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\nRincian gizi & kelengkapan\nBaked potato · sarapan · 150.0 g\n+ Catat makanan\nCari, pilih, dan isi porsi\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), \nCC-BY-4.0. Katalog komposisi terpisah dari resep, foto, dan \ninspirasi menu.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "nutrisi-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Nutrisi\nCatat makanan · estimasi porsi dari komposisi per 100 \ng\nTanggal\n11/10/2026\nRingkasan gizi harian\n129\nkkal tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\nRincian gizi & kelengkapan\nBaked potato · sarapan · 150.0 g\n+ Catat makanan\nCari, pilih, dan isi porsi\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), \nCC-BY-4.0. Katalog komposisi terpisah dari resep, foto, \ndan inspirasi menu.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "nutrisi-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nNutrisi\nCatat makanan · estimasi porsi dari komposisi per 100 g\nTanggal\n11/10/2026\nRingkasan gizi harian\n129\nkkal tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\nRincian gizi & kelengkapan\nBaked potato · sarapan · 150.0 g\n+ Catat makanan\nCari, pilih, dan isi porsi\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), CC-BY-4.0. Katalog komposisi terpisah dari resep, foto, dan inspirasi menu.",
+      "video": []
+    },
+    {
+      "name": "hidrasi-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\nCatat air yang benar-benar diminum\nTanggal konsumsi\n11/10/2026\n500 ml\n500 / 2000 ml · target pilihan Anda\n+ 150 ml\n+ 250 ml\n+ 500 ml\n+ 1000 ml\nJumlah khusus\nVolume air (ml)\n250\nTambahkan air\nTarget pilihan Anda\nTarget ini pilihan pribadi, bukan perhitungan \nkebutuhan medis.\nTarget per hari (ml)\n2000\nSimpan target\nRiwayat air\n500 ml · fixture\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "hidrasi-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Hidrasi\nCatat air yang benar-benar diminum\nTanggal konsumsi\n11/10/2026\n500 ml\n500 / 2000 ml · target pilihan Anda\n+ 150 ml\n+ 250 ml\n+ 500 ml\n+ 1000 ml\nJumlah khusus\nVolume air (ml)\n250\nTambahkan air\nTarget pilihan Anda\nTarget ini pilihan pribadi, bukan perhitungan \nkebutuhan medis.\nTarget per hari (ml)\n2000\nSimpan target\nRiwayat air\n500 ml · fixture\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "hidrasi-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nHidrasi\nCatat air yang benar-benar diminum\nTanggal konsumsi\n11/10/2026\n500 ml\n500 / 2000 ml · target pilihan Anda\n+ 150 ml\n+ 250 ml\n+ 500 ml\n+ 1000 ml\nJumlah khusus\nVolume air (ml)\n250\nTambahkan air\nTarget pilihan Anda\nTarget ini pilihan pribadi, bukan perhitungan kebutuhan medis.\nTarget per hari (ml)\n2000\nSimpan target\nRiwayat air\n500 ml · fixture",
+      "video": []
+    },
+    {
+      "name": "latihan-aktif-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 1 · Latihan\nPanduan gerakan\n00:58\nJalan Kaki\nPanduan tim SehatHarian\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nInstruksi lengkap\nJeda\nLewati / berikutnya\nBerikutnya: Ringkasan\nVideo karakter 3D: tim SehatHarian\nKoneksi terputus? Jika tampilan tidak pulih, muat ulang \ndan masuk kembali. Program sementara hilang saat \ninstance ditutup.\nKeluar dari sesi\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": [
+        {
+          "paused": false,
+          "time": 2.234144,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 17,
+            "y": 77,
+            "w": 348,
+            "h": 196
+          }
+        }
+      ]
+    },
+    {
+      "name": "latihan-aktif-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Gerakan 1 / 1 · Latihan\nPanduan gerakan\n00:57\nJalan Kaki\nPanduan tim SehatHarian\nBerjalan dengan langkah nyaman dan ayunan \ntangan alami.\nInstruksi lengkap\nJeda\nLewati / berikutnya\nBerikutnya: Ringkasan\nVideo karakter 3D: tim SehatHarian\nKoneksi terputus? Jika tampilan tidak pulih, muat \nulang dan masuk kembali. Program sementara \nhilang saat instance ditutup.\nKeluar dari sesi\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": [
+        {
+          "paused": false,
+          "time": 3.510708,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 17,
+            "y": 77,
+            "w": 318,
+            "h": 179
+          }
+        }
+      ]
+    },
+    {
+      "name": "latihan-aktif-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nGerakan 1 / 1 · Latihan\nPanduan gerakan\n00:55\nJalan Kaki\nPanduan tim SehatHarian\nBerjalan dengan langkah nyaman dan ayunan tangan alami.\nInstruksi lengkap\nJeda\nLewati / berikutnya\nBerikutnya: Ringkasan\nVideo karakter 3D: tim SehatHarian\nKoneksi terputus? Jika tampilan tidak pulih, muat ulang dan masuk kembali. Program sementara hilang saat instance ditutup.\nKeluar dari sesi",
+      "video": [
+        {
+          "paused": false,
+          "time": 4.918608,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 312,
+            "y": 116,
+            "w": 720,
+            "h": 405
+          }
+        }
+      ]
+    },
+    {
+      "name": "latihan-jeda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 1 · Latihan\nPanduan gerakan\n00:55\nJalan Kaki\nDijeda · waktu tidak dihitung\nPanduan tim SehatHarian\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nInstruksi lengkap\nLanjutkan\nBerikutnya: Ringkasan\nVideo karakter 3D: tim SehatHarian\nKoneksi terputus? Jika tampilan tidak pulih, muat ulang \ndan masuk kembali. Program sementara hilang saat \ninstance ditutup.\nKeluar dari sesi\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": [
+        {
+          "paused": true,
+          "time": 0,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 17,
+            "y": 77,
+            "w": 348,
+            "h": 196
+          }
+        }
+      ]
+    },
+    {
+      "name": "latihan-jeda-360",
+      "width": 360,
+      "height": 844,
+      "scrollWidth": 360,
+      "text": "Gerakan 1 / 1 · Latihan\nPanduan gerakan\n00:55\nJalan Kaki\nDijeda · waktu tidak dihitung\nPanduan tim SehatHarian\nBerjalan dengan langkah nyaman dan ayunan \ntangan alami.\nInstruksi lengkap\nLanjutkan\nBerikutnya: Ringkasan\nVideo karakter 3D: tim SehatHarian\nKoneksi terputus? Jika tampilan tidak pulih, muat \nulang dan masuk kembali. Program sementara \nhilang saat instance ditutup.\nKeluar dari sesi\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": [
+        {
+          "paused": true,
+          "time": 0,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 17,
+            "y": 77,
+            "w": 326,
+            "h": 184
+          }
+        }
+      ]
+    },
+    {
+      "name": "latihan-jeda-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nFA\nFixture Alpha\nDewasa • Di Dalam Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nGerakan 1 / 1 · Latihan\nPanduan gerakan\n00:55\nJalan Kaki\nDijeda · waktu tidak dihitung\nPanduan tim SehatHarian\nBerjalan dengan langkah nyaman dan ayunan tangan alami.\nInstruksi lengkap\nLanjutkan\nBerikutnya: Ringkasan\nVideo karakter 3D: tim SehatHarian\nKoneksi terputus? Jika tampilan tidak pulih, muat ulang dan masuk kembali. Program sementara hilang saat instance ditutup.\nKeluar dari sesi",
+      "video": [
+        {
+          "paused": true,
+          "time": 0,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 316,
+            "y": 116,
+            "w": 720,
+            "h": 405
+          }
+        }
+      ]
+    }
+  ],
+  "pausedStable": true
+}

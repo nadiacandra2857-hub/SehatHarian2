@@ -1,0 +1,4 @@
+total_rows	(SELECT COUNT(*) FROM aktivitas)	(SELECT COUNT(*) FROM hidrasi)	(SELECT COUNT(*) FROM kebiasaan_makan)
+total_rows	4	15	2
+owner	id	email
+owner	2	alpha@example.test

@@ -1,0 +1,80 @@
+{
+  "database": "sehatharian_test_ux_20261104",
+  "owner": 1,
+  "startedAt": "2026-11-06T14:30:56.307Z",
+  "checks": [
+    {
+      "state": "after-recommendations",
+      "width": 1440,
+      "focus": {
+        "tag": "INPUT",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 730,
+          "h": 74
+        }
+      }
+    },
+    {
+      "state": "after-recommendations",
+      "width": 768,
+      "focus": {
+        "tag": "BODY",
+        "role": null,
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "w": 752,
+          "h": 0
+        }
+      }
+    },
+    {
+      "state": "after-recommendations",
+      "width": 390,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "state": "after-recommendations",
+      "width": 360,
+      "focus": {
+        "tag": "DIV",
+        "role": null,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 0
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "after-recommendations-1440",
+    "after-recommendations-controls-1440",
+    "after-recommendations-focus-1440",
+    "after-recommendations-768",
+    "after-recommendations-controls-768",
+    "after-recommendations-focus-768",
+    "after-recommendations-390",
+    "after-recommendations-controls-390",
+    "after-recommendations-focus-390",
+    "after-recommendations-360",
+    "after-recommendations-controls-360",
+    "after-recommendations-focus-360"
+  ],
+  "before": 4,
+  "page": "NC\nProfil\nKeluar\nPILIHAN KEBIASAAN\nRekomendasi untuk rutinitasmu\nPilihan aktivitas dan menu berdasarkan filter profil. Kartu latihan berupa deskripsi; sesi berpemandu belum tersedia.\n6 Rekomendasi Tersedia\nSesuai kriteria filter\nKatalog dari database.\nMuat Katalog Database\nPratinjau Data Contoh\nSesuaikan pilihan\nSesuaikan dengan waktu luang aktual dan rutinitas kerja Anda hari ini\nAtur Ulang Filter\nKetersediaan Waktu Luang:\n45 Menit\nAktivitas dijamin ≤ 45 menit\nTipe Rutinitas Kerja:\nPekerja Luar Rumah\nDalam rumah (WFH) vs luar kantor\nKelompok Usia Pengguna:\nDewasa\nPenyesuaian intensitas fisik\nKategori Rekomendasi:\nSemua\nAktivitas\nMenu\nLatihan rumah\nAKTIVITAS\n5 Menit\nSemua Usia • Semua Rutinitas\nKatalog database\nPernapasan Diafragma 5 Menit\nDuduk tegak, tarik napas dalam 4 detik, tahan 4 detik, dan hembuskan perlahan 6 detik untuk menurunkan stres.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah ilustrasi suasana, bukan panduan teknik.\nAKTIVITAS\n10 Menit\nDewasa • Di Luar Rumah\nKatalog database\nJalan Santai Sela Istirahat\nManfaatkan jeda istirahat siang untuk berjalan santai 10 menit tanpa melihat layar gawai.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah ilustrasi suasana, bukan panduan teknik.\nAKTIVITAS\n15 Menit\nDewasa • Semua Rutinitas\nKatalog database\nPeregangan Otot Kaki & Betis\nRegangkan otot betis dan paha belakang setelah duduk lama bekerja.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah ilustrasi suasana, bukan panduan teknik.\nMENU SEHAT\n25 Menit\nDewasa • Di Luar Rumah\nKatalog database\nKotak Bekal Sehat: Nasi Merah & Ayam Panggang\nPorsi seimbang dengan nasi merah, dada ayam panggang bumbu kunyit, serta tumis buncis wortel.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih. Preferensi bahan, porsi dan pantangan belum dimodelkan.\nWORKOUT\n10 Menit\nDewasa • Di Luar Rumah\nKatalog database\nPeregangan Leher & Tulang Belakang di Kantor\nGerakan chin tuck, shoulder roll, dan spinal twist lembut di kursi kantor.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah ilustrasi suasana, bukan panduan teknik.\nWORKOUT\n30 Menit\nDewasa • Di Luar Rumah\nKatalog database\nJalan Kaki Interval 30 Menit\nKombinasi 3 menit jalan sedang dan 2 menit jalan cepat secara bergantian sebanyak 6 putaran.\nAlasan ditampilkan: cocok dengan filter kategori, rutinitas dan usia yang dipilih; durasi dalam batas waktu pilihan. Foto adalah ilustrasi suasana, bukan panduan teknik.",
+  "after": 4
+}

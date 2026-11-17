@@ -1,0 +1,14 @@
+{
+  "mode": "instance-b-discard",
+  "db": "sehatharian_test_recovery_20261111a",
+  "started": "2026-11-11T05:10:56.883Z",
+  "screens": [],
+  "terminal": {
+    "operation": "1a41e724-1c4d-4cdf-925b-f91a6b3381f9",
+    "holder": "NULL",
+    "revision": 36,
+    "at": "2026-11-11 05:07:46.581",
+    "status": "DISCARDED"
+  },
+  "finished": "2026-11-11T05:10:58.448Z"
+}

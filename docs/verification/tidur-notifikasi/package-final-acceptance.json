@@ -1,0 +1,46 @@
+{
+  "release": {
+    "zip": "/home/adhitya/Documents/projekpbo/BARU/SehatHarian2-github/rilis/SehatHarian-Rombak.zip",
+    "bytes": 27584534,
+    "files": 351,
+    "sha256": "36958d5aa4ddcdd614eb135e1d8778cd51b5386a0f87124eaaa40566d48f163b"
+  },
+  "final_extraction": "/tmp/sehatharian-sleep-package-final2-20261116/SehatHarian",
+  "database": "sehatharian_test_sleep_package_final2_20261116",
+  "port": 8100,
+  "provisioning": {
+    "database": "sehatharian_test_sleep_package_final2_20261116",
+    "users": 0,
+    "foods": 7795,
+    "pending": 0,
+    "sleep_tables": 6,
+    "demo_accounts_created": false
+  },
+  "running_pid_protected": true,
+  "ordinary_login_and_sleep_page": true,
+  "browser_audio_preview_and_stop": true,
+  "latest_menu_present": true,
+  "screens": [
+    {
+      "name": "paket-tidur-390",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "paket-tidur-360",
+      "width": 360,
+      "scrollWidth": 360
+    },
+    {
+      "name": "paket-tidur-1440",
+      "width": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "java_tests": 286,
+  "python_tests": 12,
+  "jdbc_checks": 38,
+  "fresh_jvm_checks": 1,
+  "physical_sound_heard": false,
+  "closed_tab_alarm_supported": false
+}

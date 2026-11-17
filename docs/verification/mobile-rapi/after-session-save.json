@@ -1,0 +1,35 @@
+{
+  "phase": "after",
+  "started": "2026-11-10T06:38:43.996Z",
+  "screens": [
+    {
+      "name": "latihan-ringkasan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "latihan-tersimpan-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nData berhasil disimpan.\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    }
+  ],
+  "before": 3,
+  "resumedMedia": [
+    {
+      "paused": false,
+      "ready": 4,
+      "loop": true,
+      "time": 1.86087
+    }
+  ],
+  "summary": "Sesi selesai\nDurasi aktif: 1 menit 0 detik (60 detik). Selesai: 1 · \ndilewati: 0 · belum selesai: 0\nPersiapan, jeda, dan istirahat tidak dihitung. Catatan \nmemakai menit utuh dibulatkan ke bawah (1 menit); sisa \n0 detik tidak menambah menit, total detik disertakan \ndalam keterangan. Sesi di bawah satu menit tidak dapat \ndisimpan pada model aktivitas saat ini.\n1. Jalan Kaki · Selesai\nSimpan aktivitas\nSimpan hanya mencatat aktivitas dengan durasi di atas. \nRincian program tetap sementara. Tidak ada \npenyimpanan otomatis.\nBeranda\nCatatan\nProgres\nLainnya",
+  "beforeSave": 3,
+  "after": 4,
+  "row": "2\t1\tAktif 60 detik; selesai 1, dilewati 0; selesai. Program Uji v1; rincian sesi sementara."
+}

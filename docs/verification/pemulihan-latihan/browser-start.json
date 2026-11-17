@@ -1,0 +1,60 @@
+{
+  "mode": "start",
+  "db": "sehatharian_test_recovery_20261111a",
+  "started": "2026-11-11T04:47:21.289Z",
+  "screens": [
+    {
+      "name": "checkpoint-sebelum-stop-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 1\nKeluar\nCheckpoint terkonfirmasi · 10 detik aktif · 11:47:46. Progres \nsesudahnya masih di perangkat ini.\n00:49\nJalan Kaki\nLatihan aktif\nJeda\nLewati\nBerikutnya: Ringkasan\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nPanduan & sumber\nSimpan progres sekarang\nBuang sesi\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "activitiesBefore": 0,
+  "historiesBefore": 0,
+  "beforeKill": {
+    "operation": "2bab5031-3610-426e-a450-a608dab0c77a",
+    "holder": "78a79805-c11c-4015-b3d4-b3bd1955552c",
+    "revision": 9,
+    "at": "2026-11-11 04:47:46.299",
+    "status": "ACTIVE",
+    "hash": "fccd0917f510b0d454c430b30875de007369678e0dfddcbef17b8df4b806dead",
+    "magic": 1397249091,
+    "version": 1,
+    "program": 2,
+    "programVersion": 1,
+    "name": "Program Pemulihan",
+    "preparation": 5,
+    "rest": 15,
+    "index": 0,
+    "phase": "EXERCISE",
+    "confirmedFrom": "PREPARATION",
+    "elapsedNanos": "10505153192",
+    "activeNanos": "10505153192"
+  },
+  "memoryBeforeKill": "Gerakan 1 / 1\nKeluar\nCheckpoint terkonfirmasi · 10 detik aktif · 11:47:46. Progres \nsesudahnya masih di perangkat ini.\n00:49\nJalan Kaki\nLatihan aktif\nJeda\nLewati\nBerikutnya: Ringkasan\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nPanduan & sumber\nSimpan progres sekarang\nBuang sesi\nBeranda\nCatatan\nProgres\nLainnya",
+  "killedPid": 19013,
+  "killedAt": "2026-11-11T04:47:47.265Z",
+  "persistedAfterKill": {
+    "operation": "2bab5031-3610-426e-a450-a608dab0c77a",
+    "holder": "78a79805-c11c-4015-b3d4-b3bd1955552c",
+    "revision": 9,
+    "at": "2026-11-11 04:47:46.299",
+    "status": "ACTIVE",
+    "hash": "fccd0917f510b0d454c430b30875de007369678e0dfddcbef17b8df4b806dead",
+    "magic": 1397249091,
+    "version": 1,
+    "program": 2,
+    "programVersion": 1,
+    "name": "Program Pemulihan",
+    "preparation": 5,
+    "rest": 15,
+    "index": 0,
+    "phase": "EXERCISE",
+    "confirmedFrom": "PREPARATION",
+    "elapsedNanos": "10505153192",
+    "activeNanos": "10505153192"
+  },
+  "finished": "2026-11-11T04:47:47.905Z"
+}

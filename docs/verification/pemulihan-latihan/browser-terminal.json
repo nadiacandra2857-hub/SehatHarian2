@@ -1,0 +1,22 @@
+{
+  "mode": "terminal",
+  "db": "sehatharian_test_recovery_20261111a",
+  "started": "2026-11-11T05:29:27.787Z",
+  "screens": [
+    {
+      "name": "receipt-setelah-login-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Rincian latihan\nRincian saat latihan dilakukan\nKembali ke riwayat\nProgram Pemulihan\n11 Nov 2026 · 11:47 → 11 Nov 2026 · 11:53\n1 menit 0 detik aktif · 1 gerakan selesai\nAktivitas #4 · 1 menit utuh\nProgram versi 1 · isi saat latihan dilakukan\nSesi selesai\n1. Jalan Kaki\nTarget: 60 detik\nDurasi aktif: 1 menit 0 detik · Selesai\nSumber & media\nPersiapan, istirahat, jeda dan waktu menunggu konfirmasi tidak \ndihitung. Durasi total dihitung sebelum pembulatan waktu tiap \nlangkah.\nBeranda\nCatatan\nProgres\nLainnya"
+    }
+  ],
+  "terminal": {
+    "operation": "2bab5031-3610-426e-a450-a608dab0c77a",
+    "holder": "NULL",
+    "revision": 27,
+    "at": "2026-11-11 04:53:24.152",
+    "status": "COMPLETED"
+  },
+  "finished": "2026-11-11T05:29:35.344Z"
+}

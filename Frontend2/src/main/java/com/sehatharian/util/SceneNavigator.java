@@ -19,9 +19,16 @@ public final class SceneNavigator {
         ONBOARDING("OnboardingView.fxml", true, "Informasi Dasar Pengguna — SehatHarian", 1120, 760),
         MAIN("MainLayout.fxml", true, "SehatHarian — Platform Tantangan Kesehatan Harian Adaptif", 1240, 800),
         DASHBOARD("DashboardView.fxml", true, "Dashboard", 1240, 800),
+        LATIHAN("LatihanView.fxml", true, "Latihan", 1240, 800),
         TANTANGAN("TantanganView.fxml", true, "Tantangan", 1240, 800),
         REKOMENDASI("RekomendasiView.fxml", true, "Rekomendasi", 1240, 800),
         KEBIASAAN("CatatanKebiasaanView.fxml", true, "Catatan", 1240, 800),
+        ADMIN("AdminView.fxml",true,"Admin",1240,800),
+        KONTEN("KontenView.fxml",true,"Konten",1240,800),
+        PROGRES("ProgresView.fxml",true,"Progres",1240,800),
+        HIDRASI("HidrasiView.fxml",true,"Hidrasi",1240,800),
+        TIDUR_AKTUAL("TidurAktualView.fxml",true,"Tidur aktual",1240,800),
+        NUTRISI("NutrisiView.fxml", true, "Nutrisi",1240,800),
         TIDUR("JadwalTidurView.fxml", true, "Tidur", 1240, 800),
         STATISTIK("StatistikMingguanView.fxml", true, "Statistik", 1240, 800),
         EVALUASI("EvaluasiMingguanView.fxml", true, "Evaluasi", 1240, 800),
@@ -59,6 +66,21 @@ public final class SceneNavigator {
     private final SoundEffects sounds;
     private final Runnable detachIdentity;
     private boolean disposed;
+    private boolean light = true;
+    private void applyTheme(Parent root) {
+        if (!root.getStylesheets().contains(getClass().getResource("/css/light.css").toExternalForm())) root.getStylesheets().add(getClass().getResource("/css/light.css").toExternalForm());
+        var polish=getClass().getResource("/css/mobile-polish.css").toExternalForm();
+        if(!root.getStylesheets().contains(polish))root.getStylesheets().add(polish);
+        var visual=getClass().getResource("/css/visual-system.css").toExternalForm();
+        if(!root.getStylesheets().contains(visual))root.getStylesheets().add(visual);
+        root.getProperties().put("sh-theme-root",true); syncTheme(root);
+    }
+    private void syncTheme(javafx.scene.Node node) {
+        if(node.getProperties().containsKey("sh-theme-root")) {node.getStyleClass().remove("light");if(light)node.getStyleClass().add("light");}
+        if(node instanceof javafx.scene.control.ScrollPane scroll && scroll.getContent()!=null)syncTheme(scroll.getContent());
+        if(node instanceof javafx.scene.Parent parent)for(var child:parent.getChildrenUnmodifiable())syncTheme(child);
+    }
+    public void toggleTheme() { light=!light; if(currentView!=null)applyTheme(currentView.root()); }
     private Page currentPage = Page.LANDING;
 
     public SceneNavigator(UserSession session, AuthService authService, PenggunaService profiles,
@@ -97,6 +119,7 @@ public final class SceneNavigator {
         ensureOpen();
         Page page = Page.fromPath(path);
         if (page.isPrivate()) session.requireActiveUser();
+        if(page==Page.ADMIN)new com.sehatharian.model.SessionAccess(session).requireAdmin();
         var resource = Objects.requireNonNull(SceneNavigator.class.getResource(path), "FXML tidak tersedia.");
         FXMLLoader loader = new FXMLLoader(resource);
         loader.setControllerFactory(controllers);
@@ -107,8 +130,9 @@ public final class SceneNavigator {
         ensureOpen();
         Page page = Page.fromPath(path);
         if (!page.isPrivate()) throw new IllegalArgumentException("Cache hanya untuk halaman privat.");
+        if(page==Page.ADMIN)new com.sehatharian.model.SessionAccess(session).requireAdmin();
         LoadedView cached = privatePages.get(path);
-        if (cached != null) return cached;
+        if (cached != null) { applyTheme(cached.root()); return cached; }
         long generation = session.getGeneration();
         FXMLLoader loader = newLoader(path);
         LoadedView loaded = loadView(loader);
@@ -126,7 +150,7 @@ public final class SceneNavigator {
         }
     }
     private LoadedView loadView(FXMLLoader loader) throws IOException {
-        try { Parent root = loader.load(); PageDesign.install(root); return new LoadedView(root, loader.getController()); }
+        try { Parent root = loader.load(); applyTheme(root); VisualUI.decorate(root, Page.fromPath("/fxml/"+loader.getLocation().getPath().substring(loader.getLocation().getPath().lastIndexOf('/')+1))); PageDesign.install(root); return new LoadedView(root, loader.getController()); }
         catch (IOException | RuntimeException e) {
             releaseController(loader.getController());
             throw e;

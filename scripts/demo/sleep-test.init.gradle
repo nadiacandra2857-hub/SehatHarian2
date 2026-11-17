@@ -1,0 +1,10 @@
+// Opt-in fixture launcher; no production clock override exists.
+gradle.projectsEvaluated {
+ def p=gradle.rootProject.project(':Frontend2')
+ p.application.mainClass='com.sehatharian.SleepAcceptanceApp'
+ // JPro 2026.3.0 launches the application's jar, not the test runtime classpath.
+ p.tasks.named('jar').configure {
+  dependsOn p.tasks.named('testClasses')
+  from(p.sourceSets.test.output) { include 'com/sehatharian/SleepAcceptanceApp*.class' }
+ }
+}

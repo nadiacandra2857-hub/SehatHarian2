@@ -172,10 +172,10 @@ public class StatistikMingguanController implements AutoCloseable {
                     metricTidurStandarLabel.setStyle("");
                 } else if (rataRataTidur >= 5.0) {
                     metricTidurStandarLabel.setText("Status: Memenuhi standar PRD (≥ 5.0 jam)");
-                    metricTidurStandarLabel.setStyle("-fx-text-fill: #1E7E34; -fx-font-weight: 600;");
+                    metricTidurStandarLabel.setStyle("-fx-text-fill: #22C55E; -fx-font-weight: 600;");
                 } else {
                     metricTidurStandarLabel.setText("Status: Di bawah standar PRD (< 5.0 jam)");
-                    metricTidurStandarLabel.setStyle("-fx-text-fill: #A03415; -fx-font-weight: 600;");
+                    metricTidurStandarLabel.setStyle("-fx-text-fill: #EF4444; -fx-font-weight: 600;");
                 }
             }
 

@@ -1,0 +1,14 @@
+{
+  "zip": "/home/adhitya/Documents/projekpbo/BARU/SehatHarian2-github/rilis/SehatHarian-Rombak.zip",
+  "sha256": "670133254d133947b73d131af10fa1f823570a972d7867e97305cb44b19d6c6d",
+  "verified_files": 329,
+  "features": [
+    "training-history",
+    "training-checkpoint-recovery",
+    "ingredient-mapping",
+    "personal-menu",
+    "explicit-curation-import"
+  ],
+  "source_compared": true,
+  "runtime_and_evidence_excluded": true
+}

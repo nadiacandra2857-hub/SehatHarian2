@@ -10,6 +10,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
+<?import com.sehatharian.util.WellnessArt?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import com.sehatharian.util.AdaptiveRow?>
 <?import javafx.scene.layout.Priority?>
@@ -37,6 +39,7 @@
             <!-- Main Hero Container -->
             <VBox alignment="TOP_CENTER" spacing="28.0" style="-fx-padding: 20 28 44 28;" maxWidth="1260.0" HBox.hgrow="ALWAYS">
 
+                <Label text="Proyek akademik SehatHarian · pendamping kebiasaan sehat harian" styleClass="form-hint" wrapText="true"/>
                 <!-- A. TOP NAVBAR (Floating Glass Capsule) -->
                 <AdaptiveRow alignment="CENTER" spacing="16.0" styleClass="landing-navbar-bar" maxWidth="1240.0" HBox.hgrow="ALWAYS">
                     <!-- Brand Logo Kiri -->
@@ -63,24 +66,25 @@
 
                     <!-- Tombol Auth Kanan -->
                     <AdaptiveRow spacing="10.0" alignment="CENTER_RIGHT">
-                        <Button fx:id="btnNavLogin" text="Login" styleClass="btn-nav-login" onAction="#handleLogin"/>
-                        <Button fx:id="btnNavCreateAccount" text="Create Account" styleClass="btn-nav-create" onAction="#handleCreateAccount"/>
+                        <Button fx:id="btnNavLogin" text="Masuk" styleClass="btn-nav-login" onAction="#handleLogin"/>
+                        <Button fx:id="btnNavCreateAccount" text="Daftar" styleClass="btn-nav-create" onAction="#handleCreateAccount"/>
                     </AdaptiveRow>
                 </AdaptiveRow>
 
                 <!-- B. HERO CENTER BODY (Clear Focus, High Trust) -->
                 <VBox fx:id="heroTextContainer" alignment="CENTER" spacing="18.0" maxWidth="940.0" style="-fx-padding: 36 16 28 16;">
 
-                    <!-- Badge Standar Kemenkes RI -->
+                    <WellnessArt category="routine" prefHeight="150" maxHeight="150"/>
+                    <!-- Identitas kebiasaan harian -->
                     <AdaptiveRow alignment="CENTER" spacing="8.0" styleClass="hero-pill-badge">
                         <SVGPath content="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-2-9l-2-2 1.41-1.41L10 10.17l4.59-4.58L16 7l-6 6z"
                                  styleClass="hero-badge-svg"/>
-                        <Label text="STANDAR PREVENTIF GIZI &amp; AKTIVITAS FISIK KEMENKES RI" styleClass="hero-badge-text" wrapText="true"/>
+                        <Label text="KEBIASAAN KECIL, SETIAP HARI" styleClass="hero-badge-text" wrapText="true"/>
                     </AdaptiveRow>
 
                     <!-- Judul Utama H1 (Sesuai Wireframe: Realistis Berwarna Hijau) -->
                     <VBox spacing="4.0" alignment="CENTER">
-                        <Label text="Membangun Rutinitas Sehat Harian" styleClass="hero-title-main" textAlignment="CENTER" wrapText="true"/>
+                        <Label text="Rutinitas sehat harian" styleClass="hero-title-main" textAlignment="CENTER" wrapText="true"/>
                         <AdaptiveRow alignment="CENTER" spacing="8.0">
                             <Label text="yang" styleClass="hero-title-main" wrapText="true"/>
                             <Label text="Realistis" styleClass="hero-title-main, hero-title-highlight" wrapText="true"/>
@@ -94,8 +98,8 @@
 
                     <!-- Action Buttons: Login (Biru Tua) dan Create Account (Hijau Segar) -->
                     <AdaptiveRow spacing="16.0" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
-                        <Button fx:id="btnHeroLogin" text="Login" styleClass="btn-hero-login" onAction="#handleLogin" prefHeight="44.0" minWidth="140.0"/>
-                        <Button fx:id="btnHeroCreateAccount" text="Create Account" styleClass="btn-hero-create" onAction="#handleCreateAccount" prefHeight="44.0" minWidth="170.0"/>
+                        <Button fx:id="btnHeroLogin" text="Masuk" styleClass="btn-hero-login" onAction="#handleLogin" prefHeight="44.0" minWidth="140.0"/>
+                        <Button fx:id="btnHeroCreateAccount" text="Daftar" styleClass="btn-hero-create" onAction="#handleCreateAccount" prefHeight="44.0" minWidth="170.0"/>
                         <Button fx:id="btnHeroDemo" text="Coba Simulasi Langsung" styleClass="btn-hero-demo" onAction="#handleNavCoba" prefHeight="44.0"/>
                     </AdaptiveRow>
 
@@ -119,6 +123,22 @@
             </VBox>
         </StackPane>
 
+        <VBox styleClass="landing-section-white" alignment="CENTER">
+            <AdaptiveRow spacing="28.0" alignment="CENTER" maxWidth="1240.0">
+                <VBox spacing="10.0" minWidth="0" maxWidth="640.0" HBox.hgrow="ALWAYS">
+                    <Label text="PROYEK AKADEMIK" styleClass="form-hint" style="-fx-text-fill: #22C55E; -fx-font-weight: bold;" wrapText="true"/>
+                    <Label text="Kebiasaan sehat di sela kegiatan belajar" styleClass="section-h1-title" wrapText="true"/>
+                    <Label text="SehatHarian dikembangkan sebagai proyek pembelajaran untuk membantu pencatatan kebiasaan dan latihan berpemandu dalam rutinitas sehari-hari." styleClass="section-desc-clean" wrapText="true"/>
+                </VBox>
+                <VBox spacing="8.0" minWidth="0" maxWidth="500.0">
+                    <ImageView fx:id="campusImageView" fitWidth="460.0" fitHeight="260.0" preserveRatio="true" smooth="true" accessibleText="Ilustrasi kampus generik untuk konteks proyek akademik">
+                        <image><Image url="@../images/campus-generic.png"/></image>
+                    </ImageView>
+                    <Label text="Ilustrasi kampus generik dibuat dengan AI · bukan foto atau identitas kampus tertentu" styleClass="form-hint" wrapText="true"/>
+                </VBox>
+            </AdaptiveRow>
+        </VBox>
+
         <!-- ================================================================ -->
         <!-- 2. DESKRIPSI PRODUK (H1 di Kiri + Gambar Shape di Kanan)         -->
         <!-- ================================================================ -->
@@ -131,7 +151,7 @@
                         <Label text="DESKRIPSI PRODUK" styleClass="section-tag-pill" wrapText="true"/>
                     </AdaptiveRow>
 
-                    <Label text="Membangun Rutinitas Sehat Harian yang Realistis dan Terukur"
+                    <Label text="Rutinitas sehat harian yang Realistis dan Terukur"
                            styleClass="section-h1-title" wrapText="true"/>
 
                     <Label text="Mayoritas upaya hidup sehat terhenti di tengah jalan karena target awal dibuat terlalu berat tanpa mempertimbangkan dinamika aktivitas sehari-hari. SehatHarian mengintegrasikan prinsip perubahan perilaku mikro (Atomic Habits) agar Anda dapat konsisten tanpa rasa bersalah."

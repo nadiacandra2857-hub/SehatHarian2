@@ -1,0 +1,8 @@
+{
+  "count": 7795,
+  "equivalent": true,
+  "version_sha256": "4c764d32b31e9d96898ee8f8fc6e12f30f6b27cd4214c827f7ecdff05cf365a9",
+  "output": ".runtime/foods.xml",
+  "units": "kcal/100g; other nutrients g/100g (JSON keys)",
+  "null_source": 562
+}

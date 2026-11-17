@@ -89,10 +89,10 @@ public class OnboardingController implements AutoCloseable {
 
     private void muatGambarSlide2() {
         try {
-            var walkUrl = getClass().getResource("/images/illustration_walk.png");
+            var walkUrl = getClass().getResource("/images/team/Jogging.jpg");
             if (walkUrl != null) imgOutdoorView.setImage(new Image(walkUrl.toExternalForm()));
 
-            var stretchUrl = getClass().getResource("/images/illustration_stretch.png");
+            var stretchUrl = getClass().getResource("/images/team/Push_Up.jpg");
             if (stretchUrl != null) imgIndoorView.setImage(new Image(stretchUrl.toExternalForm()));
         } catch (Exception ignored) {}
     }
@@ -279,16 +279,16 @@ public class OnboardingController implements AutoCloseable {
 
         if (currentSlide == 1) {
             step1Badge.getStyleClass().add("active");
-            progressFillPane.setPrefWidth(220.0);
+            progressFillPane.setMaxWidth(220);
         } else if (currentSlide == 2) {
             step1Badge.getStyleClass().add("active");
             step2Badge.getStyleClass().add("active");
-            progressFillPane.setPrefWidth(440.0);
+            progressFillPane.setMaxWidth(440);
         } else {
             step1Badge.getStyleClass().add("active");
             step2Badge.getStyleClass().add("active");
             step3Badge.getStyleClass().add("active");
-            progressFillPane.setPrefWidth(660.0);
+            progressFillPane.setMaxWidth(660);
         }
 
         // 3. Status tombol navigasi

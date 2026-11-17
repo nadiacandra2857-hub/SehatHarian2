@@ -1,0 +1,20 @@
+{
+  "RUN-01": "| RUN-01 | Build kedua modul lulus, 6 Nov 2026 | Gradle tasks dan dependency graph | Build offline Backend2/Frontend2 -x test lulus secara berurutan; suite aman 262/262 terpisah. verification/ux-latihan-20261106/build-final.log. |",
+  "RUN-06": "| RUN-06 | Parsial, dua context Chromium fixture lulus | Dua browser independen | UI-3 memeriksa logout context kedua tidak mengubah owner B pada context pertama. Autentikasi fixture tetap sintetis; belum penerimaan dua akun pada server/database produksi. |",
+  "RUN-09": "| RUN-09 | Awal/akhir 262/262 + parser 8/8 + build lulus, 6 Nov | Full suite/check/build terisolasi | 93 utama/36 test dikompilasi. Assertion kosong/gagal pengingat tetap terpisah; TrainingWriteTest mencakup gagal/belum pasti/retry/owner lama. Fault server SQL nyata/full suite DB tetap terbuka. |",
+  "RUN-10": "| RUN-10 | Belum teruji / terblokir | Provisioning DB terpisah dari sesi web | Startup masih dapat menjalankan LocalDatabase/DatabaseBootstrap/schema/seed. |",
+  "RUN-13": "| RUN-13 | Belum teruji / terblokir | Paket runnable dan panduan akhir | ZIP lama belum mencerminkan source sesudah P1A/P1B; jangan mengklaim siap pakai sebelum runtime dibuktikan. |",
+  "SLEEP-01": "| SLEEP-01 | Terencana / keputusan | Rencana versus tidur aktual | Tentukan model serta penanganan data lama; jangan inferensikan aktual dari jadwal. |",
+  "SLEEP-02": "| SLEEP-02 | Terencana / keputusan | Trigger tidur_kurang dan mingguan | Pastikan orchestrasi lintas pemanggil dan penyimpanan alasan evaluasi. |",
+  "SLEEP-03": "| SLEEP-03 | Terencana / keputusan | Satu/banyak episode tidur per hari | Keputusan harus mendahului migrasi unique pengguna/tanggal. |",
+  "NEW-02": "| NEW-02 | Terencana | CMS seluruh konten yang disepakati | Latihan/program, menu, tantangan, edukasi; bukan akses default kesehatan pribadi. |",
+  "NEW-03": "| NEW-03 | Halaman/susunan sementara dan target tersedia | Model gerakan→program→sesi→hasil | Satu TrainingSession/ExerciseCatalogPane lama; urutan/target/tinjau dapat dikoreksi, tidak ada engine kedua. Program/external ID durable belum persisten. |",
+  "NEW-04": "| NEW-04 | Terencana | Workflow konten dan peninjauan | Draft/tinjau/terbit/arsip, referensi teknik, lisensi dan reviewer. |",
+  "NEW-05": "| NEW-05 | Terencana | Karakter serta animasi orisinal | Satu percobaan dahulu; periksa teknik, anatomi, konsistensi dan loop; jangan pakai aset RepDB sebagai input AI tanpa izin. |",
+  "NEW-06": "| NEW-06 | Parsial, UI-3 | Media dan aksesibilitas | Ilustrasi statis start/peak/main memakai PNG deterministik; rasio, placeholder gambar hilang dan scroll detail diuji. Video/animasi, buffering dan kontrol media belum tersedia. |",
+  "UI-01": "| UI-01 | Latihan JPro 1440/768/390/360 diterima ulang, 6 Nov | Rendering aplikasi mobile | Katalog/tinjau/timer/ringkasan/riwayat, scroll/kontrol/fokus dan screenshot baru. Screen reader/perangkat fisik dan penerimaan umum fitur lain tetap parsial. |",
+  "UI-03": "| UI-03 | Paket visual latihan selesai; cakupan umum tetap parsial | Redesign seluruh fitur yang seimbang | Beranda terpusat/foto rata 2×2 mobile/label data; rekomendasi/login/landing dirapikan. Kampus generik AI disetujui pengguna, konteks akademik/caption jelas. Dropdown terpilih 4,27→7,85:1; before/after 1440×1000. |",
+  "DOC-02": "| DOC-02 | Terencana | Pemetaan materi OOP ke source | Encapsulation, composition, injection/interface sudah dilaporkan; audit akhir tetap perlu lokasi kode, alasan dan diagram nyata. |",
+  "DOC-04": "| DOC-04 | Laporan, bukti dan reproduksi UX diperbarui, 6 Nov | Dokumentasi setup dan pemakaian | Laporan UX/tema tersinkron dengan working tree; log awal/akhir/build, SQL owner/count/durasi, screenshot baru, prompt/provenance kampus dan demo dosen. Paket distribusi/admin umum tetap terbuka. |",
+  "DOC-06": "| DOC-06 | Alur presentasi latihan JPro diterima; demo 90 hari terblokir | Demonstrasi dan presentasi | Login→Latihan→dua gerakan→ringkasan→sekali Simpan→riwayat pada akun/skema uji terisolasi dibuktikan ulang. Server/skema demo 90 hari perlu disediakan untuk pemeriksaan baca. |"
+}

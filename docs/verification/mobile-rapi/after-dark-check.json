@@ -1,0 +1,51 @@
+{
+  "phase": "after",
+  "started": "2026-11-10T10:16:58.914Z",
+  "screens": [
+    {
+      "name": "beranda-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "SehatHarian\nHalo, Fixture · 10 Nov 2026\nProfil\nRingkasan hari ini\nHari ini, mulai dari yang \nkecil\nKebiasaan yang sudah dicatat\n4 / 4\nTidur\n4.0 jam\nAktual · bangun hari ini\nHidrasi\n3500\nml · 10 catatan\nNutrisi\n1\ncatatan makan\nAktivitas\n1\nmenit · 1 catatan\nTantangan\nLihat progres\nTantangan Anda\nAir 1000 ml · belum selesai\nAir 500 ml · selesai\nLihat semua tantangan\nProgres 7 hari\n3 / 7 hari mencatat aktivitas, hidrasi atau tidur\n1 tantangan selesai hari ini\nDurasi aktivitas\nRab\nKam\nJum\nSab\nMin\nSen\nSel\nMenit aktivitas tercatat\nBuka progres\nPilihan kebiasaan\nMinum\nMakan\nIstirahat\nBergerak\nNilai per kebiasaan\nTidur aktual   4.0 jam\nHidrasi   3500 ml\nNutrisi   1 catatan\nAktivitas   1 menit\nNilai tercatat, bukan skor kesehatan.\nAtur jadwal\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "nutrisi-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Nutrisi\n‹\n11/10/2026\n›\nRingkasan gizi hari ini\n129\nkkal tercatat\nProtein\n3.3 g\nKarbohidrat\n27.6 g\nLemak\n0.3 g\n+ Catat makanan\nSarapan\n+\n1 catatan\nLihat catatan\nMakan siang\n+\nBelum tercatat\nMakan malam\n+\nBelum tercatat\nCamilan\n+\nBelum tercatat\nSarapan · 1 catatan\nRincian gizi & kelengkapan\nPencatatan manual\nFood nutrition data from TempoLife (tempolife.app), \nCC-BY-4.0. Katalog komposisi terpisah dari resep dan \ninspirasi menu.\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "hidrasi-gelap-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Hidrasi\n‹\n11/10/2026\n›\n3500\nml tercatat\n3500 / 1500 ml · target pilihan Anda\n+ 250 ml\nKapasitas gelas\n150 ml\n250 ml\n500 ml\n1000 ml\nJumlah khusus\nRiwayat konsumsi\nTarget harian · 1500 ml\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": []
+    },
+    {
+      "name": "latihan-gelap-jeda-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "Gerakan 1 / 1\nKeluar\n01:00\nJalan Kaki\nDijeda · waktu tidak dihitung\nLanjutkan\nLewati\nBerikutnya: Ringkasan\nBerjalan dengan langkah nyaman dan ayunan tangan \nalami.\nPanduan & sumber\nBeranda\nCatatan\nProgres\nLainnya",
+      "video": [
+        {
+          "paused": true,
+          "time": 0,
+          "ready": 4,
+          "loop": true,
+          "rect": {
+            "x": 17,
+            "y": 69,
+            "w": 356,
+            "h": 201
+          }
+        }
+      ]
+    }
+  ]
+}

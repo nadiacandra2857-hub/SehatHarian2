@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-12",
+  "scope": "Menu ingredient continuation; no user DB import or publication",
+  "result": "PASS",
+  "package": "content/menus/lanjutan-2026.json",
+  "package_sha256": "a61f1ede9b6406dc4f418a4aa2a25f86d8133e02ede74c635fef6e2efd3a874d",
+  "source_version": "2026-11-12.1",
+  "complete_ingredient_menus": 5,
+  "new_source_revisions": 2,
+  "definitions": 27,
+  "unit": {
+    "Backend2": {
+      "tests": 187,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "Frontend2": {
+      "tests": 94,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "python_tests": 3,
+  "jdbc_checks": 26,
+  "fresh_jvm_checks": 1,
+  "database": "sehatharian_test_curated_lanjutan_20261112_2",
+  "database_port": 13317,
+  "proofs": [
+    "build.log",
+    "source-junit.log",
+    "python-tests.log",
+    "jdbc-final.log"
+  ],
+  "initial_harness_attempt": "jdbc.log; expected stale review was initially unhandled, then asserted and re-reviewed in final run",
+  "limitations": [
+    "Total nutrition for branded yogurt/soy sauce remains unknown",
+    "Adapted gram quantities are curator formulation, not household conversions or cooking validation",
+    "Browser/physical-device acceptance not repeated",
+    "Existing release ZIP untouched; latest source is not packaged",
+    "Existing sleep work only received constructor build fix, not full runtime acceptance"
+  ]
+}

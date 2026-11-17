@@ -1,0 +1,14 @@
+{
+  "mode": "admin-publish",
+  "db": "sehatharian_test_menu_20261111b",
+  "screens": [
+    {
+      "name": "admin-terbit-1440",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "text": "SehatHarian\nWellness harian\nMENU UTAMA\nBeranda\nLatihan\nTantangan Harian\nRekomendasi Aktivitas\nCatatan Kebiasaan\nAdmin konten\nRiwayat tantangan lama\nStatistik lama\nHidrasi\nNutrisi\nJadwal & Alarm Tidur\nANALISIS & LAPORAN\nStatistik Mingguan\nEvaluasi Mingguan\nMA\nMenu admin\nDewasa • Di Luar Rumah\nProfil\nTema terang / gelap\nKeluar ke Beranda\nKelola konten\nTentang halaman ini\nPerubahan konten tersimpan.\nKelola bahan & alias\nMenu resep\nJenis konten\nMENU\nPencarian judul\nCari konten\nBuat konten baru\n[UJI] Menu JPro · PUBLISHED · v2\n[UJI] Menu JPro · DRAFT · v1\n[UJI] Susu beras · PUBLISHED · v1\n[UJI] Beras dasar · PUBLISHED · v1\nRevisi beras · ARCHIVED · v2\nTakaran diketahui · ARCHIVED · v1\nTakaran belum diketahui · ARCHIVED · v1\nJumlah belum diketahui · ARCHIVED · v1\nBahan belum tinjau · DRAFT · v1\nBahan misterius · DRAFT · v1\nMenu belum lengkap · ARCHIVED · v1\nMenu lama tanpa bahan · ARCHIVED · v1\nDaging uji · ARCHIVED · v1\nKacang uji · ARCHIVED · v1\nTelur beras uji · ARCHIVED · v1\nSusu beras uji · ARCHIVED · v1\nBeras uji · SUPERSEDED · v1"
+    }
+  ],
+  "content": "16\t[UJI] Menu JPro\tDRAFT\t1\n17\t[UJI] Menu JPro\tPUBLISHED\t2"
+}

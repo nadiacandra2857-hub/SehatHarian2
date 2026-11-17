@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-11",
+  "scope": "Source workspace; production database and release ZIP unchanged",
+  "unit": {
+    "Backend2": {
+      "tests": 187,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "Frontend2": {
+      "tests": 94,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "jdbc": {
+    "checks": 43,
+    "fresh_jvm_reads": 1,
+    "schema": "sehatharian_test_menu_final_20261111",
+    "proof": "integration-final.log",
+    "data": "synthetic"
+  },
+  "jpro": {
+    "version": "2026.3.0",
+    "schema": "sehatharian_test_menu_20261111b",
+    "browser": "Chromium headless Linux",
+    "data": "synthetic, real UI interactions",
+    "owner": 5,
+    "meal_count_before": 3,
+    "meal_count_after": 4,
+    "meal_id": 11,
+    "menu_id": 17,
+    "menu_version": 2,
+    "preference_revision_at_commit": 4,
+    "portions": 1,
+    "calories_fixture": 100,
+    "accepted_modes": {
+      "admin-save": {
+        "proof": "browser-admin-save.json",
+        "screens": []
+      },
+      "admin-publish": {
+        "proof": "browser-admin-publish.json",
+        "screens": [
+          "admin-terbit-1440"
+        ]
+      },
+      "reset-preferences": {
+        "proof": "browser-reset-preferences.json",
+        "screens": [
+          "hasil-awal-390"
+        ]
+      },
+      "restriction": {
+        "proof": "browser-restriction.json",
+        "screens": [
+          "preferensi-pantangan-390",
+          "hasil-disaring-390"
+        ]
+      },
+      "portion": {
+        "proof": "browser-portion.json",
+        "screens": [
+          "bahan-390",
+          "tinjauan-porsi-390",
+          "porsi-tersimpan-390"
+        ]
+      },
+      "states": {
+        "proof": "browser-states.json",
+        "screens": [
+          "gagal-muat-390",
+          "pulih-muat-390",
+          "hasil-kosong-390"
+        ]
+      },
+      "sizes": {
+        "proof": "browser-sizes.json",
+        "screens": [
+          "hasil-360",
+          "bahan-360",
+          "hasil-1440",
+          "bahan-1440",
+          "hasil-gelap-390"
+        ]
+      },
+      "history": {
+        "proof": "browser-history.json",
+        "screens": [
+          "riwayat-porsi-390"
+        ]
+      },
+      "review-390": {
+        "proof": "browser-review-390.json",
+        "screens": [
+          "tinjauan-porsi-390"
+        ]
+      }
+    }
+  },
+  "screens": {
+    "docs/screenshots/menu-personal/admin-terbit-1440.png": {
+      "width": 1440,
+      "height": 1000,
+      "sha256": "b6f797b880f60d91b06ef17638a9e824bfeea200dac79d353a294532f91f8e6c"
+    },
+    "docs/screenshots/menu-personal/bahan-1440.png": {
+      "width": 1440,
+      "height": 1000,
+      "sha256": "272eefbd561f303ed9e885578bba01231176d770e7885758888570c26af47c52"
+    },
+    "docs/screenshots/menu-personal/bahan-360.png": {
+      "width": 360,
+      "height": 844,
+      "sha256": "0054fcd562993f6a9db342dbb6e56bb077d6863c0c6db76d49993d35e0a9058f"
+    },
+    "docs/screenshots/menu-personal/bahan-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "5da64e984817b860b804b6aa74754df0154c7f3d17558c51a2c414997a0358f3"
+    },
+    "docs/screenshots/menu-personal/gagal-muat-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "c7c8e61869791f43e5116c0129b274f3e3e66b271a43b191f94f7183d1a07582"
+    },
+    "docs/screenshots/menu-personal/hasil-1440.png": {
+      "width": 1440,
+      "height": 1000,
+      "sha256": "73726d87cc8eda0335931a61a0d83b2fbaee18e644599f1d314835e8ada2d5d8"
+    },
+    "docs/screenshots/menu-personal/hasil-360.png": {
+      "width": 360,
+      "height": 844,
+      "sha256": "b57155dc917e6f3f0351c436a28daaf50dc1da8b9164d614ed8113bd8616fbee"
+    },
+    "docs/screenshots/menu-personal/hasil-awal-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "6adc583efb95c1e52a06cfbb15eb763854f4926597adeadadc0c23042501893f"
+    },
+    "docs/screenshots/menu-personal/hasil-disaring-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "a1e77999b6ea74c5ae35382d7766fe5d46d0a0ef77171c876ccb19fcb43a317f"
+    },
+    "docs/screenshots/menu-personal/hasil-gelap-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "55ca40c8130e9f1f8e85fd10ff619612e290b2ac56f53a34fce5badad69401a3"
+    },
+    "docs/screenshots/menu-personal/hasil-kosong-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "8354722c42f70b93510fa5ac95aaa2f7aa8d120acd6416113f47240b0368e070"
+    },
+    "docs/screenshots/menu-personal/porsi-tersimpan-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "2ddb855bd2dc2cc37763ce433e757520d354f48f34f103129a577a3e3161cfbd"
+    },
+    "docs/screenshots/menu-personal/preferensi-pantangan-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "8e7237033e06bb120aa6dcffc432c73e1236a8ae7709f9e9bf0285daf0888dde"
+    },
+    "docs/screenshots/menu-personal/pulih-muat-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "3823125454cf06a570483011ad9f5c08f48ab0601ded9a282d4a628450078360"
+    },
+    "docs/screenshots/menu-personal/riwayat-porsi-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "15cda2e4be6731f992dd79fd549135bd2fa6da9db1550672ff8f6265e3d1ba54"
+    },
+    "docs/screenshots/menu-personal/tinjauan-porsi-390.png": {
+      "width": 390,
+      "height": 844,
+      "sha256": "e65427bf5defb4d67a5a9fb945bc9fc0a28845b893847bd64369ffaabac4c2ac"
+    }
+  },
+  "source_sha256": {
+    "BACA_DULU.md": "940c2c5fe59766daff5862d2d3b04aa29d7aeba2fd3bfda33814b757b7615138",
+    "Backend2/sql/personal-menu.sql": "6802f33982bb40a452073ba36feb0e2edf2f118bba413e3970e755a9e143df42",
+    "Backend2/src/main/java/com/sehatharian/config/DatabaseBootstrap.java": "ba06a831b7f740d2b05e49f54e2ff108f5706a3ac66f560140dadd4e97fb4475",
+    "Backend2/src/main/java/com/sehatharian/content/ContentService.java": "034f8191a668a41d1d367eb681f28fdc518735c7e5b76384095a587a45cb681a",
+    "Backend2/src/main/java/com/sehatharian/nutrition/IngredientService.java": "83af3605672e4ca652713cd46fae6fa758fd1422c9a56d9c8de00ac0c380cf6a",
+    "Backend2/src/main/java/com/sehatharian/nutrition/MenuComposition.java": "4813dbaae55427081ffed323aa1952eafa317b472d36f13f085ac0943116a9b8",
+    "Backend2/src/main/java/com/sehatharian/nutrition/MenuModels.java": "7c5716c681ddbc902aa8d9d6aaf315f8f2db3c8fd64968bcdb61ef9ddf94a3b2",
+    "Backend2/src/main/java/com/sehatharian/nutrition/MenuPreferences.java": "8900520ab7d61373870415b8187da01b8fb792e803b22579a0e341a3ac417d1a",
+    "Backend2/src/main/java/com/sehatharian/nutrition/MenuStore.java": "f7ce383a938635d376d286231fc6a1076ef5251c1013b12f8f38a69397e1499d",
+    "Backend2/src/main/java/com/sehatharian/nutrition/NutritionService.java": "f7e555c2b577b065621db7ad80b64df6b2cbbbf976758a653c794c36d3a8f4a2",
+    "Backend2/src/main/java/com/sehatharian/nutrition/PersonalMenus.java": "2d4e8a4de995dd851aa8119bbcd97536b4a7a6ccecc2f52ef24515a0e6e64279",
+    "Backend2/src/main/java/com/sehatharian/service/HabitInsights.java": "6f8137ba2cfa125740c32251ea85e28c27ea0da39aa24bec50627ecd75d37eac",
+    "Backend2/src/main/java/com/sehatharian/service/HabitPreferences.java": "7739534f2ac3c85896100431329e0c8e8e3166947980c581e4dedd13a38ee0b0",
+    "Backend2/src/test/java/com/sehatharian/MenuPersonalIntegration.java": "aef38ff2d8e979c2631d588747e214ec8df0d177c1d591183b420b63b79645df",
+    "Backend2/src/test/java/com/sehatharian/MenuPolicyTest.java": "fdab077368b0ba04153e4e0d00649469037208fa184b032e9f602039ad16883e",
+    "Frontend2/src/main/java/com/sehatharian/controller/AdminController.java": "659538e36f27273567abbceaa37474031468ef7931823ff5be484b4f4af140ce",
+    "Frontend2/src/main/java/com/sehatharian/controller/NutrisiController.java": "5498c09dde05d68c5b9e67066f34d385395d955faad5b5594636c6c79ca7c9f2",
+    "Frontend2/src/main/java/com/sehatharian/controller/ProgresController.java": "76a35c47d5d162d9293abbb28f28f348ac4347cf3d820dfe273da971f7b2566b",
+    "Frontend2/src/main/java/com/sehatharian/controller/RekomendasiController.java": "adeb28b0e43185e4908027ffcc8887c858821bf4bd9617333346f8edb7323f2d",
+    "Frontend2/src/main/java/com/sehatharian/util/IngredientAdminPane.java": "0cfd4ea223d630051cdac91260bf4cc612755acc55256850ee6dd9b35bf28083",
+    "Frontend2/src/main/java/com/sehatharian/util/MenuCompositionEditor.java": "e6c2e54e4cc97c0274cfc4889d49732ff4b3321f5a4144df36ee130933e369ec",
+    "Frontend2/src/main/java/com/sehatharian/util/MenuPreferenceForm.java": "f7cb48b51a357804e7042a47b7dabddc7e83470f01d7d59a408b23351ab9ad63",
+    "Frontend2/src/main/java/com/sehatharian/util/PersonalMenuPane.java": "cf2ebdcd1c6e3c233c046e361850d940933d39d4f43a955563c1020d9b0074ea",
+    "docs/LAPORAN_REKOMENDASI_MENU_PERSONAL.md": "28e4f52ff0b03d41e33db4a288127506c884f4b10241682ca46fc7c868ea3bb7",
+    "docs/PEKERJAAN_TERTUNDA.md": "5754cf2ba37a88c62d38400959df9cba76e7b31387427976220d3b78e15b9bf3",
+    "scripts/rombak-check.init.gradle": "99578c422bbd3777936c03143abdfe2fe9c46c8e6c8e50d63ad43a42b534dd05",
+    "scripts/run-menu-personal-tests.py": "6727440241e68579a47ff20765d1c6aa88b3752ed8067351ccbbf9d227d8d984",
+    "scripts/visual/menu-personal.mjs": "644034a59d7cbeb85dc9aa20348e5b8067d06a63e161cab3cfbec701f98630c1"
+  },
+  "limitations": [
+    "No real recipes published; editorial sources still needed",
+    "No physical phone, Windows or macOS acceptance",
+    "Release ZIP lacks training history, recovery and this feature; no new extraction acceptance"
+  ],
+  "processes": {
+    "jpro_launcher_pid_file": "/tmp/sehatharian-menu-jpro.pid",
+    "chrome_pid_file": "/tmp/sehatharian-menu-chrome.pid",
+    "isolated_db_path_file": "/tmp/sehatharian-rombak-db-path"
+  }
+}

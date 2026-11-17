@@ -1,0 +1,20 @@
+{
+  "phase": "after",
+  "mode": "onboarding-steps",
+  "screens": [
+    {
+      "name": "onboarding-2-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nDi mana Anda lebih sering \nmelakukan aktivitas?\nPilih lingkungan aktivitas utama yang paling nyaman dan \nsering Anda lakukan sehari-hari.\nOutdoor\nAktivitas di Luar Ruangan\nContoh anjuran aktivitas:\n• Berjalan kaki di taman atau rute sekitar rumah\n• Jogging santai pagi atau sore hari\n• Bersepeda keliling kompleks perumahan\nIndoor\nAktivitas di Dalam Ruangan\nContoh anjuran aktivitas:\n• Peregangan otot dan mobilitas tubuh di rumah\n• Latihan beban tubuh ringan (bodyweight workout)\n• Yoga dan latihan relaksasi pernapasan\n← Kembali\nBerikutnya →"
+    },
+    {
+      "name": "onboarding-3-390",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "text": "INFORMASI DASAR\n1. Waktu Luang\n2. Aktivitas\n3. Kelompok Umur\nAnda termasuk dalam kelompok \nusia mana?\nTingkat intensitas tantangan dan anjuran kebiasaan \nsehat akan disesuaikan dengan rentang usia Anda.\nRemaja (15 – 24 Tahun)\nFase Pertumbuhan & Energi\nFokus pada pembentukan kebiasaan harian \naktif, postur tubuh baik, hidrasi cukup, dan pola \ntidur konsisten.\nDewasa (25 – 59 Tahun)\nProduktif & Keseimbangan Kerja\nFokus pada manajemen stres, pencegahan gaya \nhidup sedentary karena duduk bekerja, workout \nteratur, dan istirahat berkualitas.\nTua / Lansia (60+ Tahun)\nMobilitas Aman & Kebugaran Tulang\nFokus pada kelenturan sendi, keseimbangan, \nlatihan jalan santai rendah benturan, hidrasi \naman, dan tidur malam yang pulas.\n← Kembali\nSelesai & Buka Dashboard"
+    }
+  ]
+}

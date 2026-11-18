@@ -30,17 +30,17 @@ public class LandingPageController {
     @FXML private ImageView heroBgImageView;
     @FXML private javafx.scene.layout.Region heroOverlayRegion;
     @FXML private VBox heroTextContainer;
-    @FXML private VBox heroPreviewCard;
+    @FXML @SuppressWarnings("unused") private VBox heroPreviewCard;
     @FXML private ImageView navbarLogoView;
     @FXML private ImageView aboutImageView;
     @FXML private ImageView campusImageView;
     @FXML private ImageView footerLogoView;
 
-    @FXML private ImageView featureImg1;
-    @FXML private ImageView featureImg2;
-    @FXML private ImageView featureImg3;
-    @FXML private ImageView featureImg4;
-    @FXML private ImageView featureImg5;
+    @FXML @SuppressWarnings("unused") private ImageView featureImg1;
+    @FXML @SuppressWarnings("unused") private ImageView featureImg2;
+    @FXML @SuppressWarnings("unused") private ImageView featureImg3;
+    @FXML @SuppressWarnings("unused") private ImageView featureImg4;
+    @FXML @SuppressWarnings("unused") private ImageView featureImg5;
 
     // Navigation buttons
     @FXML private Button btnNavBeranda;
@@ -48,13 +48,13 @@ public class LandingPageController {
     @FXML private Button btnNavFitur;
     @FXML private Button btnNavTentang;
     @FXML private Button btnNavBantuan;
-    @FXML private Button btnNavLogin;
-    @FXML private Button btnNavCreateAccount;
+    @FXML @SuppressWarnings("unused") private Button btnNavLogin;
+    @FXML @SuppressWarnings("unused") private Button btnNavCreateAccount;
 
     // Hero buttons
-    @FXML private Button btnHeroLogin;
-    @FXML private Button btnHeroCreateAccount;
-    @FXML private Button btnHeroDemo;
+    @FXML @SuppressWarnings("unused") private Button btnHeroLogin;
+    @FXML @SuppressWarnings("unused") private Button btnHeroCreateAccount;
+    @FXML @SuppressWarnings("unused") private Button btnHeroDemo;
 
     // Sections
     @FXML private HBox penilaianSectionBox;
@@ -62,8 +62,8 @@ public class LandingPageController {
     @FXML private VBox deskripsiSectionBox;
     @FXML private VBox fiturSectionBox;
     @FXML private VBox faqSectionBox;
-    @FXML private VBox downloadSectionBox;
-    @FXML private VBox footerSectionBox;
+    @FXML @SuppressWarnings("unused") private VBox downloadSectionBox;
+    @FXML @SuppressWarnings("unused") private VBox footerSectionBox;
 
     // Interactive Demo Checklist
     @FXML private CheckBox chkDemoTantangan1;
@@ -105,9 +105,9 @@ public class LandingPageController {
     @FXML private VBox faqContent4;
 
     // CTA
-    @FXML private Button btnCtaCreateAccount;
-    @FXML private Button btnCtaLogin;
-    @FXML private Button btnDistribusiInfo;
+    @FXML @SuppressWarnings("unused") private Button btnCtaCreateAccount;
+    @FXML @SuppressWarnings("unused") private Button btnCtaLogin;
+    @FXML @SuppressWarnings("unused") private Button btnDistribusiInfo;
 
     @FXML
     public void initialize() {

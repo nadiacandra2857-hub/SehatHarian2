@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class ProfilPengaturanController implements AutoCloseable {
     private final UserSession session;

@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Explicit read-only catalog previews use DemoCatalog without initializing personal samples.
  */
 @Deprecated
+@SuppressWarnings("unused")
 public class InMemoryDataStore {
     // Personal-data helpers remain private legacy internals; no production callers.
 

@@ -2,12 +2,12 @@ package com.sehatharian.util;
 
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import java.util.List;
 
 /** A row that becomes a vertical form when its children no longer fit.
  * Retains HBox constraints and controller field types; no global listeners. */
+@SuppressWarnings("this-escape")
 public class AdaptiveRow extends HBox {
     public AdaptiveRow() { setMinWidth(0); setFillHeight(false); }
     public AdaptiveRow(double gap) { this(); setSpacing(gap); }

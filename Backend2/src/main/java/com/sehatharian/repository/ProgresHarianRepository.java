@@ -1,7 +1,6 @@
 package com.sehatharian.repository;
 
 import com.sehatharian.model.SessionAccess;
-import com.sehatharian.config.DatabaseConfig;
 import com.sehatharian.model.ProgresHarian;
 
 import java.sql.Connection;

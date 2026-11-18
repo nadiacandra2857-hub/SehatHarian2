@@ -7,7 +7,6 @@ import com.sehatharian.util.DialogHelper;
 import com.sehatharian.util.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -35,8 +34,7 @@ public class LoginController implements AutoCloseable {
     @FXML private PasswordField txtPassword;
     @FXML private TextField txtPasswordVisible;
     @FXML private Button btnTogglePassword;
-    @FXML private CheckBox chkRememberMe;
-    @FXML private HBox errorBannerBox;
+        @FXML private HBox errorBannerBox;
     @FXML private Label errorBannerLabel;
     @FXML private Button btnLogin;
 

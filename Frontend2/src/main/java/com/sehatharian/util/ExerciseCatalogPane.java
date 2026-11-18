@@ -3,7 +3,6 @@ package com.sehatharian.util;
 import com.sehatharian.catalog.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -100,7 +99,7 @@ public final class ExerciseCatalogPane extends VBox implements AutoCloseable {
             } catch(Exception e) { deliver(request,()->{status.setText("Katalog lokal gagal dimuat. Lokasi: "+catalog.root()+". Jalankan python3 scripts/prepare-repdb.py --limit 24 dari root proyek atau periksa SEHATHARIAN_REPDB_DIR, lalu tekan Muat ulang. Detail: "+e.getClass().getSimpleName()+" — "+e.getMessage()+"");source.setText("Sumber RepDB lokal belum tersedia · bukan kegagalan SQL");}); }
         });
     }
-    @SuppressWarnings("unchecked") private static Function<Exercise,String>[] functions(){return new Function[]{(Function<Exercise,String>)Exercise::difficulty,(Function<Exercise,String>)Exercise::equipment,(Function<Exercise,String>)Exercise::bodyPart,(Function<Exercise,String>)Exercise::category};}
+    @SuppressWarnings({"unchecked", "rawtypes"}) private static Function<Exercise,String>[] functions(){return new Function[]{(Function<Exercise,String>)Exercise::difficulty,(Function<Exercise,String>)Exercise::equipment,(Function<Exercise,String>)Exercise::bodyPart,(Function<Exercise,String>)Exercise::category};}
     private void deliver(long request,Runnable action) { Platform.runLater(()->{if(!closed && request==revision)action.run();}); }
     private void filter() {
         if(snapshot==null || closed)return;

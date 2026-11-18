@@ -18,8 +18,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class RekomendasiController implements AutoCloseable {

@@ -1,7 +1,7 @@
 package com.sehatharian.util;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-/** Legacy FXML image slot now reuses the approved category art; never exercise instructions. */
+
 public class EditorialImage extends ImageView {
  public EditorialImage(){this(0,260,170);}
  public EditorialImage(int quadrant,double w,double h){setFitWidth(w);setFitHeight(h);setPreserveRatio(true);setQuadrant(quadrant);}

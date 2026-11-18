@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -50,7 +49,7 @@ public class CatatanKebiasaanController implements AutoCloseable {
     @FXML private DatePicker datePickerTanggal;
 
     // Hidrasi
-    @FXML private ImageView waterImageView;
+    @FXML @SuppressWarnings("unused") private ImageView waterImageView;
     @FXML private Label labelTotalHidrasi;
     @FXML private ProgressBar progressBarHidrasi;
     @FXML private javafx.scene.layout.HBox waterGlassesBox;
@@ -63,7 +62,7 @@ public class CatatanKebiasaanController implements AutoCloseable {
     @FXML private TableColumn<Hidrasi, Void> colHidrasiAksi;
 
     // Aktivitas
-    @FXML private ImageView activityImageView;
+    @FXML @SuppressWarnings("unused") private ImageView activityImageView;
     @FXML private Label labelTotalAktivitas;
     @FXML private Label labelAktivitasStatus;
     @FXML private ComboBox<String> comboPresetAktivitas;
@@ -76,7 +75,7 @@ public class CatatanKebiasaanController implements AutoCloseable {
     @FXML private TableColumn<Aktivitas, Void> colAktivitasAksi;
 
     // Makan
-    @FXML private ImageView mealImageView;
+    @FXML @SuppressWarnings("unused") private ImageView mealImageView;
     @FXML private ComboBox<String> comboWaktuMakan;
     @FXML private TextField txtNamaMenu;
     @FXML private TextField txtKeteranganMakan;

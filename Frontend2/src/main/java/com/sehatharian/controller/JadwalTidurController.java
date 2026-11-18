@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -44,7 +43,7 @@ public class JadwalTidurController implements AutoCloseable {
 
 
     @FXML private VBox tidurRoot;
-    @FXML private ImageView sleepHeaderImageView;
+    @FXML @SuppressWarnings("unused") private ImageView sleepHeaderImageView;
 
     @FXML private DatePicker datePickerTanggal;
     @FXML private ComboBox<String> comboJamTidur;

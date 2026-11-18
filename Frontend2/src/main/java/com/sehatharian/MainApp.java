@@ -14,6 +14,13 @@ public class MainApp extends Application {
     private com.jpro.webapi.InstanceCloseListener browserCloseListener;
 
     @Override
+    public void init() throws Exception {
+        super.init();
+        LocalDatabase.startIfNeeded();
+        DatabaseBootstrap.initialize();
+    }
+
+    @Override
     public void start(Stage primaryStage) {
         try {
             // Inisialisasi koordinator navigasi desktop

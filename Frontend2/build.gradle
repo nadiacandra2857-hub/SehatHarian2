@@ -65,15 +65,24 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.sehatharian.AppLauncher'
+    mainClass = 'com.sehatharian.MainApp'
     applicationDefaultJvmArgs = [
+        '-Dfile.encoding=UTF-8',
         '--enable-preview',
         '--enable-native-access=ALL-UNNAMED'
     ]
 }
 
+tasks.named('run') {
+    mainClass = 'com.sehatharian.AppLauncher'
+}
+
 jpro {
-    // default port is 8080
+    JVMArgs = [
+        '-Dfile.encoding=UTF-8',
+        '--enable-preview',
+        '--enable-native-access=ALL-UNNAMED'
+    ]
 }
 
 tasks.withType(JavaCompile).configureEach {

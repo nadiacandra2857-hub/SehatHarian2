@@ -169,7 +169,6 @@ public class MainLayoutController implements AutoCloseable {
 
     // --- IKON & RESPONSIF ---
 
-    private static final double BREAKPOINT_SIDEBAR_RINGKAS = 820;
 
     private void pasangIkonNavigasi() {
         Object[][] peta = {
